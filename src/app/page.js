@@ -265,72 +265,83 @@ export default function Home() {
 
 function PixAiLogo() {
   return (
-    <div className="">
-      <Image
-        src={"/images/pixai-logo-branco.png"}
-        width="260"
-        height="40"
-        className={"object-cover"}
-        alt="Hero Illustration"
-        loading="eager"
-      />
-    </div>
+    <a href="https://pixai.com.br" target="_blank">
+      <div className="">
+        <Image
+          src={"/images/pixai-logo-branco.png"}
+          width="260"
+          height="40"
+          className={"object-cover"}
+          alt="Hero Illustration"
+          loading="eager"
+        />
+      </div>
+    </a>
   );
 }
 function CloudFasterLogo() {
   return (
-    <div className="">
-      <Image
-        src={"/images/cloud-faster-branco.png"}
-        width="260"
-        height="40"
-        className={"object-cover"}
-        alt="Hero Illustration"
-        loading="eager"
-      />
-    </div>
+    <a href="https://cloudfaster.com.br/" target="_blank">
+      <div className="">
+        <Image
+          src={"/images/cloud-faster-branco.png"}
+          width="260"
+          height="40"
+          className={"object-cover"}
+          alt="Hero Illustration"
+          loading="eager"
+        />
+      </div>
+    </a>
   );
 }
 
 function ActuarLogo() {
   return (
-    <div className="">
-      <Image
-        src={"/images/actuar-logo.jpg"}
-        width="260"
-        height="40"
-        className={"object-cover"}
-        alt="Hero Illustration"
-        loading="eager"
-      />
-    </div>
+    <a href="https://app.actuar.com/" target="_blank">
+      <div className="">
+        <Image
+          src={"/images/actuar-logo.jpg"}
+          width="260"
+          height="40"
+          className={"object-cover"}
+          alt="Hero Illustration"
+          loading="eager"
+        />
+      </div>
+    </a>
   );
 }
+
 function BDadosLogo() {
   return (
-    <div className="">
-      <Image
-        src={"/images/bdados-logo.jpg"}
-        width="260"
-        height="40"
-        className={"object-cover"}
-        alt="Hero Illustration"
-        loading="eager"
-      />
-    </div>
+    <a href="https://www.bdados.com.br/" target="_blank">
+      <div className="">
+        <Image
+          src={"/images/bdados-logo.jpg"}
+          width="260"
+          height="40"
+          className={"object-cover"}
+          alt="Hero Illustration"
+          loading="eager"
+        />
+      </div>
+    </a>
   );
 }
 function MaximaLogo() {
   return (
-    <div className="">
-      <Image
-        src={"/images/maxima-logo.png"}
-        width="260"
-        height="40"
-        className={"object-cover"}
-        alt="Hero Illustration"
-        loading="eager"
-      />
-    </div>
+    <a href="https://maximatech.com.br/" target="_blank">
+      <div className="">
+        <Image
+          src={"/images/maxima-logo.png"}
+          width="260"
+          height="40"
+          className={"object-cover"}
+          alt="Hero Illustration"
+          loading="eager"
+        />
+      </div>
+    </a>
   );
 }
