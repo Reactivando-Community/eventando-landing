@@ -31,6 +31,7 @@ const options = [
   { value: "Product Camp Goiás", label: "Product Camp Goiás" },
   { value: "React Goiânia", label: "React Goiânia" },
   { value: "StartupGO", label: "StartupGO" },
+  { value: "Anapolivre", label: "Anapolivre" },
 ];
 
 const products = [
