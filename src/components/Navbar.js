@@ -15,7 +15,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     console.log("theme", theme);
-  }, [theme])
+  }, [theme]);
 
   return (
     <div className="w-full">
@@ -25,7 +25,7 @@ export const Navbar = () => {
           {({ open }) => (
             <>
               <div className="flex flex-wrap items-center justify-between w-full lg:w-auto">
-                <Link href="/">
+                <Link href="https://joincommunity.com.br" target="_blank">
                   <span className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
                     <span>
                       <Image
