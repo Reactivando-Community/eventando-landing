@@ -30,37 +30,12 @@ export const Hero = () => {
           </div>
         </div>
       </Container>
-      <Container>
-        <div className="flex flex-col justify-center">
-          <div className="text-xl text-center text-gray-700 dark:text-white">
-            Empresas que apoiam
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-5 mt-10 md:justify-around">
-            <div className="pt-2 text-gray-400 dark:text-gray-400">
-              <PixAiLogo />
-            </div>
-          </div>
-        </div>
-      </Container>
+      
     </>
   );
 };
 
-function PixAiLogo() {
-  return (
-    <div className="">
-      <Image
-        src={"/images/pixai-logo-branco.png"}
-        width="260"
-        height="40"
-        className={"object-cover"}
-        alt="Hero Illustration"
-        loading="eager"
-      />
-    </div>
-  );
-}
+
 function AmazonLogo() {
   return (
     <svg
