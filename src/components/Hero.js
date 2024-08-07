@@ -12,7 +12,7 @@ export const Hero = () => {
               Join Community
             </h1>
             <p className="py-5 text-xl leading-normal text-gray-500 lg:text-xl xl:text-2xl dark:text-gray-300">
-              Pré-venda 11ª edição do Join Community em Goiânia
+              Pré-venda 11ª edição do Join Community que acontecerá nos dias 20 e 21 de Setembro de 2024 em Goiânia.
             </p>
           </div>
         </div>
