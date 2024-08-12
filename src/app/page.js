@@ -246,11 +246,6 @@ export default function Home() {
               <SenaiLogo />
             </div>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-5 mt-10 md:justify-around">
-            <div className="pt-2 text-gray-400 dark:text-gray-400">
-              <PixAiLogo />
-            </div>
-          </div>
         </div>
       </Container>
 
