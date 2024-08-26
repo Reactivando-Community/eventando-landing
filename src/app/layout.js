@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Join Community",
-  description: "Hotsite para pré-venda dos ingressos Join Community",
+  description: "Ingressos Join Community",
 };
 
 export default function RootLayout({ children }) {

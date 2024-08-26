@@ -35,8 +35,10 @@ const options = [
 ];
 
 const products = [
-  { value: "Com Camisa", label: "Ingresso com camisa - R$ 140,00" },
-  { value: "Sem Camisa", label: "Ingresso sem camisa - R$ 120,00" },
+  {
+    value: "Inscrição para os dois dias do evento",
+    label: "Inscrição para os dois dias do evento - R$ 120,00",
+  },
 ];
 
 const tshirtSizes = [
@@ -103,8 +105,6 @@ export default function Home() {
       return;
     }
 
-    const productId = productSelected === "Com Camisa" ? 1 : 2;
-
     try {
       const response = await eventando.event.signup({
         name,
@@ -112,7 +112,7 @@ export default function Home() {
         phoneNumber: phone,
         additionalInformation: communitySelected,
         tShirtSize: tshirtSize,
-        paymentOption: productId,
+        paymentOption: 2,
       });
 
       setPaymentResponse(response.data);
@@ -175,12 +175,11 @@ export default function Home() {
 
       <Container>
         <SectionTitle
-          preTitle="PRÉ-VENDA ATÉ O DIA 20 DE AGOSTO DE 2024"
-          title="Guardaremos um lugar especial para quem acredita no projeto"
+          preTitle="As vendas por aqui poderão ser realizadas até o dia do evento"
+          title="Faça network, conheça novas pessoas e participe da comunidade!"
         >
-          Serão divulgados os nomes de quem fizer a inscrição na pré-venda como
-          uma forma de agradecimento por acreditar no projeto e contribuir para
-          a construção da comunidade.
+          Faça aqui a sua inscrição para o maior evento de comunidade do estado
+          de Goiás.
         </SectionTitle>
 
         <div>
@@ -223,15 +222,15 @@ export default function Home() {
             onChange={setProduct}
           />
 
-          {productSelected === "Com Camisa" ? (
-            <Select
-              onChange={setTShirtSize}
-              title={"Selecione o tamanho da camisa"}
-              options={tshirtSizes}
-            />
-          ) : null}
-
           <Button onClick={submitSignup} title={"Pagar com PIX"} />
+          <Button.Outline
+            onClick={() => {
+              if(window) {
+                window.open("https://www.sympla.com.br/evento/joincommunity-2024/2594007", "_blank");
+              }
+            }}
+            title={"Pagar com cartão de crédito"}
+          />
         </div>
       </Container>
 
