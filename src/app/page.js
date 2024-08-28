@@ -36,8 +36,12 @@ const options = [
 
 const products = [
   {
-    value: "Inscrição para os dois dias do evento",
-    label: "Inscrição para os dois dias do evento - R$ 120,00",
+    value: "Com Camisa",
+    label: "Inscrição com camiseta - 2º Lote - R$ 160,00",
+  },
+  {
+    value: "Sem Camisa",
+    label: "Inscrição sem camiseta - 2º Lote - R$ 140,00",
   },
 ];
 
@@ -105,6 +109,8 @@ export default function Home() {
       return;
     }
 
+    const productId = productSelected === "Com Camisa" ? 3 : 4;
+
     try {
       const response = await eventando.event.signup({
         name,
@@ -112,7 +118,7 @@ export default function Home() {
         phoneNumber: phone,
         additionalInformation: communitySelected,
         tShirtSize: tshirtSize,
-        paymentOption: 2,
+        paymentOption: productId,
       });
 
       setPaymentResponse(response.data);
@@ -216,17 +222,28 @@ export default function Home() {
             title={"Selecione sua comunidade"}
             options={options}
           />
+
           <Select
             title={"Selecione o ingresso"}
             options={products}
             onChange={setProduct}
           />
+          {productSelected === "Com Camisa" ? (
+            <Select
+              onChange={setTShirtSize}
+              title={"Selecione o tamanho da camisa"}
+              options={tshirtSizes}
+            />
+          ) : null}
 
           <Button onClick={submitSignup} title={"Pagar com PIX"} />
           <Button.Outline
             onClick={() => {
-              if(window) {
-                window.open("https://www.sympla.com.br/evento/joincommunity-2024/2594007", "_blank");
+              if (window) {
+                window.open(
+                  "https://www.sympla.com.br/evento/joincommunity-2024/2594007",
+                  "_blank"
+                );
               }
             }}
             title={"Pagar com cartão de crédito"}
