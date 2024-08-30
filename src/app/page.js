@@ -14,6 +14,7 @@ import VMasker from "vanilla-masker";
 import QRCode from "react-qr-code";
 import eventando from "@/network/eventando";
 import Modal from "@/components/home/modal";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const options = [
   { value: "Sem comunidade", label: "Sem comunidade" },
@@ -56,8 +57,10 @@ const tshirtSizes = [
 let confirmationPaymentInterval = null;
 
 export default function Home() {
+  const params = useSearchParams();
+
   const [communitySelected, setCommunity] = useState(options[0].value);
-  const [productSelected, setProduct] = useState(products[0].value);
+
   const [tshirtSize, setTShirtSize] = useState(tshirtSizes[0].value);
 
   const [name, setName] = useState("");
@@ -68,6 +71,71 @@ export default function Home() {
 
   const [showModal, setShowModal] = useState(false);
   const [confirmModal, setConfirmModal] = useState(false);
+
+  const [productSelectedId, setProductSelectedId] = useState(null);
+
+  const [productsToList, setProductsToList] = useState(products);
+
+  const [productSelected, setProduct] = useState(null);
+
+  const findSales = async () => {
+    try {
+      const slug = params.get("event");
+
+      if (!slug) {
+        return;
+      }
+
+      const response = await eventando.event.getSaleDetails({ slug });
+
+      if (response.data.data.length === 0) {
+        alert("Essa promoção não existe!");
+
+        return;
+      }
+
+      const sale = response.data.data[0].attributes;
+
+      const { payment_option_id } = sale;
+
+      const event = sale.event.data.attributes;
+
+      console.log("event: ", event);
+
+      const options = event.payment_option;
+
+      options.forEach((option) => {
+        if (option.id === payment_option_id) {
+          const newProduct = {
+            value: option.name,
+            label: option.name,
+            id: option.id,
+          };
+
+          console.log("setProduct(newProduct): ", newProduct);
+
+          setProductsToList([newProduct]);
+
+          setProduct(newProduct);
+          setProductSelectedId(option.id);
+
+          setTimeout(() => {
+            setProductsToList((s) => {
+              return [...s, ...products];
+            });
+          }, 400);
+
+          return;
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    findSales();
+  }, []);
 
   const checkPayment = async () => {
     try {
@@ -91,6 +159,20 @@ export default function Home() {
   };
 
   useEffect(() => {
+    if (!productSelected) {
+      return;
+    }
+
+    if (productSelected?.id) {
+      setProductSelectedId(productSelected.id);
+      return;
+    }
+
+    const productSelectedId = productSelected === "Com Camisa" ? 3 : 4;
+    setProductSelectedId(productSelectedId);
+  }, [productSelected]);
+
+  useEffect(() => {
     if (paymentResponse) {
       setShowModal(true);
 
@@ -109,8 +191,6 @@ export default function Home() {
       return;
     }
 
-    const productId = productSelected === "Com Camisa" ? 3 : 4;
-
     try {
       const response = await eventando.event.signup({
         name,
@@ -118,7 +198,7 @@ export default function Home() {
         phoneNumber: phone,
         additionalInformation: communitySelected,
         tShirtSize: tshirtSize,
-        paymentOption: productId,
+        paymentOption: productSelectedId,
       });
 
       setPaymentResponse(response.data);
@@ -221,18 +301,21 @@ export default function Home() {
             onChange={setCommunity}
             title={"Selecione sua comunidade"}
             options={options}
+            value={communitySelected}
           />
 
           <Select
             title={"Selecione o ingresso"}
-            options={products}
+            options={productsToList}
             onChange={setProduct}
+            value={productSelected}
           />
           {productSelected === "Com Camisa" ? (
             <Select
               onChange={setTShirtSize}
               title={"Selecione o tamanho da camisa"}
               options={tshirtSizes}
+              value={tshirtSize}
             />
           ) : null}
 
@@ -399,7 +482,7 @@ function SenaiLogo() {
             <clipPath clipPathUnits="userSpaceOnUse" id="clipPath26">
               <path
                 d="M -0.2021,-0.015 H 595.0735 V 841.8748 H -0.2021 Z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
                 id="path24"
               ></path>
             </clipPath>
@@ -407,7 +490,7 @@ function SenaiLogo() {
           <g id="layer1">
             <g
               id="g22"
-              clip-path="url(#clipPath26)"
+              clipPath="url(#clipPath26)"
               transform="matrix(0.35277777,0,0,-0.35277777,-19.506119,278.39945)"
             >
               <g id="g52" transform="translate(-170.18556,158.04471)">
