@@ -7,14 +7,14 @@ import Input from "@/components/home/input";
 import Select from "@/components/home/select";
 import { SectionTitle } from "@/components/SectionTitle";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import VMasker from "vanilla-masker";
 
 import QRCode from "react-qr-code";
 import eventando from "@/network/eventando";
 import Modal from "@/components/home/modal";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 const options = [
   { value: "Sem comunidade", label: "Sem comunidade" },
@@ -218,164 +218,166 @@ export default function Home() {
   };
 
   return (
-    <Container>
-      <Hero />
+    <Suspense>
+      <Container>
+        <Hero />
 
-      <Modal
-        visible={confirmModal}
-        title={"Pagamento"}
-        description={
-          "Pagamento recebido com sucesso. Em breve você receberá mais informações no seu email e WhatsApp. Obrigado por nos apoiar. \n Organização Join Community"
-        }
-        handleVisible={() => {
-          setConfirmModal((s) => !s);
-        }}
-        onClick={() => {
-          setConfirmModal(false);
-        }}
-        buttonTitle={"Ok"}
-      />
-      <Modal
-        visible={showModal}
-        title={"Pagamento"}
-        description={"Abaixo o QR Code para pagamento"}
-        handleVisible={() => {
-          setShowModal((s) => !s);
-        }}
-        onClick={() => {
-          if (paymentResponse) {
-            navigator.clipboard.writeText(paymentResponse.qr_code);
+        <Modal
+          visible={confirmModal}
+          title={"Pagamento"}
+          description={
+            "Pagamento recebido com sucesso. Em breve você receberá mais informações no seu email e WhatsApp. Obrigado por nos apoiar. \n Organização Join Community"
           }
-        }}
-        buttonTitle={"Copiar QR Code"}
-      >
-        <div className="flex justify-center items-center">
-          <QRCode
-            size={256}
-            style={{ height: "auto", maxWidth: "75%", width: "75%" }}
-            value={paymentResponse?.qr_code || ""}
-            viewBox={`0 0 256 256`}
-          />
-        </div>
-      </Modal>
-
-      <Container>
-        <SectionTitle
-          preTitle="As vendas por aqui poderão ser realizadas até o dia do evento"
-          title="Faça network, conheça novas pessoas e participe da comunidade!"
+          handleVisible={() => {
+            setConfirmModal((s) => !s);
+          }}
+          onClick={() => {
+            setConfirmModal(false);
+          }}
+          buttonTitle={"Ok"}
+        />
+        <Modal
+          visible={showModal}
+          title={"Pagamento"}
+          description={"Abaixo o QR Code para pagamento"}
+          handleVisible={() => {
+            setShowModal((s) => !s);
+          }}
+          onClick={() => {
+            if (paymentResponse) {
+              navigator.clipboard.writeText(paymentResponse.qr_code);
+            }
+          }}
+          buttonTitle={"Copiar QR Code"}
         >
-          Faça aqui a sua inscrição para o maior evento de comunidade do estado
-          de Goiás.
-        </SectionTitle>
-
-        <div>
-          <Input
-            title="Nome completo"
-            type="text"
-            value={name}
-            placeholder="Digite seu nome completo"
-            onChange={(value) => {
-              setName(value);
-            }}
-          />
-          <Input
-            title="Email"
-            type="email"
-            placeholder="Digite seu melhor email"
-            value={email}
-            onChange={(value) => {
-              setEmail(value);
-            }}
-          />
-          <Input
-            title="Celular"
-            type="phone"
-            placeholder="Digite seu número do WhatsApp"
-            value={phone}
-            onChange={(value) => {
-              setPhone(VMasker.toPattern(value, "(99) 99999-9999"));
-            }}
-          />
-
-          <Select
-            onChange={setCommunity}
-            title={"Selecione sua comunidade"}
-            options={options}
-            value={communitySelected}
-          />
-
-          <Select
-            title={"Selecione o ingresso"}
-            options={productsToList}
-            onChange={setProduct}
-            value={productSelected}
-          />
-          {productSelected === "Com Camisa" ? (
-            <Select
-              onChange={setTShirtSize}
-              title={"Selecione o tamanho da camisa"}
-              options={tshirtSizes}
-              value={tshirtSize}
+          <div className="flex justify-center items-center">
+            <QRCode
+              size={256}
+              style={{ height: "auto", maxWidth: "75%", width: "75%" }}
+              value={paymentResponse?.qr_code || ""}
+              viewBox={`0 0 256 256`}
             />
-          ) : null}
+          </div>
+        </Modal>
 
-          <Button onClick={submitSignup} title={"Pagar com PIX"} />
-          <Button.Outline
-            onClick={() => {
-              if (window) {
-                window.open(
-                  "https://www.sympla.com.br/evento/joincommunity-2024/2594007",
-                  "_blank"
-                );
-              }
-            }}
-            title={"Pagar com cartão de crédito"}
-          />
-        </div>
+        <Container>
+          <SectionTitle
+            preTitle="As vendas por aqui poderão ser realizadas até o dia do evento"
+            title="Faça network, conheça novas pessoas e participe da comunidade!"
+          >
+            Faça aqui a sua inscrição para o maior evento de comunidade do
+            estado de Goiás.
+          </SectionTitle>
+
+          <div>
+            <Input
+              title="Nome completo"
+              type="text"
+              value={name}
+              placeholder="Digite seu nome completo"
+              onChange={(value) => {
+                setName(value);
+              }}
+            />
+            <Input
+              title="Email"
+              type="email"
+              placeholder="Digite seu melhor email"
+              value={email}
+              onChange={(value) => {
+                setEmail(value);
+              }}
+            />
+            <Input
+              title="Celular"
+              type="phone"
+              placeholder="Digite seu número do WhatsApp"
+              value={phone}
+              onChange={(value) => {
+                setPhone(VMasker.toPattern(value, "(99) 99999-9999"));
+              }}
+            />
+
+            <Select
+              onChange={setCommunity}
+              title={"Selecione sua comunidade"}
+              options={options}
+              value={communitySelected}
+            />
+
+            <Select
+              title={"Selecione o ingresso"}
+              options={productsToList}
+              onChange={setProduct}
+              value={productSelected}
+            />
+            {productSelected === "Com Camisa" ? (
+              <Select
+                onChange={setTShirtSize}
+                title={"Selecione o tamanho da camisa"}
+                options={tshirtSizes}
+                value={tshirtSize}
+              />
+            ) : null}
+
+            <Button onClick={submitSignup} title={"Pagar com PIX"} />
+            <Button.Outline
+              onClick={() => {
+                if (window) {
+                  window.open(
+                    "https://www.sympla.com.br/evento/joincommunity-2024/2594007",
+                    "_blank"
+                  );
+                }
+              }}
+              title={"Pagar com cartão de crédito"}
+            />
+          </div>
+        </Container>
+
+        <Container>
+          <div className="flex flex-col justify-center">
+            <div className="text-xl text-center text-gray-700 dark:text-white">
+              Apoio
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-5 mt-10 md:justify-around">
+              <div className="pt-2 text-gray-400 dark:text-gray-400">
+                <SenaiLogo />
+              </div>
+            </div>
+          </div>
+        </Container>
+
+        <Container>
+          <div className="flex flex-col justify-center">
+            <div className="text-xl text-center text-gray-700 dark:text-white">
+              Patrocinadores
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-5 mt-10 md:justify-around">
+              <div className="pt-2 text-gray-400 dark:text-gray-400">
+                <PixAiLogo />
+              </div>
+              <div className="pt-2 text-gray-400 dark:text-gray-400">
+                <CloudFasterLogo />
+              </div>
+              <div className="pt-2 text-gray-400 dark:text-gray-400">
+                <ActuarLogo />
+              </div>
+              <div className="pt-2 text-gray-400 dark:text-gray-400">
+                <BDadosLogo />
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-5 mt-10 md:justify-around">
+              <div className="pt-2 text-gray-400 dark:text-gray-400">
+                <MaximaLogo />
+              </div>
+            </div>
+          </div>
+        </Container>
       </Container>
-
-      <Container>
-        <div className="flex flex-col justify-center">
-          <div className="text-xl text-center text-gray-700 dark:text-white">
-            Apoio
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-5 mt-10 md:justify-around">
-            <div className="pt-2 text-gray-400 dark:text-gray-400">
-              <SenaiLogo />
-            </div>
-          </div>
-        </div>
-      </Container>
-
-      <Container>
-        <div className="flex flex-col justify-center">
-          <div className="text-xl text-center text-gray-700 dark:text-white">
-            Patrocinadores
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-5 mt-10 md:justify-around">
-            <div className="pt-2 text-gray-400 dark:text-gray-400">
-              <PixAiLogo />
-            </div>
-            <div className="pt-2 text-gray-400 dark:text-gray-400">
-              <CloudFasterLogo />
-            </div>
-            <div className="pt-2 text-gray-400 dark:text-gray-400">
-              <ActuarLogo />
-            </div>
-            <div className="pt-2 text-gray-400 dark:text-gray-400">
-              <BDadosLogo />
-            </div>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-5 mt-10 md:justify-around">
-            <div className="pt-2 text-gray-400 dark:text-gray-400">
-              <MaximaLogo />
-            </div>
-          </div>
-        </div>
-      </Container>
-    </Container>
+    </Suspense>
   );
 }
 
