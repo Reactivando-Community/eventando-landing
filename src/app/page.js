@@ -33,6 +33,8 @@ const options = [
   { value: "React Goiânia", label: "React Goiânia" },
   { value: "StartupGO", label: "StartupGO" },
   { value: "Anapolivre", label: "Anapolivre" },
+  { value: "GynSec", label: "GynSec" },
+  { value: "OWASP Goiânia", label: "OWASP Goiânia" },
 ];
 
 const products = [
