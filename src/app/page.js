@@ -39,10 +39,6 @@ const options = [
 
 const products = [
   {
-    value: "Com Camisa",
-    label: "Inscrição com camiseta - 2º Lote - R$ 160,00",
-  },
-  {
     value: "Sem Camisa",
     label: "Inscrição sem camiseta - 2º Lote - R$ 140,00",
   },
