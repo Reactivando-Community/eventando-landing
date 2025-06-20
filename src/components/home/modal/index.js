@@ -15,8 +15,14 @@ const Modal = ({
     setShow(visible);
 
     if (visible) {
-      window.scrollTo(0, 0);
-
+      // Verifica se o usuário está próximo ao final da página
+      const isNearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
+      
+      if (isNearBottom) {
+        // Se estiver no final, faz scroll suave para o topo para mostrar a modal
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      
       document.body.classList.add("overflow-y-hidden");
       return;
     }
