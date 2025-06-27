@@ -18,15 +18,18 @@ const signup = ({
   });
 };
 
-const getSaleDetails = ({ slug }) => {
+const getSaleDetail = ({ slug }) => {
   return api.get(
     `sales?populate[event][populate][0]=payment_option&filters[slug]=${slug}`
   );
 };
 
+const getAllProducts = () => api.get(`events/2?populate[0]=payment_option`);
+
 const event = {
   signup,
-  getSaleDetails,
+  getSaleDetail,
+  getAllProducts
 };
 
 export default event;
