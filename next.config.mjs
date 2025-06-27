@@ -9,6 +9,16 @@ const nextConfig = {
   trailingSlash: false,
   images: {
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+      {
+        protocol: 'http',
+        hostname: '**',
+      },
+    ],
   },
 };
 

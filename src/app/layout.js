@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
     <html lang="pt-BR" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider enableSystem={false} forcedTheme="dark" attribute="class">
-          <Navbar />
+          {/* <Navbar /> */}
           <div>{children}</div>
           {/* <Footer /> */}
           {/* <PopupWidget /> */}

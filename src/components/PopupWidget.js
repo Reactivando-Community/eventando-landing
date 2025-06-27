@@ -49,7 +49,6 @@ export function PopupWidget() {
       .catch((error) => {
         setIsSuccess(false);
         setMessage("Client Error. Please check the console.log for more info");
-        console.log(error);
       });
   };
 

@@ -40,9 +40,8 @@ export default function Home() {
       options.forEach((option) => {
         if (option.id === payment_option_id) {
           const newProduct = {
-            value: option.name,
+            value: option.id,
             label: option.name,
-            id: option.id,
           };
 
           console.log("setProduct(newProduct): ", newProduct);
@@ -54,6 +53,9 @@ export default function Home() {
           return;
         }
       });
+      const filteredProducts = s.filter((option) => option !== undefined);
+      setProductsToList(filteredProducts);
+      setProductSelectedId(filteredProducts[0].value);
     } catch (err) {
       console.log(err);
     }

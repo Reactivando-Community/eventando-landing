@@ -7,7 +7,7 @@ import Input from "@/components/home/input";
 import Select from "@/components/home/select";
 import eventando from "@/network/eventando";
 import VMasker from "vanilla-masker";
-import QRCode from "react-qr-code";
+import QRCodePayment from "@/components/QRCodePayment";
 
 const options = [
   { value: "Sem comunidade", label: "Sem comunidade" },
@@ -49,10 +49,11 @@ export default function SideForm({
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [productSelected, setProduct] = useState(null);
+  const [productSelected, setProduct] = useState("");
   const [paymentResponse, setPaymentResponse] = useState(null);
   const [showQRCode, setShowQRCode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState("PEDING_PAYMENT");
 
   const handleSubmit = async () => {
     if (!name || !phone || !email) {
@@ -68,7 +69,7 @@ export default function SideForm({
         phoneNumber: phone,
         additionalInformation: communitySelected,
         tShirtSize: tshirtSize,
-        paymentOption: productSelectedId,
+        paymentOption: Number(productSelected),
       });
 
       setPaymentResponse(response.data);
@@ -89,10 +90,28 @@ export default function SideForm({
   };
 
   const handleClose = () => {
+    if (showQRCode && paymentStatus === "PEDING_PAYMENT") {
+      return;
+    }
     setShowQRCode(false);
     setPaymentResponse(null);
+    setPaymentStatus("PEDING_PAYMENT");
     onClose();
   };
+
+  const handleBackToForm = () => {
+    setShowQRCode(false);
+    setPaymentResponse(null);
+    setPaymentStatus("PEDING_PAYMENT");
+  };
+
+  const handlePaymentStatusChange = (status) => {
+    setPaymentStatus(status);
+  };
+
+  useEffect(() => {
+    console.log(productSelected);
+  }, [productSelected]);
 
   return (
     <AnimatePresence>
@@ -103,8 +122,12 @@ export default function SideForm({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
-            onClick={handleClose}
+            className={`fixed inset-0 backdrop-blur-sm z-40 ${
+              showQRCode && paymentStatus === "PEDING_PAYMENT"
+                ? 'bg-black/70 cursor-not-allowed' 
+                : 'bg-black/50'
+            }`}
+            onClick={showQRCode && paymentStatus === "PEDING_PAYMENT" ? undefined : handleClose}
           />
 
           {/* Side Form */}
@@ -121,24 +144,26 @@ export default function SideForm({
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                   {showQRCode ? "Pagamento" : "Inscrição"}
                 </h2>
-                <button
-                  onClick={handleClose}
-                  className="p-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded-lg transition-colors"
-                >
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                {(!showQRCode || paymentStatus !== "PEDING_PAYMENT") && (
+                  <button
+                    onClick={handleClose}
+                    className="p-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded-lg transition-colors"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                )}
               </div>
 
               {!showQRCode ? (
@@ -205,30 +230,11 @@ export default function SideForm({
                 </div>
               ) : (
                 /* QR Code Content */
-                <div className="text-center space-y-6">
-                  <div className="bg-gray-50 dark:bg-dark-700 p-6 rounded-lg">
-                    <QRCode
-                      size={200}
-                      value={paymentResponse?.qr_code || ""}
-                      className="mx-auto"
-                    />
-                  </div>
-
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Escaneie o QR Code acima para realizar o pagamento
-                  </p>
-
-                  <button
-                    onClick={() =>
-                      navigator.clipboard.writeText(
-                        paymentResponse?.qr_code || ""
-                      )
-                    }
-                    className="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-4 rounded-lg transition-colors"
-                  >
-                    Copiar QR Code
-                  </button>
-                </div>
+                <QRCodePayment 
+                  paymentResponse={paymentResponse}
+                  onBackToForm={handleBackToForm}
+                  onStatusChange={handlePaymentStatusChange}
+                />
               )}
             </div>
           </motion.div>
