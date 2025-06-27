@@ -18,11 +18,7 @@ const signup = ({
   });
 };
 
-const getSaleDetails = ({ slug }) => {
-  return api.get(
-    `sales?populate[event][populate][0]=payment_option&filters[slug]=${slug}`
-  );
-};
+const getSaleDetails = () => api.get(`events/2?populate[0]=payment_option`);
 
 const event = {
   signup,

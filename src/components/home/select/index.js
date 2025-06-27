@@ -1,7 +1,7 @@
 const { useState, useEffect } = require("react");
 
 const Select = ({ title, options, onChange }) => {
-  const [selected, setSelected] = useState(options[0].value);
+  const [selected, setSelected] = useState("");
 
   const [localOptions, setLocalOptions] = useState([]);
 

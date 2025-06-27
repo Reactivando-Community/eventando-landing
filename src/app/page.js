@@ -7,64 +7,32 @@ import HeroSection from "@/components/HeroSection";
 import InfoSection from "@/components/InfoSection";
 import StatsSection from "@/components/StatsSection";
 import Image from "next/image";
-
-const products = [
-  {
-    value: 11,
-    label: "Inscrição Normal - R$ 150,00",
-  },
-];
+import Link from "next/link";
 
 export default function Home() {
   const params = useSearchParams();
-  const [productsToList, setProductsToList] = useState(products);
+  const [productsToList, setProductsToList] = useState([]);
   const [productSelectedId, setProductSelectedId] = useState(null);
 
   const findSales = async () => {
     try {
-      const slug = params.get("event");
+      const response = await eventando.event.getSaleDetails();
+      const data = response.data.data;
 
-      if (!slug) {
-        return;
-      }
+      const { payment_option } = data.attributes;
 
-      const response = await eventando.event.getSaleDetails({ slug });
-
-      if (response.data.data.length === 0) {
-        alert("Essa promoção não existe!");
-        return;
-      }
-
-      const sale = response.data.data[0].attributes;
-      const { payment_option_id } = sale;
-      const event = sale.event.data.attributes;
-
-      console.log("event: ", event);
-
-      const options = event.payment_option;
-
-      options.forEach((option) => {
-        if (option.id === payment_option_id) {
-          const newProduct = {
-            value: option.name,
+      const s = payment_option.map((option) => {
+        if (option.enabled && option.can_be_listed) {
+          return {
+            value: option.id,
             label: option.name,
-            id: option.id,
+            price: option.value,
           };
-
-          console.log("setProduct(newProduct): ", newProduct);
-
-          setProductsToList([newProduct]);
-          setProductSelectedId(option.id);
-
-          setTimeout(() => {
-            setProductsToList((s) => {
-              return [...s, ...products];
-            });
-          }, 400);
-
-          return;
         }
       });
+      const filteredProducts = s.filter((option) => option !== undefined);
+      setProductsToList(filteredProducts);
+      setProductSelectedId(filteredProducts[0].value);
     } catch (err) {
       console.log(err);
     }
@@ -78,7 +46,7 @@ export default function Home() {
     <Suspense>
       <main className="min-h-screen">
         {/* Hero Section */}
-        <HeroSection 
+        <HeroSection
           productsToList={productsToList}
           productSelectedId={productSelectedId}
         />
@@ -124,7 +92,9 @@ export default function Home() {
                   Quer patrocinar o Join Community?
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  Entre em contato conosco para conhecer nossas opções de patrocínio e como sua empresa pode fazer parte deste evento incrível!
+                  Entre em contato conosco para conhecer nossas opções de
+                  patrocínio e como sua empresa pode fazer parte deste evento
+                  incrível!
                 </p>
                 <a
                   href="https://wa.link/801vds"
@@ -132,8 +102,12 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors duration-200"
                 >
-                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                  <svg
+                    className="w-5 h-5 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
                   </svg>
                   Falar no WhatsApp
                 </a>
@@ -145,9 +119,24 @@ export default function Home() {
         {/* Footer */}
         <footer className="py-12 px-6 bg-dark-900 text-gray-400">
           <div className="max-w-6xl mx-auto text-center">
-            <p className="text-lg mb-4">
-              Join Community 2025
-            </p>
+            <p className="text-lg mb-4">Join Community 2025</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4">
+              <Link
+                href="/communities"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                Ver Comunidades
+              </Link>
+              <span className="hidden sm:block text-gray-600">•</span>
+              <a
+                href="https://wa.link/801vds"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                Contato
+              </a>
+            </div>
             <p className="text-sm">
               Organização Join Community • Todos os direitos reservados
             </p>

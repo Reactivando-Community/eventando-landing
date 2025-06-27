@@ -49,7 +49,7 @@ export default function SideForm({
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [productSelected, setProduct] = useState(null);
+  const [productSelected, setProduct] = useState("");
   const [paymentResponse, setPaymentResponse] = useState(null);
   const [showQRCode, setShowQRCode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -68,7 +68,7 @@ export default function SideForm({
         phoneNumber: phone,
         additionalInformation: communitySelected,
         tShirtSize: tshirtSize,
-        paymentOption: productSelectedId,
+        paymentOption: Number(productSelectedId),
       });
 
       setPaymentResponse(response.data);
@@ -89,6 +89,9 @@ export default function SideForm({
   };
 
   const handleClose = () => {
+    if (showQRCode) {
+      return;
+    }
     setShowQRCode(false);
     setPaymentResponse(null);
     onClose();
@@ -103,8 +106,12 @@ export default function SideForm({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
-            onClick={handleClose}
+            className={`fixed inset-0 backdrop-blur-sm z-40 ${
+              showQRCode 
+                ? 'bg-black/70 cursor-not-allowed' 
+                : 'bg-black/50'
+            }`}
+            onClick={showQRCode ? undefined : handleClose}
           />
 
           {/* Side Form */}
@@ -121,24 +128,26 @@ export default function SideForm({
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                   {showQRCode ? "Pagamento" : "Inscrição"}
                 </h2>
-                <button
-                  onClick={handleClose}
-                  className="p-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded-lg transition-colors"
-                >
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                {!showQRCode && (
+                  <button
+                    onClick={handleClose}
+                    className="p-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded-lg transition-colors"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                )}
               </div>
 
               {!showQRCode ? (
@@ -227,6 +236,21 @@ export default function SideForm({
                     className="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-4 rounded-lg transition-colors"
                   >
                     Copiar QR Code
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      const confirmar = window.confirm(
+                        "Tem certeza que deseja voltar ao formulário? A compra será cancelada."
+                      );
+                      if (confirmar) {
+                        setShowQRCode(false);
+                        setPaymentResponse(null);
+                      }
+                    }}
+                    className="w-full bg-gray-200 hover:bg-gray-300 dark:bg-dark-700 dark:hover:bg-dark-600 text-gray-700 dark:text-gray-300 font-medium py-3 px-4 rounded-lg transition-colors"
+                  >
+                    Voltar ao formulário
                   </button>
                 </div>
               )}
