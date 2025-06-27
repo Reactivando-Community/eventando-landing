@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "@/components/home/button";
 import Input from "@/components/home/input";
 import Select from "@/components/home/select";
@@ -28,13 +28,6 @@ const options = [
   { value: "Product Camp Goiás", label: "Product Camp Goiás" },
   { value: "Reactivando", label: "Reactivando" },
   { value: "StartupGO", label: "StartupGO" },
-];
-
-const products = [
-  {
-    value: "Sem Camisa",
-    label: "Inscrição sem camiseta - 2º Lote - R$ 140,00",
-  },
 ];
 
 const tshirtSizes = [
@@ -86,7 +79,7 @@ export default function SideForm({
       setPhone("");
       setEmail("");
       setCommunity(options[0].value);
-      setProduct(products[0].value);
+      setProduct(productsToList[0].value);
       setTShirtSize(tshirtSizes[0].value);
     } catch (err) {
       alert("Houve um erro ao tentar fazer sua inscrição. Entre em contato.");
@@ -186,12 +179,14 @@ export default function SideForm({
 
                   <Select
                     title="Selecione o ingresso"
-                    options={productsToList || products}
+                    options={productsToList}
                     onChange={setProduct}
                     value={productSelected}
                   />
 
-                  {productSelected === "Com Camisa" && (
+                  {String(productSelected)
+                    .toLowerCase()
+                    .includes("com camisa") && (
                     <Select
                       onChange={setTShirtSize}
                       title="Selecione o tamanho da camisa"

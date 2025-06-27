@@ -8,7 +8,7 @@ const signup = ({
   tShirtSize,
   paymentOption,
 }) => {
-  return api.post("/signup/1", {
+  return api.post("/signup/2", {
     name: name,
     email: email,
     phone_number: phoneNumber,

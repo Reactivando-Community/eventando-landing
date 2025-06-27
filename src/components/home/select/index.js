@@ -23,8 +23,6 @@ const Select = ({ title, options, onChange }) => {
       </label>
       <select
         onChange={(e) => {
-          console.log("event: ", e.target.value);
-
           if (onChange) {
             onChange(e.target.value);
           }

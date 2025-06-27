@@ -10,8 +10,8 @@ import Image from "next/image";
 
 const products = [
   {
-    value: "01",
-    label: "Inscrição fundador - Lote Único - R$ 150,00 (Camiseta inclusa + brindes)",
+    value: 11,
+    label: "Inscrição Normal - R$ 150,00",
   },
 ];
 
