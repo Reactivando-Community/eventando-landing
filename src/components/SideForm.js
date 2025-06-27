@@ -69,7 +69,7 @@ export default function SideForm({
         phoneNumber: phone,
         additionalInformation: communitySelected,
         tShirtSize: tshirtSize,
-        paymentOption: Number(productSelectedId),
+        paymentOption: Number(productSelected),
       });
 
       setPaymentResponse(response.data);
@@ -108,6 +108,10 @@ export default function SideForm({
   const handlePaymentStatusChange = (status) => {
     setPaymentStatus(status);
   };
+
+  useEffect(() => {
+    console.log(productSelected);
+  }, [productSelected]);
 
   return (
     <AnimatePresence>
