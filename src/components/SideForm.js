@@ -7,7 +7,7 @@ import Input from "@/components/home/input";
 import Select from "@/components/home/select";
 import eventando from "@/network/eventando";
 import VMasker from "vanilla-masker";
-import QRCode from "react-qr-code";
+import QRCodePayment from "@/components/QRCodePayment";
 
 const options = [
   { value: "Sem comunidade", label: "Sem comunidade" },
@@ -53,6 +53,7 @@ export default function SideForm({
   const [paymentResponse, setPaymentResponse] = useState(null);
   const [showQRCode, setShowQRCode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState("PEDING_PAYMENT");
 
   const handleSubmit = async () => {
     if (!name || !phone || !email) {
@@ -89,12 +90,23 @@ export default function SideForm({
   };
 
   const handleClose = () => {
-    if (showQRCode) {
+    if (showQRCode && paymentStatus === "PEDING_PAYMENT") {
       return;
     }
     setShowQRCode(false);
     setPaymentResponse(null);
+    setPaymentStatus("PEDING_PAYMENT");
     onClose();
+  };
+
+  const handleBackToForm = () => {
+    setShowQRCode(false);
+    setPaymentResponse(null);
+    setPaymentStatus("PEDING_PAYMENT");
+  };
+
+  const handlePaymentStatusChange = (status) => {
+    setPaymentStatus(status);
   };
 
   return (
@@ -107,11 +119,11 @@ export default function SideForm({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className={`fixed inset-0 backdrop-blur-sm z-40 ${
-              showQRCode 
+              showQRCode && paymentStatus === "PEDING_PAYMENT"
                 ? 'bg-black/70 cursor-not-allowed' 
                 : 'bg-black/50'
             }`}
-            onClick={showQRCode ? undefined : handleClose}
+            onClick={showQRCode && paymentStatus === "PEDING_PAYMENT" ? undefined : handleClose}
           />
 
           {/* Side Form */}
@@ -128,7 +140,7 @@ export default function SideForm({
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                   {showQRCode ? "Pagamento" : "Inscrição"}
                 </h2>
-                {!showQRCode && (
+                {(!showQRCode || paymentStatus !== "PEDING_PAYMENT") && (
                   <button
                     onClick={handleClose}
                     className="p-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded-lg transition-colors"
@@ -214,45 +226,11 @@ export default function SideForm({
                 </div>
               ) : (
                 /* QR Code Content */
-                <div className="text-center space-y-6">
-                  <div className="bg-gray-50 dark:bg-dark-700 p-6 rounded-lg">
-                    <QRCode
-                      size={200}
-                      value={paymentResponse?.qr_code || ""}
-                      className="mx-auto"
-                    />
-                  </div>
-
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Escaneie o QR Code acima para realizar o pagamento
-                  </p>
-
-                  <button
-                    onClick={() =>
-                      navigator.clipboard.writeText(
-                        paymentResponse?.qr_code || ""
-                      )
-                    }
-                    className="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-4 rounded-lg transition-colors"
-                  >
-                    Copiar QR Code
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      const confirmar = window.confirm(
-                        "Tem certeza que deseja voltar ao formulário? A compra será cancelada."
-                      );
-                      if (confirmar) {
-                        setShowQRCode(false);
-                        setPaymentResponse(null);
-                      }
-                    }}
-                    className="w-full bg-gray-200 hover:bg-gray-300 dark:bg-dark-700 dark:hover:bg-dark-600 text-gray-700 dark:text-gray-300 font-medium py-3 px-4 rounded-lg transition-colors"
-                  >
-                    Voltar ao formulário
-                  </button>
-                </div>
+                <QRCodePayment 
+                  paymentResponse={paymentResponse}
+                  onBackToForm={handleBackToForm}
+                  onStatusChange={handlePaymentStatusChange}
+                />
               )}
             </div>
           </motion.div>
