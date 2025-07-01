@@ -8,26 +8,16 @@ import Select from "@/components/home/select";
 import eventando from "@/network/eventando";
 import VMasker from "vanilla-masker";
 import QRCodePayment from "@/components/QRCodePayment";
+import { communities } from "@/app/communities/communities";
 
 const options = [
   { value: "Sem comunidade", label: "Sem comunidade" },
-  { value: "Anapolivre", label: "Anapolivre" },
-  { value: "AWS User Group Goiânia", label: "AWS User Group Goiânia" },
-  { value: "CS Meetup GO", label: "CS Meetup GO" },
-  { value: "DevOpsGO", label: "DevOpsGO" },
-  { value: "GAMEGO", label: "GAMEGO" },
-  { value: "GDG Goiânia", label: "GDG Goiânia" },
-  { value: "GOJava", label: "GOJava" },
-  { value: "GUOCB", label: "GUOCB" },
-  { value: "GynSec", label: "GynSec" },
-  { value: "IxDA", label: "IxDA" },
-  { value: "MulheresGO", label: "MulheresGO" },
-  { value: "Override .Net Community", label: "Override .Net Community" },
-  { value: "OWASP Goiânia", label: "OWASP Goiânia" },
-  { value: "PorteraTech", label: "PorteraTech" },
-  { value: "Product Camp Goiás", label: "Product Camp Goiás" },
-  { value: "Reactivando", label: "Reactivando" },
-  { value: "StartupGO", label: "StartupGO" },
+  ...communities
+    .map((community) => ({
+      value: community.name,
+      label: community.name,
+    }))
+    .sort((a, b) => a.label.localeCompare(b.label)),
 ];
 
 const tshirtSizes = [
@@ -124,10 +114,14 @@ export default function SideForm({
             exit={{ opacity: 0 }}
             className={`fixed inset-0 backdrop-blur-sm z-40 ${
               showQRCode && paymentStatus === "PEDING_PAYMENT"
-                ? 'bg-black/70 cursor-not-allowed' 
-                : 'bg-black/50'
+                ? "bg-black/70 cursor-not-allowed"
+                : "bg-black/50"
             }`}
-            onClick={showQRCode && paymentStatus === "PEDING_PAYMENT" ? undefined : handleClose}
+            onClick={
+              showQRCode && paymentStatus === "PEDING_PAYMENT"
+                ? undefined
+                : handleClose
+            }
           />
 
           {/* Side Form */}
@@ -230,7 +224,7 @@ export default function SideForm({
                 </div>
               ) : (
                 /* QR Code Content */
-                <QRCodePayment 
+                <QRCodePayment
                   paymentResponse={paymentResponse}
                   onBackToForm={handleBackToForm}
                   onStatusChange={handlePaymentStatusChange}

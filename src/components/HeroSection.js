@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import SideForm from "./SideForm";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function HeroSection({ productsToList, productSelectedId }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -22,6 +23,23 @@ export default function HeroSection({ productsToList, productSelectedId }) {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
+            {/* Join Logo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="flex justify-center mb-6"
+            >
+              <Image
+                src="/images/logo-join-white.png"
+                alt="Join Community Logo"
+                width={200}
+                height={80}
+                className="h-32 md:h-48 w-auto"
+                priority
+              />
+            </motion.div>
+
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
