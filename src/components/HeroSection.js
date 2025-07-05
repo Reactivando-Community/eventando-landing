@@ -11,12 +11,12 @@ export default function HeroSection({ productsToList, productSelectedId }) {
 
   return (
     <>
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden z-0">
         {/* Background with gradient and noise */}
-        <div className="absolute inset-0 bg-gradient-to-br from-dark-900 via-dark-800 to-primary-900 noise-texture" />
+        <div className="absolute inset-0 bg-gradient-to-br from-dark-900 via-dark-800 to-primary-900 noise-texture z-0" />
 
         {/* Content */}
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto flex-1 flex items-center justify-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -167,19 +167,9 @@ export default function HeroSection({ productsToList, productSelectedId }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="relative z-10 mb-8"
         >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center"
-          >
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-1 h-3 bg-white/60 rounded-full mt-2"
-            />
-          </motion.div>
+
         </motion.div>
       </section>
 

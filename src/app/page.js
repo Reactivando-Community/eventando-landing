@@ -53,9 +53,9 @@ export default function Home() {
           return;
         }
       });
-      const filteredProducts = s.filter((option) => option !== undefined);
-      setProductsToList(filteredProducts);
-      setProductSelectedId(filteredProducts[0].value);
+      
+      // The product is already added to the list via setProductsToList above
+      // No need to filter or set again
     } catch (err) {
       console.log(err);
     }

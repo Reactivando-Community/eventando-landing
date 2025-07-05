@@ -35,6 +35,22 @@ export const communities = [
     ],
   },
   {
+    name: "Black Stars",
+    description:
+      "A Black Stars é uma comunidade formada por e para pessoas negras, criada em dezembro de 2022, com o propósito de ampliar a representatividade negra nos ecossistemas de inovação, empreendedorismo e tecnologia. Promovemos conexões, eventos, letramento racial e visibilidade para talentos negros, impulsionando a inclusão e a diversidade no Brasil.",
+    logo: "/images/communities/14.png",
+    category: "Tecnologia",
+    socialLinks: [
+      {
+        type: "whatsapp",
+        url: "https://chat.whatsapp.com/ElnUYASq8SbGyGzQPY1Bse",
+      },
+      { type: "instagram", url: "https://www.instagram.com/blackstars.br" },
+      { type: "website", url: "https://www.blackstarsbr.com" },
+      { type: "linkedin", url: "https://www.linkedin.com/company/black-stars" },
+    ],
+  },
+  {
     name: "Cloud Native Goiânia",
     description:
       "Cloud Native Goiânia é uma comunidade que busca promover o uso de ferramentas e tecnologias de código livre e nativas para nuvem (https://landscape.cncf.io/) e ajudar as pessoas que desejam aprender ou aperfeiçoar seus conhecimentos nessas ferramentas.",
@@ -57,6 +73,17 @@ export const communities = [
     ],
   },
   {
+    name: "GAMEGO",
+    description:
+      "A GAMEGO, Comunidade dos Criadores de Jogos de Goiás, ativa desde 2013, é o coletivo dos criadores e dos desenvolvedores de jogos, dos entusiastas e novatos até os profissionais do mercado, atuamos de forma representativa e propositiva para alcançar os diversos interesses dentro do ecossistema goiano, visando proporcionar uma comunidade segura e próspera, tanto para os criadores casuais, quanto para as iniciativas empresariais do setor.",
+    logo: "/images/communities/12.png",
+    category: "Tecnologia",
+    socialLinks: [
+      { type: "instagram", url: "https://www.instagram.com/a_gamego/" },
+      { type: "website", url: "https://linktr.ee/a_gamego" },
+    ],
+  },
+  {
     name: "GOJava",
     description:
       'Fundada em 12/09/2001, a comunidade é o Grupo de Usuários Java (JUG) de Goiás e tem como missão gerar valor para os desenvolvedores e empresas goianas, capacitando e catalisando relacionamentos sustentáveis entre o mercado, estudantes, profissionais e "java vendors".',
@@ -64,6 +91,37 @@ export const communities = [
     category: "Tecnologia",
     socialLinks: [
       { type: "website", url: "https://comunidades.tech/c/gojava" },
+    ],
+  },
+  {
+    name: "Google Developers Groups Goiânia",
+    description:
+      "O GDG Goiânia é uma comunidade formada por pessoas voluntárias, fundada há cerca de 11 anos, que promove eventos de tecnologia com foco no ecossistema do Google e no setor de tecnologia em geral. Nosso maior evento é o DevFest Cerrado, conferência anual que reúne cerca de 800 pessoas. Outros destaques são o IWD Cerrado, que celebra a presença feminina na tecnologia; o Build With AI Cerrado, com workshops sobre IA generativa; e o Google I/O Extended Cerrado, que apresenta as novidades do Google I/O à comunidade local.",
+    logo: "/images/communities/13.png",
+    category: "Tecnologia",
+    socialLinks: [
+      {
+        type: "whatsapp",
+        url: "https://chat.whatsapp.com/DpoQiZlSm4B60kM6LEs37R?mode=ac_t",
+      },
+      { type: "linkedin", url: "https://www.linkedin.com/company/gdggoiania" },
+      { type: "youtube", url: "https://youtube.com/@gdggoiania" },
+    ],
+  },
+  {
+    name: "GoIAs",
+    description:
+      "GO.ias: Um hub de conhecimento e colaboração para profissionais e entusiastas de Inteligência Artificial.",
+    logo: "/images/communities/15.png",
+    category: "Tecnologia",
+    socialLinks: [
+      { type: "website", url: "https://beacons.ai/go.ias" },
+      { type: "instagram", url: "https://www.instagram.com/go.ias" },
+      { type: "linkedin", url: "https://www.linkedin.com/company/go-ias" },
+      {
+        type: "whatsapp",
+        url: "https://chat.whatsapp.com/62984802331",
+      },
     ],
   },
   {

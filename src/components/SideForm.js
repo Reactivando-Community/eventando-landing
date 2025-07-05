@@ -21,11 +21,12 @@ const options = [
 ];
 
 const tshirtSizes = [
-  { value: "XS", label: "Muito pequeno" },
-  { value: "S", label: "Pequeno" },
-  { value: "M", label: "Médio" },
-  { value: "L", label: "Grande" },
-  { value: "XL", label: "Muito Grande" },
+  { value: "PP", label: "PP" },
+  { value: "P", label: "P" },
+  { value: "M", label: "M" },
+  { value: "G", label: "G" },
+  { value: "GG", label: "GG" },
+  { value: "XGG", label: "XGG" },
 ];
 
 export default function SideForm({
@@ -203,16 +204,21 @@ export default function SideForm({
                     value={productSelected}
                   />
 
-                  {String(productSelected)
-                    .toLowerCase()
-                    .includes("com camisa") && (
-                    <Select
-                      onChange={setTShirtSize}
-                      title="Selecione o tamanho da camisa"
-                      options={tshirtSizes}
-                      value={tshirtSize}
-                    />
-                  )}
+                  {(() => {
+                    const selectedProduct = productsToList.find(p => p.value == productSelected);
+                    const hasShirt = selectedProduct && 
+                      selectedProduct.label && 
+                      selectedProduct.label.toLowerCase().includes("com camisa");
+                    
+                    return hasShirt && (
+                      <Select
+                        onChange={setTShirtSize}
+                        title="Selecione o tamanho da camisa"
+                        options={tshirtSizes}
+                        value={tshirtSize}
+                      />
+                    );
+                  })()}
 
                   <div className="pt-4">
                     <Button

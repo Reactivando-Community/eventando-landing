@@ -177,7 +177,7 @@ export default function CommunitiesPage() {
                 <div className="p-6 flex flex-col h-full">
                   {/* Header com logo e nome */}
                   <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-gray-100 dark:bg-dark-700 rounded-lg flex items-center justify-center mr-4 overflow-hidden flex-shrink-0">
+                    <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mr-4 overflow-hidden flex-shrink-0">
                       {community.logo ? (
                         <Image
                           src={community.logo}
