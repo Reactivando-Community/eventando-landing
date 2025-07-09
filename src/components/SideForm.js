@@ -21,12 +21,12 @@ const options = [
 ];
 
 const tshirtSizes = [
-  { value: "PP", label: "PP" },
-  { value: "P", label: "P" },
+  { value: "XS", label: "PP" },
+  { value: "S", label: "P" },
   { value: "M", label: "M" },
-  { value: "G", label: "G" },
-  { value: "GG", label: "GG" },
-  { value: "XGG", label: "XGG" },
+  { value: "L", label: "G" },
+  { value: "XL", label: "GG" },
+  { value: "XXL", label: "XGG" },
 ];
 
 export default function SideForm({
@@ -45,6 +45,10 @@ export default function SideForm({
   const [showQRCode, setShowQRCode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState("PEDING_PAYMENT");
+
+  useEffect(() => {
+    console.log(tshirtSize);
+  }, [tshirtSize]);
 
   const handleSubmit = async () => {
     if (!name || !phone || !email) {
@@ -205,18 +209,25 @@ export default function SideForm({
                   />
 
                   {(() => {
-                    const selectedProduct = productsToList.find(p => p.value == productSelected);
-                    const hasShirt = selectedProduct && 
-                      selectedProduct.label && 
-                      selectedProduct.label.toLowerCase().includes("com camisa");
-                    
-                    return hasShirt && (
-                      <Select
-                        onChange={setTShirtSize}
-                        title="Selecione o tamanho da camisa"
-                        options={tshirtSizes}
-                        value={tshirtSize}
-                      />
+                    const selectedProduct = productsToList.find(
+                      (p) => p.value == productSelected
+                    );
+                    const hasShirt =
+                      selectedProduct &&
+                      selectedProduct.label &&
+                      selectedProduct.label
+                        .toLowerCase()
+                        .includes("com camisa");
+
+                    return (
+                      hasShirt && (
+                        <Select
+                          onChange={setTShirtSize}
+                          title="Selecione o tamanho da camisa"
+                          options={tshirtSizes}
+                          value={tshirtSize}
+                        />
+                      )
                     );
                   })()}
 
