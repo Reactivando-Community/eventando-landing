@@ -47,8 +47,8 @@ export default function SideForm({
   const [paymentStatus, setPaymentStatus] = useState("PEDING_PAYMENT");
 
   useEffect(() => {
-    console.log(tshirtSize);
-  }, [tshirtSize]);
+    console.log(productSelected);
+  }, [productSelected]);
 
   const handleSubmit = async () => {
     if (!name || !phone || !email) {

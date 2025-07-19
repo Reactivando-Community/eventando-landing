@@ -16,7 +16,7 @@ const stats = [
     description: "Participando do evento",
   },
   {
-    number: "13ª",
+    number: "12ª",
     label: "Edição",
     description: "Crescendo a cada ano",
   },
@@ -29,12 +29,14 @@ const stats = [
 
 const testimonials = [
   {
-    quote: "O Join Community mudou minha perspectiva sobre networking e aprendizado.",
+    quote:
+      "O Join Community mudou minha perspectiva sobre networking e aprendizado.",
     author: "Ana Silva",
     role: "Desenvolvedora Frontend",
   },
   {
-    quote: "Uma experiência incrível que conecta pessoas e conhecimento de forma única.",
+    quote:
+      "Uma experiência incrível que conecta pessoas e conhecimento de forma única.",
     author: "Carlos Santos",
     role: "Tech Lead",
   },
@@ -54,7 +56,7 @@ export default function StatsSection() {
       {/* Background elements */}
       <div className="absolute inset-0 noise-texture opacity-10" />
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-500/10 to-transparent" />
-      
+
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Stats Grid */}
         <motion.div
@@ -74,7 +76,11 @@ export default function StatsSection() {
               <motion.div
                 initial={{ scale: 0 }}
                 animate={isInView ? { scale: 1 } : { scale: 0 }}
-                transition={{ delay: index * 0.1 + 0.3, duration: 0.5, type: "spring" }}
+                transition={{
+                  delay: index * 0.1 + 0.3,
+                  duration: 0.5,
+                  type: "spring",
+                }}
                 className="text-4xl md:text-5xl font-bold text-white mb-2"
               >
                 {stat.number}
@@ -82,9 +88,7 @@ export default function StatsSection() {
               <div className="text-xl font-semibold text-primary-300 mb-1">
                 {stat.label}
               </div>
-              <div className="text-gray-400 text-sm">
-                {stat.description}
-              </div>
+              <div className="text-gray-400 text-sm">{stat.description}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -119,15 +123,19 @@ export default function StatsSection() {
               className="glass-effect-dark rounded-2xl p-8 text-center"
             >
               <div className="mb-6">
-                <svg className="w-12 h-12 text-primary-400 mx-auto" fill="currentColor" viewBox="0 0 24 24">
+                <svg
+                  className="w-12 h-12 text-primary-400 mx-auto"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
               </div>
-              
+
               <blockquote className="text-gray-300 text-lg leading-relaxed mb-6">
                 "{testimonial.quote}"
               </blockquote>
-              
+
               <div>
                 <div className="font-semibold text-white">
                   {testimonial.author}
@@ -154,15 +162,25 @@ export default function StatsSection() {
             <p className="text-gray-300 mb-6">
               Descubra e participe das comunidades de tecnologia da sua região
             </p>
-            <a 
+            <a
               href="https://chat.whatsapp.com/KfVUo2fMste0WpJH0Gtdw0"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-semibold text-lg rounded-full shadow-2xl shadow-primary-500/25 transition-all duration-300 transform hover:scale-105"
             >
               Ver comunidades
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              <svg
+                className="w-5 h-5 ml-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
               </svg>
             </a>
           </div>
@@ -170,4 +188,4 @@ export default function StatsSection() {
       </div>
     </section>
   );
-} 
+}
