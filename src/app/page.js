@@ -108,6 +108,131 @@ export default function Home() {
         {/* Stats Section */}
         <StatsSection />
 
+        {/* Lotes e Brindes Section */}
+        <section className="py-20 px-6 bg-gray-50 dark:bg-dark-800">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                Lotes e Brindes
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
+                Garanta sua vaga com os melhores preços e brindes exclusivos!
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {/* Primeiro Lote */}
+              <div className="bg-white dark:bg-dark-700 rounded-xl p-8 shadow-sm border-2 border-primary-500 relative">
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                    Primeiro Lote
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    Até 10/08 ou 50 inscrições
+                  </p>
+                  <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">
+                    R$ 150,00
+                  </div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
+                    * Valor inclui camisa do evento
+                  </p>
+                  <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 mb-6">
+                    <li>✅ Brindes exclusivos</li>
+                    <li>✅ Acesso completo ao evento</li>
+                    <li>✅ Coffee break + Almoço</li>
+                    <li>✅ Material do evento</li>
+                  </ul>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">
+                    Vagas limitadas - Garanta já!
+                  </div>
+                </div>
+              </div>
+
+              {/* Segundo Lote */}
+              <div className="bg-white dark:bg-dark-700 rounded-xl p-8 shadow-sm">
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                    Segundo Lote
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    Até 10 de Setembro
+                  </p>
+                  <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">
+                    R$ 170,00
+                  </div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
+                    * Valor inclui camisa do evento
+                  </p>
+                  <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 mb-6">
+                    <li>✅ Acesso completo ao evento</li>
+                    <li>✅ Material do evento</li>
+                    <li>✅ Coffee break + Almoço</li>
+                  </ul>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">
+                    Preço especial por tempo limitado
+                  </div>
+                </div>
+              </div>
+
+              {/* Terceiro Lote */}
+              <div className="bg-white dark:bg-dark-700 rounded-xl p-8 shadow-sm">
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                    Terceiro Lote
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    Até a data de encerramento das inscrições
+                  </p>
+                  <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">
+                    R$ 190,00
+                  </div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
+                    * Valor inclui camisa do evento
+                  </p>
+                  <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 mb-6">
+                    <li>✅ Acesso completo ao evento</li>
+                    <li>✅ Material do evento</li>
+                    <li>✅ Coffee break + Almoço</li>
+                  </ul>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">
+                    Últimas vagas disponíveis
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Informações adicionais */}
+            <div className="mt-12 text-center">
+              <div className="bg-white dark:bg-dark-700 rounded-lg p-8 shadow-sm max-w-4xl mx-auto">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+                  Informações Importantes
+                </h3>
+                <div className="grid md:grid-cols-2 gap-6 text-left">
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                      💳 Formas de Pagamento
+                    </h4>
+                    <ul className="text-gray-600 dark:text-gray-300 space-y-2">
+                      <li>• <strong>PIX:</strong> Desconto especial</li>
+                      <li>• <strong>Cartão de Crédito:</strong> Através da plataforma Doity</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                      🎁 Brindes e Benefícios
+                    </h4>
+                    <ul className="text-gray-600 dark:text-gray-300 space-y-2">
+                      <li>• <strong>Primeiras 50 inscrições:</strong> Brindes exclusivos</li>
+                      <li>• <strong>Palestrantes:</strong> Inscrição gratuita</li>
+                      <li>• <strong>Networking:</strong> Coffee break + Almoço</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Sponsors Section */}
         <section className="py-20 px-6 bg-white dark:bg-dark-900">
           <div className="max-w-6xl mx-auto">
@@ -200,6 +325,8 @@ export default function Home() {
                   <li>• Duração: Até 45 minutos</li>
                   <li>• Formato: Presencial</li>
                   <li>• Público: 250+ participantes</li>
+                  <li>• <strong>Prazo de submissão: 10/08</strong></li>
+                  <li>• <strong>Inscrição gratuita para palestrantes</strong></li>
                 </ul>
               </div>
 
@@ -235,6 +362,14 @@ export default function Home() {
                 <p className="text-gray-600 dark:text-gray-300 mb-6">
                   Envie sua proposta através do formulário abaixo ou entre em 
                   contato conosco para mais informações sobre o processo de seleção.
+                  <br />
+                  <span className="text-primary-600 dark:text-primary-400 font-semibold">
+                    ⏰ Prazo para submissão: 10/08
+                  </span>
+                  <br />
+                  <span className="text-green-600 dark:text-green-400 font-semibold">
+                    🎁 Palestrantes selecionados ganham inscrição gratuita!
+                  </span>
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a

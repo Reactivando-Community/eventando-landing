@@ -155,8 +155,23 @@ export default function HeroSection({ productsToList, productSelectedId }) {
                 <div className="text-gray-400">Comunidades</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-white">13ª</div>
+                <div className="text-3xl font-bold text-white">12ª</div>
                 <div className="text-gray-400">Edição</div>
+              </div>
+            </motion.div>
+
+            {/* Brindes e Lotes Info */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+              className="mt-8 text-center"
+            >
+              <div className="inline-flex items-center gap-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3">
+                <span className="text-yellow-300 text-xl">🎁</span>
+                <span className="text-white font-semibold">
+                  As primeiras 50 inscrições ganham brinde exclusivo!
+                </span>
               </div>
             </motion.div>
           </motion.div>

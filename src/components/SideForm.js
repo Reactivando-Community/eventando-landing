@@ -231,12 +231,24 @@ export default function SideForm({
                     );
                   })()}
 
-                  <div className="pt-4">
+                  <div className="pt-4 space-y-3">
                     <Button
                       onClick={handleSubmit}
                       title={isLoading ? "Processando..." : "Pagar com PIX"}
                       disabled={isLoading}
                     />
+                    
+                    <a
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    >
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                      </svg>
+                      Pagar com Cartão de Crédito
+                    </a>
                   </div>
                 </div>
               ) : (
