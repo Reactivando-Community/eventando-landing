@@ -47,8 +47,10 @@ export default function SideForm({
   const [paymentStatus, setPaymentStatus] = useState("PEDING_PAYMENT");
 
   useEffect(() => {
-    console.log(productSelected);
-  }, [productSelected]);
+    if(!productSelected && productsToList.length > 0) {
+      setProduct(productsToList[0].value);
+    }
+  }, [productSelected, productsToList.length]);
 
   const handleSubmit = async () => {
     if (!name || !phone || !email) {
@@ -57,6 +59,7 @@ export default function SideForm({
     }
 
     setIsLoading(true);
+
     try {
       const response = await eventando.event.signup({
         name,
