@@ -128,7 +128,7 @@ export default function Home() {
                     Primeiro Lote
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-4">
-                    Até 10/08 ou 50 inscrições
+                    Até 18/08/2025
                   </p>
                   <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">
                     R$ 150,00
@@ -325,7 +325,7 @@ export default function Home() {
                   <li>• Duração: Até 45 minutos</li>
                   <li>• Formato: Presencial</li>
                   <li>• Público: 250+ participantes</li>
-                  <li>• <strong>Prazo de submissão: 10/08</strong></li>
+                  <li>• <strong>Prazo de submissão: 18/08</strong></li>
                   <li>• <strong>Inscrição gratuita para palestrantes</strong></li>
                 </ul>
               </div>
@@ -364,7 +364,7 @@ export default function Home() {
                   contato conosco para mais informações sobre o processo de seleção.
                   <br />
                   <span className="text-primary-600 dark:text-primary-400 font-semibold">
-                    ⏰ Prazo para submissão: 10/08
+                    ⏰ Prazo para submissão: 18/08
                   </span>
                   <br />
                   <span className="text-green-600 dark:text-green-400 font-semibold">

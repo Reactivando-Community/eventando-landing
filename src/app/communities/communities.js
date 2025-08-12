@@ -225,4 +225,19 @@ export const communities = [
       { type: "instagram", url: "https://instagram.com/startup.goias" },
     ],
   },
+  {
+    name: "ABPMP Brasil/Goiás",
+    description:
+      "Comunidade destinado a troca de experiências sobre BPM para profissionais atuantes no estado de Goiás.",
+    logo: "/images/communities/16.png",
+    category: "Empreendedorismo",
+    socialLinks: [
+      { type: "website", url: "https://www.abpmp-br.org" },
+      {
+        type: "whatsapp",
+        url: "https://chat.whatsapp.com/JOGrYvuth2DLg384d40dhy",
+      },
+      { type: "youtube", url: "https://www.youtube.com/@ABPMPBrazil" },
+    ],
+  },
 ];
