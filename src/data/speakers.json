@@ -12,7 +12,7 @@
   {
     "id": 2,
     "name": "Victor Marques",
-    "photo": "/images/speakers/victor-marques.jpg",
+    "photo": "/images/speakers/victor-marques.jpeg",
     "talk": "Construindo um Agente de IA com a API Oficial do WhatsApp",
     "community": "Reactivando",
     "bio": "Co-founder & CTO na Klinko",
@@ -22,7 +22,7 @@
   {
     "id": 3,
     "name": "Marcus Marques",
-    "photo": "/images/speakers/marcus-marques.jpg",
+    "photo": "/images/speakers/marcus-marques.jpeg",
     "talk": "Construindo um Agente de IA com a API Oficial do WhatsApp",
     "community": "Reactivando",
     "bio": "Engenheiro de Software Senior",
@@ -32,7 +32,7 @@
   {
     "id": 4,
     "name": "Mauro Sérgio",
-    "photo": "/images/speakers/mauro-sérgio.jpg",
+    "photo": "/images/speakers/mauro-sérgio.jpeg",
     "talk": "Freios ou Motor? Desmistificando a Arquitetura de Software no Mundo Ágil",
     "community": "Reactivando",
     "bio": "Estudante de Engenharia de Software na Universidade Federal de Goiás",
@@ -42,7 +42,7 @@
   {
     "id": 5,
     "name": "Luc Cod",
-    "photo": "/images/speakers/luc-cod.jpg",
+    "photo": "/images/speakers/luc-cod.jpeg",
     "talk": "Inovação na Raiz: Como Transformei Desafios em Tecnologia de Impacto ",
     "community": "Reactivando",
     "bio": "CTO Xulis, especialista em fintech e automação, finalista do TIC Americas 2015.",
@@ -82,7 +82,7 @@
   {
     "id": 9,
     "name": "Catarine Sales",
-    "photo": "/images/speakers/catarine-sales.jpg",
+    "photo": "/images/speakers/catarine-sales.png",
     "talk": "Título: Habilidades Invisíveis: o talento que não está no currículo",
     "community": "",
     "bio": "Palestrante: Catarine Sales - Head de Gente e Gestão da Cilia Tecnologia\nTítulo: Habilidades Invisíveis: o talento que não está no currículo\nMini Bio: Psicóloga, pós-graduada em Gestão de Pessoas e especializada em atração e desenvolvimento talentos em empresas tech.",
@@ -92,7 +92,7 @@
   {
     "id": 10,
     "name": "Patrick Gratão",
-    "photo": "/images/speakers/patrick-gratão.jpg",
+    "photo": "/images/speakers/patrick-gratão.jpeg",
     "talk": "Arquitetura MVVM no Front-end: A base de projetos performáticos e robustos",
     "community": "Reactivando",
     "bio": "Patrick Gratão é Desenvolvedor Front-end Sênior, especialista em criar e arquitetar soluções robustas e escaláveis para grandes nomes da educação e do mercado brasileiro. Já impactou milhões de usuários com projetos para empresas como Carrefour, Motorola, SESI e FGV, unindo performance, boas práticas e design moderno.",
@@ -112,7 +112,7 @@
   {
     "id": 12,
     "name": "Weder Sousa",
-    "photo": "/images/speakers/weder-sousa.jpg",
+    "photo": "/images/speakers/weder-sousa.jpeg",
     "talk": "Desbloqueie o Poder Inexplorado em Seus Dados: Crie um Gênio Corporativo com AWS Serverless e Amazon Bedrock",
     "community": "AWS User Group Anápolis",
     "bio": "Engenheiro de Software Sênior no Grupo GFT, AWS Community Builder e líder de comunidades de tecnologia. Fundador da Anapolivre e cofundador do AWS User Group Anápolis. Mais de 20 anos formando profissionais em computação.",
@@ -122,7 +122,7 @@
   {
     "id": 13,
     "name": "Dr. Alexandre Barbosa de Almeida",
-    "photo": "/images/speakers/dr.-alexandre-barbosa-de-almeida.jpg",
+    "photo": "/images/speakers/dr.-alexandre-barbosa-de-almeida.jpeg",
     "talk": "A Fórmula da IA para Ganhar um Nobel",
     "community": "",
     "bio": "Minibio: Dr. Alexandre Barbosa - IA Researcher\nBio: Alexandre é doutor em Ciência da Computação e Bacharel em Física (UFG), com expertise em desenvolver visão estratégica para integrar tecnologia, ciência e negócios.",
@@ -132,7 +132,7 @@
   {
     "id": 14,
     "name": "Ayslan Alves Fer''des",
-    "photo": "/images/speakers/ayslan-alves-fer''des.jpg",
+    "photo": "/images/speakers/ayslan-alves-fer''des.jpeg",
     "talk": " .NET Aspire: Acelerando o Onboarding e Simplificando Projetos Distribuídos",
     "community": "Reactivando",
     "bio": "Mini bio: Senior Software Engineer\nBio (caixa amarela): Atua há mais de dez anos no desenvolvimento de soluções com .NET e ReactJS, exercendo também o papel de Tech Lead e apoiando times na entrega de projetos, principalmente para empresas com plataformas SaaS.",
@@ -142,7 +142,7 @@
   {
     "id": 15,
     "name": "Alexandre Calaça",
-    "photo": "/images/speakers/alexandre-calaça.jpg",
+    "photo": "/images/speakers/alexandre-calaça.jpeg",
     "talk": "Por Que Você Não Passa nas Entrevistas (E Como Mudar Isso)",
     "community": "Ruby Goiás",
     "bio": "Engenheiro de software com atuação internacional, Professor universitário e Coordenador de pós-graduação. Líder de comunidade e Speaker em eventos nacionais e internacionais.",
@@ -152,7 +152,7 @@
   {
     "id": 16,
     "name": "Deny Lima",
-    "photo": "/images/speakers/deny-lima.jpg",
+    "photo": "/images/speakers/deny-lima.jpeg",
     "talk": "Do Código ao Cockpit: Liderando sua Carreira e Bem-Estar com IA e Inteligência Emocional",
     "community": "Portera",
     "bio": "Título: Head de RH e mentor de carreira.\n\nMini bio: Sócio fundador da Elixir Exponencial Humano, minha missão é orientar profissionais, líderes e empresas em tecnologia a trilharem um caminho de sucesso combi''do a potência de novos recursos como a IA aliados à inteligência emocional para fortalecer a liderança e cultivar o bem-estar. Acredito que uma gestão humanizada é a força motriz para um crescimento profissional e organizacional sustentável.\n\nBio (caixa amarela): Deny é formado em Administração de Empresas, Especialista em RH Ágil e Transformação Cultural e em Psicologia Organizacional e do Trabalho e Liderança Estratégica. Atualmente, especializando em Gestão Estratégica de Pessoas com Foco em Desenvolvimento, Cultura e Negócios pelo IPOG.",
@@ -192,7 +192,7 @@
   {
     "id": 20,
     "name": "Marcelo Paiva",
-    "photo": "/images/speakers/marcelo-paiva.jpg",
+    "photo": "/images/speakers/marcelo-paiva.png",
     "talk": "A Nova Stack do Desenvolvedor: Humano + IA… ou o Início do Caos?",
     "community": "Override & AWS Goiânia",
     "bio": "CTO na Softprime, AWS Hero & Microsoft MVP",
@@ -202,7 +202,7 @@
   {
     "id": 21,
     "name": "Cicero Moura",
-    "photo": "/images/speakers/cicero-moura.jpg",
+    "photo": "/images/speakers/cicero-moura.png",
     "talk": "Do Dado à GenAI com AWS: Da Coleta de Dados a Geração de Valor com IA",
     "community": "AWS UG Goiânia",
     "bio": "Cicero Moura é Arquiteto de Dados com mais de 10 anos de experiência em tecnologia da informação, atuando em projetos de alto impacto para empresas líderes no Brasil.\nEspecialista em Big Data, Engenharia de Dados e Arquiteturas na AWS.\nTem forte atuação na comunidade tech.\nÉ AWS Community Builder há 5 anos consecutivos e líder do AWS User Group Goiânia.\nCriador do projeto Data HandsON, já impactou mais de 200 alunos com formações práticas em dados e cloud.",
@@ -232,7 +232,7 @@
   {
     "id": 24,
     "name": "Lucas Lemos",
-    "photo": "/images/speakers/lucas-lemos.jpg",
+    "photo": "/images/speakers/lucas-lemos.jpeg",
     "talk": "Road to Cybersec",
     "community": "Reactivando",
     "bio": "Road to Cybersec\nEngenheiro de Software e CEO da F&L Software Solutions\n\nUma década de experiência em desenvolvimento de software e entusiasta de segurança da informação. Ex-sócio de duas startups goianas.",
@@ -242,7 +242,7 @@
   {
     "id": 25,
     "name": "Wilker ",
-    "photo": "/images/speakers/wilker-.jpg",
+    "photo": "/images/speakers/wilker-.jpeg",
     "talk": "Como se proteger de golpes digitais e vazamentos de dados no dia a dia",
     "community": "Reactivando",
     "bio": "Wilker José Marques é especialista em Segurança da Informação, com experiência em proteção de dados e prevenção a golpes digitais. Graduado em Análise e Desenvolvimento de Sistemas e pós-graduado em Segurança da Informação, atua no desenvolvimento de estratégias de cibersegurança e programas de conscientização para empresas e usuários.",
@@ -252,7 +252,7 @@
   {
     "id": 26,
     "name": "Matheus Costa",
-    "photo": "/images/speakers/matheus-costa.jpg",
+    "photo": "/images/speakers/matheus-costa.png",
     "talk": "DevSecOps vs. O Caos: Testando a Amazon Q em um Mundo Real (e Nada Perfeito)",
     "community": "GYNSec",
     "bio": "Matheus Costa é DevOps na Cilia Tecnologia e coordenador da comunidade de cibersegurança GYNSec. Possui certificações AWS e experiência em Cloud e segurança no desenvolvimento. Em 2024, palestrou na Campus Party Goiás e, em 2025, iniciou sua jornada na liderança para contribuir com o crescimento e incentivo de colegas de trabalho e da comunidade técnica.",
@@ -282,7 +282,7 @@
   {
     "id": 29,
     "name": "Jean Pierre",
-    "photo": "/images/speakers/jean-pierre.jpg",
+    "photo": "/images/speakers/jean-pierre.jpeg",
     "talk": "pg_vector: A Extensão Que Transforma o PostgreSQL em um Motor de Busca Vetorial",
     "community": "PostgreSQL Brasil",
     "bio": "Head de Banco de Dados na Cília Tecnologia e membro da comunidade PostgreSQL Brasil. Especialista em infraestrutura de dados crítica, com expertise em alta disponibilidade, tuning de performance, arquitetura de soluções escaláveis e implementação de estratégias de continuidade de negócio.",
@@ -302,7 +302,7 @@
   {
     "id": 31,
     "name": "Gustavo Christino (Mestre Chronos)",
-    "photo": "/images/speakers/gustavo-christino-(mestre-chronos).jpg",
+    "photo": "/images/speakers/gustavo-christino-(mestre-chronos).png",
     "talk": "Oficina de Criação de Jogos Materiais",
     "community": "GAMEGO",
     "bio": "Mestrando em Artes da Cena (UFG), bacharel em Engenharia de Computação e Direção de Arte, e especialista em Educação Profissional e Tecnológica. Atua na criação, produção e ensino de jogos eletrônicos e materiais, coorde''do eventos, projetos e iniciativas voltadas à comunidade de criadores de jogos de Goiás (GAMEGO).",
@@ -312,7 +312,7 @@
   {
     "id": 32,
     "name": "Caroline",
-    "photo": "/images/speakers/caroline.jpg",
+    "photo": "/images/speakers/caroline.jpeg",
     "talk": "Jogos Materiais Educacionais",
     "community": "GAMEGO",
     "bio": "Mestra em Geografia (UFG) e pesquisa o uso de jogos como linguagem para o ensino. Atua na criação de jogos materiais voltados à educação e lidera iniciativas na Associação dos Criadores de Jogos de Goiás (GAMEGO), promovendo eventos e fortalecendo a integração entre práticas lúdicas e aprendizagem significativa.",
@@ -332,7 +332,7 @@
   {
     "id": 34,
     "name": "Matheus Morais",
-    "photo": "/images/speakers/matheus-morais.jpg",
+    "photo": "/images/speakers/matheus-morais.jpeg",
     "talk": "Sites estáticos com o GitLab Pages",
     "community": "Anapolivre",
     "bio": "Matheus Evangelista Morais é desenvolvedor de software com sólida experiência em PHP, Docker e Kotlin (Android). Possui formação técnica em Informática para Internet e bacharelado em Ciência da Computação pelo Instituto Federal de Goiás (IFG). Além de liderar, organizar e apoiar eventos para a comunidade de software livre. Possui certificados em áreas como DevOps, Kubernetes e LGPD, e um histórico de destaque em competições de inovação e empreendedorismo, acumulando prêmios em maratonas e hackathons. ",
@@ -342,7 +342,7 @@
   {
     "id": 35,
     "name": "Lucas Verileudo",
-    "photo": "/images/speakers/lucas-verileudo.jpg",
+    "photo": "/images/speakers/lucas-verileudo.png",
     "talk": "Estratégia e Gover''ça de IA",
     "community": "AWS UG Goiânia",
     "bio": "Como AI & Data Strategy Manager na Auramind.ai, Lucas traz uma vasta experiência em dados, tecnologia e transformação digital. Com passagens por projetos internacionais de auditoria e compliance na ENEL, iniciativas de inovação na Equatorial Energia e gestão ágil na TOTVS, ele se dedica a conectar estratégia, dados e IA. Atualmente mestrando pela UEG, Lucas transforma desafios de negócios em soluções de IA bem-governadas, garantindo que a tecnologia gere resultados reais.",
@@ -352,7 +352,7 @@
   {
     "id": 36,
     "name": "Mario Barduchi ",
-    "photo": "/images/speakers/mario-barduchi-.jpg",
+    "photo": "/images/speakers/mario-barduchi.jpg",
     "talk": "Do caos à IA: Como a estrutura dos seus dados definem seu sucesso em um projeto de IA.",
     "community": "GUOB/GUOCB",
     "bio": "Mario Barduchi é Oracle ACE Director no Brasil, com mais de 25 anos de experiência em administração de bancos de dados. Especialista em Oracle e entusiasta de PostgreSQL e de tecnologias NoSQL como MongoDB, atua na Pythian como Sr. Database Consultant, ajudando grandes organizações nos Estados Unidos, Canadá e Europa a implantar e administrar soluções escaláveis e de alto desempenho em ambientes de bancos de dados híbridos e multicloud. Com passagens por empresas como Oracle e Dell Technologies, Mario une experiência prática e visão estratégica. Palestrante frequente em conferências no Brasil e no exterior, é também Coordenador Regional do GUOB, incentivando a troca de conhecimento e o fortalecimento da comunidade técnica.",
