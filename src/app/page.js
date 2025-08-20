@@ -6,6 +6,7 @@ import eventando from "@/network/eventando";
 import HeroSection from "@/components/HeroSection";
 import InfoSection from "@/components/InfoSection";
 import StatsSection from "@/components/StatsSection";
+import SpeakersCarousel from "@/components/SpeakersCarousel";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -107,6 +108,9 @@ export default function Home() {
 
         {/* Stats Section */}
         <StatsSection />
+
+        {/* Speakers Carousel */}
+        <SpeakersCarousel />
 
         {/* Lotes e Brindes Section */}
         <section className="py-20 px-6 bg-gray-50 dark:bg-dark-800">
