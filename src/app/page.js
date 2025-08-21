@@ -138,21 +138,20 @@ export default function Home() {
                   <p className="text-gray-600 dark:text-gray-300 mb-4">
                     Até 18/08/2025
                   </p>
-                  <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">
-                    R$ 150,00
+                  <div className="mb-4">
+                    <div className="text-2xl font-bold text-primary-600 dark:text-primary-400">
+                      R$ 110,00 <span className="text-sm font-normal text-gray-500">sem camisa</span>
+                    </div>
+                    <div className="text-2xl font-bold text-primary-600 dark:text-primary-400">
+                      R$ 150,00 <span className="text-sm font-normal text-gray-500">com camisa</span>
+                    </div>
                   </div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
-                    * Valor inclui camisa do evento
-                  </p>
                   <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 mb-6">
                     <li>✅ Brindes exclusivos</li>
                     <li>✅ Acesso completo ao evento</li>
                     <li>✅ Coffee break + Almoço</li>
                     <li>✅ Material do evento</li>
                   </ul>
-                  <div className="text-xs text-gray-500 dark:text-gray-400">
-                    Vagas limitadas - Garanta já!
-                  </div>
                 </div>
               </div>
 
@@ -166,19 +165,16 @@ export default function Home() {
                     Até 10 de Setembro
                   </p>
                   <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">
-                    R$ 170,00
+                    R$ 130,00
                   </div>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
-                    * Valor inclui camisa do evento
+                    * Sem camisa do evento
                   </p>
                   <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 mb-6">
                     <li>✅ Acesso completo ao evento</li>
                     <li>✅ Material do evento</li>
                     <li>✅ Coffee break + Almoço</li>
                   </ul>
-                  <div className="text-xs text-gray-500 dark:text-gray-400">
-                    Preço especial por tempo limitado
-                  </div>
                 </div>
               </div>
 
@@ -192,19 +188,16 @@ export default function Home() {
                     Até a data de encerramento das inscrições
                   </p>
                   <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">
-                    R$ 190,00
+                    R$ 150,00
                   </div>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
-                    * Valor inclui camisa do evento
+                    * Sem camisa do evento
                   </p>
                   <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 mb-6">
                     <li>✅ Acesso completo ao evento</li>
                     <li>✅ Material do evento</li>
                     <li>✅ Coffee break + Almoço</li>
                   </ul>
-                  <div className="text-xs text-gray-500 dark:text-gray-400">
-                    Últimas vagas disponíveis
-                  </div>
                 </div>
               </div>
             </div>
