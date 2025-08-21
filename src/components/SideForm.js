@@ -9,6 +9,7 @@ import eventando from "@/network/eventando";
 import VMasker from "vanilla-masker";
 import QRCodePayment from "@/components/QRCodePayment";
 import { communities } from "@/app/communities/communities";
+import { useSearchParams } from "next/navigation";
 
 const options = [
   { value: "Sem comunidade", label: "Sem comunidade" },
@@ -35,6 +36,7 @@ export default function SideForm({
   productsToList,
   productSelectedId,
 }) {
+  const params = useSearchParams();
   const [communitySelected, setCommunity] = useState(options[0].value);
   const [tshirtSize, setTShirtSize] = useState(tshirtSizes[0].value);
   const [name, setName] = useState("");
@@ -47,10 +49,28 @@ export default function SideForm({
   const [paymentStatus, setPaymentStatus] = useState("PEDING_PAYMENT");
 
   useEffect(() => {
-    if(!productSelected && productsToList.length > 0) {
-      setProduct(productsToList[0].value);
+    if (!productSelected && productsToList.length > 0) {
+      // Extrai o valor do parâmetro event da URL
+      const slug = params.get("event");
+
+      if (slug && productsToList.length > 0) {
+        // Procura por um produto que contenha o valor do event na label
+        const eventProduct = productsToList.find(
+          (p) => p.value === productSelectedId
+        );
+        if (eventProduct) {
+          setProduct(eventProduct.value);
+        } else {
+          setProduct(productsToList[0].value);
+        }
+      } else {
+        const canBeListedProducts = productsToList.filter(
+          (p) => p.can_be_listed
+        );
+        setProduct(canBeListedProducts[0]?.value);
+      }
     }
-  }, [productSelected, productsToList]);
+  }, [productsToList.length]);
 
   const handleSubmit = async () => {
     if (!name || !phone || !email) {
@@ -106,10 +126,6 @@ export default function SideForm({
   const handlePaymentStatusChange = (status) => {
     setPaymentStatus(status);
   };
-
-  useEffect(() => {
-    console.log(productSelected);
-  }, [productSelected]);
 
   return (
     <AnimatePresence>
@@ -240,15 +256,25 @@ export default function SideForm({
                       title={isLoading ? "Processando..." : "Pagar com PIX"}
                       disabled={isLoading}
                     />
-                    
+
                     <a
                       href="https://doity.com.br/join-community--12-edicao"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
                     >
-                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                      <svg
+                        className="w-5 h-5 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                        />
                       </svg>
                       Pagar com Cartão de Crédito
                     </a>

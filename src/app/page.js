@@ -15,84 +15,88 @@ export default function Home() {
   const [productsToList, setProductsToList] = useState([]);
   const [productSelectedId, setProductSelectedId] = useState(null);
 
-  const findSalesFromParam = async () => {
+  const loadProducts = async () => {
     try {
       const slug = params.get("event");
 
-      if (!slug) {
-        return;
-      }
+      if (slug) {
+        // Se tem parâmetro event, busca os detalhes da promoção específica
+        const response = await eventando.event.getSaleDetail({ slug });
 
-      const response = await eventando.event.getSaleDetail({ slug });
-
-      if (response.data.data.length === 0) {
-        alert("Essa promoção não existe!");
-        return;
-      }
-
-      const sale = response.data.data[0].attributes;
-      const { payment_option_id } = sale;
-      const event = sale.event.data.attributes;
-
-      console.log("event: ", event);
-
-      const options = event.payment_option;
-
-      options.forEach((option) => {
-        if (option.id === payment_option_id) {
-          const newProduct = {
-            value: option.id,
-            label: option.name,
-          };
-
-          console.log("setProduct(newProduct): ", newProduct);
-
-          setProductsToList((s) => {
-            return [...s, newProduct];
-          });
-
+        if (response.data.data.length === 0) {
+          alert("Essa promoção não existe!");
           return;
         }
-      });
+        const sale = response.data.data[0].attributes;
+        const { payment_option_id } = sale;
+        const event = sale.event.data.attributes;
 
-      // The product is already added to the list via setProductsToList above
-      // No need to filter or set again
-    } catch (err) {
-      console.log(err);
-    }
-  };
+        const options = event.payment_option;
 
-  const findSales = async () => {
-    try {
-      const response = await eventando.event.getAllProducts();
-      const data = response.data.data;
-
-      const { payment_option } = data.attributes;
-
-      const s = payment_option.map((option) => {
-        if (option.enabled && option.can_be_listed) {
-          return {
+        // Filtra apenas os produtos enabled e can_be_listed
+        const availableProducts = options
+          .filter((option) => option.enabled && option.can_be_listed)
+          .map((option) => ({
             value: option.id,
             label: option.name,
             price: option.value,
-          };
+            enabled: option.enabled,
+            can_be_listed: option.can_be_listed,
+          }));
+
+        // Encontra o produto específico da promoção
+        const specificProduct = options.find(
+          (product) => product.id === payment_option_id
+        );
+
+        const mappedSpecificProduct = {
+          value: specificProduct.id,
+          label: specificProduct.name,
+          price: specificProduct.value,
+          enabled: specificProduct.enabled,
+          can_be_listed: specificProduct.can_be_listed,
+        };
+        const allProducts = [...availableProducts, mappedSpecificProduct];
+        setProductsToList(allProducts);
+
+        // Se encontrou o produto específico, usa ele como selecionado
+        // Senão, usa o primeiro disponível
+        if (specificProduct) {
+          setProductSelectedId(specificProduct.id);
+        } else if (availableProducts.length > 0) {
+          setProductSelectedId(availableProducts[0].id);
         }
-      });
-      const filteredProducts = s.filter((option) => option !== undefined);
-      setProductsToList(filteredProducts);
-      setProductSelectedId(filteredProducts[0].value);
+      } else {
+        // Se não tem parâmetro event, busca todos os produtos disponíveis
+        const response = await eventando.event.getAllProducts();
+        const data = response.data.data;
+
+        const { payment_option } = data.attributes;
+
+        const availableProducts = payment_option
+          .filter((option) => option.enabled && option.can_be_listed)
+          .map((option) => ({
+            value: option.id,
+            label: option.name,
+            price: option.value,
+            enabled: option.enabled,
+            can_be_listed: option.can_be_listed,
+          }));
+
+        setProductsToList(availableProducts);
+
+        if (availableProducts.length > 0) {
+          setProductSelectedId(availableProducts[0].value);
+        }
+      }
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    findSales();
+    loadProducts();
   }, []);
-
-  useEffect(() => {
-    findSalesFromParam();
-  }, [findSalesFromParam]);
 
   return (
     <Suspense>

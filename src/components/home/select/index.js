@@ -1,6 +1,6 @@
 const { useState, useEffect } = require("react");
 
-const Select = ({ title, options, onChange }) => {
+const Select = ({ title, options, onChange, value }) => {
   const [selected, setSelected] = useState("");
 
   const [localOptions, setLocalOptions] = useState([]);
@@ -13,6 +13,12 @@ const Select = ({ title, options, onChange }) => {
     }
   }, [options]);
 
+  useEffect(() => {
+    if (value) {
+      setSelected(value);
+    }
+  }, [value]);
+
   return (
     <div className="mb-4">
       <label
@@ -22,6 +28,7 @@ const Select = ({ title, options, onChange }) => {
         {title}
       </label>
       <select
+        value={selected}
         onChange={(e) => {
           if (onChange) {
             onChange(e.target.value);
