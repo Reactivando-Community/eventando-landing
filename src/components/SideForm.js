@@ -50,7 +50,7 @@ export default function SideForm({
     if(!productSelected && productsToList.length > 0) {
       setProduct(productsToList[0].value);
     }
-  }, [productSelected, productsToList.length]);
+  }, [productSelected, productsToList]);
 
   const handleSubmit = async () => {
     if (!name || !phone || !email) {

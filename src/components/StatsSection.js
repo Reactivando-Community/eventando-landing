@@ -133,7 +133,7 @@ export default function StatsSection() {
               </div>
 
               <blockquote className="text-gray-300 text-lg leading-relaxed mb-6">
-                "{testimonial.quote}"
+                &quot;{testimonial.quote}&quot;
               </blockquote>
 
               <div>
