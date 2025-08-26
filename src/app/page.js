@@ -140,16 +140,16 @@ export default function Home() {
                   </p>
                   <div className="mb-4">
                     <div className="text-2xl font-bold text-primary-600 dark:text-primary-400">
-                      R$ 110,00 <span className="text-sm font-normal text-gray-500">sem camisa</span>
+                      R$ 70,00 <span className="text-sm font-normal text-gray-500">sem camisa</span>
                     </div>
                     <div className="text-2xl font-bold text-primary-600 dark:text-primary-400">
-                      R$ 150,00 <span className="text-sm font-normal text-gray-500">com camisa</span>
+                      R$ 110,00 <span className="text-sm font-normal text-gray-500">com camisa</span>
                     </div>
                   </div>
                   <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 mb-6">
                     <li>✅ Brindes exclusivos</li>
                     <li>✅ Acesso completo ao evento</li>
-                    <li>✅ Coffee break + Almoço</li>
+                    <li>✅ Coffee break</li>
                     <li>✅ Material do evento</li>
                   </ul>
                 </div>
@@ -165,7 +165,7 @@ export default function Home() {
                     Até 10 de Setembro
                   </p>
                   <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">
-                    R$ 130,00
+                    R$ 90,00
                   </div>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
                     * Sem camisa do evento
@@ -173,7 +173,7 @@ export default function Home() {
                   <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 mb-6">
                     <li>✅ Acesso completo ao evento</li>
                     <li>✅ Material do evento</li>
-                    <li>✅ Coffee break + Almoço</li>
+                    <li>✅ Coffee break</li>
                   </ul>
                 </div>
               </div>
@@ -188,7 +188,7 @@ export default function Home() {
                     Até a data de encerramento das inscrições
                   </p>
                   <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">
-                    R$ 150,00
+                    R$ 110,00
                   </div>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
                     * Sem camisa do evento
@@ -196,7 +196,7 @@ export default function Home() {
                   <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 mb-6">
                     <li>✅ Acesso completo ao evento</li>
                     <li>✅ Material do evento</li>
-                    <li>✅ Coffee break + Almoço</li>
+                    <li>✅ Coffee break</li>
                   </ul>
                 </div>
               </div>
@@ -236,7 +236,7 @@ export default function Home() {
                         • <strong>Palestrantes:</strong> Inscrição gratuita
                       </li>
                       <li>
-                        • <strong>Networking:</strong> Coffee break + Almoço
+                        • <strong>Networking:</strong> Coffee break
                       </li>
                     </ul>
                   </div>
