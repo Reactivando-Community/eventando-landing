@@ -288,7 +288,7 @@ export default function Home() {
             </div>
 
             {/* Current Sponsors */}
-            <div className="flex flex-wrap items-center justify-center gap-8 mb-16 max-w-xl mx-auto">
+            <div className="flex flex-wrap items-center justify-center gap-8 mb-16 max-w-4xl mx-auto">
               {/* Banco de Dados */}
               <div
                 className="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
@@ -302,6 +302,23 @@ export default function Home() {
                   alt="Banco de Dados"
                   width={150}
                   height={150}
+                  className="object-contain"
+                />
+              </div>
+              
+              {/* Cilia */}
+              <div
+                className="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                onClick={() =>
+                  window.open("https://www.cilia.com.br/", "_blank")
+                }
+                style={{ cursor: "pointer" }}
+              >
+                <Image
+                  src="/images/Cilia_Logo_RGB_Logo_Horizontal-9.svg"
+                  alt="Cilia"
+                  width={250}
+                  height={250}
                   className="object-contain"
                 />
               </div>
