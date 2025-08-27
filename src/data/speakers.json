@@ -1,15 +1,5 @@
 [
   {
-    "id": 1,
-    "name": "Luiz Machado",
-    "photo": "/images/speakers/luiz-machado.jpg",
-    "talk": "Por que dropei mais de 10 empresas (e o problema nem sempre era eu)",
-    "community": "GYNSec",
-    "bio": "Luiz Machado é Head de Tecnologia, AWS Community Builder e especialista em segurança AWS/DevSecOps. Fundador da comunidade GYNSec, cria e apoia ferramentas open source. Focado em evoluir pessoas, formar líderes e impulsionar a maturidade técnica das equipes.",
-    "linkedin": "https://linkedin.com/in/luizmachadoaws",
-    "instagram": "https://instagram.com/luizmachadoaws"
-  },
-  {
     "id": 2,
     "name": "Victor Marques",
     "photo": "/images/speakers/victor-marques.jpeg",
@@ -223,9 +213,9 @@
     "id": 23,
     "name": "Autoprocs",
     "photo": "/images/speakers/autoprocs.jpeg",
-    "talk": "Agente de Chat IA com N8N, na Prática",
+    "talk": "Do Manual ao Automático",
     "community": "Reactivando",
-    "bio": "Engenheiro de Software, Cientistas de Dados e co-founders da Autoprocs.",
+    "bio": "Victor é engenheiro de software especializado em apps multiplataformas e automações. Lucas Gabriel, cientista de dados, atua em integrações e automações. Deivison Fellype, cientista de dados e SDR, é especialista em vendas. Juntos, co-fundaram a Autoprocs para transformar processos manuais em operações automatizadas.",
     "linkedin": "www.linkedin.com/in/autoprocs",
     "instagram": ""
   },
@@ -440,16 +430,6 @@
     "instagram": ""
   },
   {
-    "id": 45,
-    "name": "Alyf Mendonça",
-    "photo": "/images/speakers/alyf-mendonca.jpeg",
-    "talk": "Palestrante Palco",
-    "community": "AUVP",
-    "bio": "Alyf Mendonça é Head de Tecnologia na AUVP, com mais de 9 anos de experiência em desenvolvimento de sistemas. Atuou em empresas como Santander e BTG Pactual e atualmente lidera equipes e cria soluções voltadas ao mercado financeiro.",
-    "linkedin": "https://www.linkedin.com/in/alyf-mendon%C3%A7a-3549a5144/",
-    "instagram": "alyfmendonca"
-  },
-  {
     "id": 46,
     "name": "Olivar Tamele",
     "photo": "/images/speakers/olivar-tamele.jpeg",
@@ -489,5 +469,4 @@
     "linkedin": "https://www.linkedin.com/in/pedrogoiania",
     "instagram": "@pedrogoiania"
   }
-  
 ]

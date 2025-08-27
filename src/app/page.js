@@ -6,6 +6,7 @@ import eventando from "@/network/eventando";
 import HeroSection from "@/components/HeroSection";
 import InfoSection from "@/components/InfoSection";
 import StatsSection from "@/components/StatsSection";
+import KeynoteSpeakersSection from "@/components/KeynoteSpeakersSection";
 import SpeakersCarousel from "@/components/SpeakersCarousel";
 import Image from "next/image";
 import Link from "next/link";
@@ -113,6 +114,9 @@ export default function Home() {
         {/* Stats Section */}
         <StatsSection />
 
+        {/* Keynote Speakers Section */}
+        <KeynoteSpeakersSection />
+
         {/* Speakers Carousel */}
         <SpeakersCarousel />
 
@@ -130,7 +134,7 @@ export default function Home() {
 
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {/* Primeiro Lote */}
-              <div className="bg-white dark:bg-dark-700 rounded-xl p-8 shadow-sm border-2 border-primary-500 relative">
+              <div className="bg-white dark:bg-dark-700 rounded-xl p-8 shadow-sm relative">
                 <div className="text-center">
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                     Primeiro Lote
@@ -156,7 +160,7 @@ export default function Home() {
               </div>
 
               {/* Segundo Lote */}
-              <div className="bg-white dark:bg-dark-700 rounded-xl p-8 shadow-sm">
+              <div className="bg-white dark:bg-dark-700 rounded-xl p-8 shadow-sm border-2 border-primary-500">
                 <div className="text-center">
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                     Segundo Lote
