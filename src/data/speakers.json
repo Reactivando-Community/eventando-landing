@@ -222,7 +222,7 @@
   {
     "id": 23,
     "name": "Autoprocs",
-    "photo": "/images/speakers/autoprocs.jpg",
+    "photo": "/images/speakers/autoprocs.jpeg",
     "talk": "Agente de Chat IA com N8N, na Prática",
     "community": "Reactivando",
     "bio": "Engenheiro de Software, Cientistas de Dados e co-founders da Autoprocs.",
@@ -358,5 +358,136 @@
     "bio": "Mario Barduchi é Oracle ACE Director no Brasil, com mais de 25 anos de experiência em administração de bancos de dados. Especialista em Oracle e entusiasta de PostgreSQL e de tecnologias NoSQL como MongoDB, atua na Pythian como Sr. Database Consultant, ajudando grandes organizações nos Estados Unidos, Canadá e Europa a implantar e administrar soluções escaláveis e de alto desempenho em ambientes de bancos de dados híbridos e multicloud. Com passagens por empresas como Oracle e Dell Technologies, Mario une experiência prática e visão estratégica. Palestrante frequente em conferências no Brasil e no exterior, é também Coordenador Regional do GUOB, incentivando a troca de conhecimento e o fortalecimento da comunidade técnica.",
     "linkedin": "https://br.linkedin.com/in/mariobarduchi",
     "instagram": ""
+  },
+  {
+    "id": 37,
+    "name": "Andressa Carolina",
+    "photo": "/images/speakers/andressa-carolina.jpeg",
+    "talk": "Do suporte ao Produto – lições práticas para transformar feedback de clientes em produtos de valor",
+    "community": "AWS User Group Goiânia",
+    "bio": "Andressa Carolina atua com atendimento e suporte ao cliente e transformou essa experiência em uma vantagem estratégica na gestão de produtos. Em sua palestra, compartilha como feedbacks, tickets e interações diárias podem se tornar insights valiosos para discovery, priorização de funcionalidades e lançamento de produtos que realmente resolvem problemas. Com exemplos práticos de features desenvolvidas a partir de feedbacks reais, ela destaca lições sobre empatia, escuta ativa e tomada de decisão orientada ao usuário, inspirando product managers e times de produto a enxergarem cada interação com o cliente como uma oportunidade de criar produtos de alto impacto.",
+    "linkedin": "https://www.linkedin.com/in/andressa-carolina",
+    "instagram": ""
+  },
+  {
+    "id": 38,
+    "name": "Geovana Correia",
+    "photo": "/images/speakers/geovana-correia.jpeg",
+    "talk": "Hackeando o Sistema: Carreira, Liderança e Protagonismo em um Mundo Caótico",
+    "community": "Black Stars",
+    "bio": "Geovana Correia provoca reflexões estratégicas sobre carreira e liderança no século XXI, trazendo frameworks, provocações e caminhos reais para quem deseja deixar de ser apenas uma peça no jogo e começar a atuar como estrategista da própria vida profissional. Sua fala inspira coragem, visão e autonomia para transformar desafios em oportunidades e assumir o protagonismo em um mercado que busca pessoas capazes de resolver problemas reais.",
+    "linkedin": "",
+    "instagram": "@geo.comunica"
+  },
+  {
+    "id": 39,
+    "name": "Johanna Tássia",
+    "photo": "/images/speakers/johanna-tassia.jpeg",
+    "talk": "Networking 5.0: Conexões Humanizadas em Tempos de Inteligência Artificial",
+    "community": "PMI / Black Stars / Mulheres GO",
+    "bio": "Johanna Tássia é arquiteta e atuante em projetos de liderança e inovação, com experiência em iniciativas de networking e desenvolvimento profissional, como o Projeto JETRO. Em sua palestra 'Networking 5.0', ela provoca reflexões sobre como manter conexões autênticas e estratégicas em um mundo cada vez mais tecnológico, unindo propósito, empatia e ferramentas digitais para a construção de redes sólidas e humanas.",
+    "linkedin": "",
+    "instagram": "@johannatassia"
+  },
+  {
+    "id": 40,
+    "name": "Josivan Mesquita",
+    "photo": "/images/speakers/josivan-mesquita.jpg",
+    "talk": "O poder do contraste: como um Advogado e um RP fizeram a transição para a IA.",
+    "community": "GoIAs",
+    "bio": "Josivan Mesquita é profissional de Relações Públicas que recentemente iniciou sua jornada no ecossistema de tecnologia. Em parceria com o advogado Lucas Ferraz, apresenta a palestra 'O poder do contraste', que traz a narrativa de duas transições de carreira para o campo da Inteligência Artificial. A apresentação destaca os desafios e aprendizados de cada trajetória, mostrando como experiências distintas podem se complementar na construção de carreiras sólidas em áreas inovadoras como IA e NLP.",
+    "linkedin": "https://www.linkedin.com/in/josivan-mesquita/",
+    "instagram": ""
+  },
+  {
+    "id": 41,
+    "name": "Luanda Lopes",
+    "photo": "/images/speakers/luanda-lopes.jpeg",
+    "talk": "Sua ideia é boa. Mas você está falando como se fosse medíocre.",
+    "community": "Mulheres GO",
+    "bio": "Luanda Lopes é terapeuta com mais de 10 anos de experiência e criadora da metodologia Autêntica Fala. Atua ajudando profissionais a desbloquear a voz de autoridade, aprimorar a oratória e comunicar-se com presença, clareza e confiança em ambientes de alta pressão. Já conduziu diversas palestras, talks e workshops em empresas, eventos e imersões sobre comunicação estratégica, liderança comunicacional e posicionamento profissional. Sua missão é transformar boas ideias em mensagens que geram impacto real.",
+    "linkedin": "https://br.linkedin.com/in/luandalopestreinadora",
+    "instagram": "luandalopes.estrategista"
+  },
+  {
+    "id": 42,
+    "name": "Luca Plaster",
+    "photo": "/images/speakers/luca-plaster.jpg",
+    "talk": "Visão Computacional para Reconhecimento de Objetos Aéreos",
+    "community": "GoIAs",
+    "bio": "Luca Plaster atua na área de tecnologia com foco em visão computacional e aprendizado de máquina. Em sua palestra, apresenta como aplicar técnicas de reconhecimento de objetos aéreos — como aviões, drones e helicópteros — desde a coleta e preparação de dados até o treinamento de modelos. Além de abordar desafios técnicos, como viés em conjuntos de imagens, Luca discute como essas soluções podem se tornar mais precisas e confiáveis em diferentes cenários.",
+    "linkedin": "",
+    "instagram": "@luca_plaster"
+  },
+  {
+    "id": 43,
+    "name": "Roberto Godoi",
+    "photo": "/images/speakers/roberto-godoi.jpg",
+    "talk": "O PMO do Futuro: Como a Inteligência Artificial Vai Redefinir a Gestão de Projetos",
+    "community": "goIAs",
+    "bio": "Roberto Godoi é especialista em gestão de projetos e inovação, com ampla experiência em implantação e evolução de PMOs em diferentes organizações. Em sua palestra, apresenta como a Inteligência Artificial pode transformar o Escritório de Projetos em um organismo dinâmico e preditivo, capaz de analisar grandes volumes de dados, antecipar riscos e propor soluções automaticamente. Sua abordagem une prática e estratégia, trazendo exemplos reais, ferramentas aplicáveis e uma visão clara sobre como aplicar IA de forma segura e escalável na gestão de portfólio e projetos.",
+    "linkedin": "https://www.linkedin.com/in/robertogodoi/",
+    "instagram": ""
+  },
+  {
+    "id": 44,
+    "name": "Ulysses Lima",
+    "photo": "/images/speakers/ulysses-lima.jpeg",
+    "talk": "Computação Visual: Transformando Dados em Decisões",
+    "community": "Ia",
+    "bio": "Ulysses Lima atua na área de inteligência artificial com foco em computação visual, explorando aplicações que vão de diagnósticos médicos a carros autônomos, passando pela agricultura e pela acessibilidade. Em sua palestra, apresenta como a visão computacional já está transformando mercados e experiências humanas, explicando o funcionamento dessa tecnologia, seus usos atuais e os impactos que terá nos negócios, nas cidades e na vida cotidiana.",
+    "linkedin": "https://www.linkedin.com/company/alltechdigital/",
+    "instagram": ""
+  },
+  {
+    "id": 45,
+    "name": "Alyf Mendonça",
+    "photo": "/images/speakers/alyf-mendonca.jpeg",
+    "talk": "Palestrante Palco",
+    "community": "AUVP",
+    "bio": "Alyf Mendonça é Head de Tecnologia na AUVP, com mais de 9 anos de experiência em desenvolvimento de sistemas. Atuou em empresas como Santander e BTG Pactual e atualmente lidera equipes e cria soluções voltadas ao mercado financeiro.",
+    "linkedin": "https://www.linkedin.com/in/alyf-mendon%C3%A7a-3549a5144/",
+    "instagram": "alyfmendonca"
+  },
+  {
+    "id": 46,
+    "name": "Olivar Tamele",
+    "photo": "/images/speakers/olivar-tamele.jpeg",
+    "talk": "Os impactos da falta de processos e responsabilidade durante o desenvolvimento de um software.",
+    "community": "Black Stars",
+    "bio": "Olivar Tamele, 23 anos, é Tech Lead Mobile e formado em Engenharia de Software. Apaixonado por tecnologia desde os 11 anos, iniciou sua trajetória com programação aos 15 e, aos 18, ingressou na faculdade e no mercado como estagiário, onde conheceu o universo mobile. Conquistou o Prêmio IEL de Projetos Inovadores com um aplicativo que desenvolveu e, com mais de 5 anos de experiência, hoje lidera equipes e projetos de desenvolvimento mobile. Palestrante em diversos eventos de tecnologia pelo Brasil, é também embaixador da Rocketseat, compartilhando conhecimento principalmente sobre Flutter e sua experiência profissional.",
+    "linkedin": "https://www.linkedin.com/in/olivar-neemias/",
+    "instagram": "olivar.dev"
+  },
+  {
+    "id": 47,
+    "name": "Thiago Peraro",
+    "photo": "/images/speakers/thiago-peraro.jpeg",
+    "talk": "Como ser parte dos 5% de empresas que têm sucesso com IA",
+    "community": "Magnatas",
+    "bio": "Thiago Peraro é fundador da Clivia, um agente de IA SDR que apoia clínicas médicas no atendimento aos pacientes. Atua como community builder na Go.IAs e pesquisador de NLP no CEIA-UFG. Estudante de Ciência da Computação na UFG, lidera a equipe de IA do projeto Sobrevidas, que busca melhorar a qualidade de vida de pessoas com câncer de boca no Brasil, incluindo a implementação de um chatbot integrado ao SUS, premiado como melhor artigo do Brasil na SBCAS 2025. Com experiência como programador back-end, incluindo três anos no Órgão GoiásPrev, Thiago combina empreendedorismo e pesquisa em IA para criar soluções inovadoras e escaláveis.",
+    "linkedin": "https://www.linkedin.com/in/thiago-peraro/",
+    "instagram": "peraro.exe"
+  },
+  {
+    "id": 48,
+    "name": "Lucas Ferraz",
+    "photo": "/images/speakers/lucas-ferraz.jpeg",
+    "talk": "O poder do contraste: como um Advogado e um RP fizeram a transição para a IA.",
+    "community": "Go.IAs",
+    "bio": "Lucas Ferraz é formado em Direito e atualmente atua como cientista de dados, liderando o time de dados da Cilia Tecnologia. Em parceria com Josivan Mesquita, apresenta a palestra 'O poder do contraste', trazendo a narrativa de duas transições de carreira para o campo da Inteligência Artificial. A palestra aborda os desafios e aprendizados de cada trajetória, mostrando como experiências distintas podem se complementar na construção de carreiras sólidas em áreas inovadoras como IA e NLP.",
+    "linkedin": "https://www.linkedin.com/in/llucas-ferraz",
+    "instagram": "@llucasferraz"
+  },
+  {
+    "id": 49,
+    "name": "Pedro Goiânia",
+    "photo": "/images/speakers/pedro-goiania.jpg",
+    "talk": "A IA fez o meu site, e agora?",
+    "community": "Reactivando",
+    "bio": "Pedro Goiânia é Desenvolvedor de Software e Fundador do Pix Aí. Formado em Sistemas de Informação pelo Instituto Federal de Goiás, ele vai mostrar pontos extremamente importantes na criação de um produto digital. A IA faz o site, mas o negócio ainda continua sendo com pessoas!",
+    "linkedin": "https://www.linkedin.com/in/pedrogoiania",
+    "instagram": "@pedrogoiania"
   }
+  
 ]
