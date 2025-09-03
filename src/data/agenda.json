@@ -339,7 +339,7 @@
             },
             {
               "room": "Sala 600",
-              "speakerId": null,
+              "speakerId": 55,
               "title": "Spec2Code/Code2Spec: o buraco no meio"
             }
           ]
