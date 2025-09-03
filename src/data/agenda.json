@@ -1,0 +1,449 @@
+{
+  "eventName": "Eventando 2025",
+  "days": [
+    {
+      "date": "19-09-2025",
+      "dayName": "Sexta-feira",
+      "sessions": [
+        {
+          "startTime": "18:30",
+          "endTime": "19:00",
+          "duration": "0:30",
+          "type": "break",
+          "title": "Credenciamento + Coffee Break",
+          "location": "Recepção",
+          "tracks": []
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "19:10",
+          "duration": "0:10",
+          "type": "opening",
+          "title": "Abertura",
+          "location": "Auditório",
+          "tracks": []
+        },
+        {
+          "startTime": "19:10",
+          "endTime": "20:00",
+          "duration": "0:50",
+          "type": "keynote",
+          "title": "Do Monolito a Event-Driven: A Jornada Serverless que Transformará sua Carreira",
+          "speakerId": 50,
+          "location": "Auditório",
+          "tracks": []
+        },
+        {
+          "startTime": "20:05",
+          "endTime": "20:55",
+          "duration": "0:50",
+          "type": "keynote",
+          "title": "As oportunidades para programadores no mercado financeiro",
+          "speakerId": 51,
+          "location": "Auditório",
+          "tracks": []
+        },
+        {
+          "startTime": "21:00",
+          "endTime": "21:50",
+          "duration": "0:50",
+          "type": "keynote",
+          "title": "Por que dropei mais de 10 empresas",
+          "speakerId": 52,
+          "location": "Auditório",
+          "tracks": []
+        },
+        {
+          "startTime": "21:50",
+          "endTime": "22:00",
+          "duration": "0:10",
+          "type": "closing",
+          "title": "Avisos e encerramento 1ª Dia",
+          "location": "Auditório",
+          "tracks": []
+        }
+      ]
+    },
+    {
+      "date": "20-09-2025",
+      "dayName": "Sábado",
+      "sessions": [
+        {
+          "startTime": "8:00",
+          "endTime": "8:40",
+          "duration": "0:40",
+          "type": "break",
+          "title": "Credenciamento + Café da manhã",
+          "location": "Recepção",
+          "tracks": []
+        },
+        {
+          "startTime": "8:45",
+          "endTime": "9:00",
+          "duration": "0:15",
+          "type": "opening",
+          "title": "Abertura",
+          "location": "Auditório",
+          "tracks": []
+        },
+        {
+          "startTime": "9:00",
+          "endTime": "9:50",
+          "duration": "0:50",
+          "type": "keynote",
+          "title": "ML no escuro: Por que seus modelos falham em produção e como a observabilidade pode salvar o dia",
+          "speakerId": 53,
+          "location": "Auditório",
+          "tracks": []
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "duration": "0:30",
+          "type": "parallel",
+          "title": "Sessões Paralelas",
+          "location": "Múltiplas Salas",
+          "tracks": [
+            {
+              "room": "Sala 100",
+              "speakerId": 24,
+              "title": "Road to Cybersec"
+            },
+            {
+              "room": "Sala 200",
+              "speakerId": 12,
+              "title": "Desbloqueie o Poder Inexplorado em Seus Dados: Crie um Gênio Corporativo com AWS Serverless e Amazon Bedrock"
+            },
+            {
+              "room": "Sala 300",
+              "speakerId": 26,
+              "title": "DevSecOps vs. O Caos: Testando a Amazon Q em um Mundo Real (e Nada Perfeito)"
+            },
+            {
+              "room": "Sala 400",
+              "speakerId": 37,
+              "title": "Do suporte ao Produto. Lições práticas para transformar feedback de clientes em produtos de valor"
+            },
+            {
+              "room": "Sala 500",
+              "speakerId": 18,
+              "title": "Finanças para startups: como não quebrar antes de escalar"
+            },
+            {
+              "room": "Sala 600",
+              "speakerId": 46,
+              "title": "Os impactos da falta de processos e responsabilidade durante o desenvolvimento de um software."
+            }
+          ]
+        },
+        {
+          "startTime": "10:40",
+          "endTime": "11:10",
+          "duration": "0:30",
+          "type": "parallel",
+          "title": "Sessões Paralelas",
+          "location": "Múltiplas Salas",
+          "tracks": [
+            {
+              "room": "Sala 100",
+              "speakerId": 8,
+              "title": "IA na Prática: O Novo aliado da Gestão de Projetos"
+            },
+            {
+              "room": "Sala 200",
+              "speakerId": 7,
+              "title": "O Poder em cada Versão - A Evolução do Elefante"
+            },
+            {
+              "room": "Sala 300",
+              "speakerId": 15,
+              "title": "Por Que Você Não Passa nas Entrevistas (E Como Mudar Isso)"
+            },
+            {
+              "room": "Sala 400",
+              "speakerId": 41,
+              "title": "Sua ideia é boa. Mas você está falando como se fosse medíocre."
+            },
+            {
+              "room": "Sala 500",
+              "speakerId": 23,
+              "title": "Agente de Chat IA com N8N, na Prática"
+            },
+            {
+              "room": "Sala 600",
+              "speakerId": 47,
+              "title": "Como ser parte dos 5% de empresas que têm sucesso com IA"
+            }
+          ]
+        },
+        {
+          "startTime": "11:20",
+          "endTime": "12:05",
+          "duration": "0:45",
+          "type": "parallel",
+          "title": "Sessões Paralelas",
+          "location": "Múltiplas Salas",
+          "tracks": [
+            {
+              "room": "Sala 100",
+              "speakerId": 33,
+              "title": "O Mercado de Jogos Materiais: Desafios e Oportunidades"
+            },
+            {
+              "room": "Sala 200",
+              "speakerId": 32,
+              "title": "Jogos Materiais Educacionais"
+            },
+            {
+              "room": "Sala 300",
+              "speakerId": 11,
+              "title": "Triagem de midias sinteticas combatendo fraudes geradas por IA."
+            },
+            {
+              "room": "Sala 400",
+              "speakerId": 9,
+              "title": "Habilidades Invisíveis: o talento que não está no currículo"
+            },
+            {
+              "room": "Sala 500",
+              "speakerId": 20,
+              "title": "A Nova Stack do Desenvolvedor: Humano + IA… ou o Início do Caos?"
+            },
+            {
+              "room": "Sala 600",
+              "speakerId": 10,
+              "title": "Arquitetura MVVM no Front-end: A base de projetos performáticos e robustos"
+            }
+          ]
+        },
+        {
+          "startTime": "12:15",
+          "endTime": "12:45",
+          "duration": "0:30",
+          "type": "parallel",
+          "title": "Sessões Paralelas",
+          "location": "Múltiplas Salas",
+          "tracks": [
+            {
+              "room": "Sala 200",
+              "speakerId": 39,
+              "title": "Gerenciamento Inteligente: Estratégias Ágeis para Negócios e Vida Pessoal"
+            },
+            {
+              "room": "Sala 300",
+              "speakerId": 25,
+              "title": "Como se proteger de golpes digitais e vazamentos de dados no dia a dia"
+            },
+
+            {
+              "room": "Sala 600",
+              "speakerId": 5,
+              "title": "Inovação na Raiz: Como Transformei Desafios em Tecnologia de Impacto"
+            }
+          ]
+        },
+        {
+          "startTime": "12:55",
+          "endTime": "13:25",
+          "duration": "0:30",
+          "type": "parallel",
+          "title": "Sessões Paralelas",
+          "location": "Múltiplas Salas",
+          "tracks": [
+            {
+              "room": "Sala 100",
+              "speakerId": 22,
+              "title": "Agentes de IA com PHP"
+            },
+
+            {
+              "room": "Sala 300",
+              "speakerId": 35,
+              "title": "Estratégia e Governança de IA"
+            },
+            {
+              "room": "Sala 400",
+              "speakerId": 6,
+              "title": "Organização Total BPM"
+            },
+
+            {
+              "room": "Sala 600",
+              "speakerId": 29,
+              "title": "pg_vector: A Extensão Que Transforma o PostgreSQL em um Motor de Busca Vetorial"
+            }
+          ]
+        },
+        {
+          "startTime": "13:35",
+          "endTime": "14:05",
+          "duration": "0:30",
+          "type": "parallel",
+          "title": "Sessões Paralelas",
+          "location": "Múltiplas Salas",
+          "tracks": [
+            {
+              "room": "Sala 100",
+              "speakerId": 40,
+              "title": "O poder do contraste: como um Advogado e um RP fizeram a transição para a IA."
+            },
+            {
+              "room": "Sala 200",
+              "speakerId": 4,
+              "title": "Freios ou Motor? Desmistificando a Arquitetura de Software no Mundo Ágil"
+            },
+            {
+              "room": "Sala 400",
+              "speakerId": 34,
+              "title": "Sites estáticos com o GitLab Pages"
+            },
+            {
+              "room": "Sala 500",
+              "speakerId": 42,
+              "title": "Visão Computacional para Reconhecimento de Objetos Aéreos"
+            }
+          ]
+        },
+        {
+          "startTime": "14:15",
+          "endTime": "15:00",
+          "duration": "0:45",
+          "type": "parallel",
+          "title": "Sessões Paralelas",
+          "location": "Múltiplas Salas",
+          "tracks": [
+            {
+              "room": "Sala 100",
+              "speakerId": 54,
+              "title": "Do SQL ao ChatGPT: a jornada dos dados e a evolução dos SGBDs até a Era da IA"
+            },
+            {
+              "room": "Sala 200",
+              "speakerId": 21,
+              "title": "Do Dado à GenAI com AWS: Da Coleta de Dados a Geração de Valor com IA"
+            },
+            {
+              "room": "Sala 300",
+              "speakerId": 31,
+              "title": "Oficina de Criação de Jogos Materiais"
+            },
+            {
+              "room": "Sala 400",
+              "speakerId": 2,
+              "title": "Construindo um Agente de IA com a API Oficial do WhatsApp"
+            },
+            {
+              "room": "Sala 500",
+              "speakerId": 49,
+              "title": "A IA fez o meu site, e agora?"
+            },
+            {
+              "room": "Sala 600",
+              "speakerId": null,
+              "title": "Spec2Code/Code2Spec: o buraco no meio"
+            }
+          ]
+        },
+        {
+          "startTime": "15:10",
+          "endTime": "15:40",
+          "duration": "0:30",
+          "type": "parallel",
+          "title": "Sessões Paralelas",
+          "location": "Múltiplas Salas",
+          "tracks": [
+            {
+              "room": "Sala 100",
+              "speakerId": 27,
+              "title": "Hackeando o Tempo: Amazon Q em Automações para cibersegurança"
+            },
+            {
+              "room": "Sala 200",
+              "speakerId": 43,
+              "title": "O PMO do Futuro: Como a Inteligência Artificial Vai Redefinir a Gestão de Projetos"
+            },
+            {
+              "room": "Sala 300",
+              "speakerId": 17,
+              "title": "Todo Mundo é Junior em Algo"
+            },
+            {
+              "room": "Sala 400",
+              "speakerId": 28,
+              "title": "Data-Driven Marketing: Da Coleta de Dados à Estratégia com Inteligência Artificial."
+            },
+            {
+              "room": "Sala 500",
+              "speakerId": 16,
+              "title": "Do Código ao Cockpit: Liderando sua Carreira e Bem-Estar com IA e Inteligência Emocional"
+            },
+            {
+              "room": "Sala 600",
+              "speakerId": 14,
+              "title": ".NET Aspire: Acelerando o Onboarding e Simplificando Projetos Distribuídos"
+            }
+          ]
+        },
+        {
+          "startTime": "15:50",
+          "endTime": "16:20",
+          "duration": "0:30",
+          "type": "parallel",
+          "title": "Sessões Paralelas",
+          "location": "Múltiplas Salas",
+          "tracks": [
+            {
+              "room": "Sala 100",
+              "speakerId": 30,
+              "title": "Já pensou em imigrar para os Estados Unidos?"
+            },
+            {
+              "room": "Sala 200",
+              "speakerId": 13,
+              "title": "A Fórmula da IA para Ganhar um Nobel"
+            },
+            {
+              "room": "Sala 300",
+              "speakerId": 19,
+              "title": "Tecnologia que Enxerga: Como a Visão Computacional Está Salvando Vidas"
+            },
+            {
+              "room": "Sala 400",
+              "speakerId": 44,
+              "title": "Computação Visual: Transformando Dados em Decisões"
+            },
+            {
+              "room": "Sala 500",
+              "speakerId": 36,
+              "title": "Do caos à IA: Como a estrutura dos seus dados definem seu sucesso em um projeto de IA."
+            },
+            {
+              "room": "Sala 600",
+              "speakerId": 38,
+              "title": "Hackeando o Sistema: Carreira, Liderança e Protagonismo em um Mundo Caótico"
+            }
+          ]
+        },
+        {
+          "startTime": "16:30",
+          "endTime": "17:20",
+          "duration": "0:50",
+          "type": "keynote",
+          "title": "Criando sistemas com Agentes Autônomos: Explorando o Strands Agents",
+          "speakerId": 51,
+          "location": "Auditório",
+          "tracks": []
+        },
+        {
+          "startTime": "17:20",
+          "endTime": "17:30",
+          "duration": "0:10",
+          "type": "closing",
+          "title": "Sorteios + Encerramento",
+          "location": "Auditório",
+          "tracks": []
+        }
+      ]
+    }
+  ]
+}

@@ -114,14 +114,14 @@
     "name": "Dr. Alexandre Barbosa de Almeida",
     "photo": "/images/speakers/dr.-alexandre-barbosa-de-almeida.jpeg",
     "talk": "A Fórmula da IA para Ganhar um Nobel",
-    "community": "",
+    "community": "UFG",
     "bio": "Minibio: Dr. Alexandre Barbosa - IA Researcher\nBio: Alexandre é doutor em Ciência da Computação e Bacharel em Física (UFG), com expertise em desenvolver visão estratégica para integrar tecnologia, ciência e negócios.",
     "linkedin": "https://www.linkedin.com/in/dr-alexandrebarbosa/",
     "instagram": ""
   },
   {
     "id": 14,
-    "name": "Ayslan Alves Fer''des",
+    "name": "Ayslan Alves Fernandes",
     "photo": "/images/speakers/ayslan-alves-fer''des.jpeg",
     "talk": " .NET Aspire: Acelerando o Onboarding e Simplificando Projetos Distribuídos",
     "community": "Reactivando",
@@ -281,11 +281,11 @@
   },
   {
     "id": 30,
-    "name": "Neemias Cintra Fer''des ",
+    "name": "Neemias Cintra Fernandes ",
     "photo": "/images/speakers/neemias-cintra-fer''des-.jpg",
     "talk": "Já pensou em imigrar para os Estados Unidos",
     "community": "Reactivando",
-    "bio": "Neemias Cintra Fer''des é Ph.D. em Inovação Farmacêutica, pesquisador e educador com sólida trajetória acadêmica e profissional. Imigrante nos Estados Unidos, atua como mentor especializado em processos de imigração para profissionais altamente qualificados, com foco nas categorias EB2-NIW e EB1A.\nSua missão é auxiliar talentos de destaque a planejarem e executarem sua mudança para os EUA de forma legal, estratégica e sustentável, possibilitando que construam carreira e vida em um país seguro, desenvolvido e que valoriza — com reconhecimento e remuneração em moeda forte — habilidades e conquistas excepcionais.",
+    "bio": "Neemias Cintra Fernandes é Ph.D. em Inovação Farmacêutica, pesquisador e educador com sólida trajetória acadêmica e profissional. Imigrante nos Estados Unidos, atua como mentor especializado em processos de imigração para profissionais altamente qualificados, com foco nas categorias EB2-NIW e EB1A.\nSua missão é auxiliar talentos de destaque a planejarem e executarem sua mudança para os EUA de forma legal, estratégica e sustentável, possibilitando que construam carreira e vida em um país seguro, desenvolvido e que valoriza — com reconhecimento e remuneração em moeda forte — habilidades e conquistas excepcionais.",
     "linkedin": "",
     "instagram": "https://www.instagram.com/profneemias_/"
   },
@@ -468,5 +468,55 @@
     "bio": "Pedro Goiânia é Desenvolvedor de Software e Fundador do Pix Aí. Formado em Sistemas de Informação pelo Instituto Federal de Goiás, ele vai mostrar pontos extremamente importantes na criação de um produto digital. A IA faz o site, mas o negócio ainda continua sendo com pessoas!",
     "linkedin": "https://www.linkedin.com/in/pedrogoiania",
     "instagram": "@pedrogoiania"
+  },
+  {
+    "id": 50,
+    "name": "Alyf Mendonça",
+    "photo": "/images/speakers/alyf-mendonca.jpeg",
+    "talk": "As oportunidades para programadores no mercado financeiro",
+    "community": "AUVP",
+    "bio": "Alyf Mendonça é Head de Tecnologia na AUVP, com mais de 9 anos de experiência em desenvolvimento de sistemas. Atuou em empresas como Santander e BTG Pactual e atualmente lidera equipes e cria soluções voltadas ao mercado financeiro.",
+    "linkedin": "https://www.linkedin.com/in/alyf-mendon%C3%A7a-3549a5144/",
+    "instagram": "alyfmendonca"
+  },
+  {
+    "id": 51,
+    "name": "Marcelo Palladino",
+    "photo": "/images/speakers/MarceloPalladino.jpg",
+    "talk": "Criando sistemas com Agentes Autônomos: Explorando o Strands Agents",
+    "community": "AWS",
+    "bio": "Marcelo Palladino \"Palla\" tem mais de 30 anos de experiência no mercado. Hoje, atua como Senior Developer Advocate na AWS, onde trabalha para conectar desenvolvedores e empresas à inovação em nuvem, promovendo boas práticas de engenharia, arquitetura moderna e adoção de tecnologias emergentes.",
+    "linkedin": "https://www.linkedin.com/in/mfpalladino/",
+    "instagram": "https://www.instagram.com/pallaseminsta/"
+  },
+  {
+    "id": 52,
+    "name": "Luiz Machado",
+    "photo": "/images/speakers/luiz-machado.jpg",
+    "talk": "Por que dropei mais de 10 empresas (e o problema nem sempre era eu)",
+    "community": "GYNSec",
+    "bio": "Luiz Machado é Head de Tecnologia, AWS Community Builder e especialista em segurança AWS/DevSecOps. Fundador da comunidade GYNSec, cria e apoia ferramentas open source. Focado em evoluir pessoas, formar líderes e impulsionar a maturidade técnica das equipes.",
+    "linkedin": "https://linkedin.com/in/luizmachadoaws",
+    "instagram": "https://instagram.com/luizmachadoaws"
+  },
+  {
+    "id": 53,
+    "name": "Ana Mioto",
+    "photo": "/images/speakers/ana-mioto.jpg",
+    "talk": "ML no escuro: Por que seus modelos falham em produção e como a observabilidade pode salvar o dia",
+    "community": "Data Girls",
+    "bio": "Ana Mioto é Cientista de Dados Sênior no Banco Bradesco. Já atuou como pesquisadora e em empresas dos setores de saúde, finanças, mídia e educação. Possui paixão por Ciência de Dados e Inteligência Artificial com foco em aplicações práticas nos negócios. É Co-Fundadora e Líder de Pesquisa & Desenvolvimento na Comunidade Data Girls. Também reconhecida como Microsoft MVP e Alura Star.",
+    "linkedin": "https://www.linkedin.com/in/anaclara-amioto/",
+    "instagram": "https://www.instagram.com/ana_mioto/"
+  },
+  {
+    "id": 54,
+    "name": "Gilson Martins",
+    "photo": "/images/speakers/gilson-martins.jpg",
+    "talk": "Do SQL ao ChatGPT: a jornada dos dados e a evolução dos SGBDs até a Era da IA",
+    "community": "GUOB/GUOCB",
+    "bio": "Gilson Martins é Technical manager & Founder at GGBR, com mais de 15 anos de experiência em desenvolvimento de software. Atua como consultor e mentor em projetos de IA e desenvolvimento de software. É também membro do GUOB e GUOCB, comunidades de tecnologia e inovação.",
+    "linkedin": "https://www.linkedin.com/in/gilsonmartins/",
+    "instagram": "https://www.instagram.com/gilsonmartins88/"
   }
 ]

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import speakersData from "@/data/speakers.json";
 import type { Speaker } from "@/types/speakers";
+import NewFooter from "@/components/NewFooter";
 
 export default function SpeakersPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -293,6 +294,8 @@ export default function SpeakersPage() {
           </div>
         )}
       </div>
+
+      <NewFooter />
     </div>
   );
 }

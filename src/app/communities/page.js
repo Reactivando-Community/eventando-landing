@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { communities } from "./communities";
 import { SocialLinks, getChannelLabel } from "./SocialLinks";
+import NewFooter from "@/components/NewFooter";
 
 const DescriptionText = ({ text }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -251,14 +252,7 @@ export default function CommunitiesPage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 bg-dark-900 text-gray-400">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-lg mb-4">Join Community 2025</p>
-          <p className="text-sm">
-            Organização Join Community • Todos os direitos reservados
-          </p>
-        </div>
-      </footer>
+      <NewFooter />
     </div>
   );
 }
