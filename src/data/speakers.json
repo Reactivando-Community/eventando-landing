@@ -474,7 +474,7 @@
     "name": "Alyf Mendonça",
     "photo": "/images/speakers/alyf-mendonca.jpeg",
     "talk": "As oportunidades para programadores no mercado financeiro",
-    "community": "AUVP",
+    "community": "Reactivando",
     "bio": "Alyf Mendonça é Head de Tecnologia na AUVP, com mais de 9 anos de experiência em desenvolvimento de sistemas. Atuou em empresas como Santander e BTG Pactual e atualmente lidera equipes e cria soluções voltadas ao mercado financeiro.",
     "linkedin": "https://www.linkedin.com/in/alyf-mendon%C3%A7a-3549a5144/",
     "instagram": "https://www.instagram.com/alyfmendonca/"
@@ -528,5 +528,15 @@
     "bio": "Hugo Seabra é desenvolvedor de software e fundador da empresa Spec2Code. Atua como consultor e mentor em projetos de IA e desenvolvimento de software. É também membro do GrupyGO, comunidade de tecnologia e inovação.",
     "linkedin": "https://www.linkedin.com/in/hugoseabra/",
     "instagram": "https://www.instagram.com/hugoseabra19/"
+  },
+  {
+    "id": 56,
+    "name": "Tiago Jorge",
+    "photo": "/images/speakers/tiago-jorge.jpg",
+    "talk": "Do Monolito a Event-Driven: A Jornada Serverless que Transformará sua Carreira",
+    "community": "AWS Goiânia, GynSec, GoIAS",
+    "bio": "Head Serverless at Cilia Tecnologia",
+    "linkedin": "https://linkedin.com/in/tiagojorgeaws",
+    "instagram": "https://www.instagram.com/tiagojorgep/"
   }
 ]
