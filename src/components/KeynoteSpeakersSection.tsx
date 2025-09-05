@@ -44,6 +44,16 @@ const keynoteSpeakers = [
     instagram: "https://www.instagram.com/ana_mioto/",
     featured: true,
   },
+  {
+    id: 5,
+    name: "Tiago Jorge",
+    photo: "/images/speakers/tiago-jorge.jpg",
+    talk: "Do Monolito a Event-Driven: A Jornada Serverless que Transformará sua Carreira",
+    bio: "Head Serverless at Cilia Tecnologia",
+    linkedin: "https://linkedin.com/in/tiagojorgeaws",
+    instagram: "https://www.instagram.com/tiagojorgep/",
+    featured: true,
+  }
 ];
 
 const getSocialIcon = (platform: string) => {
@@ -82,11 +92,18 @@ export default function KeynoteSpeakersSection() {
 
         {/* Speakers Grid */}
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
-          {keynoteSpeakers.map((speaker, index) => (
-            <div
-              key={speaker.id}
-              className="group relative bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-dark-700"
-            >
+          {keynoteSpeakers.map((speaker, index) => {
+            const isLastItem = index === keynoteSpeakers.length - 1;
+            const isOddNumber = keynoteSpeakers.length % 2 !== 0;
+            const shouldCenter = isLastItem && isOddNumber;
+            
+            return (
+              <div
+                key={speaker.id}
+                className={`group relative bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-dark-700 ${
+                  shouldCenter ? 'lg:col-span-2 lg:max-w-2xl lg:mx-auto' : ''
+                }`}
+              >
               {/* Featured Badge */}
               <div className="absolute -top-3 -right-3 bg-primary-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                 KEYNOTE
@@ -164,7 +181,8 @@ export default function KeynoteSpeakersSection() {
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Call to Action */}

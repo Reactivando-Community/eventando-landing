@@ -213,7 +213,7 @@
     "id": 23,
     "name": "Autoprocs",
     "photo": "/images/speakers/autoprocs.jpeg",
-    "talk": "Do Manual ao Automático",
+    "talk": "Agente de Chat IA com N8N, na Prática",
     "community": "Reactivando",
     "bio": "Victor é engenheiro de software especializado em apps multiplataformas e automações. Lucas Gabriel, cientista de dados, atua em integrações e automações. Deivison Fellype, cientista de dados e SDR, é especialista em vendas. Juntos, co-fundaram a Autoprocs para transformar processos manuais em operações automatizadas.",
     "linkedin": "https://www.linkedin.com/in/autoprocs",
@@ -381,7 +381,7 @@
   },
   {
     "id": 40,
-    "name": "Josivan Mesquita",
+    "name": "Josivan Mesquita & Lucas Ferraz",
     "photo": "/images/speakers/josivan-mesquita.jpg",
     "talk": "O poder do contraste: como um Advogado e um RP fizeram a transição para a IA.",
     "community": "GoIAs",
@@ -538,5 +538,15 @@
     "bio": "Head Serverless at Cilia Tecnologia",
     "linkedin": "https://linkedin.com/in/tiagojorgeaws",
     "instagram": "https://www.instagram.com/tiagojorgep/"
+  },
+  {
+    "id": 57,
+    "name": "Yago Marques",
+    "photo": "/images/speakers/yago-marques.jpg",
+    "talk": "Reforma Tributária e o futuro dos negócios",
+    "community": "Reactivando",
+    "bio": "Yago Marques é especialista em Revenue Operations e CRO da H7 Contábil. Une práticas de RevOps e estratégias tributárias e financeiras para impulsionar o crescimento sustentável dos negócios.",
+    "linkedin": "https://www.linkedin.com/in/yago-b-marques/",
+    "instagram": "https://www.instagram.com/yagobmarques/"
   }
 ]

@@ -166,8 +166,8 @@
             },
             {
               "room": "Sala 500",
-              "speakerId": 23,
-              "title": "Agente de Chat IA com N8N, na Prática"
+              "speakerId": 32,
+              "title": "Jogos Materiais Educacionais"
             },
             {
               "room": "Sala 600",
@@ -191,8 +191,8 @@
             },
             {
               "room": "Sala 200",
-              "speakerId": 32,
-              "title": "Jogos Materiais Educacionais"
+              "speakerId": 23,
+              "title": "Agente de Chat IA com N8N, na Prática"
             },
             {
               "room": "Sala 300",
@@ -234,7 +234,11 @@
               "speakerId": 25,
               "title": "Como se proteger de golpes digitais e vazamentos de dados no dia a dia"
             },
-
+            {
+              "room": "Sala 500",
+              "speakerId": 57,
+              "title": "Reforma Tributária e o futuro dos negócios"
+            },
             {
               "room": "Sala 600",
               "speakerId": 5,
@@ -334,8 +338,8 @@
             },
             {
               "room": "Sala 500",
-              "speakerId": 49,
-              "title": "A IA fez o meu site, e agora?"
+              "speakerId": 28,
+              "title": "Data-Driven Marketing: Da Coleta de Dados à Estratégia com Inteligência Artificial."
             },
             {
               "room": "Sala 600",
@@ -354,8 +358,8 @@
           "tracks": [
             {
               "room": "Sala 100",
-              "speakerId": 27,
-              "title": "Hackeando o Tempo: Amazon Q em Automações para cibersegurança"
+              "speakerId": 13,
+              "title": "A Fórmula da IA para Ganhar um Nobel"
             },
             {
               "room": "Sala 200",
@@ -369,8 +373,8 @@
             },
             {
               "room": "Sala 400",
-              "speakerId": 28,
-              "title": "Data-Driven Marketing: Da Coleta de Dados à Estratégia com Inteligência Artificial."
+              "speakerId": 27,
+              "title": "Hackeando o Tempo: Amazon Q em Automações para cibersegurança"
             },
             {
               "room": "Sala 500",
@@ -399,8 +403,8 @@
             },
             {
               "room": "Sala 200",
-              "speakerId": 13,
-              "title": "A Fórmula da IA para Ganhar um Nobel"
+              "speakerId": 49,
+              "title": "A IA fez o meu site, e agora?"
             },
             {
               "room": "Sala 300",
