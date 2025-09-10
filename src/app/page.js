@@ -274,6 +274,15 @@ export default function Home() {
                 <SenaiLogo />
               </div>
               <div className="p-4 bg-white rounded-lg shadow-sm">
+              <Image
+                  src="/images/sebrae.svg"
+                  alt="Sebrae"
+                  width={400}
+                  height={400}
+                  className="object-contain"
+                />
+              </div>
+              <div className="p-4 bg-white rounded-lg shadow-sm">
                 <Image
                   src="/images/aws.png"
                   alt="AWS"
@@ -283,6 +292,7 @@ export default function Home() {
                 />
               </div>
             </div>
+            
           </div>
         </section>
 
