@@ -167,7 +167,7 @@ export default function Home() {
               </div>
 
               {/* Segundo Lote */}
-              <div className="bg-white dark:bg-dark-700 rounded-xl p-8 shadow-sm border-2 border-primary-500">
+              <div className="bg-white dark:bg-dark-700 rounded-xl p-8 shadow-sm">
                 <div className="text-center">
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                     Segundo Lote
@@ -190,7 +190,7 @@ export default function Home() {
               </div>
 
               {/* Terceiro Lote */}
-              <div className="bg-white dark:bg-dark-700 rounded-xl p-8 shadow-sm">
+              <div className="bg-white dark:bg-dark-700 rounded-xl p-8 shadow-sm border-2 border-primary-500">
                 <div className="text-center">
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                     Terceiro Lote
