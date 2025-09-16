@@ -90,7 +90,7 @@ Cada sessão agora contém:
   "location": "Múltiplas Salas",
   "tracks": [
     {
-      "room": "Sala 100",
+      "room": "Sala 304",
       "speakerId": 24,
       "title": "Road to Cybersec"
     }
