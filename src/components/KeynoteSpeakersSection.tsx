@@ -195,17 +195,27 @@ export default function KeynoteSpeakersSection() {
               Garante sua vaga para assistir aos keynote speakers e muito mais
               no Join Community 2025
             </p>
-            <button
-              onClick={() => {
-                window.scrollTo({
-                  top: 0,
-                  behavior: "smooth",
-                });
-              }}
-              className="bg-white text-primary-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 shadow-lg"
+            <a
+              href="https://doity.com.br/join-community--12-edicao"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center bg-white text-primary-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 shadow-lg"
             >
+              <svg
+                className="w-5 h-5 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
               Inscreva-se Agora
-            </button>
+            </a>
           </div>
         </div>
       </div>

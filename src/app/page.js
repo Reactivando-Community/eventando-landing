@@ -104,10 +104,7 @@ export default function Home() {
     <Suspense>
       <main className="min-h-screen">
         {/* Hero Section */}
-        <HeroSection
-          productsToList={productsToList}
-          productSelectedId={productSelectedId}
-        />
+        <HeroSection />
 
         {/* Info Section */}
         <InfoSection />
@@ -157,7 +154,7 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
-                  <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 mb-6">
+                  <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
                     <li>✅ Brindes exclusivos</li>
                     <li>✅ Acesso completo ao evento</li>
                     <li>✅ Coffee break</li>
@@ -181,7 +178,7 @@ export default function Home() {
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
                     * Sem camisa do evento
                   </p>
-                  <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 mb-6">
+                  <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
                     <li>✅ Acesso completo ao evento</li>
                     <li>✅ Material do evento</li>
                     <li>✅ Coffee break</li>
@@ -204,13 +201,38 @@ export default function Home() {
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
                     * Sem camisa do evento
                   </p>
-                  <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2 mb-6">
+                  <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
                     <li>✅ Acesso completo ao evento</li>
                     <li>✅ Material do evento</li>
                     <li>✅ Coffee break</li>
                   </ul>
                 </div>
               </div>
+            </div>
+
+            {/* Botão de Inscrição Geral */}
+            <div className="mt-12 text-center">
+              <a
+                href="https://doity.com.br/join-community--12-edicao"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-12 py-4 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-bold text-xl rounded-full shadow-2xl shadow-primary-500/25 transition-all duration-300 transform hover:scale-105 hover:shadow-primary-500/40"
+              >
+                <svg
+                  className="w-6 h-6 mr-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+                Fazer Inscrição Agora
+              </a>
             </div>
 
             {/* Informações adicionais */}

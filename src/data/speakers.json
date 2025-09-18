@@ -340,16 +340,6 @@
     "instagram": ""
   },
   {
-    "id": 36,
-    "name": "Mario Barduchi ",
-    "photo": "/images/speakers/mario-barduchi.jpg",
-    "talk": "Do caos à IA: Como a estrutura dos seus dados definem seu sucesso em um projeto de IA.",
-    "community": "GUOB/GUOCB",
-    "bio": "Mario Barduchi é Oracle ACE Director no Brasil, com mais de 25 anos de experiência em administração de bancos de dados. Especialista em Oracle e entusiasta de PostgreSQL e de tecnologias NoSQL como MongoDB, atua na Pythian como Sr. Database Consultant, ajudando grandes organizações nos Estados Unidos, Canadá e Europa a implantar e administrar soluções escaláveis e de alto desempenho em ambientes de bancos de dados híbridos e multicloud. Com passagens por empresas como Oracle e Dell Technologies, Mario une experiência prática e visão estratégica. Palestrante frequente em conferências no Brasil e no exterior, é também Coordenador Regional do GUOB, incentivando a troca de conhecimento e o fortalecimento da comunidade técnica.",
-    "linkedin": "https://br.linkedin.com/in/mariobarduchi",
-    "instagram": ""
-  },
-  {
     "id": 37,
     "name": "Andressa Carolina",
     "photo": "/images/speakers/andressa-carolina.jpeg",
@@ -548,5 +538,15 @@
     "bio": "Yago Marques é especialista em Revenue Operations e CRO da H7 Contábil. Une práticas de RevOps e estratégias tributárias e financeiras para impulsionar o crescimento sustentável dos negócios.",
     "linkedin": "https://www.linkedin.com/in/yago-b-marques/",
     "instagram": "https://www.instagram.com/yagobmarques/"
+  },
+  {
+    "id": 58,
+    "name": "Larissa Rosa",
+    "photo": "/images/speakers/larissa-rosa.jpg",
+    "talk": "Entre Pixels e Tokens: A evolução da Visão Computacional com Modelos Generativos",
+    "community": "GO.IAs",
+    "bio": "Larissa Rosa é graduanda em Engenharia de Computação pela Universidade Federal de Goiás (UFG), fez parte da primeira turma do Programa de Capacitação 4.0 CEIA/EMBRAPII. Atualmente, é pesquisadora do Centro de Excelência em Inteligência Artificial (CEIA) e Cientista de Dados na Cilia Tecnologia, focada principalmente em Visão Computacional.",
+    "linkedin": "https://www.linkedin.com/in/larissa-x-rosa",
+    "instagram": "https://www.instagram.com/lari._.rosa"
   }
 ]
