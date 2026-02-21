@@ -9,8 +9,9 @@ import { PopupWidget } from "@/components/PopupWidget";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Join Community",
-  description: "Ingressos Join Community",
+  title: "Startup Weekend Anápolis - Goiânia | Techstars",
+  description:
+    "54 horas para transformar sua ideia em realidade. Startup Weekend powered by Techstars - conecte-se com empreendedores, valide sua ideia e construa um negócio.",
 };
 
 export default function RootLayout({ children }) {
