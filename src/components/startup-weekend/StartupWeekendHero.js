@@ -1,10 +1,34 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import Image from "next/image";
 import { eventConfig } from "@/data/startup-weekend-event";
 
 export default function StartupWeekendHero() {
+  useEffect(() => {
+    let scrolled = false;
+    const handleScroll = () => {
+      scrolled = true;
+      window.removeEventListener("scroll", handleScroll);
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    const timer = setTimeout(() => {
+      if (!scrolled) {
+        window.scrollTo({
+          top: window.innerHeight,
+          behavior: "smooth",
+        });
+      }
+    }, 5000);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden z-0">
