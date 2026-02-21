@@ -1,0 +1,552 @@
+[
+  {
+    "id": 2,
+    "name": "Victor Marques",
+    "photo": "/images/speakers/victor-marques.jpeg",
+    "talk": "Construindo um Agente de IA com a API Oficial do WhatsApp",
+    "community": "Reactivando",
+    "bio": "Co-founder & CTO na Klinko",
+    "linkedin": "https://www.linkedin.com/in/mvmmarcus/",
+    "instagram": "https://www.instagram.com/viictor.h_?igsh=MWZuMmw0ZHVnNnRvYw=="
+  },
+  {
+    "id": 3,
+    "name": "Marcus Marques",
+    "photo": "/images/speakers/marcus-marques.jpeg",
+    "talk": "Construindo um Agente de IA com a API Oficial do WhatsApp",
+    "community": "Reactivando",
+    "bio": "Engenheiro de Software Senior",
+    "linkedin": "https://www.linkedin.com/in/vhmvictor/",
+    "instagram": "https://www.instagram.com/omarcus_vm?igsh=dXd6OTY0cGkybm5u"
+  },
+  {
+    "id": 4,
+    "name": "Mauro Sérgio",
+    "photo": "/images/speakers/mauro-sérgio.jpeg",
+    "talk": "Freios ou Motor? Desmistificando a Arquitetura de Software no Mundo Ágil",
+    "community": "Reactivando",
+    "bio": "Estudante de Engenharia de Software na Universidade Federal de Goiás",
+    "linkedin": "https://linkedin.com/in/mauro-sergio-junior",
+    "instagram": ""
+  },
+  {
+    "id": 5,
+    "name": "Luc Cod",
+    "photo": "/images/speakers/luc-cod.jpeg",
+    "talk": "Inovação na Raiz: Como Transformei Desafios em Tecnologia de Impacto ",
+    "community": "Reactivando",
+    "bio": "CTO Xulis, especialista em fintech e automação, finalista do TIC Americas 2015.",
+    "linkedin": "https://www.linkedin.com/in/lucasunity/",
+    "instagram": ""
+  },
+  {
+    "id": 6,
+    "name": "Sérgio Luis Haas",
+    "photo": "/images/speakers/sérgio-luis-haas.jpg",
+    "talk": "Organização Total BPM",
+    "community": "ABPMP",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/sergio-luis-haas/",
+    "instagram": ""
+  },
+  {
+    "id": 7,
+    "name": "Ozano Neto",
+    "photo": "/images/speakers/ozano-neto.jpg",
+    "talk": "O Poder em cada Versão - A Evolução do Elefante",
+    "community": "PGConfBrasil",
+    "bio": "",
+    "linkedin": "https://br.linkedin.com/in/ozanoneto",
+    "instagram": ""
+  },
+  {
+    "id": 8,
+    "name": "Bruno Bovo",
+    "photo": "/images/speakers/bruno-bovo.jpg",
+    "talk": "IA na Prática: O Novo aliado da Gestão de Projetos ",
+    "community": "PMI",
+    "bio": "Apresentar como a Inteligência Artificial pode transformar a gestão de projetos desde o planejamento até o acompanhamento, utilizando os frameworks RTF (Read–Think–Format) e CREATE para estruturar, automatizar e melhorar a geração de artefatos, tomada de decisão e acompanhamento contínuo das entregas.",
+    "linkedin": "https://www.linkedin.com/in/bruno-bovo/",
+    "instagram": "https://www.instagram.com/bc.bovo/"
+  },
+  {
+    "id": 9,
+    "name": "Catarine Sales",
+    "photo": "/images/speakers/catarine-sales.png",
+    "talk": "Título: Habilidades Invisíveis: o talento que não está no currículo",
+    "community": "",
+    "bio": "Palestrante: Catarine Sales - Head de Gente e Gestão da Cilia Tecnologia\nTítulo: Habilidades Invisíveis: o talento que não está no currículo\nMini Bio: Psicóloga, pós-graduada em Gestão de Pessoas e especializada em atração e desenvolvimento talentos em empresas tech.",
+    "linkedin": "https://www.linkedin.com/in/catarinesales/",
+    "instagram": "https://www.instagram.com/catarine.sales"
+  },
+  {
+    "id": 10,
+    "name": "Patrick Gratão",
+    "photo": "/images/speakers/patrick-gratão.jpeg",
+    "talk": "Arquitetura MVVM no Front-end: A base de projetos performáticos e robustos",
+    "community": "Reactivando",
+    "bio": "Patrick Gratão é Desenvolvedor Front-end Sênior, especialista em criar e arquitetar soluções robustas e escaláveis para grandes nomes da educação e do mercado brasileiro. Já impactou milhões de usuários com projetos para empresas como Carrefour, Motorola, SESI e FGV, unindo performance, boas práticas e design moderno.",
+    "linkedin": "https://www.linkedin.com/in/patrickgratao/",
+    "instagram": ""
+  },
+  {
+    "id": 11,
+    "name": "Willard Ribeiro",
+    "photo": "/images/speakers/willard-ribeiro.jpg",
+    "talk": "Triagem de midias sinteticas combatendo fraudes geradas por IA.",
+    "community": "Go.IAs",
+    "bio": "Willard Ribeiro é engenheiro eletricista, mestre e doutorando em Engenharia de Produção e Sistemas, pesquisador do GMAP (Unisinos/UFSC), com foco na aplicação de IA explicável, Teoria das Restrições e modelagem causal para tomada de decisão em sistemas complexos. Atualmente, é VP de Tecnologia na Vellox SA e lidera o CheckPixel.AI, plataforma de IA Forense que detecta fraudes em imagens, vídeos, áudios e textos gerados por inteligência artificial, aplicada à triagem no segmento de seguros e proteção veicular.",
+    "linkedin": "https://www.linkedin.com/in/willardribeiro/",
+    "instagram": " https://www.instagram.com/willardsribeiro/"
+  },
+  {
+    "id": 12,
+    "name": "Weder Sousa",
+    "photo": "/images/speakers/weder-sousa.jpeg",
+    "talk": "Desbloqueie o Poder Inexplorado em Seus Dados: Crie um Gênio Corporativo com AWS Serverless e Amazon Bedrock",
+    "community": "AWS User Group Anápolis",
+    "bio": "Engenheiro de Software Sênior no Grupo GFT, AWS Community Builder e líder de comunidades de tecnologia. Fundador da Anapolivre e cofundador do AWS User Group Anápolis. Mais de 20 anos formando profissionais em computação.",
+    "linkedin": "https://www.linkedin.com/in/wedermarianodesousa/",
+    "instagram": "https://www.instagram.com/sousaweder/"
+  },
+  {
+    "id": 13,
+    "name": "Dr. Alexandre Barbosa de Almeida",
+    "photo": "/images/speakers/dr.-alexandre-barbosa-de-almeida.jpeg",
+    "talk": "A Fórmula da IA para Ganhar um Nobel",
+    "community": "UFG",
+    "bio": "Minibio: Dr. Alexandre Barbosa - IA Researcher\nBio: Alexandre é doutor em Ciência da Computação e Bacharel em Física (UFG), com expertise em desenvolver visão estratégica para integrar tecnologia, ciência e negócios.",
+    "linkedin": "https://www.linkedin.com/in/dr-alexandrebarbosa/",
+    "instagram": ""
+  },
+  {
+    "id": 14,
+    "name": "Ayslan Alves Fernandes",
+    "photo": "/images/speakers/ayslan-alves-fer''des.jpeg",
+    "talk": " .NET Aspire: Acelerando o Onboarding e Simplificando Projetos Distribuídos",
+    "community": "Reactivando",
+    "bio": "Mini bio: Senior Software Engineer\nBio (caixa amarela): Atua há mais de dez anos no desenvolvimento de soluções com .NET e ReactJS, exercendo também o papel de Tech Lead e apoiando times na entrega de projetos, principalmente para empresas com plataformas SaaS.",
+    "linkedin": "https://www.linkedin.com/in/ayslanalves/",
+    "instagram": ""
+  },
+  {
+    "id": 15,
+    "name": "Alexandre Calaça",
+    "photo": "/images/speakers/alexandre-calaça.jpeg",
+    "talk": "Por Que Você Não Passa nas Entrevistas (E Como Mudar Isso)",
+    "community": "Ruby Goiás",
+    "bio": "Engenheiro de software com atuação internacional, Professor universitário e Coordenador de pós-graduação. Líder de comunidade e Speaker em eventos nacionais e internacionais.",
+    "linkedin": "https://www.linkedin.com/in/alexandrecalacaofficial/",
+    "instagram": "https://www.instagram.com/alexandrecalacaofficial/"
+  },
+  {
+    "id": 16,
+    "name": "Deny Lima",
+    "photo": "/images/speakers/deny-lima.jpeg",
+    "talk": "Do Código ao Cockpit: Liderando sua Carreira e Bem-Estar com IA e Inteligência Emocional",
+    "community": "Portera",
+    "bio": "Título: Head de RH e mentor de carreira.\n\nMini bio: Sócio fundador da Elixir Exponencial Humano, minha missão é orientar profissionais, líderes e empresas em tecnologia a trilharem um caminho de sucesso combi''do a potência de novos recursos como a IA aliados à inteligência emocional para fortalecer a liderança e cultivar o bem-estar. Acredito que uma gestão humanizada é a força motriz para um crescimento profissional e organizacional sustentável.\n\nBio (caixa amarela): Deny é formado em Administração de Empresas, Especialista em RH Ágil e Transformação Cultural e em Psicologia Organizacional e do Trabalho e Liderança Estratégica. Atualmente, especializando em Gestão Estratégica de Pessoas com Foco em Desenvolvimento, Cultura e Negócios pelo IPOG.",
+    "linkedin": "https://www.linkedin.com/in/denylimaneto",
+    "instagram": ""
+  },
+  {
+    "id": 17,
+    "name": "Marcio Cunha",
+    "photo": "/images/speakers/marcio-cunha.jpg",
+    "talk": "Todo Mundo é Junior em Algo",
+    "community": "Override Community",
+    "bio": "Sou profissional de tecnologia com mais de 10 anos de experiência, atuando como analista de infraestrutura. Além do trabalho técnico, me dedico como voluntário ajudando pessoas em transição de carreira para a área tech e apoiando comunidades para fortalecer o ecossistema de tecnologia.",
+    "linkedin": "https://www.linkedin.com/in/marciosc30",
+    "instagram": "https://www.instagram.com/brigaderu/"
+  },
+  {
+    "id": 18,
+    "name": "Heitor Martins",
+    "photo": "/images/speakers/heitor-martins.jpg",
+    "talk": "Fi''ças para startups: como não quebrar antes de escalar",
+    "community": "Magnatas",
+    "bio": "Economista de formação, Heitor é Gestor e estrategista de investimentos certificado pela ANBIMA. Já atuou como sales trader e estrategista em uma das maiores mesas da XP. É fundador da Valor Academy, uma escola de fi''ças e investimentos.",
+    "linkedin": "https://www.linkedin.com/in/heitorlmartins/ ",
+    "instagram": "https://www.instagram.com/oheitormartins?igsh=aXhhaHM2ZDdvNHFz&utm_source=qr"
+  },
+  {
+    "id": 19,
+    "name": "Giovanna Vargas",
+    "photo": "/images/speakers/giovanna-vargas.jpeg",
+    "talk": "Tecnologia que Enxerga: Como a Visão Computacional Está Salvando Vidas",
+    "community": "Magnatas",
+    "bio": "Giovanna Vargas Barbosa é graduanda em Medicina Veterinária e pesquisadora em projetos de visão computacional aplicados à saúde animal e humana, incluindo o premiado Sobrevidas — 5º lugar no CNPq — para detecção de câncer de boca em humanos, e estudos em detecção de bactérias em leite contaminado por mastite. Sócia da startup WiMilk, atua no uso de IA e visão computacional para identificar preventivamente comportamentos iniciais de vacas com mastite. Monitora e participante ativa do Hub Goiás, palestrante na Campus Party de Brasília e Goiânia, professora online de idiomas e membro do FAEG Jovem de São Luís de Montes Belos. Com passagens por estágios que vão de pequenos animais a silvestres e grandes, une ciência, tecnologia e inovação para transformar desafios em soluções de impacto.",
+    "linkedin": "https://www.linkedin.com/in/giovanna-vargas-barbosa-02699b23a/",
+    "instagram": "https://www.instagram.com/gigicrumbsbunny/"
+  },
+  {
+    "id": 20,
+    "name": "Marcelo Paiva",
+    "photo": "/images/speakers/marcelo-paiva.png",
+    "talk": "A Nova Stack do Desenvolvedor: Humano + IA… ou o Início do Caos?",
+    "community": "Override & AWS Goiânia",
+    "bio": "CTO na Softprime, AWS Hero & Microsoft MVP",
+    "linkedin": "https://www.linkedin.com/in/marcelopaiva/",
+    "instagram": "https://www.instagram.com/marcelojpaiva/"
+  },
+  {
+    "id": 21,
+    "name": "Cicero Moura",
+    "photo": "/images/speakers/cicero-moura.png",
+    "talk": "Do Dado à GenAI com AWS: Da Coleta de Dados a Geração de Valor com IA",
+    "community": "AWS UG Goiânia",
+    "bio": "Cicero Moura é Arquiteto de Dados com mais de 10 anos de experiência em tecnologia da informação, atuando em projetos de alto impacto para empresas líderes no Brasil.\nEspecialista em Big Data, Engenharia de Dados e Arquiteturas na AWS.\nTem forte atuação na comunidade tech.\nÉ AWS Community Builder há 5 anos consecutivos e líder do AWS User Group Goiânia.\nCriador do projeto Data HandsON, já impactou mais de 200 alunos com formações práticas em dados e cloud.",
+    "linkedin": "https://www.linkedin.com/in/cicero-moura",
+    "instagram": "https://www.instagram.com/cicerojmmoura/"
+  },
+  {
+    "id": 22,
+    "name": "Wagner Landim",
+    "photo": "/images/speakers/wagner-landim.jpg",
+    "talk": "Agentes de IA com PHP",
+    "community": "AWS UG Goiânia",
+    "bio": "Analista de Sistemas Senior | AWS Cloud Practitioner | AWS AI Practitioner | Especialista em Processamento de Linguagem Natural (PLN)",
+    "linkedin": "https://www.linkedin.com/in/wagnerlandim",
+    "instagram": "https://www.instagram.com/landim.tech/"
+  },
+  {
+    "id": 23,
+    "name": "Autoprocs",
+    "photo": "/images/speakers/autoprocs.jpeg",
+    "talk": "Agente de Chat IA com N8N, na Prática",
+    "community": "Reactivando",
+    "bio": "Victor é engenheiro de software especializado em apps multiplataformas e automações. Lucas Gabriel, cientista de dados, atua em integrações e automações. Deivison Fellype, cientista de dados e SDR, é especialista em vendas. Juntos, co-fundaram a Autoprocs para transformar processos manuais em operações automatizadas.",
+    "linkedin": "https://www.linkedin.com/in/autoprocs",
+    "instagram": ""
+  },
+  {
+    "id": 24,
+    "name": "Lucas Lemos",
+    "photo": "/images/speakers/lucas-lemos.jpeg",
+    "talk": "Road to Cybersec",
+    "community": "Reactivando",
+    "bio": "Road to Cybersec\nEngenheiro de Software e CEO da F&L Software Solutions\n\nUma década de experiência em desenvolvimento de software e entusiasta de segurança da informação. Ex-sócio de duas startups goianas.",
+    "linkedin": "https://linkedin.com/in/lucashenriqueblemos",
+    "instagram": ""
+  },
+  {
+    "id": 25,
+    "name": "Wilker ",
+    "photo": "/images/speakers/wilker-.jpeg",
+    "talk": "Como se proteger de golpes digitais e vazamentos de dados no dia a dia",
+    "community": "Reactivando",
+    "bio": "Wilker José Marques é especialista em Segurança da Informação, com experiência em proteção de dados e prevenção a golpes digitais. Graduado em Análise e Desenvolvimento de Sistemas e pós-graduado em Segurança da Informação, atua no desenvolvimento de estratégias de cibersegurança e programas de conscientização para empresas e usuários.",
+    "linkedin": "https://www.linkedin.com/in/wilker-jos%C3%A9-46710b378",
+    "instagram": ""
+  },
+  {
+    "id": 26,
+    "name": "Matheus Costa",
+    "photo": "/images/speakers/matheus-costa.png",
+    "talk": "DevSecOps vs. O Caos: Testando a Amazon Q em um Mundo Real (e Nada Perfeito)",
+    "community": "GYNSec",
+    "bio": "Matheus Costa é DevOps na Cilia Tecnologia e coordenador da comunidade de cibersegurança GYNSec. Possui certificações AWS e experiência em Cloud e segurança no desenvolvimento. Em 2024, palestrou na Campus Party Goiás e, em 2025, iniciou sua jornada na liderança para contribuir com o crescimento e incentivo de colegas de trabalho e da comunidade técnica.",
+    "linkedin": "https://www.linkedin.com/in/matheuscostadevops/",
+    "instagram": "https://instagram.com/matheuscosttaofc"
+  },
+  {
+    "id": 27,
+    "name": "Anny Ribeiro",
+    "photo": "/images/speakers/anny-ribeiro.jpg",
+    "talk": "Hackeando o Tempo: Amazon Q em Automações para cibersegurança",
+    "community": "GYNSec, PyLadies Goiânia, AWS UG Goiânia",
+    "bio": "Uma nerd apaixonada por tecnologia e segurança cibernética, com cerca de 9 anos de experiência em TI. Atualmente, sou Analista de Infraestrutura na Cilia Tecnologia com foco em segurança da informação. Além de proteger redes e caçar ameaças, amo compartilhar conhecimento e estou sempre envolvida em comunidades de tecnologia. Fora do mundo digital, sou praticante de yoga, mãe de pet e encontro equilíbrio cozinhando para relaxar, acompanhada de um bom café ou vinho.",
+    "linkedin": "https://www.linkedin.com/in/cybersecwonderwoman/",
+    "instagram": "https://www.instagram.com/cybersecwonderwoman"
+  },
+  {
+    "id": 28,
+    "name": "Nina Soraya",
+    "photo": "/images/speakers/nina-soraya.jpg",
+    "talk": "Data-Driven Marketing: Da Coleta de Dados à Estratégia com Inteligência Artificial.",
+    "community": "AWS Goiânia / PyLadies Goiânia",
+    "bio": "Mercadóloga e Cientista de dados, graduada em Marketing pela Unicambury e Big Data e Inteligência Artificial pela PUC Goiás. É especialista em Telecomunicações, Redes e IoT. Pós graduanda em Neurociências, Neuroengenharia e Neurorrobótica e também em Biotecnologia. Professora de IA Generativa e Engenharia de Prompt em MBA na Anhanguera. Proprietária da The Lab Inovação, primeira agência Data Driven Marketing em Goiás. Coordenadora da PyLadies Goiânia e membro da AWS User Group Goiânia.",
+    "linkedin": "https://www.linkedin.com/in/nina-soraya-zayit",
+    "instagram": "https://www.instagram.com/ninasora.ia"
+  },
+  {
+    "id": 29,
+    "name": "Jean Pierre",
+    "photo": "/images/speakers/jean-pierre.jpeg",
+    "talk": "pg_vector: A Extensão Que Transforma o PostgreSQL em um Motor de Busca Vetorial",
+    "community": "PostgreSQL Brasil",
+    "bio": "Head de Banco de Dados na Cília Tecnologia e membro da comunidade PostgreSQL Brasil. Especialista em infraestrutura de dados crítica, com expertise em alta disponibilidade, tuning de performance, arquitetura de soluções escaláveis e implementação de estratégias de continuidade de negócio.",
+    "linkedin": "https://www.linkedin.com/in/jeanpierremq",
+    "instagram": "https://www.instagram.com/jeanpierremq"
+  },
+  {
+    "id": 30,
+    "name": "Neemias Cintra Fernandes ",
+    "photo": "/images/speakers/neemias-cintra-fer''des-.jpg",
+    "talk": "Já pensou em imigrar para os Estados Unidos",
+    "community": "Reactivando",
+    "bio": "Neemias Cintra Fernandes é Ph.D. em Inovação Farmacêutica, pesquisador e educador com sólida trajetória acadêmica e profissional. Imigrante nos Estados Unidos, atua como mentor especializado em processos de imigração para profissionais altamente qualificados, com foco nas categorias EB2-NIW e EB1A.\nSua missão é auxiliar talentos de destaque a planejarem e executarem sua mudança para os EUA de forma legal, estratégica e sustentável, possibilitando que construam carreira e vida em um país seguro, desenvolvido e que valoriza — com reconhecimento e remuneração em moeda forte — habilidades e conquistas excepcionais.",
+    "linkedin": "",
+    "instagram": "https://www.instagram.com/profneemias_/"
+  },
+  {
+    "id": 31,
+    "name": "Gustavo Christino (Mestre Chronos)",
+    "photo": "/images/speakers/gustavo-christino-(mestre-chronos).png",
+    "talk": "Oficina de Criação de Jogos Materiais",
+    "community": "GAMEGO",
+    "bio": "Mestrando em Artes da Cena (UFG), bacharel em Engenharia de Computação e Direção de Arte, e especialista em Educação Profissional e Tecnológica. Atua na criação, produção e ensino de jogos eletrônicos e materiais, coorde''do eventos, projetos e iniciativas voltadas à comunidade de criadores de jogos de Goiás (GAMEGO).",
+    "linkedin": "https://www.linkedin.com/in/gustavo-christino-6a9678104/",
+    "instagram": "https://www.instagram.com/gustavo_christino/"
+  },
+  {
+    "id": 32,
+    "name": "Caroline",
+    "photo": "/images/speakers/caroline.jpeg",
+    "talk": "Jogos Materiais Educacionais",
+    "community": "GAMEGO",
+    "bio": "Mestra em Geografia (UFG) e pesquisa o uso de jogos como linguagem para o ensino. Atua na criação de jogos materiais voltados à educação e lidera iniciativas na Associação dos Criadores de Jogos de Goiás (GAMEGO), promovendo eventos e fortalecendo a integração entre práticas lúdicas e aprendizagem significativa.",
+    "linkedin": "https://www.linkedin.com/in/caroline-costa-prado-56722095/",
+    "instagram": "https://www.instagram.com/carolinecostaprado/"
+  },
+  {
+    "id": 33,
+    "name": "Shao",
+    "photo": "/images/speakers/shao.jpg",
+    "talk": "O Mercado de Jogos Materiais: Desafios e Oportunidades",
+    "community": "GAMEGO",
+    "bio": "Designer com 11 anos de experiência em publicidade, marketing e branding. Atualmente atua na criação de jogos, tendo fi''ciado seu primeiro título, Taco Escobar.",
+    "linkedin": "https://www.linkedin.com/in/shaossb/",
+    "instagram": "https://www.instagram.com/shaossb/"
+  },
+  {
+    "id": 34,
+    "name": "Matheus Morais",
+    "photo": "/images/speakers/matheus-morais.jpeg",
+    "talk": "Sites estáticos com o GitLab Pages",
+    "community": "Anapolivre",
+    "bio": "Matheus Evangelista Morais é desenvolvedor de software com sólida experiência em PHP, Docker e Kotlin (Android). Possui formação técnica em Informática para Internet e bacharelado em Ciência da Computação pelo Instituto Federal de Goiás (IFG). Além de liderar, organizar e apoiar eventos para a comunidade de software livre. Possui certificados em áreas como DevOps, Kubernetes e LGPD, e um histórico de destaque em competições de inovação e empreendedorismo, acumulando prêmios em maratonas e hackathons. ",
+    "linkedin": "https://www.linkedin.com/in/thtmorais/",
+    "instagram": "https://www.instagram.com/thtmorais/"
+  },
+  {
+    "id": 35,
+    "name": "Lucas Verileudo",
+    "photo": "/images/speakers/lucas-verileudo.png",
+    "talk": "Estratégia e Gover''ça de IA",
+    "community": "AWS UG Goiânia",
+    "bio": "Como AI & Data Strategy Manager na Auramind.ai, Lucas traz uma vasta experiência em dados, tecnologia e transformação digital. Com passagens por projetos internacionais de auditoria e compliance na ENEL, iniciativas de inovação na Equatorial Energia e gestão ágil na TOTVS, ele se dedica a conectar estratégia, dados e IA. Atualmente mestrando pela UEG, Lucas transforma desafios de negócios em soluções de IA bem-governadas, garantindo que a tecnologia gere resultados reais.",
+    "linkedin": "https://www.linkedin.com/in/lucasvsouza",
+    "instagram": ""
+  },
+  {
+    "id": 37,
+    "name": "Andressa Carolina",
+    "photo": "/images/speakers/andressa-carolina.jpeg",
+    "talk": "Do suporte ao Produto – lições práticas para transformar feedback de clientes em produtos de valor",
+    "community": "AWS User Group Goiânia",
+    "bio": "Andressa Carolina atua com atendimento e suporte ao cliente e transformou essa experiência em uma vantagem estratégica na gestão de produtos. Em sua palestra, compartilha como feedbacks, tickets e interações diárias podem se tornar insights valiosos para discovery, priorização de funcionalidades e lançamento de produtos que realmente resolvem problemas. Com exemplos práticos de features desenvolvidas a partir de feedbacks reais, ela destaca lições sobre empatia, escuta ativa e tomada de decisão orientada ao usuário, inspirando product managers e times de produto a enxergarem cada interação com o cliente como uma oportunidade de criar produtos de alto impacto.",
+    "linkedin": "https://www.linkedin.com/in/andressa-carolina",
+    "instagram": ""
+  },
+  {
+    "id": 38,
+    "name": "Geovana Correia",
+    "photo": "/images/speakers/geovana-correia.jpeg",
+    "talk": "Hackeando o Sistema: Carreira, Liderança e Protagonismo em um Mundo Caótico",
+    "community": "Black Stars",
+    "bio": "Geovana Correia provoca reflexões estratégicas sobre carreira e liderança no século XXI, trazendo frameworks, provocações e caminhos reais para quem deseja deixar de ser apenas uma peça no jogo e começar a atuar como estrategista da própria vida profissional. Sua fala inspira coragem, visão e autonomia para transformar desafios em oportunidades e assumir o protagonismo em um mercado que busca pessoas capazes de resolver problemas reais.",
+    "linkedin": "https://www.linkedin.com/in/geovanacorreia?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+    "instagram": "https://www.instagram.com/geovanapcorreia/"
+  },
+  {
+    "id": 39,
+    "name": "Johanna Tássia",
+    "photo": "/images/speakers/johanna-tassia.jpeg",
+    "talk": "Networking 5.0: Conexões Humanizadas em Tempos de Inteligência Artificial",
+    "community": "PMI / Black Stars / Mulheres GO",
+    "bio": "Johanna Tássia é arquiteta e atuante em projetos de liderança e inovação, com experiência em iniciativas de networking e desenvolvimento profissional, como o Projeto JETRO. Em sua palestra 'Networking 5.0', ela provoca reflexões sobre como manter conexões autênticas e estratégicas em um mundo cada vez mais tecnológico, unindo propósito, empatia e ferramentas digitais para a construção de redes sólidas e humanas.",
+    "linkedin": "https://www.linkedin.com/in/johanna-t-7ba992263/",
+    "instagram": "https://www.instagram.com/johannatassia/"
+  },
+  {
+    "id": 40,
+    "name": "Josivan Mesquita & Lucas Ferraz",
+    "photo": "/images/speakers/josivan-mesquita.jpg",
+    "talk": "O poder do contraste: como um Advogado e um RP fizeram a transição para a IA.",
+    "community": "GoIAs",
+    "bio": "Josivan Mesquita é profissional de Relações Públicas que recentemente iniciou sua jornada no ecossistema de tecnologia. Em parceria com o advogado Lucas Ferraz, apresenta a palestra 'O poder do contraste', que traz a narrativa de duas transições de carreira para o campo da Inteligência Artificial. A apresentação destaca os desafios e aprendizados de cada trajetória, mostrando como experiências distintas podem se complementar na construção de carreiras sólidas em áreas inovadoras como IA e NLP.",
+    "linkedin": "https://www.linkedin.com/in/josivan-mesquita/",
+    "instagram": ""
+  },
+  {
+    "id": 41,
+    "name": "Luanda Lopes",
+    "photo": "/images/speakers/luanda-lopes.jpeg",
+    "talk": "Sua ideia é boa. Mas você está falando como se fosse medíocre.",
+    "community": "Mulheres GO",
+    "bio": "Luanda Lopes é terapeuta com mais de 10 anos de experiência e criadora da metodologia Autêntica Fala. Atua ajudando profissionais a desbloquear a voz de autoridade, aprimorar a oratória e comunicar-se com presença, clareza e confiança em ambientes de alta pressão. Já conduziu diversas palestras, talks e workshops em empresas, eventos e imersões sobre comunicação estratégica, liderança comunicacional e posicionamento profissional. Sua missão é transformar boas ideias em mensagens que geram impacto real.",
+    "linkedin": "https://br.linkedin.com/in/luandalopestreinadora",
+    "instagram": "https://www.instagram.com/luandalopes.estrategista/"
+  },
+  {
+    "id": 42,
+    "name": "Luca Plaster",
+    "photo": "/images/speakers/luca-plaster.jpg",
+    "talk": "Visão Computacional para Reconhecimento de Objetos Aéreos",
+    "community": "GoIAs",
+    "bio": "Luca Plaster atua na área de tecnologia com foco em visão computacional e aprendizado de máquina. Em sua palestra, apresenta como aplicar técnicas de reconhecimento de objetos aéreos — como aviões, drones e helicópteros — desde a coleta e preparação de dados até o treinamento de modelos. Além de abordar desafios técnicos, como viés em conjuntos de imagens, Luca discute como essas soluções podem se tornar mais precisas e confiáveis em diferentes cenários.",
+    "linkedin": "",
+    "instagram": "https://www.instagram.com/luca_plaster/"
+  },
+  {
+    "id": 43,
+    "name": "Roberto Godoi",
+    "photo": "/images/speakers/roberto-godoi.jpg",
+    "talk": "O PMO do Futuro: Como a Inteligência Artificial Vai Redefinir a Gestão de Projetos",
+    "community": "goIAs",
+    "bio": "Roberto Godoi é especialista em gestão de projetos e inovação, com ampla experiência em implantação e evolução de PMOs em diferentes organizações. Em sua palestra, apresenta como a Inteligência Artificial pode transformar o Escritório de Projetos em um organismo dinâmico e preditivo, capaz de analisar grandes volumes de dados, antecipar riscos e propor soluções automaticamente. Sua abordagem une prática e estratégia, trazendo exemplos reais, ferramentas aplicáveis e uma visão clara sobre como aplicar IA de forma segura e escalável na gestão de portfólio e projetos.",
+    "linkedin": "https://www.linkedin.com/in/robertogodoi/",
+    "instagram": ""
+  },
+  {
+    "id": 44,
+    "name": "Ulysses Lima",
+    "photo": "/images/speakers/ulysses-lima.jpeg",
+    "talk": "Computação Visual: Transformando Dados em Decisões",
+    "community": "Ia",
+    "bio": "Ulysses Lima atua na área de inteligência artificial com foco em computação visual, explorando aplicações que vão de diagnósticos médicos a carros autônomos, passando pela agricultura e pela acessibilidade. Em sua palestra, apresenta como a visão computacional já está transformando mercados e experiências humanas, explicando o funcionamento dessa tecnologia, seus usos atuais e os impactos que terá nos negócios, nas cidades e na vida cotidiana.",
+    "linkedin": "https://www.linkedin.com/company/alltechdigital/",
+    "instagram": ""
+  },
+  {
+    "id": 46,
+    "name": "Olivar Tamele",
+    "photo": "/images/speakers/olivar-tamele.jpeg",
+    "talk": "Os impactos da falta de processos e responsabilidade durante o desenvolvimento de um software.",
+    "community": "Black Stars",
+    "bio": "Olivar Tamele, 23 anos, é Tech Lead Mobile e formado em Engenharia de Software. Apaixonado por tecnologia desde os 11 anos, iniciou sua trajetória com programação aos 15 e, aos 18, ingressou na faculdade e no mercado como estagiário, onde conheceu o universo mobile. Conquistou o Prêmio IEL de Projetos Inovadores com um aplicativo que desenvolveu e, com mais de 5 anos de experiência, hoje lidera equipes e projetos de desenvolvimento mobile. Palestrante em diversos eventos de tecnologia pelo Brasil, é também embaixador da Rocketseat, compartilhando conhecimento principalmente sobre Flutter e sua experiência profissional.",
+    "linkedin": "https://www.linkedin.com/in/olivar-neemias/",
+    "instagram": "https://www.instagram.com/olivar.dev/"
+  },
+  {
+    "id": 47,
+    "name": "Thiago Peraro",
+    "photo": "/images/speakers/thiago-peraro.jpeg",
+    "talk": "Como ser parte dos 5% de empresas que têm sucesso com IA",
+    "community": "Magnatas",
+    "bio": "Thiago Peraro é fundador da Clivia, um agente de IA SDR que apoia clínicas médicas no atendimento aos pacientes. Atua como community builder na Go.IAs e pesquisador de NLP no CEIA-UFG. Estudante de Ciência da Computação na UFG, lidera a equipe de IA do projeto Sobrevidas, que busca melhorar a qualidade de vida de pessoas com câncer de boca no Brasil, incluindo a implementação de um chatbot integrado ao SUS, premiado como melhor artigo do Brasil na SBCAS 2025. Com experiência como programador back-end, incluindo três anos no Órgão GoiásPrev, Thiago combina empreendedorismo e pesquisa em IA para criar soluções inovadoras e escaláveis.",
+    "linkedin": "https://www.linkedin.com/in/thiago-peraro/",
+    "instagram": "https://www.instagram.com/peraro.exe/"
+  },
+  {
+    "id": 48,
+    "name": "Lucas Ferraz",
+    "photo": "/images/speakers/lucas-ferraz.jpeg",
+    "talk": "O poder do contraste: como um Advogado e um RP fizeram a transição para a IA.",
+    "community": "Go.IAs",
+    "bio": "Lucas Ferraz é formado em Direito e atualmente atua como cientista de dados, liderando o time de dados da Cilia Tecnologia. Em parceria com Josivan Mesquita, apresenta a palestra 'O poder do contraste', trazendo a narrativa de duas transições de carreira para o campo da Inteligência Artificial. A palestra aborda os desafios e aprendizados de cada trajetória, mostrando como experiências distintas podem se complementar na construção de carreiras sólidas em áreas inovadoras como IA e NLP.",
+    "linkedin": "https://www.linkedin.com/in/llucas-ferraz",
+    "instagram": "https://www.instagram.com/llucasferraz/"
+  },
+  {
+    "id": 49,
+    "name": "Pedro Goiânia",
+    "photo": "/images/speakers/pedro-goiania.jpg",
+    "talk": "A IA fez o meu site, e agora?",
+    "community": "Reactivando",
+    "bio": "Pedro Goiânia é Desenvolvedor de Software e Fundador do Pix Aí. Formado em Sistemas de Informação pelo Instituto Federal de Goiás, ele vai mostrar pontos extremamente importantes na criação de um produto digital. A IA faz o site, mas o negócio ainda continua sendo com pessoas!",
+    "linkedin": "https://www.linkedin.com/in/pedrogoiania",
+    "instagram": "https://www.instagram.com/pedrogoiania/"
+  },
+  {
+    "id": 50,
+    "name": "Alyf Mendonça",
+    "photo": "/images/speakers/alyf-mendonca.jpeg",
+    "talk": "As oportunidades para programadores no mercado financeiro",
+    "community": "Reactivando",
+    "bio": "Alyf Mendonça é Head de Tecnologia na AUVP, com mais de 9 anos de experiência em desenvolvimento de sistemas. Atuou em empresas como Santander e BTG Pactual e atualmente lidera equipes e cria soluções voltadas ao mercado financeiro.",
+    "linkedin": "https://www.linkedin.com/in/alyf-mendon%C3%A7a-3549a5144/",
+    "instagram": "https://www.instagram.com/alyfmendonca/"
+  },
+  {
+    "id": 51,
+    "name": "Marcelo Palladino",
+    "photo": "/images/speakers/MarceloPalladino.jpg",
+    "talk": "O que aprendi (e continuo aprendendo) com a cultura da Amazon que Impulsiona inovação",
+    "community": "AWS",
+    "bio": "Marcelo Palladino \"Palla\" tem mais de 30 anos de experiência no mercado. Hoje, atua como Senior Developer Advocate na AWS, onde trabalha para conectar desenvolvedores e empresas à inovação em nuvem, promovendo boas práticas de engenharia, arquitetura moderna e adoção de tecnologias emergentes.",
+    "linkedin": "https://www.linkedin.com/in/mfpalladino/",
+    "instagram": "https://www.instagram.com/pallaseminsta/"
+  },
+  {
+    "id": 52,
+    "name": "Luiz Machado",
+    "photo": "/images/speakers/luiz-machado.jpg",
+    "talk": "Por que dropei mais de 10 empresas (e o problema nem sempre era eu)",
+    "community": "GYNSec",
+    "bio": "Luiz Machado é Head de Tecnologia, AWS Community Builder e especialista em segurança AWS/DevSecOps. Fundador da comunidade GYNSec, cria e apoia ferramentas open source. Focado em evoluir pessoas, formar líderes e impulsionar a maturidade técnica das equipes.",
+    "linkedin": "https://linkedin.com/in/luizmachadoaws",
+    "instagram": "https://instagram.com/luizmachadoaws"
+  },
+  {
+    "id": 53,
+    "name": "Ana Mioto",
+    "photo": "/images/speakers/ana-mioto.jpg",
+    "talk": "ML no escuro: Por que seus modelos falham em produção e como a observabilidade pode salvar o dia",
+    "community": "Data Girls",
+    "bio": "Ana Mioto é Cientista de Dados Sênior no Banco Bradesco. Já atuou como pesquisadora e em empresas dos setores de saúde, finanças, mídia e educação. Possui paixão por Ciência de Dados e Inteligência Artificial com foco em aplicações práticas nos negócios. É Co-Fundadora e Líder de Pesquisa & Desenvolvimento na Comunidade Data Girls. Também reconhecida como Microsoft MVP e Alura Star.",
+    "linkedin": "https://www.linkedin.com/in/anaclara-amioto/",
+    "instagram": "https://www.instagram.com/ana_mioto/"
+  },
+  {
+    "id": 54,
+    "name": "Gilson Martins",
+    "photo": "/images/speakers/gilson-martins.jpg",
+    "talk": "Do SQL ao ChatGPT: a jornada dos dados e a evolução dos SGBDs até a Era da IA",
+    "community": "GUOB/GUOCB",
+    "bio": "Gilson Martins é Technical manager & Founder at GGBR, com mais de 15 anos de experiência em desenvolvimento de software. Atua como consultor e mentor em projetos de IA e desenvolvimento de software. É também membro do GUOB e GUOCB, comunidades de tecnologia e inovação.",
+    "linkedin": "https://www.linkedin.com/in/gilsonmartins/",
+    "instagram": "https://www.instagram.com/gilsonmartins88/"
+  },
+  {
+    "id": 55,
+    "name": "Hugo Seabra",
+    "photo": "/images/speakers/hugo-seabra.jpg",
+    "talk": "Spec2Code/Code2Spec: o buraco no meio",
+    "community": "GrupyGO",
+    "bio": "Hugo Seabra é desenvolvedor de software e fundador da empresa Spec2Code. Atua como consultor e mentor em projetos de IA e desenvolvimento de software. É também membro do GrupyGO, comunidade de tecnologia e inovação.",
+    "linkedin": "https://www.linkedin.com/in/hugoseabra/",
+    "instagram": "https://www.instagram.com/hugoseabra19/"
+  },
+  {
+    "id": 56,
+    "name": "Tiago Jorge",
+    "photo": "/images/speakers/tiago-jorge.jpg",
+    "talk": "Do Monolito a Event-Driven: A Jornada Serverless que Transformará sua Carreira",
+    "community": "AWS Goiânia, GynSec, GoIAS",
+    "bio": "Head Serverless at Cilia Tecnologia",
+    "linkedin": "https://linkedin.com/in/tiagojorgeaws",
+    "instagram": "https://www.instagram.com/tiagojorgep/"
+  },
+  {
+    "id": 57,
+    "name": "Yago Marques",
+    "photo": "/images/speakers/yago-marques.jpg",
+    "talk": "Reforma Tributária e o futuro dos negócios",
+    "community": "Reactivando",
+    "bio": "Yago Marques é especialista em Revenue Operations e CRO da H7 Contábil. Une práticas de RevOps e estratégias tributárias e financeiras para impulsionar o crescimento sustentável dos negócios.",
+    "linkedin": "https://www.linkedin.com/in/yago-b-marques/",
+    "instagram": "https://www.instagram.com/yagobmarques/"
+  },
+  {
+    "id": 58,
+    "name": "Larissa Rosa",
+    "photo": "/images/speakers/larissa-rosa.jpg",
+    "talk": "Entre Pixels e Tokens: A evolução da Visão Computacional com Modelos Generativos",
+    "community": "GO.IAs",
+    "bio": "Larissa Rosa é graduanda em Engenharia de Computação pela Universidade Federal de Goiás (UFG), fez parte da primeira turma do Programa de Capacitação 4.0 CEIA/EMBRAPII. Atualmente, é pesquisadora do Centro de Excelência em Inteligência Artificial (CEIA) e Cientista de Dados na Cilia Tecnologia, focada principalmente em Visão Computacional.",
+    "linkedin": "https://www.linkedin.com/in/larissa-x-rosa",
+    "instagram": "https://www.instagram.com/lari._.rosa"
+  }
+]
