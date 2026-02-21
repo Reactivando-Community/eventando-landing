@@ -8,9 +8,9 @@ export default function StartupWeekendHero() {
   return (
     <>
       <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden z-0">
-        {/* Background - Techstars dark + green accent */}
-        <div className="absolute inset-0 bg-gradient-to-br from-dark-900 via-dark-800 to-primary-900/30 noise-texture z-0" />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary-500/5 to-transparent z-0" />
+        {/* Background - Techstars clean dark */}
+        <div className="absolute inset-0 bg-black noise-texture z-0" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-techstars-green/10 via-transparent to-transparent z-0" />
 
         {/* Content */}
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto flex-1 flex items-center justify-center">
@@ -27,8 +27,8 @@ export default function StartupWeekendHero() {
               transition={{ delay: 0.1, duration: 0.6 }}
               className="flex justify-center"
             >
-              <span className="inline-flex items-center px-4 py-2 bg-white/5 backdrop-blur-sm border border-primary-500/30 rounded-full text-primary-300 text-xs sm:text-sm font-medium">
-                <span className="w-2 h-2 bg-techstars-green rounded-full mr-2 animate-pulse" />
+              <span className="inline-flex items-center px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-white text-xs sm:text-sm font-medium">
+                <span className="w-2 h-2 bg-techstars-green rounded-full mr-2 animate-pulse shadow-[0_0_10px_#39C463]" />
                 Powered by Techstars
               </span>
             </motion.div>
@@ -48,7 +48,7 @@ export default function StartupWeekendHero() {
                 className="h-32 md:h-48 lg:h-56 w-auto object-contain"
                 priority
               />
-              <h1 className="text-2xl md:text-4xl lg:text-5xl text-primary-400 font-semibold mt-4">
+              <h1 className="text-2xl md:text-4xl lg:text-5xl text-white font-bold mt-4 tracking-tight">
                 {eventConfig.city}
               </h1>
             </motion.div>
@@ -58,16 +58,16 @@ export default function StartupWeekendHero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed"
+              className="text-xl md:text-2xl text-techstars-slate max-w-2xl mx-auto leading-relaxed"
             >
               {eventConfig.tagline}
               <br />
               <br />
-              <span className="text-primary-300 font-medium">
+              <span className="text-white font-bold">
                 {eventConfig.dateFull} • {eventConfig.date}
               </span>
               <br />
-              <span className="text-lg text-gray-400">
+              <span className="text-lg text-techstars-slate opacity-80">
                 {eventConfig.venue.name} — {eventConfig.venue.address}
               </span>
             </motion.p>
@@ -83,9 +83,9 @@ export default function StartupWeekendHero() {
                 href={eventConfig.registrationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center px-8 py-4 bg-primary-500 hover:bg-primary-400 text-dark-900 font-semibold text-lg rounded-lg shadow-lg shadow-primary-500/30 transition-all duration-300 transform hover:scale-105"
+                className="group relative inline-flex items-center px-8 py-4 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-lg rounded-lg shadow-lg shadow-techstars-green/20 transition-all duration-300 transform hover:scale-105"
               >
-                Inscreva-se Agora
+                Pré Venda
                 <svg
                   className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"
                   fill="none"
@@ -130,7 +130,7 @@ export default function StartupWeekendHero() {
                   <div className="text-2xl md:text-3xl font-bold text-white">
                     {stat.number}
                   </div>
-                  <div className="text-gray-400 text-sm md:text-base">
+                  <div className="text-techstars-slate text-sm md:text-base">
                     {stat.label}
                   </div>
                 </div>

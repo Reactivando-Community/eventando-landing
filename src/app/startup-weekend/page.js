@@ -16,22 +16,21 @@ export default function StartupWeekendPage() {
       <StartupWeekendStatsSection />
 
       {/* Registration CTA Section */}
-      <section className="py-20 px-6 bg-gray-50 dark:bg-dark-800">
+      <section className="py-24 px-6 bg-gray-50 dark:bg-zinc-950">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6 tracking-tight">
             Garanta sua vaga
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-            Vagas limitadas. Não espere para se juntar a outros empreendedores
-            apaixonados e transformar ideias em realidade.
+          <p className="text-xl text-gray-600 dark:text-techstars-slate mb-10">
+            inscrições em breve
           </p>
           <a
             href={eventConfig.registrationUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-10 py-4 bg-primary-500 hover:bg-primary-600 text-white font-semibold text-lg rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+            className="inline-flex items-center px-10 py-5 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-xl rounded-lg shadow-lg shadow-techstars-green/20 transition-all duration-300 transform hover:scale-105"
           >
-            Fazer inscrição
+            Pré Venda
             <svg
               className="w-5 h-5 ml-2"
               fill="none"
@@ -50,19 +49,19 @@ export default function StartupWeekendPage() {
       </section>
 
       {/* Sponsors / Support - placeholder */}
-      <section className="py-20 px-6 bg-white dark:bg-dark-900">
+      <section className="py-24 px-6 bg-white dark:bg-black">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6 tracking-tight">
               Apoio
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
+            <p className="text-xl text-gray-600 dark:text-techstars-slate">
               Empresas e instituições que apoiam o empreendedorismo na região
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-12 min-h-[120px]">
             {/* Add sponsor logos here - placeholder for now */}
-            <p className="text-gray-500 dark:text-gray-500 text-sm">
+            <p className="text-zinc-500 text-sm font-medium uppercase tracking-widest">
               Em breve: parceiros e apoiadores
             </p>
           </div>

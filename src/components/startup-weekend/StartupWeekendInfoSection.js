@@ -24,7 +24,7 @@ const infoCards = [
     title: "Sexta: Pitch & Forme seu time",
     description:
       "Apresente sua ideia em 60 segundos ou junte-se ao time de alguém. No final da noite, as melhores ideias viram times prontos para o fim de semana.",
-    color: "from-primary-500 to-emerald-500",
+    color: "from-techstars-green to-techstars-green",
   },
   {
     icon: (
@@ -51,7 +51,7 @@ const infoCards = [
     title: "Sábado & Domingo: Construa",
     description:
       "Mentores especializados ajudam sua equipe a validar o problema, criar o MVP e preparar o pitch final. Trabalhe duro e divirta-se.",
-    color: "from-primary-500 to-teal-500",
+    color: "from-techstars-green to-techstars-green",
   },
   {
     icon: (
@@ -72,7 +72,7 @@ const infoCards = [
     title: "Conecte-se com pessoas apaixonadas",
     description:
       "Conheça desenvolvedores, designers e empreendedores da região. Networking real, ideias reais, oportunidades reais.",
-    color: "from-primary-500 to-green-500",
+    color: "from-techstars-green to-techstars-green",
   },
   {
     icon: (
@@ -93,7 +93,7 @@ const infoCards = [
     title: "Domingo: Demo & Prêmios",
     description:
       "Apresente seu pitch para uma banca de juízes. Os melhores projetos ganham reconhecimento e conexões para levar a ideia adiante.",
-    color: "from-primary-500 to-cyan-500",
+    color: "from-techstars-green to-techstars-green",
   },
 ];
 
@@ -119,24 +119,24 @@ export default function StartupWeekendInfoSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 px-6 bg-gradient-to-b from-white to-gray-50 dark:from-dark-900 dark:to-dark-800">
+    <section className="py-24 px-6 bg-white dark:bg-black">
       <div className="max-w-6xl mx-auto">
         <motion.div
           ref={ref}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={containerVariants}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
           <motion.h2
             variants={cardVariants}
-            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6"
+            className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6 tracking-tight"
           >
             O que esperar no fim de semana
           </motion.h2>
           <motion.p
             variants={cardVariants}
-            className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+            className="text-xl text-gray-600 dark:text-techstars-slate max-w-3xl mx-auto"
           >
             Experiencie a vida de startup em 54 horas. Conecte-se com pessoas
             apaixonadas, valide sua ideia e transforme conceitos em realidade.
@@ -154,26 +154,28 @@ export default function StartupWeekendInfoSection() {
               key={index}
               variants={cardVariants}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group relative p-8 bg-white dark:bg-dark-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-dark-700"
+              className="group relative p-8 bg-gray-50 dark:bg-zinc-900 rounded-2xl transition-all duration-300 border border-gray-100 dark:border-zinc-800"
             >
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`}
+                className={`absolute inset-0 bg-techstars-green opacity-0 group-hover:opacity-[0.03] rounded-2xl transition-opacity duration-300`}
               />
               <div className="relative z-10">
                 <div
-                  className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${card.color} rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300`}
+                  className={`inline-flex items-center justify-center w-16 h-16 bg-black dark:bg-techstars-green rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
                 >
-                  <div className="text-white">{card.icon}</div>
+                  <div className="text-techstars-green dark:text-black">
+                    {card.icon}
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                <h3 className="text-2xl font-bold text-black dark:text-white mb-4 group-hover:text-techstars-green transition-colors">
                   {card.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="text-gray-600 dark:text-techstars-slate leading-relaxed">
                   {card.description}
                 </p>
                 <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <svg
-                    className="w-5 h-5 text-primary-500"
+                    className="w-5 h-5 text-techstars-green"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"

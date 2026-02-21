@@ -10,9 +10,9 @@ export default function StartupWeekendStatsSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 px-6 bg-gradient-to-br from-dark-900 via-dark-800 to-primary-900/20 relative overflow-hidden">
-      <div className="absolute inset-0 noise-texture opacity-10" />
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-500/10 to-transparent" />
+    <section className="py-24 px-6 bg-black relative overflow-hidden">
+      <div className="absolute inset-0 noise-texture opacity-20" />
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-techstars-green/5 to-transparent" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -41,10 +41,12 @@ export default function StartupWeekendStatsSection() {
               >
                 {stat.number}
               </motion.div>
-              <div className="text-xl font-semibold text-primary-300 mb-1">
+              <div className="text-xl font-bold text-techstars-green mb-1">
                 {stat.label}
               </div>
-              <div className="text-gray-400 text-sm">{stat.description}</div>
+              <div className="text-techstars-slate text-sm opacity-80">
+                {stat.description}
+              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -53,23 +55,23 @@ export default function StartupWeekendStatsSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ delay: 0.8, duration: 0.8 }}
-          className="text-center mt-16"
+          className="text-center mt-20"
         >
-          <div className="glass-effect-dark rounded-2xl p-8 max-w-2xl mx-auto">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-10 max-w-3xl mx-auto shadow-2xl">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 tracking-tight">
               Pronto para viver a experiência?
             </h3>
-            <p className="text-gray-300 mb-6">
-              Não precisa ter ideia nem equipe. Só traga sua energia e vontade de
-              construir algo novo.
+            <p className="text-techstars-slate text-lg mb-10 max-w-2xl mx-auto">
+              Não precisa ter ideia nem equipe. Só traga sua energia e vontade
+              de construir algo novo.
             </p>
             <a
               href={eventConfig.registrationUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-4 bg-primary-500 hover:bg-primary-400 text-dark-900 font-semibold text-lg rounded-lg shadow-lg shadow-primary-500/25 transition-all duration-300 transform hover:scale-105"
+              className="inline-flex items-center px-10 py-5 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-xl rounded-lg shadow-lg shadow-techstars-green/20 transition-all duration-300 transform hover:scale-105"
             >
-              Garantir minha vaga
+              Pré Venda
               <svg
                 className="w-5 h-5 ml-2"
                 fill="none"

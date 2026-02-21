@@ -3,46 +3,46 @@ import { eventConfig } from "@/data/startup-weekend-event";
 
 export default function StartupWeekendFooter() {
   return (
-    <footer className="py-12 px-6 bg-dark-900 text-gray-400">
+    <footer className="py-16 px-6 bg-black border-t border-zinc-900 text-techstars-slate">
       <div className="max-w-6xl mx-auto text-center">
-        <p className="text-lg mb-4 font-semibold text-white">
+        <p className="text-xl mb-6 font-bold text-white tracking-tight">
           {eventConfig.fullName}
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
           <a
             href={eventConfig.registrationUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-primary-400 transition-colors"
+            className="text-techstars-slate hover:text-techstars-green transition-colors font-medium"
           >
             Inscreva-se
           </a>
-          <span className="hidden sm:block text-gray-600">•</span>
+          <span className="hidden sm:block text-zinc-800">•</span>
           <a
             href={eventConfig.whatsappContact}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-primary-400 transition-colors"
+            className="text-techstars-slate hover:text-techstars-green transition-colors font-medium"
           >
             Contato
           </a>
-          <span className="hidden sm:block text-gray-600">•</span>
+          <span className="hidden sm:block text-zinc-800">•</span>
           <a
             href={eventConfig.techstarsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-primary-400 transition-colors"
+            className="text-techstars-slate hover:text-techstars-green transition-colors font-medium"
           >
             Sobre Startup Weekend
           </a>
         </div>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-zinc-500">
           Startup Weekend é um programa da{" "}
           <a
             href="https://www.techstars.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary-400 hover:text-primary-300"
+            className="text-techstars-green hover:underline"
           >
             Techstars
           </a>

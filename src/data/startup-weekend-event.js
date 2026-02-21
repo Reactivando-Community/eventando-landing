@@ -26,8 +26,9 @@ export const eventConfig = {
     mapsUrl: "https://maps.app.goo.gl/4PyR9orJusrfRR6J8", // e.g. "https://maps.google.com/..."
   },
   // Registration - add your Eventbrite/Doity/Meetup link
-  registrationUrl: "https://www.techstars.com/communities/startup-weekend",
-  whatsappContact: "https://wa.link/801vds",
+  registrationUrl: "https://chat.whatsapp.com/C2I5N2stMUTGPkYZ6QnRIx?mode=gi_t",
+  whatsappContact:
+    "https://wa.me/5562993962325?text=Quero%20participar%20do%20Startup%20Weekend%20An%C3%A1polis",
   // Stats (typical Startup Weekend numbers - adjust as needed)
   stats: [
     { number: "54", label: "Horas", description: "De validação e criação" },
