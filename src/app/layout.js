@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 import { PopupWidget } from "@/components/PopupWidget";
 
 export const metadata = {
-  title: "Startup Weekend Anápolis - Goiânia | Techstars",
+  title: "Startup Weekend Anápolis | Techstars",
   description:
     "54 horas para transformar sua ideia em realidade. Startup Weekend powered by Techstars - conecte-se com empreendedores, valide sua ideia e construa um negócio.",
   icons: {

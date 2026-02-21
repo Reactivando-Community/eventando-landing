@@ -1,5 +1,5 @@
 /**
- * Startup Weekend Anápolis - Goiânia - Event Configuration
+ * Startup Weekend Anápolis  - Event Configuration
  *
  * Update these values for your event:
  * - date, dateFull: actual event dates
