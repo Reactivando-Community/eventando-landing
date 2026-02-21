@@ -77,8 +77,8 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontFamily: {
-        // Techstars brand uses Suisse Int'l; Inter is Swiss-style alternative
-        sans: ["Inter", "system-ui", "sans-serif"],
+        // Techstars brand recommends Helvetica Neue for Startup Weekend
+        sans: ["Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
         stock: [defaultTheme.fontFamily.sans],
       },
     },
