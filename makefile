@@ -4,10 +4,10 @@ build:
 	yarn build
 
 start:
-	pm2 start yarn --name eventando-landing -- run start
+	pm2 start yarn --name swaps-landing -- run start
 
 update:
 	make build
-	pm2 restart eventando-landing
+	pm2 restart swaps-landing
 	
 
