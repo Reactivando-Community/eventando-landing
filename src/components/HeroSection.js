@@ -1,13 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
-import SideForm from "./SideForm";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function HeroSection({ productsToList, productSelectedId }) {
-  const [isFormOpen, setIsFormOpen] = useState(false);
+export default function HeroSection() {
 
   return (
     <>
@@ -93,8 +90,10 @@ export default function HeroSection({ productsToList, productSelectedId }) {
               transition={{ delay: 0.8, duration: 0.8 }}
               className="pt-8 flex flex-col sm:flex-row gap-4 justify-center items-center max-w-4xl mx-auto"
             >
-              <button
-                onClick={() => setIsFormOpen(true)}
+              <a
+                href="https://doity.com.br/join-community--12-edicao"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-semibold text-lg rounded-full shadow-2xl shadow-primary-500/25 transition-all duration-300 transform hover:scale-105 hover:shadow-primary-500/40"
               >
                 <span className="relative z-10">Fazer Inscrição</span>
@@ -116,7 +115,7 @@ export default function HeroSection({ productsToList, productSelectedId }) {
                     d="M13 7l5 5m0 0l-5 5m5-5H6"
                   />
                 </svg>
-              </button>
+              </a>
 
               <Link
                 href="/communities"
@@ -208,13 +207,6 @@ export default function HeroSection({ productsToList, productSelectedId }) {
         </motion.div>
       </section>
 
-      {/* Side Form */}
-      <SideForm
-        isOpen={isFormOpen}
-        onClose={() => setIsFormOpen(false)}
-        productsToList={productsToList}
-        productSelectedId={productSelectedId}
-      />
     </>
   );
 }
