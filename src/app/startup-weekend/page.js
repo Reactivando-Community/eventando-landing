@@ -4,6 +4,7 @@ import { eventConfig } from "@/data/startup-weekend-event";
 import StartupWeekendHero from "@/components/startup-weekend/StartupWeekendHero";
 import StartupWeekendInfoSection from "@/components/startup-weekend/StartupWeekendInfoSection";
 import StartupWeekendStatsSection from "@/components/startup-weekend/StartupWeekendStatsSection";
+import { Faq } from "@/components/Faq";
 import StartupWeekendFooter from "@/components/startup-weekend/StartupWeekendFooter";
 
 export default function StartupWeekendPage() {
@@ -14,6 +15,18 @@ export default function StartupWeekendPage() {
       <StartupWeekendInfoSection />
 
       <StartupWeekendStatsSection />
+
+      <section className="py-24 px-6 bg-white dark:bg-black">
+        <div className="max-w-4xl mx-auto text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-4 tracking-tight">
+            Perguntas frequentes
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-techstars-slate">
+            Tire suas dúvidas sobre o Techstars Startup Weekend Anápolis.
+          </p>
+        </div>
+        <Faq />
+      </section>
 
       {/* Registration CTA Section */}
       <section className="py-24 px-6 bg-gray-50 dark:bg-zinc-950">
