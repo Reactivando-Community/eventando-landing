@@ -71,7 +71,7 @@ export default function StartupWeekendStatsSection() {
               rel="noopener noreferrer"
               className="inline-flex items-center px-10 py-5 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-xl rounded-lg shadow-lg shadow-techstars-green/20 transition-all duration-300 transform hover:scale-105"
             >
-              Pré Venda
+              Fazer minha inscrição
               <svg
                 className="w-5 h-5 ml-2"
                 fill="none"

@@ -35,7 +35,7 @@ export default function StartupWeekendPage() {
             Garanta sua vaga
           </h2>
           <p className="text-xl text-gray-600 dark:text-techstars-slate mb-10">
-            inscrições em breve
+            inscrições abertas
           </p>
           <a
             href={eventConfig.registrationUrl}
@@ -43,7 +43,7 @@ export default function StartupWeekendPage() {
             rel="noopener noreferrer"
             className="inline-flex items-center px-10 py-5 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-xl rounded-lg shadow-lg shadow-techstars-green/20 transition-all duration-300 transform hover:scale-105"
           >
-            Pré Venda
+            Fazer minha inscrição
             <svg
               className="w-5 h-5 ml-2"
               fill="none"

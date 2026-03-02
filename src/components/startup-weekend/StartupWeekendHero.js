@@ -109,7 +109,7 @@ export default function StartupWeekendHero() {
                 rel="noopener noreferrer"
                 className="group relative inline-flex items-center px-8 py-4 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-lg rounded-lg shadow-lg shadow-techstars-green/20 transition-all duration-300 transform hover:scale-105"
               >
-                Pré Venda
+                Fazer minha inscrição
                 <svg
                   className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"
                   fill="none"
