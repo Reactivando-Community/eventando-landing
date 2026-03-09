@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { eventConfig } from "@/data/startup-weekend-event";
 import StartupWeekendHero from "@/components/startup-weekend/StartupWeekendHero";
 import StartupWeekendInfoSection from "@/components/startup-weekend/StartupWeekendInfoSection";
@@ -61,22 +62,134 @@ export default function StartupWeekendPage() {
         </div>
       </section>
 
-      {/* Sponsors / Support - placeholder */}
-      <section className="py-24 px-6 bg-white dark:bg-black">
+      {/* Sponsors / Support - white logos on dark background */}
+      <section className="py-24 px-6 bg-zinc-900">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
               Apoio
             </h2>
-            <p className="text-xl text-gray-600 dark:text-techstars-slate">
-              Empresas e instituições que apoiam o empreendedorismo na região
+            <p className="text-xl text-zinc-400">
+              Empresas e instituições que apoiam o evento
             </p>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-12 min-h-[120px]">
-            {/* Add sponsor logos here - placeholder for now */}
-            <p className="text-zinc-500 text-sm font-medium uppercase tracking-widest">
-              Em breve: parceiros e apoiadores
-            </p>
+
+          {/* Global Partners - bigger section */}
+          <div className="mb-20">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-10 text-center tracking-tight">
+              Patrocinadores Globais
+            </h3>
+            <div className="flex flex-wrap items-center justify-center gap-14 min-h-[140px]">
+              <a
+                href="https://www.hsbcinnovationbanking.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center"
+              >
+                <Image
+                  src="/images/HSBC-InnovationBanking-Logo-MONO-REV.png"
+                  alt="HSBC Innovation Banking"
+                  width={180}
+                  height={56}
+                  className="h-14 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                />
+              </a>
+              <a
+                href="https://brex.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center"
+              >
+                <Image
+                  src="/images/Brex White Logo.png"
+                  alt="Brex"
+                  width={160}
+                  height={56}
+                  className="h-14 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                />
+              </a>
+              <a
+                href="https://startup.google.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center"
+              >
+                <Image
+                  src="/images/GoogleForStartups_Horizontal_W (1).png"
+                  alt="Google for Startups"
+                  width={200}
+                  height={75}
+                  className="h-14 md:h-16 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                />
+              </a>
+              <a
+                href="https://mercury.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center"
+              >
+                <Image
+                  src="/images/mercury-logo-wordmark-horizontal_mono white.png"
+                  alt="Mercury"
+                  width={160}
+                  height={56}
+                  className="h-14 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                />
+              </a>
+              <a
+                href="https://www.deel.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center"
+              >
+                <Image
+                  src="/images/perks-deel-450x200-white.png"
+                  alt="Deel"
+                  width={200}
+                  height={88}
+                  className="h-14 md:h-16 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                />
+              </a>
+            </div>
+          </div>
+
+          {/* Local Partners */}
+          <div className="w-full flex flex-col items-center">
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-8 text-center tracking-tight">
+              Patrocinadores Locais
+            </h3>
+            <div className="flex justify-center w-full">
+              <div className="inline-flex items-center justify-center gap-12 min-h-[100px]">
+                <a
+                  href="https://8020digital.io"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center"
+                >
+                  <Image
+                    src="/images/8020digital.png"
+                    alt="8020 digital"
+                    width={360}
+                    height={144}
+                    className="h-48 md:h-60 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                  />
+                </a>
+                <a
+                  href="https://flsoftwaresolutions.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center"
+                >
+                  <Image
+                    src="/images/flsoftwaresolutions.png"
+                    alt="F&L Solutions"
+                    width={360}
+                    height={144}
+                    className="h-56 md:h-72 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                  />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
