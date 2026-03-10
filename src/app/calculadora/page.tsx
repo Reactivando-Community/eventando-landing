@@ -22,6 +22,8 @@ export default function CalculadoraPage() {
   const [dist50Off, setDist50Off] = useState(50); // percentage
   const [dist25Off, setDist25Off] = useState(0); // percentage
   const [distFull, setDistFull] = useState(50); // percentage
+  const [platformFee, setPlatformFee] = useState<number | "">(10); // Sympla/Doity
+  const [invoiceTax, setInvoiceTax] = useState<number | "">(6); // ISS / NF
 
   const [activePlan, setActivePlan] = useState("A");
 
@@ -33,6 +35,8 @@ export default function CalculadoraPage() {
   const nStaff = Number(staffCount) || 0;
   const nMentorsPerTeam = Number(mentorsPerTeam) || 0;
   const nParticipantsPerTeam = Number(participantsPerTeam) || 7.5;
+  const nPlatformFee = (Number(platformFee) || 0) / 100;
+  const nInvoiceTax = (Number(invoiceTax) || 0) / 100;
 
   // Calculations
   const teams = Math.ceil(nParticipants / nParticipantsPerTeam);
@@ -46,13 +50,23 @@ export default function CalculadoraPage() {
   const count25Off = Math.round((dist25Off / 100) * nParticipants);
   const countFull = nParticipants - count50Off - count25Off;
 
-  const revenue =
+  const grossRevenue =
     count50Off * (nTicketPrice * 0.5) +
     count25Off * (nTicketPrice * 0.75) +
     countFull * nTicketPrice;
 
-  const sponsorshipNeeded = totalCost - revenue;
-  const breakEvenStatus = revenue >= totalCost;
+  // 1. Deduz taxa plataforma, depois emissão NF (Tickets)
+  const afterPlatform = grossRevenue * (1 - nPlatformFee);
+  const netRevenue = afterPlatform * (1 - nInvoiceTax);
+  const totalTicketFees = grossRevenue - netRevenue;
+
+  // 2. Patrocínio: deduz somente emissão da nota
+  // Se precisamos de X líquido para pagar o evento, o valor bruto do patrocínio deve ser X / (1 - nf)
+  const netNeeded = totalCost - netRevenue;
+  const grossSponsorshipNeeded =
+    netNeeded > 0 ? netNeeded / (1 - nInvoiceTax) : 0;
+
+  const breakEvenStatus = netRevenue >= totalCost;
 
   // Quick Plan Apply
   const applyPlanA = () => {
@@ -178,25 +192,47 @@ export default function CalculadoraPage() {
             ))}
           </div>
 
-          <Link
-            href="/"
-            className="group flex items-center gap-3 text-xs font-black text-gray-400 hover:text-white transition-all uppercase tracking-widest bg-white/5 px-6 py-3 rounded-2xl border border-white/5"
-          >
-            Voltar
-            <svg
-              className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          <div className="flex items-center gap-3">
+            <Link
+              href="/calculadora/custos"
+              className="group flex items-center gap-2 text-[10px] md:text-xs font-black text-primary-400 hover:text-white transition-all uppercase tracking-widest bg-primary-500/10 px-4 md:px-6 py-3 rounded-2xl border border-primary-500/20 hover:bg-primary-500 hover:border-primary-500 shadow-lg shadow-primary-500/10"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2.5}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </Link>
+              <svg
+                className="w-4 h-4 shadow-sm"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                />
+              </svg>
+              Engenharia de Custos
+            </Link>
+
+            <Link
+              href="/"
+              className="group flex items-center gap-3 text-xs font-black text-gray-400 hover:text-white transition-all uppercase tracking-widest bg-white/5 px-6 py-3 rounded-2xl border border-white/5"
+            >
+              Voltar
+              <svg
+                className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -403,6 +439,42 @@ export default function CalculadoraPage() {
                       placeholder="0"
                     />
                   </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-black text-gray-500 uppercase">
+                        Plataforma (%)
+                        <InfoIcon text="Taxa do processador de pagamentos (Ex: 10% do Sympla)." />
+                      </label>
+                      <div className="relative">
+                        <input
+                          type="number"
+                          value={platformFee}
+                          onChange={handleNumChange(setPlatformFee)}
+                          className="w-full bg-white/5 p-4 rounded-3xl border border-white/5 font-black text-xl focus:border-primary-500/50 outline-none transition-colors"
+                        />
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 font-extrabold">
+                          %
+                        </span>
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-black text-gray-500 uppercase">
+                        Imposto NF (%)
+                        <InfoIcon text="ISS e impostos sobre a emissão de notas fiscais (NF)." />
+                      </label>
+                      <div className="relative">
+                        <input
+                          type="number"
+                          value={invoiceTax}
+                          onChange={handleNumChange(setInvoiceTax)}
+                          className="w-full bg-white/5 p-4 rounded-3xl border border-white/5 font-black text-xl focus:border-blue-500/50 outline-none transition-colors"
+                        />
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 font-extrabold">
+                          %
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -420,15 +492,21 @@ export default function CalculadoraPage() {
                   color: "text-white",
                 },
                 {
-                  label: "Receita Ingressos",
-                  value: revenue,
-                  sub: `${nParticipants} pagantes previstos`,
+                  label: "Receita Líquida",
+                  value: netRevenue,
+                  sub: `Bruto: ${grossRevenue.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`,
                   color: "text-green-500",
                 },
                 {
+                  label: "Taxas e NFC",
+                  value: totalTicketFees,
+                  sub: `Tickets: -${((nPlatformFee + nInvoiceTax - nPlatformFee * nInvoiceTax) * 100).toFixed(1)}%`,
+                  color: "text-blue-400",
+                },
+                {
                   label: "Meta Patrocínio",
-                  value: sponsorshipNeeded,
-                  sub: `${totalCost > 0 ? ((sponsorshipNeeded / totalCost) * 100).toFixed(1) : 0}% do OPEX`,
+                  value: grossSponsorshipNeeded,
+                  sub: `Líquido: ${netNeeded > 0 ? netNeeded.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }) : "0"}`,
                   color: "text-primary-500",
                 },
               ].map((stat, i) => (
@@ -506,10 +584,13 @@ export default function CalculadoraPage() {
                       Ticket Médio
                     </span>
                     <span className="text-2xl font-black text-primary-500 tracking-tighter italic">
-                      {(revenue / nParticipants || 0).toLocaleString("pt-BR", {
-                        style: "currency",
-                        currency: "BRL",
-                      })}
+                      {(grossRevenue / nParticipants || 0).toLocaleString(
+                        "pt-BR",
+                        {
+                          style: "currency",
+                          currency: "BRL",
+                        },
+                      )}
                     </span>
                   </div>
                 </div>
@@ -587,7 +668,7 @@ export default function CalculadoraPage() {
                       </span>
                       <h4 className="text-3xl font-black tracking-tighter italic text-white flex items-center gap-4">
                         {totalCost > 0
-                          ? Math.round((revenue / totalCost) * 100)
+                          ? Math.round((netRevenue / totalCost) * 100)
                           : 0}
                         %
                         <span
@@ -606,7 +687,7 @@ export default function CalculadoraPage() {
                       <p
                         className={`text-2xl font-black tracking-tighter ${breakEvenStatus ? "text-green-500" : "text-primary-500"}`}
                       >
-                        {(revenue - totalCost).toLocaleString("pt-BR", {
+                        {(netRevenue - totalCost).toLocaleString("pt-BR", {
                           style: "currency",
                           currency: "BRL",
                           maximumFractionDigits: 0,
@@ -619,7 +700,7 @@ export default function CalculadoraPage() {
                     <div
                       className={`h-full rounded-xl transition-all duration-[2.5s] ease-out shadow-lg shadow-primary-500/10 ${breakEvenStatus ? "bg-gradient-to-r from-green-600 to-emerald-400" : "bg-gradient-to-r from-primary-600 to-primary-400"}`}
                       style={{
-                        width: `${totalCost > 0 ? Math.min(100, (revenue / totalCost) * 100) : 0}%`,
+                        width: `${totalCost > 0 ? Math.min(100, (netRevenue / totalCost) * 100) : 0}%`,
                       }}
                     ></div>
                   </div>

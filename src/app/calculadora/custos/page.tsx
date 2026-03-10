@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
-import { Navbar } from "@/components/Navbar";
-import Footer from "@/components/NewFooter";
+import NewFooter from "@/components/NewFooter";
 
 interface CostItem {
   id: string;
@@ -11,7 +10,7 @@ interface CostItem {
   value: number;
 }
 
-export default function CustosDetalhesPage() {
+export default function CustosPage() {
   // Headcount State
   const [participants, setParticipants] = useState<number | "">(100);
   const [fixedStaff, setFixedStaff] = useState<number | "">(20);
@@ -208,6 +207,59 @@ export default function CustosDetalhesPage() {
     );
   };
 
+  const exportToJSON = () => {
+    const budgetData = {
+      name: budgetTitle || "Orcamento_Evento",
+      date: new Date().toLocaleDateString("pt-BR"),
+      data: {
+        participants,
+        fixedStaff,
+        mentorsPerTeam,
+        participantsPerTeam,
+        fixedItems,
+        variableItems,
+      },
+    };
+    const blob = new Blob([JSON.stringify(budgetData, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${budgetData.name.toLowerCase().replace(/\s+/g, "_")}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const json = JSON.parse(e.target?.result as string);
+        if (json.data) {
+          setBudgetTitle(json.name || "Orcamento Importado");
+          setParticipants(json.data.participants);
+          setFixedStaff(json.data.fixedStaff);
+          setMentorsPerTeam(json.data.mentorsPerTeam);
+          setParticipantsPerTeam(json.data.participantsPerTeam || 7.5);
+          setFixedItems(json.data.fixedItems);
+          setVariableItems(json.data.variableItems);
+          setActiveBudgetId(null);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      } catch (err) {
+        alert(
+          "Erro ao ler o arquivo JSON. Certifique-se de que é um formato válido.",
+        );
+      }
+    };
+    reader.readAsText(file);
+    event.target.value = "";
+  };
+
   const InfoIcon = ({ text }: { text: string }) => (
     <div className="group relative inline-block ml-2 align-middle">
       <div className="w-4 h-4 rounded-full border border-gray-600 flex items-center justify-center text-[10px] font-black cursor-help group-hover:bg-primary-500 group-hover:border-primary-500 transition-colors">
@@ -259,7 +311,7 @@ export default function CustosDetalhesPage() {
           </div>
           <div className="text-right">
             <span className="text-[10px] font-black text-gray-500 uppercase block">
-              Custo p/ Participante (Equilíbrio)
+              Custo Bruto p/ Participante
             </span>
             <span className="text-2xl font-black text-primary-500 italic tracking-tighter">
               {costPerParticipant.toLocaleString("pt-BR", {
@@ -403,6 +455,7 @@ export default function CustosDetalhesPage() {
                 </div>
               </div>
             </div>
+
             <div className="bg-[#141417] p-8 rounded-[40px] border border-white/5 shadow-2xl">
               <div className="flex justify-between items-center mb-6">
                 <h4 className="text-xl font-black italic uppercase text-white">
@@ -421,43 +474,88 @@ export default function CustosDetalhesPage() {
               <div className="space-y-4 mb-8">
                 <input
                   type="text"
+                  placeholder="Nome do orçamento..."
                   value={budgetTitle}
                   onChange={(e) => setBudgetTitle(e.target.value)}
-                  placeholder="Nome do orçamento..."
-                  className="w-full bg-white/5 p-4 rounded-2xl border border-white/5 font-bold text-sm focus:border-primary-500 outline-none"
+                  className="w-full bg-white/5 p-4 rounded-2xl border border-white/5 font-bold outline-none focus:border-white/20"
                 />
                 <button
                   onClick={saveCurrentBudget}
-                  className="w-full bg-primary-500 hover:bg-primary-600 text-white font-black uppercase tracking-widest py-4 rounded-2xl transition-all shadow-lg shadow-primary-500/20 active:scale-95"
+                  className="w-full bg-white text-black py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-gray-200 transition-colors"
                 >
-                  {activeBudgetId ? "Salvar Alterações" : "Salvar Como Novo"}
+                  {activeBudgetId ? "Salvar Alterações" : "Salvar Orçamento"}
                 </button>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <button
+                    onClick={exportToJSON}
+                    className="flex items-center justify-center gap-2 bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-widest py-3 rounded-xl hover:bg-white/10 transition-colors"
+                  >
+                    <svg
+                      className="w-3 h-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2.5}
+                        d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                      />
+                    </svg>
+                    Exportar
+                  </button>
+                  <label className="flex items-center justify-center gap-2 bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-widest py-3 rounded-xl hover:bg-white/10 transition-colors cursor-pointer">
+                    <svg
+                      className="w-3 h-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2.5}
+                        d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+                      />
+                    </svg>
+                    Importar
+                    <input
+                      type="file"
+                      accept=".json"
+                      onChange={handleFileUpload}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
               </div>
 
-              <div className="space-y-3 max-h-[300px] overflow-y-auto no-scrollbar">
-                {savedBudgets.map((b) => (
+              <div className="space-y-2 max-h-60 overflow-y-auto pr-2 custom-scrollbar">
+                {savedBudgets.map((budget) => (
                   <div
-                    key={b.id}
-                    className={`group relative p-4 rounded-2xl border transition-all flex justify-between items-center ${activeBudgetId === b.id ? "bg-primary-500/10 border-primary-500/30 shadow-lg shadow-primary-500/5" : "bg-white/5 border-white/5 hover:border-white/10"}`}
+                    key={budget.id}
+                    className={`group flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer ${
+                      activeBudgetId === budget.id
+                        ? "bg-primary-500/10 border-primary-500/50"
+                        : "bg-white/5 border-white/5 hover:border-white/10"
+                    }`}
+                    onClick={() => loadBudget(budget.id)}
                   >
-                    <button
-                      onClick={() => loadBudget(b.id)}
-                      className="text-left flex-1"
-                    >
-                      <p
-                        className={`text-[10px] font-black uppercase mb-1 ${activeBudgetId === b.id ? "text-primary-400" : "text-primary-500"}`}
-                      >
-                        {b.date}
+                    <div className="flex-1 min-w-0 mr-4">
+                      <p className="text-xs font-black uppercase truncate text-white">
+                        {budget.name}
                       </p>
-                      <p
-                        className={`text-sm font-bold truncate pr-4 ${activeBudgetId === b.id ? "text-white" : "text-gray-200 group-hover:text-white"}`}
-                      >
-                        {b.name}
+                      <p className="text-[10px] font-bold text-gray-500">
+                        {budget.date}
                       </p>
-                    </button>
+                    </div>
                     <button
-                      onClick={() => deleteBudget(b.id)}
-                      className="opacity-0 group-hover:opacity-100 text-gray-600 hover:text-primary-500 transition-all"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        deleteBudget(budget.id);
+                      }}
+                      className="opacity-0 group-hover:opacity-100 p-2 text-gray-500 hover:text-primary-500 transition-all"
                     >
                       <svg
                         className="w-4 h-4"
@@ -475,41 +573,33 @@ export default function CustosDetalhesPage() {
                     </button>
                   </div>
                 ))}
-
                 {savedBudgets.length === 0 && (
-                  <div className="text-center py-6">
-                    <p className="text-[10px] font-bold text-gray-600 uppercase italic">
-                      Nenhum orçamento salvo
-                    </p>
-                  </div>
+                  <p className="text-[10px] font-bold text-gray-600 text-center py-4 uppercase">
+                    Nenhum orçamento salvo
+                  </p>
                 )}
               </div>
             </div>
           </div>
 
-          {/* Right Column: Detailed Lists */}
-          <div className="xl:col-span-8 space-y-8">
-            {/* Fixed Costs List */}
-            <div className="bg-[#141417] p-10 rounded-[48px] border border-white/5">
+          {/* Right Column: Dynamic Lists */}
+          <div className="xl:col-span-8 space-y-8 animate-fade-in">
+            {/* Custo Fixo Section */}
+            <div className="bg-[#141417] p-8 rounded-[48px] border border-white/5">
               <div className="flex justify-between items-center mb-10">
                 <div>
-                  <h3 className="text-2xl font-black italic uppercase text-white mb-2">
-                    Custos Fixos / Estrutura
+                  <h3 className="text-2xl font-black italic uppercase text-white">
+                    Custos Fixos
                   </h3>
-                  <p className="text-gray-500 text-sm font-medium italic">
-                    Gastos independentes do número de pessoas.
+                  <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mt-1">
+                    Independem do número de pessoas
                   </p>
                 </div>
                 <button
                   onClick={addFixedItem}
-                  className="bg-white/5 hover:bg-white/10 border border-white/10 p-3 rounded-2xl flex items-center gap-2 group transition-all"
+                  className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/5 text-[10px] font-black uppercase tracking-widest transition-all"
                 >
-                  <span className="text-xl font-light group-hover:scale-125 transition-transform">
-                    +
-                  </span>
-                  <span className="text-[10px] font-black uppercase tracking-widest pr-2">
-                    Adicionar
-                  </span>
+                  + Adicionar Item
                 </button>
               </div>
 
@@ -517,7 +607,7 @@ export default function CustosDetalhesPage() {
                 {fixedItems.map((item) => (
                   <div
                     key={item.id}
-                    className="flex gap-4 items-center animate-fade-in"
+                    className="flex items-center gap-4 bg-white/[0.02] p-2 pl-6 rounded-3xl border border-white/5 group hover:border-white/10 transition-colors"
                   >
                     <input
                       type="text"
@@ -525,8 +615,7 @@ export default function CustosDetalhesPage() {
                       onChange={(e) =>
                         updateFixedItem(item.id, "name", e.target.value)
                       }
-                      className="flex-1 bg-white/5 p-4 rounded-2xl border border-white/5 font-bold focus:border-white/20 outline-none"
-                      placeholder="Nome do item"
+                      className="flex-1 bg-transparent border-none outline-none font-bold text-gray-300 focus:text-white"
                     />
                     <div className="relative w-48">
                       <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm font-bold">
@@ -565,39 +654,25 @@ export default function CustosDetalhesPage() {
                     </button>
                   </div>
                 ))}
-
-                {fixedItems.length === 0 && (
-                  <div className="py-12 text-center border-2 border-dashed border-white/5 rounded-[40px]">
-                    <p className="text-gray-600 font-black uppercase tracking-widest italic">
-                      Nenhum custo fixo listado
-                    </p>
-                  </div>
-                )}
               </div>
             </div>
 
-            {/* Variable Costs List */}
-            <div className="bg-[#141417] p-10 rounded-[48px] border border-white/5">
+            {/* Custo Variável Section */}
+            <div className="bg-[#141417] p-8 rounded-[48px] border border-white/5">
               <div className="flex justify-between items-center mb-10">
                 <div>
-                  <h3 className="text-2xl font-black italic uppercase text-white mb-2">
-                    Custos Variáveis / Pessoa
+                  <h3 className="text-2xl font-black italic uppercase text-white">
+                    Custos Variáveis (Individual)
                   </h3>
-                  <p className="text-gray-500 text-sm font-medium italic">
-                    Multiplicado pelo headcount total ({totalHeadcount}{" "}
-                    pessoas).
+                  <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mt-1">
+                    Custo por cabeça / kit / alimentação
                   </p>
                 </div>
                 <button
                   onClick={addVariableItem}
-                  className="bg-white/5 hover:bg-white/10 border border-white/10 p-3 rounded-2xl flex items-center gap-2 group transition-all"
+                  className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/5 text-[10px] font-black uppercase tracking-widest transition-all"
                 >
-                  <span className="text-xl font-light group-hover:scale-125 transition-transform">
-                    +
-                  </span>
-                  <span className="text-[10px] font-black uppercase tracking-widest pr-2">
-                    Adicionar
-                  </span>
+                  + Adicionar Item
                 </button>
               </div>
 
@@ -605,7 +680,7 @@ export default function CustosDetalhesPage() {
                 {variableItems.map((item) => (
                   <div
                     key={item.id}
-                    className="flex gap-4 items-center animate-fade-in"
+                    className="flex items-center gap-4 bg-white/[0.02] p-2 pl-6 rounded-3xl border border-white/5 group hover:border-white/10 transition-colors"
                   >
                     <input
                       type="text"
@@ -613,8 +688,7 @@ export default function CustosDetalhesPage() {
                       onChange={(e) =>
                         updateVariableItem(item.id, "name", e.target.value)
                       }
-                      className="flex-1 bg-white/5 p-4 rounded-2xl border border-white/5 font-bold focus:border-white/20 outline-none"
-                      placeholder="Nome do item (ex: Catering)"
+                      className="flex-1 bg-transparent border-none outline-none font-bold text-gray-300 focus:text-white"
                     />
                     <div className="relative w-48">
                       <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm font-bold">
@@ -669,19 +743,20 @@ export default function CustosDetalhesPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
                 <div className="space-y-4">
                   <span className="text-[10px] font-black text-primary-500 uppercase tracking-[0.3em]">
-                    Breakeven de Custo
+                    Custo por Participante
                   </span>
                   <h5 className="text-4xl font-black italic tracking-tighter text-white">
                     {costPerParticipant.toLocaleString("pt-BR", {
                       style: "currency",
                       currency: "BRL",
+                      maximumFractionDigits: 0,
                     })}
                   </h5>
+
                   <p className="text-sm font-bold text-gray-500 leading-relaxed italic">
-                    Este é o valor mínimo que você precisa receber por cada um
-                    dos {nParticipants} pagantes para cobrir{" "}
-                    {((totalEventCost / totalEventCost) * 100).toFixed(0)}% do
-                    OPEX sem patrocínio.
+                    Este é o custo unitário bruto considerando toda a
+                    infraestrutura e logística dividida pelos {nParticipants}{" "}
+                    pagantes.
                   </p>
                 </div>
                 <div className="bg-white/5 rounded-[32px] p-8 flex flex-col justify-center border border-white/5">
@@ -714,7 +789,7 @@ export default function CustosDetalhesPage() {
         </div>
       </main>
 
-      <Footer />
+      <NewFooter />
     </div>
   );
 }
