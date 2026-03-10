@@ -41,4 +41,11 @@ export const eventConfig = {
   // Organizer info
   organizer: "Startup Weekend Anápolis",
   techstarsUrl: "https://www.techstars.com/communities/startup-weekend",
+  sponsorContact: {
+    name: "Pedro Silva",
+    whatsapp: "5562993962325",
+    email: "contato@8020digital.com.br",
+    whatsappLink:
+      "https://wa.me/5562993962325?text=Olá%20Pedro,%20tenho%20interesse%20em%20patrocinar%20o%20Startup%20Weekend%20Anápolis",
+  },
 };

@@ -40,7 +40,6 @@ export default function StartupWeekendFooter() {
           >
             Contato
           </a>
-          <span className="hidden sm:block text-zinc-800">•</span>
           <a
             href={eventConfig.techstarsUrl}
             target="_blank"
@@ -49,6 +48,13 @@ export default function StartupWeekendFooter() {
           >
             Sobre Startup Weekend
           </a>
+          <span className="hidden sm:block text-zinc-800">•</span>
+          <Link
+            href="/startup-weekend/patrocinadores"
+            className="text-techstars-slate hover:text-techstars-green transition-colors font-medium"
+          >
+            Quero Patrocinar
+          </Link>
         </div>
         <p className="text-sm text-zinc-500">
           Startup Weekend é um programa da{" "}
