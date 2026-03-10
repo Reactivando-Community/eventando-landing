@@ -216,6 +216,25 @@ export default function CalculadoraPage() {
                   <h2 className="text-2xl font-black tracking-tighter">
                     {breakEvenStatus ? "Lucrativo ✅" : "Déficit Alvo 📉"}
                   </h2>
+                  <Link
+                    href="/calculadora/custos"
+                    className="mt-4 inline-flex items-center gap-2 text-[10px] font-black text-primary-400 hover:text-primary-300 transition-colors uppercase tracking-widest"
+                  >
+                    Ver Detalhamento de Custos
+                    <svg
+                      className="w-3 h-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={3}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </Link>
                 </div>
                 <div
                   className={`px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${breakEvenStatus ? "bg-green-500 text-white" : "bg-primary-500 text-white"}`}
