@@ -33,7 +33,39 @@ export default function ComingSoonSection({
             {subtitle}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 py-12">
+            {[1, 2, 3, 4].map((i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.05 }}
+                className="group relative flex flex-col items-center p-6 bg-gray-50 dark:bg-zinc-900/50 rounded-2xl border border-gray-100 dark:border-zinc-800 transition-all duration-300 hover:border-techstars-green/50 hover:shadow-[0_0_30px_rgba(57,196,99,0.1)]"
+              >
+                <div className="relative w-full aspect-square mb-4 flex items-center justify-center overflow-hidden">
+                  {/* Silhouette Icon */}
+                  <svg
+                    className="w-3/4 h-3/4 text-gray-200 dark:text-zinc-800 transition-colors duration-300 group-hover:text-techstars-green/20"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                  </svg>
+
+                  {/* Mystery Question Mark */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-50 group-hover:scale-100">
+                    <span className="text-6xl font-black text-techstars-green">
+                      ?
+                    </span>
+                  </div>
+                </div>
+
+                <span className="text-xs font-bold text-gray-400 dark:text-zinc-600 uppercase tracking-widest">
+                  Revelação em breve...
+                </span>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <a
                 href={eventConfig.registrationUrl}
