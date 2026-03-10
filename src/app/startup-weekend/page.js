@@ -11,11 +11,15 @@ import StartupWeekendStatsSection from "@/components/startup-weekend/StartupWeek
 import WhatsAppCTA from "@/components/startup-weekend/WhatsAppCTA";
 import { Faq } from "@/components/Faq";
 import StartupWeekendFooter from "@/components/startup-weekend/StartupWeekendFooter";
+import StartupWeekendSEO from "@/components/startup-weekend/StartupWeekendSEO";
+
 
 export default function StartupWeekendPage() {
   return (
     <main className="min-h-screen">
+      <StartupWeekendSEO />
       <StartupWeekendHero />
+
 
       <StartupWeekendInfoSection />
 

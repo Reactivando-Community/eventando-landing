@@ -191,11 +191,9 @@ export default function SponsorsPage() {
             className="space-y-8"
           >
             <h1 className="text-5xl md:text-7xl font-black text-black dark:text-white tracking-tight leading-tight max-w-5xl mx-auto">
-              Associe sua marca à{" "}
-              <span className="text-techstars-green">Inovação</span> e ao{" "}
-              <span className="text-techstars-green">Empreendedorismo</span> na
-              Prática.
+              Patrocine o <span className="text-techstars-green">Startup Weekend Anápolis</span>. Associe sua marca à inovação.
             </h1>
+
             <p className="text-xl md:text-2xl text-gray-600 dark:text-techstars-slate max-w-3xl mx-auto leading-relaxed">
               O Startup Weekend Anápolis é um sprint de inovação de 54 horas
               onde profissionais formam times, constroem protótipos e validam

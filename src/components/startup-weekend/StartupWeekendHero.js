@@ -73,7 +73,7 @@ export default function StartupWeekendHero() {
                 priority
               />
               <h1 className="text-2xl md:text-4xl lg:text-5xl text-white font-bold mt-4 tracking-tight">
-                {eventConfig.city}
+                Startup Weekend {eventConfig.city}
               </h1>
             </motion.div>
 
