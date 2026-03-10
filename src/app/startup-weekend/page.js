@@ -4,7 +4,9 @@ import Image from "next/image";
 import { eventConfig } from "@/data/startup-weekend-event";
 import StartupWeekendHero from "@/components/startup-weekend/StartupWeekendHero";
 import StartupWeekendInfoSection from "@/components/startup-weekend/StartupWeekendInfoSection";
+import StartupWeekendProfilesSection from "@/components/startup-weekend/StartupWeekendProfilesSection";
 import StartupWeekendStatsSection from "@/components/startup-weekend/StartupWeekendStatsSection";
+import WhatsAppCTA from "@/components/startup-weekend/WhatsAppCTA";
 import { Faq } from "@/components/Faq";
 import StartupWeekendFooter from "@/components/startup-weekend/StartupWeekendFooter";
 
@@ -15,7 +17,11 @@ export default function StartupWeekendPage() {
 
       <StartupWeekendInfoSection />
 
+      <StartupWeekendProfilesSection />
+
       <StartupWeekendStatsSection />
+
+      <WhatsAppCTA />
 
       <section className="py-24 px-6 bg-white dark:bg-black">
         <div className="max-w-4xl mx-auto text-center mb-12">

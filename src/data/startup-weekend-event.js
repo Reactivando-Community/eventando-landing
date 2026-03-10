@@ -29,6 +29,8 @@ export const eventConfig = {
   registrationUrl: "https://hubcommunity.io/events/startup-weekend-ia-anapolis",
   whatsappContact:
     "https://wa.me/5562993962325?text=Quero%20participar%20do%20Startup%20Weekend%20An%C3%A1polis",
+  vipWhatsAppGroup:
+    "https://chat.whatsapp.com/C2I5N2stMUTGPkYZ6QnRIx?mode=gi_t",
   // Stats (typical Startup Weekend numbers - adjust as needed)
   stats: [
     { number: "54", label: "Horas", description: "De validação e criação" },

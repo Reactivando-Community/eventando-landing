@@ -61,9 +61,25 @@ export default function StartupWeekendStatsSection() {
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 tracking-tight">
               Pronto para viver a experiência?
             </h3>
-            <p className="text-techstars-slate text-lg mb-10 max-w-2xl mx-auto">
-              Não precisa ter ideia nem equipe. Só traga sua energia e vontade
-              de construir algo novo.
+            <p className="text-techstars-slate text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+              <strong>O Startup Weekend é para todos!</strong>
+              <br />
+              <br />
+              Este é o ambiente perfeito para{" "}
+              <strong>criar novas ideias do zero</strong> e explorar um espaço
+              de <strong>inovação na prática</strong>. O evento é{" "}
+              <strong>100% inclusivo</strong> e aberto a pessoas de{" "}
+              <strong>todas as idades</strong> (a partir dos 18 anos) e de{" "}
+              <strong>qualquer área profissional</strong>. Não precisa ter
+              equipe formada nem uma ideia genial para participar – basta trazer
+              sua energia.
+              <br />
+              <br />
+              Durante as 54 horas, você terá{" "}
+              <strong>acesso exclusivo a mentores</strong> que são profissionais
+              de destaque no mercado. Eles estarão lado a lado com a sua equipe
+              para <strong>validar o projeto</strong> e guiar a construção da
+              sua solução, desde o rascunho até o <strong>pitch final</strong>.
             </p>
             <a
               href={eventConfig.registrationUrl}

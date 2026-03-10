@@ -18,6 +18,20 @@ export default function StartupWeekendFooter() {
             Inscreva-se
           </a>
           <span className="hidden sm:block text-zinc-800">•</span>
+          <Link
+            href="/startup-weekend/mentores"
+            className="text-techstars-slate hover:text-techstars-green transition-colors font-medium"
+          >
+            Mentores
+          </Link>
+          <span className="hidden sm:block text-zinc-800">•</span>
+          <Link
+            href="/startup-weekend/jurados"
+            className="text-techstars-slate hover:text-techstars-green transition-colors font-medium"
+          >
+            Jurados
+          </Link>
+          <span className="hidden sm:block text-zinc-800">•</span>
           <a
             href={eventConfig.whatsappContact}
             target="_blank"
