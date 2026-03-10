@@ -79,7 +79,7 @@ export default function SpeakersPage() {
                 Palestrantes
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300">
-                Conheça todos os especialistas que farão parte do Join Community 2025
+                Conheça todos os especialistas que farão parte do Startup Weekend Anápolis
               </p>
             </div>
             <Link

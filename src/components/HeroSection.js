@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { eventConfig } from "@/data/startup-weekend-event";
 
 export default function HeroSection() {
-
   return (
     <>
       <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden z-0">
@@ -28,11 +28,11 @@ export default function HeroSection() {
               className="flex justify-center mb-6"
             >
               <Image
-                src="/images/logo-join-white.png"
-                alt="Join Community Logo"
+                src="/images/Startup Weekend Logo (1).png"
+                alt="Startup Weekend Anápolis Logo"
                 width={200}
                 height={80}
-                className="h-32 md:h-48 w-auto"
+                className="h-24 md:h-32 w-auto"
                 priority
               />
             </motion.div>
@@ -56,7 +56,7 @@ export default function HeroSection() {
               className="text-5xl md:text-7xl font-bold text-white leading-tight"
             >
               <span className="bg-gradient-to-r from-white to-primary-200 bg-clip-text text-transparent">
-                Join Community
+                Startup Weekend Anápolis
               </span>
               <br />
               <span className="text-3xl md:text-5xl text-primary-300 font-medium">
@@ -71,7 +71,8 @@ export default function HeroSection() {
               transition={{ delay: 0.6, duration: 0.8 }}
               className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed"
             >
-              Faça network, conheça novas pessoas e descubra novas oportunidades!
+              Faça network, conheça novas pessoas e descubra novas
+              oportunidades!
               <br />
               <br />
               <span className="text-primary-300 font-medium">
@@ -91,7 +92,7 @@ export default function HeroSection() {
               className="pt-8 flex flex-col sm:flex-row gap-4 justify-center items-center max-w-4xl mx-auto"
             >
               <a
-                href="https://doity.com.br/join-community--12-edicao"
+                href={eventConfig.registrationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-semibold text-lg rounded-full shadow-2xl shadow-primary-500/25 transition-all duration-300 transform hover:scale-105 hover:shadow-primary-500/40"
@@ -202,11 +203,8 @@ export default function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
           className="relative z-10 mb-8"
-        >
-
-        </motion.div>
+        ></motion.div>
       </section>
-
     </>
   );
 }

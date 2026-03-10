@@ -30,7 +30,7 @@ const stats = [
 const testimonials = [
   {
     quote:
-      "O Join Community mudou minha perspectiva sobre networking e aprendizado.",
+      "O Startup Weekend Anápolis mudou minha perspectiva sobre networking e aprendizado.",
     author: "Ana Silva",
     role: "Desenvolvedora Frontend",
   },

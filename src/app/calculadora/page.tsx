@@ -76,6 +76,19 @@ export default function CalculadoraPage() {
     setActivePlan("C");
   };
 
+  // Helper for tooltips
+  const InfoIcon = ({ text }: { text: string }) => (
+    <div className="group relative inline-block ml-2 align-middle">
+      <div className="w-4 h-4 rounded-full border border-gray-600 flex items-center justify-center text-[10px] font-black cursor-help group-hover:bg-primary-500 group-hover:border-primary-500 transition-colors">
+        i
+      </div>
+      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-3 bg-gray-900 border border-white/10 rounded-xl text-[10px] font-medium text-gray-300 opacity-0 group-hover:opacity-100 pointer-events-none transition-all shadow-2xl z-50">
+        {text}
+        <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-gray-900"></div>
+      </div>
+    </div>
+  );
+
   // Helper to handle numeric input changes
   const handleNumChange =
     (setter: (val: number | "") => void, isFloat = false) =>
@@ -127,16 +140,41 @@ export default function CalculadoraPage() {
           </div>
 
           <div className="hidden lg:flex items-center bg-white/5 p-1 rounded-2xl border border-white/5 gap-1">
-            {["A", "B", "C"].map((p) => (
-              <button
-                key={p}
-                onClick={
-                  p === "A" ? applyPlanA : p === "B" ? applyPlanB : applyPlanC
-                }
-                className={`px-6 py-2 text-xs font-black rounded-xl transition-all uppercase tracking-widest ${activePlan === p ? "bg-primary-500 text-white shadow-lg shadow-primary-500/20 scale-105" : "text-gray-500 hover:text-gray-300 hover:bg-white/5"}`}
-              >
-                Plano {p}
-              </button>
+            {[
+              {
+                id: "A",
+                label: "Plano A",
+                desc: "Equilibrado: 50% Early Bird | 50% Cheio. Ideal para garantir fluxo inicial sem comprometer margem.",
+              },
+              {
+                id: "B",
+                label: "Plano B",
+                desc: "Agressivo: 100% de desconto (Preço de Madrugada). Foco em lotação rápida, exige alto patrocínio.",
+              },
+              {
+                id: "C",
+                label: "Plano C",
+                desc: "Escalonado: 50% Early | 25% Mid | 25% Full. Incentiva compra antecipada com lotes progressivos.",
+              },
+            ].map((p) => (
+              <div key={p.id} className="group relative">
+                <button
+                  onClick={
+                    p.id === "A"
+                      ? applyPlanA
+                      : p.id === "B"
+                        ? applyPlanB
+                        : applyPlanC
+                  }
+                  className={`px-6 py-2 text-xs font-black rounded-xl transition-all uppercase tracking-widest ${activePlan === p.id ? "bg-primary-500 text-white shadow-lg shadow-primary-500/20 scale-105" : "text-gray-500 hover:text-gray-300 hover:bg-white/5"}`}
+                >
+                  {p.label}
+                </button>
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 p-4 bg-gray-900 border border-white/10 rounded-2xl text-[10px] font-bold text-primary-400 opacity-0 group-hover:opacity-100 pointer-events-none transition-all z-50 text-center shadow-2xl backdrop-blur-xl">
+                  {p.desc}
+                  <div className="absolute top-[-4px] left-1/2 -translate-x-1/2 border-sm border-transparent border-b-gray-900 border-4"></div>
+                </div>
+              </div>
             ))}
           </div>
 
@@ -205,6 +243,7 @@ export default function CalculadoraPage() {
                   <div className="flex justify-between items-end">
                     <label className="text-xs font-black text-white/60 uppercase">
                       Público Alvo
+                      <InfoIcon text="Quantidade total de participantes para os quais você pretende vender ingressos." />
                     </label>
                     <span className="text-3xl font-black text-primary-500 tabular-nums tracking-tighter">
                       {participants}
@@ -233,6 +272,7 @@ export default function CalculadoraPage() {
                   <div className="space-y-2">
                     <label className="text-[10px] font-black text-gray-500 uppercase">
                       Preço Ingresso
+                      <InfoIcon text="Preço base (cheio) do ingresso. Os descontos dos lotes serão aplicados sobre este valor." />
                     </label>
                     <div className="flex items-center gap-2 bg-white/5 p-4 rounded-3xl border border-white/5">
                       <span className="text-xs font-bold text-gray-500">
@@ -250,6 +290,7 @@ export default function CalculadoraPage() {
                   <div className="space-y-2">
                     <label className="text-[10px] font-black text-gray-500 uppercase">
                       Organização Fixa
+                      <InfoIcon text="Pessoas da staff e núcleo organizador que não pagam, mas consomem catering." />
                     </label>
                     <div className="flex items-center gap-2 bg-white/5 p-4 rounded-3xl border border-white/5">
                       <input
@@ -267,6 +308,7 @@ export default function CalculadoraPage() {
                   <div className="space-y-2">
                     <label className="text-[10px] font-black text-gray-500 uppercase">
                       Mentores / Equipe
+                      <InfoIcon text="Proporção desejada de mentores por equipe formada." />
                     </label>
                     <div className="flex items-center gap-2 bg-white/5 p-4 rounded-3xl border border-white/5">
                       <input
@@ -281,6 +323,7 @@ export default function CalculadoraPage() {
                   <div className="space-y-2">
                     <label className="text-[10px] font-black text-gray-500 uppercase">
                       Pessoas / Equipe
+                      <InfoIcon text="Média de participantes por time (usado para estimar o número de equipes)." />
                     </label>
                     <div className="flex items-center gap-2 bg-white/5 p-4 rounded-3xl border border-white/5">
                       <input
@@ -318,6 +361,7 @@ export default function CalculadoraPage() {
                   <div className="space-y-2">
                     <label className="text-[10px] font-black text-gray-500 uppercase">
                       Custos Fixos de Estrutura
+                      <InfoIcon text="Custos que não mudam com o número de pessoas (ex: facilitador, local, backdrop)." />
                     </label>
                     <input
                       type="number"
@@ -330,6 +374,7 @@ export default function CalculadoraPage() {
                   <div className="space-y-2">
                     <label className="text-[10px] font-black text-gray-500 uppercase">
                       Catering / Materiais (Pessoa)
+                      <InfoIcon text="Custo por cabeça para alimentação e kits durante os 3 dias para todos presentes (participantes + staff + mentores)." />
                     </label>
                     <input
                       type="number"
@@ -407,6 +452,36 @@ export default function CalculadoraPage() {
                       Distribuição proporcional baseada na demanda de mercado
                     </p>
                   </div>
+                  {activePlan && (
+                    <div className="bg-primary-500/5 border border-primary-500/20 px-6 py-4 rounded-[28px] max-w-sm animate-fade-in">
+                      <div className="flex items-center gap-3 mb-1 text-primary-400">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2.5}
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                        <span className="text-[10px] font-black uppercase tracking-widest">
+                          Estratégia {activePlan} Ativa
+                        </span>
+                      </div>
+                      <p className="text-xs font-bold leading-relaxed text-gray-300 italic">
+                        {activePlan === "A" &&
+                          "Foco em equilíbrio: Garante receita rápida com o lote promocional e protege a margem final com 50% dos ingressos em preço cheio."}
+                        {activePlan === "B" &&
+                          "Crescimento Agressivo: Todos os participantes entram via subsídio. Ideal para maximizar alcance, dependendo 100% de patrocínio."}
+                        {activePlan === "C" &&
+                          "Escalonamento Progressivo: Modelo clássico de FOMO (Fear of Missing Out). Premia quem compra cedo e maximiza receita no final."}
+                      </p>
+                    </div>
+                  )}
                   <div className="bg-white/5 px-8 py-5 rounded-[32px] border border-white/5 backdrop-blur-sm">
                     <span className="text-[10px] font-black text-gray-500 uppercase block mb-1">
                       Ticket Médio

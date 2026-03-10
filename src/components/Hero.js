@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Container } from "@/components/Container";
-import heroImg from "../../public/images/logo-join.png";
+import { eventConfig } from "@/data/startup-weekend-event";
 
 export const Hero = () => {
   return (
@@ -9,32 +9,34 @@ export const Hero = () => {
         <div className="flex items-center w-full lg:w-1/2">
           <div className="max-w-2xl mb-8">
             <h1 className="text-4xl font-bold leading-snug tracking-tight text-gray-800 lg:text-4xl lg:leading-tight xl:text-6xl xl:leading-tight dark:text-white">
-              Join Community
+              {eventConfig.fullName}
             </h1>
             <p className="py-5 text-xl leading-normal text-gray-500 lg:text-xl xl:text-2xl dark:text-gray-300">
-             Faça aqui a sua inscrição para a 11ª edição que acontecerá nos dias 20 e 21 de Setembro de 2024 em Goiânia.
+              {eventConfig.tagline}
+              <br />
+              <br />
+              <span className="text-lg font-bold">
+                {eventConfig.dateFull} • {eventConfig.city}
+              </span>
             </p>
           </div>
         </div>
         <div className="flex items-center justify-center w-full lg:w-1/2">
           <div className="">
             <Image
-              src={heroImg}
+              src="/images/Startup Weekend Logo (1).png"
               width="616"
               height="617"
-              className={"object-cover"}
-              alt="Hero Illustration"
+              className={"object-contain"}
+              alt={eventConfig.fullName}
               loading="eager"
-              placeholder="blur"
             />
           </div>
         </div>
       </Container>
-      
     </>
   );
 };
-
 
 function AmazonLogo() {
   return (

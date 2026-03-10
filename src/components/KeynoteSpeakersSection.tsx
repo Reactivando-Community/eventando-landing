@@ -53,7 +53,7 @@ const keynoteSpeakers = [
     linkedin: "https://linkedin.com/in/tiagojorgeaws",
     instagram: "https://www.instagram.com/tiagojorgep/",
     featured: true,
-  }
+  },
 ];
 
 const getSocialIcon = (platform: string) => {
@@ -86,7 +86,7 @@ export default function KeynoteSpeakersSection() {
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Conheça os palestrantes principais que irão compartilhar
-            conhecimentos e experiências únicas no Join Community 2025
+            conhecimentos e experiências únicas no Startup Weekend Anápolis
           </p>
         </div>
 
@@ -96,91 +96,91 @@ export default function KeynoteSpeakersSection() {
             const isLastItem = index === keynoteSpeakers.length - 1;
             const isOddNumber = keynoteSpeakers.length % 2 !== 0;
             const shouldCenter = isLastItem && isOddNumber;
-            
+
             return (
               <div
                 key={speaker.id}
                 className={`group relative bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-dark-700 ${
-                  shouldCenter ? 'lg:col-span-2 lg:max-w-2xl lg:mx-auto' : ''
+                  shouldCenter ? "lg:col-span-2 lg:max-w-2xl lg:mx-auto" : ""
                 }`}
               >
-              {/* Featured Badge */}
-              <div className="absolute -top-3 -right-3 bg-primary-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                KEYNOTE
-              </div>
-
-              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
-                {/* Speaker Photo */}
-                <div className="relative">
-                  <div className="relative w-40 h-40 lg:w-48 lg:h-48">
-                    <Image
-                      src={speaker.photo}
-                      alt={speaker.name}
-                      fill
-                      className="rounded-2xl object-cover shadow-lg group-hover:scale-105 transition-transform duration-300"
-                    />
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-2xl" />
-                  </div>
-
-                  {/* Floating Icon */}
-                  <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center shadow-lg">
-                    <svg
-                      className="w-6 h-6 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" />
-                    </svg>
-                  </div>
+                {/* Featured Badge */}
+                <div className="absolute -top-3 -right-3 bg-primary-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                  KEYNOTE
                 </div>
 
-                {/* Speaker Info */}
-                <div className="flex-1 text-center lg:text-left">
-                  <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-3">
-                    {speaker.name}
-                  </h3>
+                <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
+                  {/* Speaker Photo */}
+                  <div className="relative">
+                    <div className="relative w-40 h-40 lg:w-48 lg:h-48">
+                      <Image
+                        src={speaker.photo}
+                        alt={speaker.name}
+                        fill
+                        className="rounded-2xl object-cover shadow-lg group-hover:scale-105 transition-transform duration-300"
+                      />
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-2xl" />
+                    </div>
 
-                  <div className="bg-primary-50 dark:bg-primary-900/20 rounded-xl p-4 mb-6 border border-primary-100 dark:border-primary-800">
-                    <p className="text-lg font-semibold text-primary-700 dark:text-primary-300">
-                      {speaker.talk}
+                    {/* Floating Icon */}
+                    <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center shadow-lg">
+                      <svg
+                        className="w-6 h-6 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Speaker Info */}
+                  <div className="flex-1 text-center lg:text-left">
+                    <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+                      {speaker.name}
+                    </h3>
+
+                    <div className="bg-primary-50 dark:bg-primary-900/20 rounded-xl p-4 mb-6 border border-primary-100 dark:border-primary-800">
+                      <p className="text-lg font-semibold text-primary-700 dark:text-primary-300">
+                        {speaker.talk}
+                      </p>
+                    </div>
+
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                      {speaker.bio}
                     </p>
-                  </div>
 
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                    {speaker.bio}
-                  </p>
-
-                  {/* Social Links */}
-                  <div className="flex justify-center lg:justify-start space-x-4">
-                    {speaker.linkedin && (
-                      <a
-                        href={speaker.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full hover:scale-110 transition-transform duration-200 shadow-lg"
-                      >
-                        {getSocialIcon("linkedin")}
-                      </a>
-                    )}
-                    {speaker.instagram && (
-                      <a
-                        href={
-                          speaker.instagram.startsWith("http")
-                            ? speaker.instagram
-                            : `https://instagram.com/${speaker.instagram}`
-                        }
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full hover:scale-110 transition-transform duration-200 shadow-lg"
-                      >
-                        {getSocialIcon("instagram")}
-                      </a>
-                    )}
+                    {/* Social Links */}
+                    <div className="flex justify-center lg:justify-start space-x-4">
+                      {speaker.linkedin && (
+                        <a
+                          href={speaker.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full hover:scale-110 transition-transform duration-200 shadow-lg"
+                        >
+                          {getSocialIcon("linkedin")}
+                        </a>
+                      )}
+                      {speaker.instagram && (
+                        <a
+                          href={
+                            speaker.instagram.startsWith("http")
+                              ? speaker.instagram
+                              : `https://instagram.com/${speaker.instagram}`
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full hover:scale-110 transition-transform duration-200 shadow-lg"
+                        >
+                          {getSocialIcon("instagram")}
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             );
           })}
         </div>
@@ -193,10 +193,10 @@ export default function KeynoteSpeakersSection() {
             </h3>
             <p className="text-lg opacity-90 mb-6">
               Garante sua vaga para assistir aos keynote speakers e muito mais
-              no Join Community 2025
+              no Startup Weekend Anápolis
             </p>
             <a
-              href="https://doity.com.br/join-community--12-edicao"
+              href="https://hubcommunity.io/events/startup-weekend-ia-anapolis"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center bg-white text-primary-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 shadow-lg"

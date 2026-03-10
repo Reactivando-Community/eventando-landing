@@ -1,7 +1,6 @@
 "use client";
 
-// Startup Weekend Anápolis  is the main landing
-// Original Join Community page available at /join-community
+// Startup Weekend Anápolis is the main landing
 import StartupWeekendPage from "./startup-weekend/page";
 
 export default function Home() {
