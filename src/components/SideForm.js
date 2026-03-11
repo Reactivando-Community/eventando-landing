@@ -258,7 +258,7 @@ export default function SideForm({
                     />
 
                     <a
-                      href="https://hubcommunity.io/events/startup-weekend-ia-anapolis"
+                      href="https://doity.com.br/startup-weekend-anapolis"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"

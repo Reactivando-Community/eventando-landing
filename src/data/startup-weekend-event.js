@@ -26,7 +26,7 @@ export const eventConfig = {
     mapsUrl: "https://maps.app.goo.gl/4PyR9orJusrfRR6J8", // e.g. "https://maps.google.com/..."
   },
   // Registration - add your Eventbrite/Doity/Meetup link
-  registrationUrl: "https://hubcommunity.io/events/startup-weekend-ia-anapolis",
+  registrationUrl: "https://doity.com.br/startup-weekend-anapolis",
   whatsappContact:
     "https://wa.me/5562993962325?text=Quero%20participar%20do%20Startup%20Weekend%20An%C3%A1polis",
   vipWhatsAppGroup:

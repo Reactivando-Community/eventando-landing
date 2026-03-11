@@ -196,7 +196,7 @@ export default function KeynoteSpeakersSection() {
               no Startup Weekend Anápolis
             </p>
             <a
-              href="https://hubcommunity.io/events/startup-weekend-ia-anapolis"
+              href="https://doity.com.br/startup-weekend-anapolis"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center bg-white text-primary-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 shadow-lg"
