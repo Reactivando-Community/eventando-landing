@@ -27,14 +27,16 @@ export default function HeroSection() {
               transition={{ delay: 0.1, duration: 0.6 }}
               className="flex justify-center mb-6"
             >
-              <Image
-                src="/images/og-image.png"
-                alt="Startup Weekend Anápolis Logo"
-                width={400}
-                height={174}
-                className="h-24 md:h-40 w-auto"
-                priority
-              />
+              <div className="relative h-36 md:h-64 w-full max-w-lg flex items-center justify-center overflow-hidden mx-auto">
+                <Image
+                  src="/images/logo-dark.png"
+                  alt="Startup Weekend Anápolis Logo"
+                  width={800}
+                  height={800}
+                  className="w-full h-auto min-w-full"
+                  priority
+                />
+              </div>
             </motion.div>
 
             {/* Badge */}

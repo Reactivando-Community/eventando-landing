@@ -64,14 +64,16 @@ export default function StartupWeekendHero() {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="flex flex-col items-center"
             >
-              <Image
-                src="/images/og-image.png"
-                alt="techstars_ Startup Weekend Anápolis"
-                width={560}
-                height={210}
-                className="h-32 md:h-48 lg:h-56 w-auto object-contain"
-                priority
-              />
+              <div className="relative h-44 md:h-72 w-full max-w-xl flex items-center justify-center overflow-hidden mx-auto">
+                <Image
+                  src="/images/logo-dark.png"
+                  alt="techstars_ Startup Weekend Anápolis"
+                  width={800}
+                  height={800}
+                  className="w-full h-auto min-w-full"
+                  priority
+                />
+              </div>
             </motion.div>
 
             {/* Tagline - Energetic, action-oriented (Techstars writing style) */}

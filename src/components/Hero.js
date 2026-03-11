@@ -22,12 +22,12 @@ export const Hero = () => {
           </div>
         </div>
         <div className="flex items-center justify-center w-full lg:w-1/2">
-          <div className="">
+          <div className="relative h-64 md:h-80 w-full max-w-lg flex items-center justify-center overflow-hidden mx-auto">
             <Image
-              src="/images/og-image.png"
-              width="616"
-              height="268"
-              className={"object-contain"}
+              src="/images/logo-dark.png"
+              width={800}
+              height={800}
+              className="w-full h-auto min-w-full"
               alt={eventConfig.fullName}
               loading="eager"
             />
