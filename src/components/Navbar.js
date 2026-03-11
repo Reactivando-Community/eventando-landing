@@ -27,10 +27,10 @@ export const Navbar = () => {
               <div className="flex flex-wrap items-center justify-between w-full lg:w-auto p-8">
                 <Link href="/" className="flex items-center space-x-2">
                   <Image
-                    src="/images/Startup Weekend Logo (1).png"
-                    alt="Startup Weekend"
+                    src="/images/og-image.png"
+                    alt="Startup Weekend Anápolis"
                     width="150"
-                    height="80"
+                    height="65"
                     className="h-12 w-auto object-contain"
                   />
                 </Link>

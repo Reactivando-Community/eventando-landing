@@ -43,10 +43,10 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/images/Startup Weekend Logo (1).png",
-        width: 1200,
-        height: 630,
-        alt: "Startup Weekend Anápolis",
+        url: "/images/og-image.png",
+        width: 1024,
+        height: 445,
+        alt: "Startup Weekend Anápolis | Techstars",
       },
     ],
   },
@@ -54,7 +54,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Startup Weekend Anápolis | Techstars",
     description: "54 horas de inovação e empreendedorismo em Anápolis. Garanta sua vaga!",
-    images: ["/images/Startup Weekend Logo (1).png"],
+    images: ["/images/og-image.png"],
   },
   robots: {
     index: true,

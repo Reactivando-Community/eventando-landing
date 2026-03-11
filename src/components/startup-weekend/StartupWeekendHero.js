@@ -65,16 +65,13 @@ export default function StartupWeekendHero() {
               className="flex flex-col items-center"
             >
               <Image
-                src="/images/Startup Weekend Logo (1).png"
-                alt="techstars_ Startup Weekend"
+                src="/images/og-image.png"
+                alt="techstars_ Startup Weekend Anápolis"
                 width={560}
                 height={210}
                 className="h-32 md:h-48 lg:h-56 w-auto object-contain"
                 priority
               />
-              <h1 className="text-2xl md:text-4xl lg:text-5xl text-white font-bold mt-4 tracking-tight">
-                Startup Weekend {eventConfig.city}
-              </h1>
             </motion.div>
 
             {/* Tagline - Energetic, action-oriented (Techstars writing style) */}

@@ -28,11 +28,11 @@ export default function HeroSection() {
               className="flex justify-center mb-6"
             >
               <Image
-                src="/images/Startup Weekend Logo (1).png"
+                src="/images/og-image.png"
                 alt="Startup Weekend Anápolis Logo"
-                width={200}
-                height={80}
-                className="h-24 md:h-32 w-auto"
+                width={400}
+                height={174}
+                className="h-24 md:h-40 w-auto"
                 priority
               />
             </motion.div>
@@ -55,10 +55,6 @@ export default function HeroSection() {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-5xl md:text-7xl font-bold text-white leading-tight"
             >
-              <span className="bg-gradient-to-r from-white to-primary-200 bg-clip-text text-transparent">
-                Startup Weekend Anápolis
-              </span>
-              <br />
               <span className="text-3xl md:text-5xl text-primary-300 font-medium">
                 2025
               </span>
