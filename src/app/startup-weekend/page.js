@@ -7,6 +7,7 @@ import StartupWeekendHero from "@/components/startup-weekend/StartupWeekendHero"
 import StartupWeekendInfoSection from "@/components/startup-weekend/StartupWeekendInfoSection";
 import StartupWeekendProfilesSection from "@/components/startup-weekend/StartupWeekendProfilesSection";
 import StartupWeekendTeasers from "@/components/startup-weekend/StartupWeekendTeasers";
+import StartupWeekendTeamSection from "@/components/startup-weekend/StartupWeekendTeamSection";
 import StartupWeekendStatsSection from "@/components/startup-weekend/StartupWeekendStatsSection";
 import WhatsAppCTA from "@/components/startup-weekend/WhatsAppCTA";
 import { Faq } from "@/components/Faq";
@@ -26,6 +27,8 @@ export default function StartupWeekendPage() {
       <StartupWeekendProfilesSection />
 
       <StartupWeekendTeasers />
+
+      <StartupWeekendTeamSection />
 
       <StartupWeekendStatsSection />
 
