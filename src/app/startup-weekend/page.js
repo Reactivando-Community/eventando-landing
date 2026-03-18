@@ -80,7 +80,7 @@ export default function StartupWeekendPage() {
             </div>
             <div className="shrink-0">
               <Link
-                href="/startup-weekend/transparencia"
+                href="/transparencia"
                 className="inline-flex items-center px-8 py-4 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-lg rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-techstars-green/20"
               >
                 Portal da Transparência

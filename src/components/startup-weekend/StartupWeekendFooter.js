@@ -57,7 +57,7 @@ export default function StartupWeekendFooter() {
           </Link>
           <span className="hidden sm:block text-zinc-800">•</span>
           <Link
-            href="/startup-weekend/transparencia"
+            href="/transparencia"
             className="text-techstars-slate hover:text-techstars-green transition-colors font-medium"
           >
             Transparência
