@@ -55,6 +55,13 @@ export default function StartupWeekendFooter() {
           >
             Quero Patrocinar
           </Link>
+          <span className="hidden sm:block text-zinc-800">•</span>
+          <Link
+            href="/startup-weekend/transparencia"
+            className="text-techstars-slate hover:text-techstars-green transition-colors font-medium"
+          >
+            Transparência
+          </Link>
         </div>
         <p className="text-sm text-zinc-500">
           Startup Weekend é um programa da{" "}

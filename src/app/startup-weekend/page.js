@@ -61,6 +61,48 @@ export default function StartupWeekendPage() {
         <Faq />
       </section>
 
+      {/* Transparency CTA */}
+      <section className="py-12 px-6 bg-zinc-950">
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-gradient-to-r from-zinc-900 to-black border border-white/5 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+            <div className="flex-1 text-center md:text-left space-y-4">
+              <div className="flex items-center justify-center md:justify-start gap-3">
+                <span className="text-3xl">💡</span>
+                <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+                  Saiba exatamente para onde vai cada real do seu ingresso
+                </h2>
+              </div>
+              <p className="text-techstars-slate text-lg max-w-2xl leading-relaxed">
+                Somos 100% voluntários e não temos margem de lucro. Veja o
+                detalhamento completo dos custos do evento no nosso Portal da
+                Transparência.
+              </p>
+            </div>
+            <div className="shrink-0">
+              <Link
+                href="/startup-weekend/transparencia"
+                className="inline-flex items-center px-8 py-4 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-lg rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-techstars-green/20"
+              >
+                Portal da Transparência
+                <svg
+                  className="w-5 h-5 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2.5}
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Registration CTA Section */}
       <section className="py-24 px-6 bg-gray-50 dark:bg-zinc-950">
         <div className="max-w-4xl mx-auto text-center">

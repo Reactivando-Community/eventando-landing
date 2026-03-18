@@ -1,0 +1,74 @@
+{
+  "name": "Orçamento Inicial",
+  "date": "18/03/2026",
+  "data": {
+    "participants": 65,
+    "fixedStaff": 10,
+    "mentorsPerTeam": 1,
+    "participantsPerTeam": 7.5,
+    "fixedItems": [
+      {
+        "id": "1773850368284",
+        "name": "Hospedagem Facilitador Techstars",
+        "value": 1100
+      },
+      {
+        "id": "1773850526960",
+        "name": "Backdrop",
+        "value": 2500
+      },
+      {
+        "id": "1773850547852",
+        "name": "Passagens Facilitador Techstars",
+        "value": 2500
+      }
+    ],
+    "variableItems": [
+      {
+        "id": "v1",
+        "name": "Alimentação Sexta Feira",
+        "value": 12
+      },
+      {
+        "id": "v2",
+        "name": "Alimentação Sábado - Café da manhã",
+        "value": 9
+      },
+      {
+        "id": "v3",
+        "name": "Alimentação Sábado - Almoço",
+        "value": 12
+      },
+      {
+        "id": "1773850453290",
+        "name": "Alimentação Sábado - Janta",
+        "value": 25
+      },
+      {
+        "id": "1773850460476",
+        "name": "Alimentação Domingo - Café da manhã",
+        "value": 9
+      },
+      {
+        "id": "1773850470990",
+        "name": "Alimentação Domingo - Almoço",
+        "value": 12
+      },
+      {
+        "id": "1773850482573",
+        "name": "Alimentação Domingo - Coffee Break",
+        "value": 15
+      },
+      {
+        "id": "1773850507386",
+        "name": "Kit de Boas Vindas",
+        "value": 35
+      },
+      {
+        "id": "1773850528768",
+        "name": "Crachás",
+        "value": 5
+      }
+    ]
+  }
+}
