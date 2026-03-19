@@ -274,6 +274,29 @@ export default function StartupWeekendPage() {
               </div>
             </div>
           </div>
+
+          {/* Apoiadores */}
+          <div className="w-full flex flex-col items-center mt-20">
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-8 text-center tracking-tight">
+              Apoiadores
+            </h3>
+            <div className="flex flex-wrap items-center justify-center gap-12 min-h-[100px]">
+              <a
+                href="https://www.portaldaindustria.com.br/senai/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center bg-white rounded-xl p-4"
+              >
+                <Image
+                  src="/images/SENAI_logo_2024.png"
+                  alt="SENAI - Serviço Nacional de Aprendizagem Industrial"
+                  width={200}
+                  height={80}
+                  className="h-16 md:h-20 w-auto object-contain"
+                />
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
