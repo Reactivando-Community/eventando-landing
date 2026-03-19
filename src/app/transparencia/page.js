@@ -3,11 +3,12 @@
 import { motion } from "framer-motion";
 import { eventConfig } from "@/data/startup-weekend-event";
 import StartupWeekendFooter from "@/components/startup-weekend/StartupWeekendFooter";
+import Image from "next/image";
 import Link from "next/link";
 import orcamento from "@/data/orcamento.json";
 
 // Computed constants from budget data
-const { participants, fixedStaff, mentorsPerTeam, participantsPerTeam, fixedItems, variableItems } = orcamento.data;
+const { participants, fixedStaff, mentorsPerTeam, participantsPerTeam, fixedItems, variableItems, sponsors } = orcamento.data;
 
 const teams = Math.ceil(participants / participantsPerTeam);
 const mentors = teams * mentorsPerTeam;
@@ -80,6 +81,29 @@ const groupIcons = {
   "Domingo": "🌅",
   "Materiais": "📦",
 };
+
+// Sponsor tier visual config — ordered by hierarchy (highest first)
+const tierConfig = {
+  Prata: {
+    gradient: "from-slate-400 to-slate-200",
+    badge: "bg-slate-300/20 text-slate-300",
+    cols: "grid-cols-1",
+  },
+  Bronze: {
+    gradient: "from-amber-700 to-amber-500",
+    badge: "bg-amber-700/20 text-amber-600",
+    cols: "grid-cols-1 md:grid-cols-2",
+  },
+};
+
+const tierOrder = ["Prata", "Bronze"];
+const sponsorsByTier = tierOrder
+  .map((tier) => ({
+    tier,
+    config: tierConfig[tier],
+    items: sponsors.filter((s) => s.tier === tier),
+  }))
+  .filter((g) => g.items.length > 0);
 
 export default function TransparenciaPage() {
   return (
@@ -290,6 +314,69 @@ export default function TransparenciaPage() {
               </div>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Local Sponsors */}
+      <section className="py-24 px-6 bg-zinc-900">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
+              Patrocinadores Locais
+            </h2>
+            <p className="text-xl text-zinc-500 max-w-2xl mx-auto">
+              Empresas que investem no ecossistema de inovação de Anápolis
+            </p>
+          </div>
+
+          <div className="space-y-12">
+            {sponsorsByTier.map(({ tier, config, items }) => (
+              <div key={tier}>
+                <div className={`grid ${config.cols} gap-8`}>
+                  {items.map((sponsor, i) => (
+                    <motion.div
+                      key={sponsor.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className={`rounded-3xl bg-gradient-to-br ${config.gradient} p-[2px]`}
+                    >
+                      <div className="bg-zinc-900 rounded-3xl p-10 flex flex-col items-center text-center h-full">
+                        <span
+                          className={`inline-block px-4 py-1 rounded-full text-sm font-bold mb-8 ${config.badge}`}
+                        >
+                          {tier}
+                        </span>
+                        <a
+                          href={sponsor.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`flex items-center justify-center ${
+                            sponsor.name === "SENAI"
+                              ? "bg-white rounded-xl p-4"
+                              : ""
+                          }`}
+                        >
+                          <Image
+                            src={sponsor.logo}
+                            alt={sponsor.name}
+                            width={sponsor.name === "SENAI" ? 200 : 360}
+                            height={sponsor.name === "SENAI" ? 80 : 144}
+                            className={
+                              sponsor.name === "SENAI"
+                                ? "h-16 md:h-20 w-auto object-contain"
+                                : "h-24 md:h-32 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                            }
+                          />
+                        </a>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

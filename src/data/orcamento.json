@@ -69,6 +69,11 @@
         "name": "Crachás",
         "value": 5
       }
+    ],
+    "sponsors": [
+      { "name": "8020 Digital", "tier": "Bronze", "value": 2500, "logo": "/images/8020digital.png", "url": "https://8020digital.io" },
+      { "name": "F&L Solutions", "tier": "Bronze", "value": 2500, "logo": "/images/flsoftwaresolutions.png", "url": "https://flsoftwaresolutions.com" },
+      { "name": "SENAI", "tier": "Prata", "value": 5000, "logo": "/images/SENAI_logo_2024.png", "url": "https://www.portaldaindustria.com.br/senai/" }
     ]
   }
 }
