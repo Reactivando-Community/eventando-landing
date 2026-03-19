@@ -133,6 +133,15 @@ export default function StartupWeekendPage() {
               />
             </svg>
           </a>
+          <p className="mt-4 text-sm text-gray-500 dark:text-techstars-slate">
+            💡{" "}
+            <Link
+              href="/transparencia"
+              className="text-techstars-green hover:underline"
+            >
+              Veja para onde vai cada real do seu ingresso
+            </Link>
+          </p>
         </div>
       </section>
 
