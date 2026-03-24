@@ -32,6 +32,13 @@ export default function StartupWeekendFooter() {
             Jurados
           </Link>
           <span className="hidden sm:block text-zinc-800">•</span>
+          <Link
+            href="/startup-weekend/agenda"
+            className="text-techstars-slate hover:text-techstars-green transition-colors font-medium"
+          >
+            Agenda
+          </Link>
+          <span className="hidden sm:block text-zinc-800">•</span>
           <a
             href={eventConfig.whatsappContact}
             target="_blank"
