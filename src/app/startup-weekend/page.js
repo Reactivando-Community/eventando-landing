@@ -1,8 +1,11 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { eventConfig } from "@/data/startup-weekend-event";
+import { pickVariant } from "@/data/bolsa-variants";
+import { logEvent } from "@/lib/firebase";
 import StartupWeekendHero from "@/components/startup-weekend/StartupWeekendHero";
 import StartupWeekendInfoSection from "@/components/startup-weekend/StartupWeekendInfoSection";
 import StartupWeekendProfilesSection from "@/components/startup-weekend/StartupWeekendProfilesSection";
@@ -10,14 +13,34 @@ import StartupWeekendTeasers from "@/components/startup-weekend/StartupWeekendTe
 import StartupWeekendTeamSection from "@/components/startup-weekend/StartupWeekendTeamSection";
 import StartupWeekendStatsSection from "@/components/startup-weekend/StartupWeekendStatsSection";
 import WhatsAppCTA from "@/components/startup-weekend/WhatsAppCTA";
+import ChallengeModal from "@/components/startup-weekend/ChallengeModal";
+import EntryGateModal from "@/components/startup-weekend/EntryGateModal";
 import { Faq } from "@/components/Faq";
 import StartupWeekendFooter from "@/components/startup-weekend/StartupWeekendFooter";
 import StartupWeekendSEO from "@/components/startup-weekend/StartupWeekendSEO";
 
 
 export default function StartupWeekendPage() {
+  const [variant, setVariant] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const v = pickVariant();
+    setVariant(v);
+    logEvent("bolsa_cta_view", { variant_id: v.id, variant_text: v.ctaTitle });
+  }, []);
+
+  const handleCtaClick = () => {
+    if (variant) {
+      logEvent("bolsa_cta_click", { variant_id: variant.id });
+      logEvent("challenge_modal_view", { variant_id: variant.id });
+    }
+    setIsModalOpen(true);
+  };
+
   return (
     <main className="min-h-screen">
+      <EntryGateModal />
       <StartupWeekendSEO />
       <StartupWeekendHero />
 
@@ -375,28 +398,29 @@ export default function StartupWeekendPage() {
         </div>
       </section>
 
-      {/* Apadrinhamento CTA */}
+      {/* Bolsa 100% CTA – A/B Test */}
       <section className="py-12 px-6 bg-zinc-950">
         <div className="max-w-5xl mx-auto">
-          <div className="bg-gradient-to-r from-zinc-900 to-black border border-white/5 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+          <div className="bg-gradient-to-br from-zinc-900 via-zinc-950 to-black border border-red-500/10 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
+            {/* Subtle fire glow */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-500/40 to-transparent" />
             <div className="flex-1 text-center md:text-left space-y-4">
-              <div className="flex items-center justify-center md:justify-start gap-3">
-                <span className="text-3xl">🤝</span>
-                <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
-                  Quer participar mas precisa de apoio financeiro?
+              <div className="flex items-start justify-center md:justify-start gap-3">
+                <span className="text-3xl mt-1">🔥</span>
+                <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">
+                  {variant?.ctaTitle || "Bolsa 100% para quem tem coragem."}
                 </h2>
               </div>
               <p className="text-techstars-slate text-lg max-w-2xl leading-relaxed">
-                Nosso programa de apadrinhamento oferece ingressos gratuitos para
-                quem não pode arcar com os custos. Inscreva-se e conte sua história.
+                {variant?.ctaSubtitle || "Bolsa 100%. Sem custo. Sem desculpa."}
               </p>
             </div>
             <div className="shrink-0">
-              <Link
-                href="/startup-weekend/apadrinhamento"
+              <button
+                onClick={handleCtaClick}
                 className="inline-flex items-center px-8 py-4 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-lg rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-techstars-green/20"
               >
-                Quero ser Apadrinhado
+                Eu tenho coragem
                 <svg
                   className="w-5 h-5 ml-2"
                   fill="none"
@@ -410,11 +434,18 @@ export default function StartupWeekendPage() {
                     d="M14 5l7 7m0 0l-7 7m7-7H3"
                   />
                 </svg>
-              </Link>
+              </button>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Challenge Modal */}
+      <ChallengeModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        variant={variant}
+      />
 
       <StartupWeekendFooter />
     </main>

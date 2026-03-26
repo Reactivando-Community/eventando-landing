@@ -68,12 +68,11 @@ export default function ApadrinhamentoPage() {
           >
             <h1 className="text-5xl md:text-7xl font-black text-black dark:text-white tracking-tight leading-tight max-w-5xl mx-auto">
               Programa de{" "}
-              <span className="text-techstars-green">Apadrinhamento</span>
+              <span className="text-techstars-green">Bolsa 100%</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-techstars-slate max-w-3xl mx-auto leading-relaxed">
-              Acreditamos que o talento não deve ser limitado por barreiras financeiras.
-              Se você quer participar do Startup Weekend mas não tem condições de arcar com o ingresso,
-              inscreva-se no nosso programa de apadrinhamento.
+              Não importa de onde você vem. Importa o que você tá disposto a fazer.
+              A bolsa é 100%, mas o esforço é seu.
             </p>
           </motion.div>
         </div>
