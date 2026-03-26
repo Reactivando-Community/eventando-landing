@@ -36,13 +36,15 @@ export default function EntryGateModal() {
   const [phrase, setPhrase] = useState(null);
 
   useEffect(() => {
-    // Only show once per session
-    if (!sessionStorage.getItem("sw_gate_passed")) {
-      const p = gatePhrases[Math.floor(Math.random() * gatePhrases.length)];
-      setPhrase(p);
-      setIsOpen(true);
-      logEvent("entry_gate_view", { variant_id: p.id });
+    // Skip if already passed or if coming from a bolsa deep-link
+    const params = new URLSearchParams(window.location.search);
+    if (sessionStorage.getItem("sw_gate_passed") || params.get("bolsa") === "true") {
+      return;
     }
+    const p = gatePhrases[Math.floor(Math.random() * gatePhrases.length)];
+    setPhrase(p);
+    setIsOpen(true);
+    logEvent("entry_gate_view", { variant_id: p.id });
   }, []);
 
   const handleAccept = () => {

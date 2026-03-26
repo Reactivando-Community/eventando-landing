@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { eventConfig } from "@/data/startup-weekend-event";
@@ -23,11 +23,27 @@ import StartupWeekendSEO from "@/components/startup-weekend/StartupWeekendSEO";
 export default function StartupWeekendPage() {
   const [variant, setVariant] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const bolsaSectionRef = useRef(null);
+
 
   useEffect(() => {
     const v = pickVariant();
     setVariant(v);
     logEvent("bolsa_cta_view", { variant_id: v.id, variant_text: v.ctaTitle });
+
+    // ?bolsa=true → scroll to section + open modal
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("bolsa") === "true") {
+      sessionStorage.setItem("sw_gate_passed", "true");
+      setTimeout(() => {
+        bolsaSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          setIsModalOpen(true);
+          logEvent("bolsa_cta_click", { variant_id: v.id, source: "url_param" });
+          logEvent("challenge_modal_view", { variant_id: v.id, source: "url_param" });
+        }, 800);
+      }, 300);
+    }
   }, []);
 
   const handleCtaClick = () => {
@@ -399,7 +415,7 @@ export default function StartupWeekendPage() {
       </section>
 
       {/* Bolsa 100% CTA – A/B Test */}
-      <section className="py-12 px-6 bg-zinc-950">
+      <section ref={bolsaSectionRef} id="bolsa" className="py-12 px-6 bg-zinc-950">
         <div className="max-w-5xl mx-auto">
           <div className="bg-gradient-to-br from-zinc-900 via-zinc-950 to-black border border-red-500/10 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
             {/* Subtle fire glow */}
