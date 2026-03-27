@@ -14,7 +14,7 @@ import StartupWeekendTeamSection from "@/components/startup-weekend/StartupWeeke
 import StartupWeekendStatsSection from "@/components/startup-weekend/StartupWeekendStatsSection";
 import WhatsAppCTA from "@/components/startup-weekend/WhatsAppCTA";
 import ChallengeModal from "@/components/startup-weekend/ChallengeModal";
-import EntryGateModal from "@/components/startup-weekend/EntryGateModal";
+
 import { Faq } from "@/components/Faq";
 import StartupWeekendFooter from "@/components/startup-weekend/StartupWeekendFooter";
 import StartupWeekendSEO from "@/components/startup-weekend/StartupWeekendSEO";
@@ -56,7 +56,6 @@ export default function StartupWeekendPage() {
 
   return (
     <main className="min-h-screen">
-      <EntryGateModal />
       <StartupWeekendSEO />
       <StartupWeekendHero />
 
