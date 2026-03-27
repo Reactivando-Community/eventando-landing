@@ -114,7 +114,7 @@ export default function InfoSection() {
             variants={cardVariants}
             className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
           >
-            Descubra tudo sobre o Startup Weekend Anápolis e prepare-se para uma experiência incrível
+            Descubra tudo sobre o techstars_ Startup Weekend Anápolis e prepare-se para uma experiência incrível
           </motion.p>
         </motion.div>
 

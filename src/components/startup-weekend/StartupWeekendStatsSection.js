@@ -78,7 +78,7 @@ export default function StartupWeekendStatsSection() {
                 </ul>
              </div>
 
-             {/* Front Neon Card: Startup Weekend */}
+             {/* Front Neon Card: techstars_ Startup Weekend */}
              <div className="absolute top-14 md:top-24 right-2 lg:right-0 w-[95%] md:w-[85%] max-w-md bg-yellow-400 brutal-border p-6 md:p-8 shadow-[8px_8px_0_#000] rotate-[2deg] z-10 transition-transform hover:-translate-y-2 hover:-translate-x-2">
                 
                 {/* VS Badge overlapping both */}

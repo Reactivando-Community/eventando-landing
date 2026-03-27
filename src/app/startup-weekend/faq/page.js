@@ -19,7 +19,7 @@ export default function StartupWeekendFaqPage() {
               <span className="bg-black text-techstars-green px-4 py-2 inline-block shadow-[6px_6px_0_#fff]">Sobrevivência</span>
             </h1>
             <p className="mt-8 text-xl font-bold text-black border-l-4 border-black pl-4">
-               Sem enrolação. O FAQ completo para você dominar as regras do jogo no Startup Weekend.
+               Sem enrolação. O FAQ completo para você dominar as regras do jogo no techstars_ Startup Weekend.
             </p>
          </div>
       </section>

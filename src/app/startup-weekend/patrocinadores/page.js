@@ -3,139 +3,87 @@
 import { motion } from "framer-motion";
 import { eventConfig } from "@/data/startup-weekend-event";
 import StartupWeekendFooter from "@/components/startup-weekend/StartupWeekendFooter";
+import StartupWeekendSEO from "@/components/startup-weekend/StartupWeekendSEO";
 import Link from "next/link";
 
 const stats = [
   {
     number: "100+",
-    label: "Participantes",
-    description:
-      "Meta de 80 a 100 pessoas focadas em execução. Empreendedores, devs, designers e profissionais de negócios.",
+    label: "PARTICIPANTES",
+    description: "Meta de 80 a 100 pessoas focadas em execução. Empreendedores, devs, designers e profissionais de negócios.",
+    color: "bg-pink-500",
   },
   {
     number: "12-15",
-    label: "Mentores",
-    description:
-      "Profissionais de destaque do mercado oferecendo mentoria aplicada.",
+    label: "MENTORES",
+    description: "Profissionais de destaque do mercado oferecendo mentoria aplicada.",
+    color: "bg-yellow-400",
   },
   {
     number: "10-20",
-    label: "Startups",
-    description:
-      "Times criados do zero, construindo produtos e realizando pitches finais.",
+    label: "STARTUPS",
+    description: "Times criados do zero, construindo produtos e realizando pitches finais.",
+    color: "bg-blue-600",
   },
 ];
 
 const benefits = [
   {
-    title: "Visibilidade Direta",
-    description:
-      "Exposição da marca antes, durante e após o evento, com possibilidade de ativação no local (stand, desafios e brindes).",
-    icon: (
-      <svg
-        className="w-8 h-8"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-        />
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-        />
-      </svg>
-    ),
+    title: "VISIBILIDADE DIRETA",
+    description: "Exposição da marca antes, durante e após o evento, com possibilidade de ativação no local.",
+    color: "bg-blue-600"
   },
   {
-    title: "Acesso a Talentos",
-    description:
-      "Excelente ponto de relacionamento para recrutamento de mão de obra altamente qualificada (contato via opt-in/LGPD).",
-    icon: (
-      <svg
-        className="w-8 h-8"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-        />
-      </svg>
-    ),
+    title: "ACESSO A TALENTOS",
+    description: "Excelente ponto de relacionamento para recrutamento de mão de obra altamente qualificada.",
+    color: "bg-pink-500"
   },
   {
-    title: "Posicionamento",
-    description:
-      "Reforço de autoridade ao associar sua marca à inovação prática e ao ambiente onde o futuro é construído.",
-    icon: (
-      <svg
-        className="w-8 h-8"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-        />
-      </svg>
-    ),
+    title: "POSICIONAMENTO",
+    description: "Reforço de autoridade ao associar sua marca à inovação prática e ao ambiente onde o futuro é construído.",
+    color: "bg-techstars-green"
   },
 ];
 
 const tiers = [
   {
-    name: "Bronze",
+    name: "BRONZE",
     price: "R$ 2.500",
     features: [
       "2 Inscrições inclusas",
       "Logo no site do evento",
       "Divulgação nas redes sociais",
     ],
-    color: "bg-orange-900/10 border-orange-900/20 text-orange-900",
-    darkColor:
-      "dark:bg-orange-500/5 dark:border-orange-500/20 dark:text-orange-400",
+    color: "bg-white",
+    textColor: "text-black",
   },
   {
-    name: "Prata",
+    name: "PRATA",
     price: "R$ 5.000",
     features: [
       "4 Inscrições inclusas",
       "Logo no site do evento",
       "Divulgação nas redes sociais",
-      "Logo nos materiais de marketing",
+      "Logo nos materiais impressos",
     ],
-    color: "bg-slate-300/10 border-slate-300/20 text-slate-500",
-    darkColor:
-      "dark:bg-slate-400/5 dark:border-slate-400/20 dark:text-slate-300",
+    color: "bg-gray-300",
+    textColor: "text-black",
   },
   {
-    name: "Ouro",
+    name: "OURO",
     price: "R$ 7.500",
     features: [
       "6 Inscrições inclusas",
-      "Logo nos materiais de marketing",
+      "Logo em materiais de marketing",
       "Destaque em banners físicos",
-      "Distribuição de brindes nas pastas",
+      "Distribuição de brindes (pastas)",
     ],
-    color: "bg-yellow-500/10 border-yellow-500/20 text-yellow-600",
-    darkColor:
-      "dark:bg-yellow-500/5 dark:border-yellow-500/20 dark:text-yellow-400",
+    color: "bg-yellow-400",
+    textColor: "text-black",
+    rotate: "rotate-1",
   },
   {
-    name: "Platina",
+    name: "PLATINA",
     price: "R$ 10.000",
     highlight: true,
     features: [
@@ -146,205 +94,153 @@ const tiers = [
       "Vídeo institucional (30s)",
       "Lista de e-mails autorizada",
     ],
-    color:
-      "bg-techstars-green/10 border-techstars-green/20 text-techstars-green",
-    darkColor:
-      "dark:bg-techstars-green/5 dark:border-techstars-green/20 dark:text-techstars-green",
+    color: "bg-techstars-green",
+    textColor: "text-black",
+    rotate: "-rotate-2",
   },
 ];
 
 export default function SponsorsPage() {
   const scrollToContact = () => {
-    document
-      .getElementById("contact-section")
-      ?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("contact-section")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black font-sans">
-      {/* Header */}
-      <nav className="py-6 px-6 border-b border-gray-100 dark:border-zinc-900 bg-white/80 dark:bg-black/80 backdrop-blur-md sticky top-0 z-50">
+    <main className="min-h-screen bg-[#f4f4f0] font-sans selection:bg-yellow-400 selection:text-black">
+      <StartupWeekendSEO />
+      
+      {/* Nav */}
+      <nav className="py-4 px-6 border-b-4 border-black bg-white sticky top-0 z-50">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <Link
-            href="/startup-weekend"
-            className="text-xl font-black text-black dark:text-white"
-          >
-            Startup Weekend Anápolis
+          <Link href="/startup-weekend" className="text-xl md:text-2xl font-black text-black uppercase tracking-tighter hover:text-techstars-green transition-colors">
+            techstars_ Startup Weekend
           </Link>
-          <Link
-            href="/startup-weekend"
-            className="text-techstars-green hover:underline font-bold"
-          >
-            ← Voltar
+          <Link href="/startup-weekend" className="text-black font-black uppercase hover:bg-black hover:text-white px-4 py-2 border-4 border-black shadow-[4px_4px_0_#39C463] transition-all text-sm md:text-base">
+            &larr; VOLTAR
           </Link>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative py-24 px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-techstars-green/5 to-transparent dark:from-techstars-green/10" />
-        <div className="max-w-6xl mx-auto relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
+      <section className="relative py-24 px-6 bg-techstars-green border-b-4 border-black overflow-hidden shadow-[0_12px_0_rgba(0,0,0,1)] z-10">
+        <div className="absolute inset-0 dot-pattern opacity-40 pointer-events-none" />
+        <div className="max-w-6xl mx-auto relative z-10 text-center flex flex-col items-center">
+          <div className="bg-black text-white text-sm font-black uppercase tracking-widest px-4 py-1 border-4 border-black inline-block mb-6 shadow-[4px_4px_0_#000] rotate-[-2deg]">
+             SEJA O COMBUSTÍVEL
+          </div>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-black uppercase tracking-tighter leading-[0.85] mb-6 drop-shadow-[4px_4px_0_#fff]">
+            PATROCINE O <br/>
+            <span className="bg-black text-techstars-green px-4 inline-block transform rotate-1 mt-2">FUTURO</span>
+          </h1>
+          <p className="text-xl md:text-2xl font-bold text-black border-4 border-black bg-white px-6 py-4 shadow-[8px_8px_0_#000] max-w-3xl transform -rotate-1 mt-4 hover:-translate-y-1 hover:shadow-[12px_12px_0_#000] transition-all">
+            O techstars_ Startup Weekend Anápolis é um sprint de 54 horas onde talentos constroem o futuro das startups locais.<br/>
+            <span className="text-blue-600 block mt-2">{"//"} Associe sua marca à inovação extrema.</span>
+          </p>
+          <button
+            onClick={scrollToContact}
+            className="mt-12 brutal-btn-white text-xl md:text-2xl px-10 py-5 flex items-center shadow-[6px_6px_0_#000] hover:shadow-[8px_8px_0_#000]"
           >
-            <h1 className="text-5xl md:text-7xl font-black text-black dark:text-white tracking-tight leading-tight max-w-5xl mx-auto">
-              Patrocine o <span className="text-techstars-green">Startup Weekend Anápolis</span>. Associe sua marca à inovação.
-            </h1>
-
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-techstars-slate max-w-3xl mx-auto leading-relaxed">
-              O Startup Weekend Anápolis é um sprint de inovação de 54 horas
-              onde profissionais formam times, constroem protótipos e validam
-              ideias reais. Faça parte dessa transformação.
-            </p>
-            <div className="pt-6">
-              <button
-                onClick={scrollToContact}
-                className="inline-flex items-center px-10 py-5 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-xl rounded-xl shadow-lg shadow-techstars-green/20 transition-all duration-300 transform hover:scale-105"
-              >
-                Quero ser um patrocinador
-                <svg
-                  className="w-6 h-6 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                  />
-                </svg>
-              </button>
-            </div>
-          </motion.div>
+            QUERO PATROCINAR AGORA
+            <svg className="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </button>
         </div>
       </section>
 
       {/* Audience Section */}
-      <section className="py-24 px-6 bg-zinc-900 border-y border-zinc-800">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-24 px-6 bg-black border-b-4 border-black relative z-0">
+         <div className="absolute inset-0 dot-pattern opacity-20 pointer-events-none" />
+        <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6">
-              Quem a sua marca vai impactar?
+            <h2 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter drop-shadow-[4px_4px_0_#39C463]">
+              QUEM VOCÊ IMPACTA
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {stats.map((stat, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="text-center p-8 bg-zinc-800/50 rounded-3xl border border-zinc-700/50"
-              >
-                <div className="text-5xl font-black text-techstars-green mb-4">
+              <div key={i} className="bg-white border-4 border-black p-8 shadow-[8px_8px_0_#39C463] relative hover:-translate-y-2 hover:-translate-x-2 transition-transform hover:shadow-[12px_12px_0_#39C463]">
+                <div className={`absolute -top-6 -right-6 w-12 h-12 border-4 border-black ${stat.color} rounded-full z-0`} />
+                <div className="text-5xl md:text-6xl font-black text-black mb-4 relative z-10">
                   {stat.number}
                 </div>
-                <div className="text-xl font-bold text-white mb-4">
+                <h3 className="text-2xl font-black text-black uppercase mb-4 tracking-tight border-b-4 border-black pb-2 inline-block">
                   {stat.label}
-                </div>
-                <p className="text-zinc-400 leading-relaxed">
+                </h3>
+                <p className="text-gray-800 font-bold text-base leading-relaxed">
                   {stat.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Benefits Section */}
-      <section className="py-24 px-6 bg-white dark:bg-black">
+      <section className="py-24 px-6 bg-[#f4f4f0] border-b-4 border-black">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-black dark:text-white mb-6">
-              O que a sua empresa ganha ao apoiar?
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-7xl font-black text-black uppercase tracking-tighter drop-shadow-[4px_4px_0_#9333ea]">
+              O QUE VOCÊ GANHA
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {benefits.map((benefit, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ y: -10 }}
-                className="p-10 bg-gray-50 dark:bg-zinc-900 rounded-3xl border border-gray-100 dark:border-zinc-800 flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all"
-              >
-                <div className="w-16 h-16 bg-techstars-green/10 text-techstars-green rounded-2xl flex items-center justify-center mb-6">
-                  {benefit.icon}
+              <div key={i} className={`bg-white border-4 border-black p-8 shadow-[8px_8px_0_#000] transform transition-transform hover:-translate-y-2 ${i%2!==0 ? 'rotate-1' : '-rotate-1'} hover:rotate-0 hover:z-10`}>
+                <div className={`w-16 h-16 ${benefit.color} border-4 border-black mb-6 flex items-center justify-center text-white`}>
+                   <span className="text-3xl font-black">{i + 1}</span>
                 </div>
-                <h3 className="text-2xl font-bold text-black dark:text-white mb-4">
+                <h3 className="text-2xl font-black text-black uppercase mb-4 tracking-tight">
                   {benefit.title}
                 </h3>
-                <p className="text-gray-600 dark:text-zinc-400 leading-relaxed">
+                <p className="text-black font-semibold text-lg leading-relaxed">
                   {benefit.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Sponsorship Tiers Section */}
-      <section className="py-24 px-6 bg-gray-50 dark:bg-zinc-950">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-24 px-6 bg-pink-500 border-b-4 border-black relative">
+         <div className="absolute top-0 left-0 w-full h-4 bg-yellow-400 border-b-4 border-black" />
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-black dark:text-white mb-6 tracking-tight">
-              Escolha como posicionar a sua marca
+            <h2 className="text-5xl md:text-7xl font-black text-black uppercase tracking-tighter drop-shadow-[4px_4px_0_#fff]">
+              ESCOLHA SUA COTA
             </h2>
-            <p className="text-xl text-gray-600 dark:text-zinc-500 max-w-2xl mx-auto">
-              Cotas exclusivas desenhadas para maximizar o seu retorno e impacto
-              no ecossistema local.
-            </p>
+            <div className="bg-black text-white font-black uppercase px-6 py-2 border-4 border-white inline-block mt-4 transform rotate-1">
+               POSICIONE SUA MARCA LOGO
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {tiers.map((tier, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0.8, scale: 0.95 }}
-                whileHover={{ opacity: 1, scale: 1 }}
-                className={`relative flex flex-col p-8 rounded-3xl border-2 transition-all duration-300 ${tier.highlight ? "bg-zinc-900 dark:bg-zinc-900 border-techstars-green shadow-xl ring-4 ring-techstars-green/10 z-10" : "bg-white dark:bg-zinc-900 border-gray-100 dark:border-zinc-800 shadow-sm"}`}
+                className={`relative flex flex-col p-8 border-4 border-black ${tier.color} ${tier.textColor} ${tier.highlight ? "shadow-[12px_12px_0_#000]" : "shadow-[8px_8px_0_#000]"} transform transition-transform hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0_#000] ${tier.rotate || ''} z-10 hover:z-50`}
               >
                 {tier.highlight && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-techstars-green text-black font-black text-xs uppercase px-4 py-1 rounded-full whitespace-nowrap tracking-wider">
-                    Destaque Máximo
+                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-black text-techstars-green font-black text-xs uppercase px-4 py-1 border-4 border-black whitespace-nowrap tracking-wider shadow-[4px_4px_0_#39C463]">
+                    DESTAQUE MÁXIMO
                   </div>
                 )}
-                <div className="mb-8">
-                  <h3
-                    className={`text-xl font-black mb-1 ${tier.highlight ? "text-white" : "text-black dark:text-white"}`}
-                  >
+                <div className="mb-6 pb-6 border-b-4 border-black">
+                  <h3 className="text-3xl font-black mb-2 uppercase tracking-tighter">
                     {tier.name}
                   </h3>
-                  <div className="text-3xl font-black text-techstars-green">
+                  <div className="text-2xl md:text-3xl font-black bg-black text-white px-3 py-2 inline-block -rotate-1 shadow-[4px_4px_0_#fff]">
                     {tier.price}
                   </div>
                 </div>
-                <ul className="space-y-4 mb-10 flex-1">
+                <ul className="space-y-4 mb-10 flex-1 font-bold">
                   {tier.features.map((feature, j) => (
-                    <li key={j} className="flex items-start text-sm">
-                      <svg
-                        className={`w-5 h-5 mr-3 shrink-0 ${tier.highlight ? "text-techstars-green" : "text-techstars-green"}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2.5}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      <span
-                        className={
-                          tier.highlight
-                            ? "text-zinc-300"
-                            : "text-gray-600 dark:text-zinc-400"
-                        }
-                      >
+                    <li key={j} className="flex items-start">
+                      <span className="bg-black text-white w-5 h-5 flex items-center justify-center border-2 border-black mr-3 shrink-0 text-xs font-black mt-0.5">
+                        ✓
+                      </span>
+                      <span className="leading-tight">
                         {feature}
                       </span>
                     </li>
@@ -352,64 +248,49 @@ export default function SponsorsPage() {
                 </ul>
                 <button
                   onClick={scrollToContact}
-                  className={`w-full py-4 px-6 rounded-xl font-bold transition-all transform hover:scale-105 ${tier.highlight ? "bg-techstars-green text-black hover:bg-[#45d171] shadow-lg shadow-techstars-green/20" : "bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white hover:bg-zinc-200 dark:hover:bg-zinc-700"}`}
+                  className="w-full bg-black text-white py-4 px-6 font-black uppercase border-4 border-black hover:bg-white hover:text-black hover:shadow-[4px_4px_0_#000] transition-colors"
                 >
                   Selecionar {tier.name}
                 </button>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact-section" className="py-24 px-6 bg-techstars-green">
+      <section id="contact-section" className="py-24 px-6 bg-[#f4f4f0] border-b-4 border-black border-t-8 border-t-yellow-400">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-black rounded-[2.5rem] p-12 md:p-20 text-center shadow-[0_40px_100px_-20px_rgba(57,196,99,0.3)]">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight">
-                Vamos fechar essa parceria?
+          <div className="bg-black border-4 border-black p-8 md:p-16 text-center shadow-[16px_16px_0_#39C463] transform rotate-[-1deg]">
+            <div className="space-y-8">
+              <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter drop-shadow-[4px_4px_0_#39C463]">
+                VAMOS FECHAR NEGÓCIO?
               </h2>
-              <p className="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-                Escolha a sua cota e vamos definir juntos as melhores ativações
-                para a sua marca. Fale diretamente com o nosso time de
-                organização.
+              <p className="text-xl font-bold text-gray-300 max-w-2xl mx-auto leading-relaxed border-b-4 border-zinc-800 pb-8">
+                Defina a cota que melhor atende seus objetivos. Fale diretamente com o Pedro, responsável pelas parcerias e ativações do techstars_ Startup Weekend Anápolis.
               </p>
 
-              <div className="grid md:grid-cols-2 gap-8 pt-8 text-left max-w-2xl mx-auto border-t border-zinc-800">
-                <div className="space-y-2">
-                  <div className="text-zinc-500 font-bold uppercase tracking-widest text-xs">
-                    Responsável
-                  </div>
-                  <div className="text-2xl font-bold text-white">
+              <div className="flex flex-col md:flex-row gap-8 text-left max-w-4xl mx-auto pb-8">
+                <div className="w-full md:w-[40%] bg-white border-4 border-black p-6 shadow-[6px_6px_0_#000] transform rotate-1">
+                  <div className="text-black font-black uppercase text-xs border-b-2 border-black pb-1 mb-2">Responsável</div>
+                  <div className="text-2xl font-black text-techstars-green drop-shadow-[1px_1px_0_#000]">
                     {eventConfig.sponsorContact.name}
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <div className="text-zinc-500 font-bold uppercase tracking-widest text-xs">
-                    E-mail Corporativo
-                  </div>
-                  <div className="text-2xl font-bold text-white break-words">
+                <div className="w-full md:w-[60%] bg-white border-4 border-black p-4 md:p-6 flex-1 shadow-[6px_6px_0_#000] transform -rotate-1 overflow-hidden">
+                  <div className="text-black font-black uppercase text-xs border-b-2 border-black pb-1 mb-2">Contato Corporativo</div>
+                  <div className="text-sm sm:text-base md:text-lg lg:text-xl font-black text-black break-words">
                     {eventConfig.sponsorContact.email}
                   </div>
                 </div>
               </div>
 
-              <div className="pt-10 flex flex-col items-center">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+              <div className="pt-4 flex flex-col items-center">
                   <a
                     href={eventConfig.sponsorContact.whatsappLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-10 py-5 bg-techstars-green hover:bg-[#45d171] text-black font-extrabold text-2xl rounded-2xl shadow-2xl transition-all duration-300"
+                    className="inline-flex items-center px-10 py-5 bg-yellow-400 hover:bg-yellow-300 text-black font-black text-xl uppercase border-4 border-black shadow-[8px_8px_0_#000] hover:shadow-[12px_12px_0_#000] hover:-translate-y-1 transition-all"
                   >
                     <svg
                       className="w-8 h-8 mr-3"
@@ -418,11 +299,10 @@ export default function SponsorsPage() {
                     >
                       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.35-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
                     </svg>
-                    Falar com Pedro no WhatsApp
+                    FALAR COM PEDRO
                   </a>
-                </motion.div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

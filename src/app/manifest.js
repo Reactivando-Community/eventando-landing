@@ -1,8 +1,8 @@
 export default function manifest() {
   return {
-    name: 'Startup Weekend Anápolis | Techstars',
-    short_name: 'SW Anápolis',
-    description: 'Participe do Startup Weekend Anápolis 2026. 54 horas para transformar sua ideia em realidade.',
+    name: 'techstars_ Startup Weekend Anápolis | Techstars',
+    short_name: 'TSW Anápolis',
+    description: 'Participe do techstars_ Startup Weekend Anápolis 2026. 54 horas para transformar sua ideia em realidade.',
     start_url: '/',
     display: 'standalone',
     background_color: '#000000',

@@ -30,7 +30,11 @@
     "role": "Líder de Patrocínios",
     "photo": "/images/team/roberto.jpeg",
     "bio": "Vice-Presidente da Bluefields e sócio na Vallier Cap e no Hub G62. Atua no desenvolvimento de novos negócios e inovação, aplicando Growth Hacking e consultoria de riscos para escalar startups. Mestre em Física pela UFABC com foco em inovações quânticas.",
-    "tags": ["Bluefields", "Vallier Cap", "Hub G62", "UFABC"]
+    "tags": ["Bluefields", "Vallier Cap", "Hub G62", "UFABC"],
+    "companies": [
+      { "name": "Vallier Cap", "logo": "/img/brands/valler.jpeg" },
+      { "name": "Bluefields", "logo": "/img/brands/bluefields.PNG" }
+    ]
   },
   {
     "id": 4,
@@ -72,7 +76,7 @@
     "name": "Vinícius Maia",
     "role": "Facilitador",
     "photo": "/images/team/vinicius.jpeg",
-    "bio": "Advogado há 11 anos e atua no associativismo empresarial em Joinville/SC. É voluntário em iniciativas de desenvolvimento econômico, comunidades de startups e já participou da organização de Startup Weekends e do primeiro TEDx Joinville.",
+    "bio": "Advogado há 11 anos e atua no associativismo empresarial em Joinville/SC. É voluntário em iniciativas de desenvolvimento econômico, comunidades de startups e já participou da organização de techstars_ Startup Weekends e do primeiro TEDx Joinville.",
     "tags": ["Joinville/SC 🇧🇷", "TEDx Joinville", "Associativismo", "Startup SC"],
     "companies": [
     	{ "name": "Techstars", "logo": "/images/logos/techstars.png" }

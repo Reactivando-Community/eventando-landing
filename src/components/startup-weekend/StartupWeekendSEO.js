@@ -4,7 +4,7 @@ export default function StartupWeekendSEO() {
   const eventStructuredData = {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": `Techstars Startup Weekend ${eventConfig.city}`,
+    "name": `techstars_ Startup Weekend ${eventConfig.city}`,
     "description": eventConfig.tagline,
     "image": "https://startupweekendanapolis.com.br/images/Startup%20Weekend%20Logo%20(1).png",
     "startDate": "2026-05-01T18:00:00-03:00",

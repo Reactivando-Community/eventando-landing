@@ -86,7 +86,7 @@ export default function KeynoteSpeakersSection() {
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Conheça os palestrantes principais que irão compartilhar
-            conhecimentos e experiências únicas no Startup Weekend Anápolis
+            conhecimentos e experiências únicas no techstars_ Startup Weekend Anápolis
           </p>
         </div>
 
@@ -193,7 +193,7 @@ export default function KeynoteSpeakersSection() {
             </h3>
             <p className="text-lg opacity-90 mb-6">
               Garante sua vaga para assistir aos keynote speakers e muito mais
-              no Startup Weekend Anápolis
+              no techstars_ Startup Weekend Anápolis
             </p>
             <a
               href="https://doity.com.br/startup-weekend-anapolis"

@@ -115,7 +115,7 @@ export default function TransparenciaPage() {
             href="/startup-weekend"
             className="text-xl font-black text-black dark:text-white"
           >
-            Startup Weekend Anápolis
+            techstars_ Startup Weekend Anápolis
           </Link>
           <Link
             href="/startup-weekend"
@@ -141,7 +141,7 @@ export default function TransparenciaPage() {
               <span className="text-techstars-green">Transparência</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-techstars-slate max-w-3xl mx-auto leading-relaxed">
-              O Startup Weekend Anápolis é organizado 100% por voluntários. Não
+              O techstars_ Startup Weekend Anápolis é organizado 100% por voluntários. Não
               existe margem de lucro — cada real do ingresso é investido
               diretamente na experiência do evento.
             </p>

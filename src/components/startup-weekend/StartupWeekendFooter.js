@@ -53,7 +53,7 @@ export default function StartupWeekendFooter() {
             rel="noopener noreferrer"
             className="text-black hover:text-techstars-green hover:underline decoration-4 font-black uppercase text-sm"
           >
-            Sobre Startup Weekend
+            Sobre techstars_ Startup Weekend
           </a>
           <span className="hidden sm:block text-black font-black">•</span>
           <Link
@@ -78,7 +78,7 @@ export default function StartupWeekendFooter() {
           </Link>
         </div>
         <p className="text-sm font-bold text-black mt-8">
-          Startup Weekend é um programa da{" "}
+          techstars_ Startup Weekend é um programa da{" "}
           <a
             href="https://www.techstars.com"
             target="_blank"

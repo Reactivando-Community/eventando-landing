@@ -82,7 +82,7 @@ export default function StartupWeekendAgendaPage() {
             href="/startup-weekend"
             className="text-xl font-black text-black dark:text-white"
           >
-            Startup Weekend Anápolis
+            techstars_ Startup Weekend Anápolis
           </Link>
           <Link
             href="/startup-weekend"
@@ -109,7 +109,7 @@ export default function StartupWeekendAgendaPage() {
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-techstars-slate max-w-3xl mx-auto leading-relaxed">
               3 dias intensos de imersão empreendedora.
-              Confira a programação completa do Startup Weekend Anápolis — {eventConfig.dateFull}.
+              Confira a programação completa do techstars_ Startup Weekend Anápolis — {eventConfig.dateFull}.
             </p>
           </motion.div>
         </div>
@@ -232,7 +232,7 @@ export default function StartupWeekendAgendaPage() {
             Garanta sua vaga
           </h2>
           <p className="text-xl text-gray-600 dark:text-techstars-slate mb-10">
-            Inscrições abertas para o Startup Weekend Anápolis
+            Inscrições abertas para o techstars_ Startup Weekend Anápolis
           </p>
           <a
             href={eventConfig.registrationUrl}

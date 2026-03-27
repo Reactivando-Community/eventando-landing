@@ -28,7 +28,7 @@ export const Navbar = () => {
                 <Link href="/" className="flex items-center space-x-2">
                   <Image
                     src="/images/logo-dark.png"
-                    alt="Startup Weekend Anápolis"
+                    alt="techstars_ Startup Weekend Anápolis"
                     width="150"
                     height="150"
                     className="h-12 w-auto object-contain"

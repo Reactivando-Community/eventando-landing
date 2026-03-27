@@ -148,7 +148,7 @@ export default function CalculadoraPage() {
                 FINANCE<span className="text-primary-500">LAB</span>
               </h1>
               <span className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.3em]">
-                Startup Weekend Dashboard
+                techstars_ Startup Weekend Dashboard
               </span>
             </div>
           </div>

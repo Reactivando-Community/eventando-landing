@@ -8,12 +8,12 @@ import { PopupWidget } from "@/components/PopupWidget";
 
 export const metadata = {
   metadataBase: new URL("https://startupweekendanapolis.com.br"), 
-  title: "Startup Weekend Anápolis | Techstars",
+  title: "techstars_ Startup Weekend Anápolis | Techstars",
 
   description:
-    "Participe do Startup Weekend Anápolis 2026. 54 horas para transformar sua ideia em realidade. Conecte-se com mentores, valide sua startup e construa o futuro em Anápolis.",
+    "Participe do techstars_ Startup Weekend Anápolis 2026. 54 horas para transformar sua ideia em realidade. Conecte-se com mentores, valide sua startup e construa o futuro em Anápolis.",
   keywords: [
-    "Startup Weekend Anápolis",
+    "techstars_ Startup Weekend Anápolis",
     "Techstars Anápolis",
     "Empreendedorismo Anápolis",
     "Startup Goiás",
@@ -23,8 +23,8 @@ export const metadata = {
     "Validação de Ideias",
     "Mentoria de Negócios",
   ],
-  authors: [{ name: "Techstars Startup Weekend Anápolis" }],
-  creator: "Startup Weekend Anápolis Team",
+  authors: [{ name: "techstars_ Startup Weekend Anápolis" }],
+  creator: "techstars_ Startup Weekend Anápolis Team",
   publisher: "Techstars",
   formatDetection: {
     email: false,
@@ -36,10 +36,10 @@ export const metadata = {
     apple: "/images/TS_favcon.svg",
   },
   openGraph: {
-    title: "Startup Weekend Anápolis | Techstars",
+    title: "techstars_ Startup Weekend Anápolis | Techstars",
     description: "54 horas de pura inovação e empreendedorismo em Anápolis. Transforme sua ideia em um negócio real!",
     url: "https://startupweekendanapolis.com.br", 
-    siteName: "Startup Weekend Anápolis",
+    siteName: "techstars_ Startup Weekend Anápolis",
     locale: "pt_BR",
     type: "website",
     images: [
@@ -47,13 +47,13 @@ export const metadata = {
         url: "/images/og-image.png",
         width: 1024,
         height: 445,
-        alt: "Startup Weekend Anápolis | Techstars",
+        alt: "techstars_ Startup Weekend Anápolis | Techstars",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Startup Weekend Anápolis | Techstars",
+    title: "techstars_ Startup Weekend Anápolis | Techstars",
     description: "54 horas de inovação e empreendedorismo em Anápolis. Garanta sua vaga!",
     images: ["/images/og-image.png"],
   },

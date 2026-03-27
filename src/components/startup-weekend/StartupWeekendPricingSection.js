@@ -88,7 +88,7 @@ export default function StartupWeekendPricingSection() {
             initial={{ scale: 0 }}
             animate={isInView ? { scale: 1 } : { scale: 0 }}
             transition={{ delay: 0.6, type: "spring" }}
-            className="hidden lg:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white border-4 border-black rounded-full items-center justify-center z-20 shadow-[4px_4px_0_#9333ea]"
+            className="hidden lg:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:-ml-20 w-16 h-16 bg-white border-4 border-black rounded-full items-center justify-center z-20 shadow-[4px_4px_0_#9333ea]"
           >
             <span className="font-black text-2xl">VS</span>
           </motion.div>
@@ -108,7 +108,7 @@ export default function StartupWeekendPricingSection() {
             </div>
 
             <h3 className="text-3xl md:text-4xl font-black text-black uppercase tracking-tighter mb-8 leading-none">
-              STARTUP WEEKEND
+              techstars_ STARTUP WEEKEND
               <br />
               <span className="text-xl tracking-normal">
                 {"// 54H DE IMERSÃO TOTAL"}

@@ -39,17 +39,17 @@ const faqdata = [
     question: "Este evento é para mim?",
     answer: `Se você se interessa por empreendedorismo, a resposta muito provavelmente é sim. Seja você um(a) empreendedor(a) em série ou alguém que está conhecendo o ecossistema de startups agora, você vai se encaixar muito bem, desde que esteja motivado(a) a construir um produto ou startup e aberto(a) a novas ideias. Acreditamos que grandes ideias podem vir de qualquer lugar.
 
-O evento é um ambiente colaborativo e inclusivo para compartilhar, aprender, construir e se divertir. Esperamos que cada pessoa da comunidade seja inclusiva com todas as pessoas e ideias durante o Techstars Startup Weekend, e damos boas-vindas a todos, independentemente de experiência, setor ou histórico.`,
+O evento é um ambiente colaborativo e inclusivo para compartilhar, aprender, construir e se divertir. Esperamos que cada pessoa da comunidade seja inclusiva com todas as pessoas e ideias durante o techstars_ Startup Weekend, e damos boas-vindas a todos, independentemente de experiência, setor ou histórico.`,
   },
   {
     question: "Preciso participar nos três dias?",
     answer: `Com exceção da equipe organizadora, mentores, palestrantes, voluntários e jurados, todas as pessoas que participam do evento como participantes são esperadas para participar dos três dias. Isso é importante não só para preservar a sua própria experiência de aprendizado, mas também para minimizar distrações ou interrupções para o time que você escolher integrar.
 
-Em muitos Techstars Startup Weekends, existe uma opção de inscrição apenas para assistir às apresentações de domingo (“Somente Apresentação de Domingo”), destinada a quem quer apenas ver o pitch final das equipes. Amigos, familiares e colegas são muito bem-vindos para assistir às apresentações finais e ver tudo o que vocês construíram em apenas um fim de semana. Verifique a página de inscrição do evento da sua cidade para saber se essa opção está disponível.`,
+Em muitos techstars_ Startup Weekends, existe uma opção de inscrição apenas para assistir às apresentações de domingo (“Somente Apresentação de Domingo”), destinada a quem quer apenas ver o pitch final das equipes. Amigos, familiares e colegas são muito bem-vindos para assistir às apresentações finais e ver tudo o que vocês construíram em apenas um fim de semana. Verifique a página de inscrição do evento da sua cidade para saber se essa opção está disponível.`,
   },
   {
     question: "Como faço para me inscrever?",
-    answer: `Todo Techstars Startup Weekend tem um site oficial com uma página de inscrição. Veja a página de eventos em https://www.techstars.com/events para conferir a lista completa de eventos.
+    answer: `Todo techstars_ Startup Weekend tem um site oficial com uma página de inscrição. Veja a página de eventos em https://www.techstars.com/events para conferir a lista completa de eventos.
 
 Geralmente existem diferentes tipos de ingresso para diferentes perfis, como “Negócios”, “Designer”, “Técnico” ou “Entusiasta”. As equipes organizadoras acompanham isso para garantir que o evento tenha pessoas com formações e habilidades diversas, o que ajuda a formar times equilibrados e eficazes. Escolha o tipo de ingresso que mais se aproxima da sua experiência — não se preocupe se nada corresponder exatamente ao seu perfil.`,
   },
@@ -61,7 +61,7 @@ Entre em contato com os organizadores locais para entender melhor as opções de
   },
   {
     question: "Eu preciso já ter um time formado?",
-    answer: `Não. Todas as pessoas que participam do evento como participantes são esperadas para chegar sem time formado e então entrar e atuar em um time durante o evento. Isso é fundamental para preservar a experiência educacional do Techstars Startup Weekend.
+    answer: `Não. Todas as pessoas que participam do evento como participantes são esperadas para chegar sem time formado e então entrar e atuar em um time durante o evento. Isso é fundamental para preservar a experiência educacional do techstars_ Startup Weekend.
 
 O time ideal é composto por pessoas com diferentes formações e experiências, que colaboram para construir um ótimo Produto Mínimo Viável (MVP), usando o framework Lean Canvas. Quanto mais pessoas engajadas no seu time fazendo pesquisa de mercado e desenvolvendo o modelo de negócio, mais rápido vocês conseguirão criar um MVP para apresentar no domingo.`,
   },
@@ -81,7 +81,7 @@ Se você estiver vindo de outra cidade ou não conhecer bem a região, entre em 
     question: "Preciso apresentar uma ideia para poder participar?",
     answer: `Não é obrigatório, mas nós incentivamos muito que você apresente. Você pode fazer pitch de uma ideia que está na cabeça há anos ou de algo que surgir na hora, durante o evento.
 
-Por favor, evite apresentar uma ideia em que você já esteja trabalhando de forma estruturada fora do Startup Weekend. O objetivo do evento é aprender a ir da ideação ao produto.
+Por favor, evite apresentar uma ideia em que você já esteja trabalhando de forma estruturada fora do techstars_ Startup Weekend. O objetivo do evento é aprender a ir da ideação ao produto.
 
 Pitchar é uma oportunidade valiosa para praticar falar em público. Você provavelmente não vai se arrepender de ter apresentado, mas pode se arrepender de não ter tentado.`,
   },
@@ -148,7 +148,7 @@ Um bom pitch de 60 segundos geralmente inclui:
   },
   {
     question: "Qual é a política de reembolso?",
-    answer: `O Techstars Startup Weekend recomenda que as equipes organizadoras geralmente aceitem pedidos de reembolso até 72 horas antes do início do evento (por exemplo, se o evento começa na sexta-feira, os pedidos de reembolso devem ser feitos até a noite de terça).
+    answer: `O techstars_ Startup Weekend recomenda que as equipes organizadoras geralmente aceitem pedidos de reembolso até 72 horas antes do início do evento (por exemplo, se o evento começa na sexta-feira, os pedidos de reembolso devem ser feitos até a noite de terça).
 
 Entre em contato com a equipe organizadora local para detalhes específicos sobre a política de reembolso do seu evento.`,
   },

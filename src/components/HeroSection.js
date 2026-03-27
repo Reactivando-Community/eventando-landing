@@ -30,7 +30,7 @@ export default function HeroSection() {
               <div className="relative h-36 md:h-64 w-full max-w-lg flex items-center justify-center overflow-hidden mx-auto">
                 <Image
                   src="/images/logo-dark.png"
-                  alt="Startup Weekend Anápolis Logo"
+                  alt="techstars_ Startup Weekend Anápolis Logo"
                   width={800}
                   height={800}
                   className="w-full h-auto min-w-full"

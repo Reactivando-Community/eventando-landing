@@ -20,17 +20,20 @@ export default function StartupWeekendHero() {
           <div className="absolute inset-0 dot-pattern opacity-50 z-0" />
           
           <div className="relative z-10 max-w-xl mx-auto lg:mx-0">
-            {/* Powered by Techstars badge */}
-            <div className="mb-6">
+            {/* Badges */}
+            <div className="mb-6 flex flex-wrap gap-3">
               <span className="inline-flex items-center px-4 py-2 bg-black text-white text-xs sm:text-sm font-black uppercase brutal-shadow-sm brutal-border hover:shadow-[4px_4px_0px_#39C463] transition-all">
                 <span className="w-3 h-3 bg-techstars-green border-2 border-black rounded-full mr-2" />
                 Powered by Techstars
               </span>
+              <span className="inline-flex items-center px-6 py-3 bg-yellow-400 text-black text-base sm:text-lg md:text-xl font-black uppercase brutal-shadow-md brutal-border hover:shadow-[6px_6px_0px_#000] transition-all transform rotate-1">
+                🗓  {eventConfig.dateFull}
+              </span>
             </div>
 
             {/* Logo text - Event Name */}
-            <h1 className="text-6xl md:text-7xl lg:text-[5.5rem] font-black text-black uppercase leading-[0.85] tracking-tighter mb-8 drop-shadow-[4px_4px_0px_#39C463]">
-              Startup <br /> Weekend <br /> <span className="text-techstars-green bg-black px-3 mt-4 inline-block transform -rotate-2">Anápolis</span>
+            <h1 className="text-6xl md:text-7xl lg:text-[5.5rem] font-black text-black uppercase leading-[0.85] tracking-tighter mb-8">
+              Startup <br /> Weekend <br /> Anápolis
             </h1>
 
             {/* Tagline */}
@@ -94,7 +97,7 @@ export default function StartupWeekendHero() {
               <div className="relative aspect-[4/3] md:aspect-[16/10] w-full brutal-border mb-4 bg-gray-200 overflow-hidden group">
                 <Image
                   src="/images/imagem-hero.webp" 
-                  alt="Techstars Startup Weekend Anápolis Equipe"
+                  alt="techstars_ Startup Weekend Anápolis Equipe"
                   fill
                   className="object-cover object-[center_35%] scale-125 grayscale group-hover:grayscale-0 transition-all duration-500"
                 />
@@ -142,7 +145,7 @@ export default function StartupWeekendHero() {
       {/* Marquee Ticker */}
       <div className="w-full bg-yellow-400 border-t-4 border-black py-3 overflow-hidden flex whitespace-nowrap z-20 relative">
         <div className="animate-marquee inline-block font-black text-black uppercase text-xl md:text-2xl tracking-widest">
-          {Array(4).fill("STARTUP WEEKEND • 54 HORAS • INOVAÇÃO • NETWORKING • MENTORIAS • PITCH • VALIDAÇÃO • ZERO DESCULPAS • ").join("")}
+          {Array(4).fill("techstars_ STARTUP WEEKEND • 54 HORAS • INOVAÇÃO • NETWORKING • MENTORIAS • PITCH • VALIDAÇÃO • ZERO DESCULPAS • ").join("")}
         </div>
       </div>
     </section>
