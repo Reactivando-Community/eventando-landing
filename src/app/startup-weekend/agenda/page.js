@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
 import StartupWeekendFooter from "@/components/startup-weekend/StartupWeekendFooter";
+import StartupWeekendSEO from "@/components/startup-weekend/StartupWeekendSEO";
 import { eventConfig } from "@/data/startup-weekend-event";
 
 const scheduleData = [
@@ -70,132 +71,143 @@ const scheduleData = [
 
 export default function StartupWeekendAgendaPage() {
   const [activeDay, setActiveDay] = useState(0);
+  const [showFloatingNav, setShowFloatingNav] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > 500) {
+      setShowFloatingNav(true);
+    } else {
+      setShowFloatingNav(false);
+    }
+  });
 
   const currentDay = scheduleData[activeDay];
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black font-sans">
+    <main className="min-h-screen bg-[#f4f4f0] font-sans selection:bg-techstars-green selection:text-black relative overflow-x-hidden">
+      <StartupWeekendSEO />
+
       {/* Nav */}
-      <nav className="py-6 px-6 border-b border-gray-100 dark:border-zinc-900 bg-white/80 dark:bg-black/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <Link
-            href="/startup-weekend"
-            className="text-xl font-black text-black dark:text-white"
-          >
-            techstars_ Startup Weekend Anápolis
+      <nav className="py-4 px-4 sm:px-6 border-b-4 border-black bg-white sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto flex flex-wrap justify-center sm:justify-between items-center gap-3">
+          <Link href="/startup-weekend" className="text-lg sm:text-xl md:text-2xl font-black text-black uppercase tracking-tighter hover:text-techstars-green transition-colors text-center">
+            techstars_ Startup Weekend
           </Link>
-          <Link
-            href="/startup-weekend"
-            className="text-techstars-green hover:underline font-bold"
-          >
-            &larr; Voltar
+          <Link href="/startup-weekend" className="text-black font-black uppercase hover:bg-black hover:text-white px-3 py-1 sm:px-4 sm:py-2 border-4 border-black shadow-[4px_4px_0_#39C463] transition-all text-xs sm:text-sm md:text-base whitespace-nowrap">
+            &larr; VOLTAR
           </Link>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="relative py-24 px-6 overflow-hidden bg-white dark:bg-black">
-        <div className="absolute inset-0 bg-gradient-to-br from-techstars-green/5 to-transparent dark:from-techstars-green/10" />
-        <div className="max-w-6xl mx-auto relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            <h1 className="text-5xl md:text-7xl font-black text-black dark:text-white tracking-tight leading-tight max-w-5xl mx-auto">
-              Agenda do{" "}
-              <span className="text-techstars-green">Evento</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-techstars-slate max-w-3xl mx-auto leading-relaxed">
-              3 dias intensos de imersão empreendedora.
-              Confira a programação completa do techstars_ Startup Weekend Anápolis — {eventConfig.dateFull}.
-            </p>
-          </motion.div>
+      <section className="relative py-24 px-6 bg-yellow-400 border-b-4 border-black overflow-hidden shadow-[0_12px_0_rgba(0,0,0,1)] z-10">
+        <div className="absolute inset-0 dot-pattern opacity-40 pointer-events-none" />
+        <div className="max-w-6xl mx-auto relative z-10 text-center flex flex-col items-center">
+          <div className="bg-black text-white text-sm font-black uppercase tracking-widest px-4 py-1 border-4 border-black inline-block mb-6 shadow-[4px_4px_0_#000] rotate-[-2deg]">
+             54H DE IMERSÃO
+          </div>
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-black uppercase tracking-tighter leading-[0.85] mb-6 drop-shadow-[4px_4px_0_#fff]">
+            AGENDA DO <br/>
+            <span className="bg-black text-yellow-400 px-4 inline-block transform rotate-1 mt-2">EVENTO</span>
+          </h1>
+          <p className="text-xl md:text-2xl font-bold text-black border-4 border-black bg-white px-6 py-4 shadow-[8px_8px_0_#000] max-w-3xl transform -rotate-1 mt-4 hover:-translate-y-1 hover:shadow-[12px_12px_0_#000] transition-all">
+            3 dias intensos de imersão empreendedora.<br/>
+            <span className="text-blue-600 block mt-2">{"//"} techstars_ Startup Weekend Anápolis — {eventConfig.dateFull}</span>
+          </p>
         </div>
       </section>
 
       {/* Day Tabs */}
-      <section className="py-16 px-6 bg-zinc-950">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {scheduleData.map((day, index) => (
-              <motion.button
-                key={index}
-                onClick={() => setActiveDay(index)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`p-6 rounded-2xl text-left transition-all duration-300 border ${
-                  activeDay === index
-                    ? "bg-techstars-green/10 border-techstars-green shadow-lg shadow-techstars-green/10"
-                    : "bg-zinc-900 border-zinc-800 hover:border-zinc-700"
-                }`}
-              >
-                <span className="text-3xl mb-3 block">{day.emoji}</span>
-                <div className="text-lg font-bold text-white">{day.dayName}</div>
-                <div className={`text-sm mt-1 ${
-                  activeDay === index ? "text-techstars-green" : "text-techstars-slate"
-                }`}>
-                  {day.date}
-                </div>
-              </motion.button>
-            ))}
+      <section className="py-16 px-6 bg-black border-b-4 border-black relative z-0">
+        <div className="absolute inset-0 dot-pattern opacity-20 pointer-events-none" />
+        <div className="max-w-5xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {scheduleData.map((day, index) => {
+              const isActive = activeDay === index;
+              return (
+                <button
+                  key={index}
+                  onClick={() => setActiveDay(index)}
+                  className={`relative p-6 border-4 border-black text-left transition-transform transform uppercase tracking-tighter hover:-translate-y-1 hover:-translate-x-1 ${
+                    isActive
+                      ? "bg-techstars-green shadow-[8px_8px_0_#fff] scale-105 z-10"
+                      : "bg-white shadow-[6px_6px_0_#39C463]"
+                  }`}
+                >
+                  <span className="text-4xl mb-3 block drop-shadow-[2px_2px_0_#000]">{day.emoji}</span>
+                  <div className="text-2xl font-black text-black">{day.dayName}</div>
+                  <div className={`text-sm mt-1 font-bold ${isActive ? "text-black" : "text-gray-600"}`}>
+                    {day.date}
+                  </div>
+                  {isActive && (
+                    <div className="absolute top-4 right-4 bg-black text-white text-[10px] px-2 py-1 font-black shadow-[2px_2px_0_#fff] rotate-[-5deg]">
+                       SELECIONADO
+                    </div>
+                  )}
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Timeline */}
-      <section className="py-24 px-6 bg-black">
+      <section id="timeline-section" className="py-24 px-6 bg-[#f4f4f0] border-b-4 border-black">
         <div className="max-w-4xl mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeDay}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
             >
               {/* Day header */}
-              <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
-                  {currentDay.emoji} {currentDay.dayName}
-                </h2>
-                <p className="text-techstars-slate text-lg">
-                  {currentDay.date} de 2026
-                </p>
+              <div className="text-center mb-16 inline-block w-full">
+                <div className="bg-black text-white border-4 border-black shadow-[8px_8px_0_#39C463] px-8 py-4 inline-block transform rotate-[-1deg]">
+                   <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter drop-shadow-[2px_2px_0_#39C463]">
+                     {currentDay.emoji} {currentDay.dayName}
+                   </h2>
+                   <p className="text-techstars-green text-xl font-bold mt-2">
+                     {currentDay.date} de 2026
+                   </p>
+                </div>
               </div>
 
               {/* Timeline items */}
               <div className="relative">
-                {/* Vertical line */}
-                <div className="absolute left-[23px] md:left-[79px] top-0 bottom-0 w-0.5 bg-techstars-green/20" />
+                {/* Vertical line dotted */}
+                <div className="absolute left-[36px] md:left-[118px] top-4 bottom-0 w-0 border-l-4 border-black border-dashed" />
 
                 {currentDay.activities.map((activity, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.06 }}
-                    className="relative flex gap-6 md:gap-8 mb-6 last:mb-0"
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    className="relative flex flex-col md:flex-row md:gap-10 mb-10 md:mb-10 last:mb-0 group hover:z-10"
                   >
-                    {/* Time */}
-                    <div className="w-12 md:w-20 shrink-0 pt-6 text-right">
-                      <span className="text-techstars-green font-bold text-sm md:text-lg">
-                        {activity.time}
-                      </span>
-                    </div>
+                    <div className="flex md:contents w-full">
+                      {/* Time */}
+                      <div className="w-16 sm:w-20 md:w-28 shrink-0 pt-2 text-right">
+                         <span className="bg-black text-techstars-green font-black text-sm sm:text-lg md:text-xl px-1 sm:px-3 py-1 border-4 border-black inline-block transform rotate-[-2deg] shadow-[3px_3px_0_#000] md:shadow-[4px_4px_0_#000] group-hover:rotate-0 transition-transform">
+                           {activity.time}
+                         </span>
+                      </div>
 
-                    {/* Dot */}
-                    <div className="relative shrink-0 pt-6">
-                      <div className="w-3 h-3 rounded-full bg-techstars-green border-[3px] border-black ring-2 ring-techstars-green/30" />
+                      {/* Dot */}
+                      <div className="relative shrink-0 pt-3 z-10">
+                        <div className="w-6 h-6 rounded-full bg-yellow-400 border-4 border-black shadow-[2px_2px_0_#000] ml-[24px] sm:ml-[10px] md:ml-[1px]" />
+                      </div>
                     </div>
 
                     {/* Card */}
-                    <div className="flex-1 bg-zinc-900 border border-zinc-800 rounded-2xl p-6 hover:border-zinc-700 transition-colors">
-                      <h3 className="text-lg font-bold text-white mb-1">
+                    <div className="flex-1 min-w-0 bg-white border-4 border-black p-4 sm:p-6 shadow-[6px_6px_0_#000] transform transition-transform group-hover:-translate-y-1 group-hover:-translate-x-1 group-hover:shadow-[10px_10px_0_#000] mt-3 md:mt-0 ml-[36px] sm:ml-[44px] md:ml-0 z-10 relative">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-black text-black uppercase tracking-tight mb-2 break-words">
                         {activity.title}
                       </h3>
-                      <p className="text-techstars-slate leading-relaxed">
+                      <p className="text-black font-bold text-sm sm:text-base leading-relaxed break-words">
                         {activity.details}
                       </p>
                     </div>
@@ -207,17 +219,15 @@ export default function StartupWeekendAgendaPage() {
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: currentDay.activities.length * 0.06 }}
-                className="mt-10 bg-zinc-900/50 border border-techstars-green/20 rounded-xl p-5 flex items-start gap-4"
+                transition={{ duration: 0.4, delay: currentDay.activities.length * 0.05 }}
+                className="mt-16 bg-blue-600 border-4 border-black p-8 flex flex-col md:flex-row items-center md:items-start gap-6 shadow-[8px_8px_0_#000] transform rotate-1"
               >
-                <div className="w-10 h-10 bg-techstars-green/10 rounded-xl flex items-center justify-center shrink-0">
-                  <svg className="w-5 h-5 text-techstars-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+                <div className="w-16 h-16 bg-white border-4 border-black flex items-center justify-center shrink-0 shadow-[4px_4px_0_#000] rotate-[-5deg]">
+                  <span className="text-3xl">⏰</span>
                 </div>
-                <div>
-                  <p className="text-white font-bold">{currentDay.accessLimit}</p>
-                  <p className="text-techstars-slate text-sm mt-1">{currentDay.accessNote}</p>
+                <div className="text-center md:text-left">
+                  <p className="text-white text-2xl font-black uppercase drop-shadow-[2px_2px_0_#000]">{currentDay.accessLimit}</p>
+                  <p className="text-yellow-400 font-bold text-lg mt-2 uppercase">{currentDay.accessNote}</p>
                 </div>
               </motion.div>
             </motion.div>
@@ -226,37 +236,73 @@ export default function StartupWeekendAgendaPage() {
       </section>
 
       {/* Registration CTA */}
-      <section className="py-24 px-6 bg-gray-50 dark:bg-zinc-950">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6 tracking-tight">
-            Garanta sua vaga
+      <section className="py-24 px-6 bg-pink-500 relative overflow-hidden text-center z-10 border-t-8 border-t-yellow-400 border-b-4 border-b-black">
+         <div className="absolute inset-0 dot-pattern opacity-40 pointer-events-none" />
+         <div className="max-w-4xl mx-auto bg-white border-4 border-black p-12 shadow-[12px_12px_0_#000] relative z-10 transform -rotate-1">
+          <h2 className="text-5xl md:text-6xl font-black text-black uppercase mb-6 tracking-tighter">
+            GARANTA SUA VAGA
           </h2>
-          <p className="text-xl text-gray-600 dark:text-techstars-slate mb-10">
-            Inscrições abertas para o techstars_ Startup Weekend Anápolis
+          <p className="text-xl font-bold text-black mb-10 uppercase bg-techstars-green border-4 border-black inline-block px-4 py-1 rotate-1 shadow-[6px_6px_0_#000]">
+            INSCRIÇÕES ABERTAS
           </p>
+          <br/>
           <a
             href={eventConfig.registrationUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-10 py-5 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-xl rounded-lg shadow-lg shadow-techstars-green/20 transition-all duration-300 transform hover:scale-105"
+            className="inline-flex items-center px-10 py-5 bg-black text-techstars-green font-black text-2xl uppercase border-4 border-black shadow-[8px_8px_0_#39C463] transition-all transform hover:-translate-y-1 hover:shadow-[12px_12px_0_#39C463]"
           >
-            Fazer minha inscrição
+            FAZER MINHA INSCRIÇÃO
             <svg
-              className="w-5 h-5 ml-2"
+              className="w-6 h-6 ml-3"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M13 7l5 5m0 0l-5 5m5-5H6"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </a>
         </div>
       </section>
+
+      {/* Floating Mobile/Desktop Day Selector */}
+      <AnimatePresence>
+        {showFloatingNav && (
+          <motion.div
+            initial={{ y: 100, opacity: 0, x: "-50%" }}
+            animate={{ y: 0, opacity: 1, x: "-50%" }}
+            exit={{ y: 100, opacity: 0, x: "-50%" }}
+            className="fixed bottom-4 sm:bottom-8 left-1/2 z-50 w-[95%] sm:w-auto max-w-lg"
+          >
+            <div className="bg-black border-4 border-black p-1 sm:p-2 shadow-[8px_8px_0_#39C463] flex gap-1 sm:gap-2">
+              {scheduleData.map((day, index) => {
+                const isActive = activeDay === index;
+                const shortName = day.dayName.split('-')[0];
+                return (
+                  <button
+                    key={index}
+                    onClick={() => {
+                        setActiveDay(index);
+                        document.getElementById("timeline-section")?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className={`flex-1 flex flex-col items-center justify-center py-2 px-2 sm:px-6 transition-all border-4 ${
+                      isActive
+                        ? "bg-techstars-green border-black text-black shadow-[4px_4px_0_#fff] scale-105 z-10"
+                        : "bg-white border-transparent text-black hover:bg-gray-200"
+                    }`}
+                  >
+                    <span className="text-xl sm:text-2xl mb-1">{day.emoji}</span>
+                    <span className="font-black uppercase text-[10px] sm:text-xs tracking-tighter">
+                      <span className="hidden sm:inline">{day.dayName}</span>
+                      <span className="sm:hidden">{shortName}</span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <StartupWeekendFooter />
     </main>
