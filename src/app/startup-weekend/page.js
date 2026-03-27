@@ -14,8 +14,9 @@ import StartupWeekendTeamSection from "@/components/startup-weekend/StartupWeeke
 import StartupWeekendStatsSection from "@/components/startup-weekend/StartupWeekendStatsSection";
 import WhatsAppCTA from "@/components/startup-weekend/WhatsAppCTA";
 import ChallengeModal from "@/components/startup-weekend/ChallengeModal";
-
-import { Faq } from "@/components/Faq";
+import MarqueeDivider from "@/components/startup-weekend/MarqueeDivider";
+import BrutalistFaq from "@/components/startup-weekend/BrutalistFaq";
+import StartupWeekendPricingSection from "@/components/startup-weekend/StartupWeekendPricingSection";
 import StartupWeekendFooter from "@/components/startup-weekend/StartupWeekendFooter";
 import StartupWeekendSEO from "@/components/startup-weekend/StartupWeekendSEO";
 
@@ -55,35 +56,40 @@ export default function StartupWeekendPage() {
   };
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-[#f4f4f0] overflow-x-hidden">
       <StartupWeekendSEO />
       <StartupWeekendHero />
 
 
       <StartupWeekendInfoSection />
 
+      <StartupWeekendPricingSection />
+
+      <MarqueeDivider text="ESCOLHA SEU PAPEL • HACKEIE SEU LIMITE" bgColor="bg-blue-600" textColor="text-white" speed="25s" />
       <StartupWeekendProfilesSection />
 
-      <StartupWeekendTeasers />
-
+      <MarqueeDivider text="QUEM FAZ ACONTECER • DIRETO DA TRINCHEIRA" bgColor="bg-pink-500" textColor="text-white" speed="30s" />
+      {/* <StartupWeekendTeasers /> */}
       <StartupWeekendTeamSection />
 
+      <MarqueeDivider text="O MODELO FALIU • HORA DE AGIR" bgColor="bg-techstars-green" textColor="text-black" speed="22s" />
       <StartupWeekendStatsSection />
 
+      <MarqueeDivider text="ÚLTIMAS VAGAS • NÃO FIQUE DE FORA" bgColor="bg-yellow-400" textColor="text-black" speed="18s" />
       <WhatsAppCTA />
 
       {/* Agenda CTA */}
-      <section className="py-12 px-6 bg-zinc-950">
+      <section className="py-12 px-6 bg-[#f4f4f0]">
         <div className="max-w-5xl mx-auto">
-          <div className="bg-gradient-to-r from-zinc-900 to-black border border-white/5 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+          <div className="brutal-card p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex-1 text-center md:text-left space-y-4">
               <div className="flex items-center justify-center md:justify-start gap-3">
                 <span className="text-3xl">📅</span>
-                <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-black text-black uppercase tracking-tight">
                   Confira a programação completa do fim de semana
                 </h2>
               </div>
-              <p className="text-techstars-slate text-lg max-w-2xl leading-relaxed">
+              <p className="text-black font-medium text-lg max-w-2xl leading-relaxed">
                 3 dias intensos de imersão: pitches na sexta, construção no
                 sábado e demos no domingo. Veja horário por horário o que vai
                 acontecer.
@@ -92,7 +98,7 @@ export default function StartupWeekendPage() {
             <div className="shrink-0">
               <Link
                 href="/startup-weekend/agenda"
-                className="inline-flex items-center px-8 py-4 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-lg rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-techstars-green/20"
+                className="brutal-btn-white inline-flex items-center px-8 py-4 text-lg"
               >
                 Ver Agenda Completa
                 <svg
@@ -104,7 +110,7 @@ export default function StartupWeekendPage() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2.5}
+                    strokeWidth={3}
                     d="M14 5l7 7m0 0l-7 7m7-7H3"
                   />
                 </svg>
@@ -114,45 +120,21 @@ export default function StartupWeekendPage() {
         </div>
       </section>
 
-      <section className="py-24 px-6 bg-white dark:bg-black">
-        <div className="max-w-4xl mx-auto text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-4 tracking-tight">
-            Perguntas frequentes
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-techstars-slate mb-8">
-            Tire suas dúvidas sobre o Techstars Startup Weekend Anápolis.
-          </p>
-          <a
-            href={eventConfig.whatsappContact}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 bg-white/10 dark:bg-zinc-900 border border-black/10 dark:border-white/10 text-black dark:text-white font-bold rounded-lg hover:bg-gray-50 dark:hover:bg-zinc-800 transition-all shadow-sm"
-          >
-            <svg
-              className="w-5 h-5 mr-2 text-techstars-green"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.35-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
-            </svg>
-            Tirar dúvida no WhatsApp
-          </a>
-        </div>
-        <Faq />
-      </section>
+      {/* Brutalist Hard Questions FAQ */}
+      <BrutalistFaq />
 
       {/* Transparency CTA */}
-      <section className="py-12 px-6 bg-zinc-950">
+      <section className="py-12 px-6 bg-techstars-green brutal-border-y">
         <div className="max-w-5xl mx-auto">
-          <div className="bg-gradient-to-r from-zinc-900 to-black border border-white/5 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+          <div className="brutal-card bg-yellow-400 p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex-1 text-center md:text-left space-y-4">
               <div className="flex items-center justify-center md:justify-start gap-3">
                 <span className="text-3xl">💡</span>
-                <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-black text-black uppercase tracking-tight">
                   Saiba exatamente para onde vai cada real do seu ingresso
                 </h2>
               </div>
-              <p className="text-techstars-slate text-lg max-w-2xl leading-relaxed">
+              <p className="text-black font-semibold text-lg max-w-2xl leading-relaxed">
                 Somos 100% voluntários e não temos margem de lucro. Veja o
                 detalhamento completo dos custos do evento no nosso Portal da
                 Transparência.
@@ -161,7 +143,7 @@ export default function StartupWeekendPage() {
             <div className="shrink-0">
               <Link
                 href="/transparencia"
-                className="inline-flex items-center px-8 py-4 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-lg rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-techstars-green/20"
+                className="brutal-btn-white inline-flex items-center px-8 py-4 text-lg"
               >
                 Portal da Transparência
                 <svg
@@ -173,7 +155,7 @@ export default function StartupWeekendPage() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2.5}
+                    strokeWidth={3}
                     d="M14 5l7 7m0 0l-7 7m7-7H3"
                   />
                 </svg>
@@ -184,23 +166,23 @@ export default function StartupWeekendPage() {
       </section>
 
       {/* Registration CTA Section */}
-      <section className="py-24 px-6 bg-gray-50 dark:bg-zinc-950">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-6 tracking-tight">
+      <section className="py-24 px-6 bg-[#f4f4f0]">
+        <div className="max-w-4xl mx-auto text-center brutal-card p-12 bg-white">
+          <h2 className="text-4xl md:text-5xl font-black text-black uppercase mb-6 tracking-tight">
             Garanta sua vaga
           </h2>
-          <p className="text-xl text-gray-600 dark:text-techstars-slate mb-10">
+          <p className="text-xl font-bold text-black mb-10 uppercase">
             inscrições abertas
           </p>
           <a
             href={eventConfig.registrationUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-10 py-5 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-xl rounded-lg shadow-lg shadow-techstars-green/20 transition-all duration-300 transform hover:scale-105"
+            className="brutal-btn inline-flex items-center px-10 py-5 text-xl"
           >
             Fazer minha inscrição
             <svg
-              className="w-5 h-5 ml-2"
+              className="w-6 h-6 ml-2"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -208,16 +190,16 @@ export default function StartupWeekendPage() {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2}
+                strokeWidth={3}
                 d="M13 7l5 5m0 0l-5 5m5-5H6"
               />
             </svg>
           </a>
-          <p className="mt-4 text-sm text-gray-500 dark:text-techstars-slate">
+          <p className="mt-6 text-sm font-bold text-black">
             💡{" "}
             <Link
               href="/transparencia"
-              className="text-techstars-green hover:underline"
+              className="hover:underline text-techstars-green drop-shadow-[1px_1px_0px_#000]"
             >
               Veja para onde vai cada real do seu ingresso
             </Link>
@@ -226,136 +208,135 @@ export default function StartupWeekendPage() {
       </section>
 
       {/* Sponsors / Support - white logos on dark background */}
-      <section className="py-24 px-6 bg-zinc-900">
+      <section className="py-24 px-6 bg-black text-white brutal-border-y">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-black uppercase mb-6 tracking-tight">
               Apoio
             </h2>
-            <p className="text-xl text-zinc-400">
+            <p className="text-xl font-bold text-techstars-green">
               Empresas e instituições que apoiam o evento
             </p>
           </div>
 
           {/* Global Partners - bigger section */}
           <div className="mb-20">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-10 text-center tracking-tight">
+            <h3 className="text-2xl md:text-3xl font-black mb-10 text-center tracking-tight uppercase">
               Patrocinadores Globais
             </h3>
-            <div className="flex flex-wrap items-center justify-center gap-14 min-h-[140px]">
+            <div className="flex flex-wrap items-center justify-center gap-14 min-h-[140px] bg-white brutal-border brutal-shadow-sm p-8 rounded-xl">
               <a
                 href="https://www.hsbcinnovationbanking.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center"
+                className="flex items-center justify-center hover:-translate-y-1 transition-transform"
               >
                 <Image
                   src="/images/HSBC-InnovationBanking-Logo-MONO-REV.png"
                   alt="HSBC Innovation Banking"
                   width={180}
                   height={56}
-                  className="h-14 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                  className="h-14 w-auto object-contain brightness-0"
                 />
               </a>
               <a
                 href="https://brex.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center"
+                className="flex items-center justify-center hover:-translate-y-1 transition-transform"
               >
                 <Image
                   src="/images/Brex White Logo.png"
                   alt="Brex"
                   width={160}
                   height={56}
-                  className="h-14 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                  className="h-14 w-auto object-contain brightness-0"
                 />
               </a>
               <a
                 href="https://startup.google.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center"
+                className="flex items-center justify-center hover:-translate-y-1 transition-transform"
               >
                 <Image
                   src="/images/GoogleForStartups_Horizontal_W (1).png"
                   alt="Google for Startups"
                   width={200}
                   height={75}
-                  className="h-14 md:h-16 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                  className="h-14 md:h-16 w-auto object-contain brightness-0"
                 />
               </a>
               <a
                 href="https://mercury.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center"
+                className="flex items-center justify-center hover:-translate-y-1 transition-transform"
               >
                 <Image
                   src="/images/mercury-logo-wordmark-horizontal_mono white.png"
                   alt="Mercury"
                   width={160}
                   height={56}
-                  className="h-14 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                  className="h-14 w-auto object-contain brightness-0"
                 />
               </a>
               <a
                 href="https://www.deel.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center"
+                className="flex items-center justify-center hover:-translate-y-1 transition-transform"
               >
                 <Image
                   src="/images/perks-deel-450x200-white.png"
                   alt="Deel"
                   width={200}
                   height={88}
-                  className="h-14 md:h-16 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                  className="h-14 md:h-16 w-auto object-contain brightness-0"
                 />
               </a>
             </div>
           </div>
 
-          {/* Local Partners */}
-          <div className="w-full flex flex-col items-center">
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-8 text-center tracking-tight">
+            <div className="w-full flex flex-col items-center">
+            <h3 className="text-xl md:text-2xl font-black mb-8 text-center tracking-tight uppercase">
               Patrocinadores Locais
             </h3>
             <div className="flex justify-center w-full">
-              <div className="inline-flex items-center justify-center gap-12 min-h-[100px]">
+              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 min-h-[100px]">
                 <a
                   href="https://8020digital.io"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center"
+                  className="flex items-center justify-center bg-white rounded-xl p-4 brutal-border brutal-shadow-sm hover:-translate-y-1 transition-transform"
                 >
                   <Image
                     src="/images/8020digital.png"
                     alt="8020 digital"
                     width={360}
                     height={144}
-                    className="h-48 md:h-60 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                    className="h-16 md:h-20 w-auto object-contain brightness-0"
                   />
                 </a>
                 <a
                   href="https://flsoftwaresolutions.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center"
+                  className="flex items-center justify-center bg-white rounded-xl p-4 brutal-border brutal-shadow-sm hover:-translate-y-1 transition-transform"
                 >
                   <Image
                     src="/images/flsoftwaresolutions.png"
                     alt="F&L Solutions"
                     width={360}
                     height={144}
-                    className="h-56 md:h-72 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+                    className="h-16 md:h-20 w-auto object-contain brightness-0"
                   />
                 </a>
                 <a
                   href="https://www.portaldaindustria.com.br/senai/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center bg-white rounded-xl p-4"
+                  className="flex items-center justify-center bg-white rounded-xl p-4 brutal-border brutal-shadow-sm hover:-translate-y-1 transition-transform"
                 >
                   <Image
                     src="/images/SENAI_logo_2024.png"
@@ -372,17 +353,17 @@ export default function StartupWeekendPage() {
       </section>
 
       {/* Sponsorship Invitation CTA */}
-      <section className="py-12 px-6 bg-zinc-950">
+      <section className="py-12 px-6 bg-[#f4f4f0]">
         <div className="max-w-5xl mx-auto">
-          <div className="bg-gradient-to-r from-zinc-900 to-black border border-white/5 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+          <div className="brutal-card p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex-1 text-center md:text-left space-y-4">
               <div className="flex items-center justify-center md:justify-start gap-3">
-                <span className="text-3xl">🚀</span>
-                <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+                <span className="text-4xl drop-shadow-[2px_2px_0px_#000]">🚀</span>
+                <h2 className="text-2xl md:text-3xl font-black text-black uppercase tracking-tight">
                   Sua empresa também pode fazer parte dessa transformação!
                 </h2>
               </div>
-              <p className="text-techstars-slate text-lg max-w-2xl leading-relaxed">
+              <p className="text-black font-semibold text-lg max-w-2xl leading-relaxed">
                 Associe sua marca à inovação, apoie o ecossistema empreendedor
                 de Anápolis e conecte-se com talentos incríveis. Descubra as
                 vantagens de ser um parceiro oficial.
@@ -391,11 +372,11 @@ export default function StartupWeekendPage() {
             <div className="shrink-0">
               <Link
                 href="/startup-weekend/patrocinadores"
-                className="inline-flex items-center px-8 py-4 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-lg rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-techstars-green/20"
+                className="brutal-btn-yellow inline-flex items-center px-8 py-4 text-lg"
               >
                 Ver Cotas de Patrocínio
                 <svg
-                  className="w-5 h-5 ml-2"
+                  className="w-5 h-5 ml-2 border-black"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -403,7 +384,7 @@ export default function StartupWeekendPage() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2.5}
+                    strokeWidth={3}
                     d="M14 5l7 7m0 0l-7 7m7-7H3"
                   />
                 </svg>
@@ -414,26 +395,24 @@ export default function StartupWeekendPage() {
       </section>
 
       {/* Bolsa 100% CTA – A/B Test */}
-      <section ref={bolsaSectionRef} id="bolsa" className="py-12 px-6 bg-zinc-950">
+      <section ref={bolsaSectionRef} id="bolsa" className="py-12 px-6 bg-[#f4f4f0]">
         <div className="max-w-5xl mx-auto">
-          <div className="bg-gradient-to-br from-zinc-900 via-zinc-950 to-black border border-red-500/10 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
-            {/* Subtle fire glow */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-500/40 to-transparent" />
+          <div className="brutal-card bg-techstars-green p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
             <div className="flex-1 text-center md:text-left space-y-4">
               <div className="flex items-start justify-center md:justify-start gap-3">
-                <span className="text-3xl mt-1">🔥</span>
-                <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">
+                <span className="text-4xl mt-1 drop-shadow-[2px_2px_0px_#000]">🔥</span>
+                <h2 className="text-3xl md:text-4xl font-black text-black uppercase tracking-tight leading-snug">
                   {variant?.ctaTitle || "Bolsa 100% para quem tem coragem."}
                 </h2>
               </div>
-              <p className="text-techstars-slate text-lg max-w-2xl leading-relaxed">
+              <p className="text-black font-bold text-xl max-w-2xl leading-relaxed">
                 {variant?.ctaSubtitle || "Bolsa 100%. Sem custo. Sem desculpa."}
               </p>
             </div>
             <div className="shrink-0">
               <button
                 onClick={handleCtaClick}
-                className="inline-flex items-center px-8 py-4 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-lg rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-techstars-green/20"
+                className="brutal-btn-white inline-flex items-center px-8 py-4 text-lg"
               >
                 Eu tenho coragem
                 <svg
@@ -445,7 +424,7 @@ export default function StartupWeekendPage() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2.5}
+                    strokeWidth={3}
                     d="M14 5l7 7m0 0l-7 7m7-7H3"
                   />
                 </svg>

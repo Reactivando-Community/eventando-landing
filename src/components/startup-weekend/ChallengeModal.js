@@ -40,20 +40,20 @@ export default function ChallengeModal({ isOpen, onClose, variant }) {
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-lg bg-zinc-950 border border-white/10 rounded-3xl p-8 md:p-10 shadow-2xl shadow-black/50"
+            className="relative w-full max-w-lg brutal-card p-8 md:p-10"
           >
             {/* Fire accent line */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-orange-500 via-red-500 to-orange-500 rounded-full" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-2 bg-yellow-400 brutal-border-b rounded-b-xl" />
 
             {/* Icon */}
             <div className="flex justify-center mb-6 mt-2">
-              <div className="w-16 h-16 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-center justify-center">
+              <div className="w-16 h-16 bg-yellow-400 brutal-border brutal-shadow-sm rounded-2xl flex items-center justify-center">
                 <span className="text-3xl">🔥</span>
               </div>
             </div>
 
             {/* Challenge text */}
-            <p className="text-white text-xl md:text-2xl font-bold text-center leading-snug mb-8 tracking-tight">
+            <p className="text-black text-xl md:text-2xl font-black uppercase text-center leading-snug mb-8 tracking-tight drop-shadow-[1px_1px_0px_#fff]">
               {variant.modalChallenge}
             </p>
 
@@ -61,13 +61,13 @@ export default function ChallengeModal({ isOpen, onClose, variant }) {
             <div className="flex flex-col gap-3">
               <button
                 onClick={handleAccept}
-                className="w-full px-8 py-4 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-lg rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg shadow-techstars-green/20"
+                className="brutal-btn w-full px-8 py-4 text-lg"
               >
                 Eu aceito o desafio →
               </button>
               <button
                 onClick={handleDecline}
-                className="w-full px-8 py-3 bg-transparent border border-white/10 text-zinc-500 hover:text-zinc-300 font-medium text-sm rounded-xl transition-all duration-300 hover:border-white/20"
+                className="brutal-btn-white w-full px-8 py-3 text-sm mt-2"
               >
                 Não tenho coragem
               </button>

@@ -15,12 +15,12 @@ function TeaserGrid({ count }) {
         <motion.div
           key={i}
           whileHover={{ scale: 1.05 }}
-          className="group relative flex flex-col items-center p-6 bg-white/5 dark:bg-zinc-900/50 rounded-2xl border border-black/5 dark:border-zinc-800 transition-all duration-300 hover:border-techstars-green/50 hover:shadow-[0_0_30px_rgba(57,196,99,0.1)]"
+          className="group relative flex flex-col items-center p-6 bg-white brutal-card hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[10px_10px_0px_#000] transition-all"
         >
           <div className="relative w-full aspect-square mb-4 flex items-center justify-center overflow-hidden">
             {/* Silhouette Icon */}
             <svg
-              className="w-3/4 h-3/4 text-gray-200 dark:text-zinc-800 transition-colors duration-300 group-hover:text-techstars-green/20"
+              className="w-3/4 h-3/4 text-gray-200 transition-colors duration-300 group-hover:text-techstars-green"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -35,7 +35,7 @@ function TeaserGrid({ count }) {
             </div>
           </div>
 
-          <span className="text-[10px] font-bold text-gray-400 dark:text-zinc-600 uppercase tracking-widest text-center">
+          <span className="text-[10px] font-black text-black uppercase tracking-widest text-center mt-4">
             Revelação em breve...
           </span>
         </motion.div>
@@ -49,9 +49,9 @@ export default function StartupWeekendTeasers() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="bg-white dark:bg-zinc-950 overflow-hidden">
+    <section ref={ref} className="bg-[#f4f4f0] overflow-hidden brutal-border-y">
       {/* Mentors Teaser */}
-      <div className="py-24 px-6 border-b border-gray-100 dark:border-zinc-900 border-dashed">
+      <div className="py-24 px-6 border-b-4 border-black">
         <div className="max-w-6xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -59,11 +59,11 @@ export default function StartupWeekendTeasers() {
             transition={{ duration: 0.8 }}
             className="space-y-4 mb-12"
           >
-            <h2 className="text-3xl md:text-5xl font-bold text-black dark:text-white tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-black text-black uppercase tracking-tight">
               Quem vai guiar a sua jornada?{" "}
-              <span className="text-techstars-green">(Em breve)</span>
+              <span className="text-techstars-green drop-shadow-[2px_2px_0px_#000]">(Em breve)</span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-techstars-slate">
+            <p className="text-xl font-bold text-black border-4 border-black bg-white inline-block px-6 py-2 shadow-[4px_4px_0px_#000]">
               Grandes nomes do mercado estão chegando para acelerar a sua ideia.
             </p>
           </motion.div>
@@ -73,7 +73,7 @@ export default function StartupWeekendTeasers() {
           <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/startup-weekend/mentores"
-              className="inline-flex items-center px-8 py-3 bg-black dark:bg-white text-white dark:text-black font-bold rounded-lg hover:scale-105 transition-transform"
+              className="brutal-btn-white inline-flex items-center px-8 py-4 text-lg"
             >
               Ver todos os Mentores
             </Link>
@@ -81,7 +81,7 @@ export default function StartupWeekendTeasers() {
               href={eventConfig.vipWhatsAppGroup}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-3 bg-techstars-green hover:bg-[#45d171] text-black font-bold rounded-lg hover:scale-105 transition-transform"
+              className="brutal-btn inline-flex items-center px-8 py-4 text-lg"
             >
               <svg
                 className="w-5 h-5 mr-2"
@@ -97,7 +97,7 @@ export default function StartupWeekendTeasers() {
       </div>
 
       {/* Judges Teaser */}
-      <div className="py-24 px-6 bg-gray-50 dark:bg-zinc-900/30">
+      <div className="py-24 px-6 bg-techstars-green">
         <div className="max-w-6xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -105,10 +105,10 @@ export default function StartupWeekendTeasers() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="space-y-4 mb-12"
           >
-            <h2 className="text-3xl md:text-5xl font-bold text-black dark:text-white tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-black uppercase text-black tracking-tight drop-shadow-[2px_2px_0px_#fff]">
               A Banca Avaliadora
             </h2>
-            <p className="text-xl text-gray-600 dark:text-techstars-slate">
+            <p className="text-xl font-bold text-black border-4 border-black bg-white inline-block px-6 py-2 shadow-[4px_4px_0px_#000]">
               Investidores e líderes do ecossistema que vão avaliar o seu pitch
               no domingo.
             </p>
@@ -119,7 +119,7 @@ export default function StartupWeekendTeasers() {
           <div className="mt-12">
             <Link
               href="/startup-weekend/jurados"
-              className="inline-flex items-center px-8 py-3 bg-white dark:bg-zinc-800 text-black dark:text-white border border-black/10 dark:border-white/10 font-bold rounded-lg hover:bg-gray-50 dark:hover:bg-zinc-700 hover:scale-105 transition-all"
+              className="brutal-btn-white inline-flex items-center px-8 py-4 text-lg"
             >
               Conhecer os Jurados
             </Link>

@@ -7,7 +7,7 @@ export default function ComingSoonSection({
   title,
   subtitle,
   pageTitle,
-  bgClass = "bg-white dark:bg-black",
+  bgClass = "bg-[#f4f4f0]",
 }) {
   return (
     <section
@@ -21,15 +21,15 @@ export default function ComingSoonSection({
           className="space-y-10"
         >
           <div className="space-y-4">
-            <h1 className="text-sm font-bold text-techstars-green uppercase tracking-[0.2em]">
+            <h1 className="text-sm font-black text-techstars-green bg-black inline-block px-4 py-2 uppercase tracking-[0.2em] transform -rotate-1 brutal-border">
               {pageTitle}
             </h1>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-black dark:text-white tracking-tight leading-tight">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-black uppercase tracking-tight leading-tight drop-shadow-[2px_2px_0px_#39C463]">
               {title}
             </h2>
           </div>
 
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-techstars-slate max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl font-bold text-black max-w-2xl mx-auto leading-relaxed border-4 border-black bg-white inline-block px-6 py-4 brutal-shadow-sm rotate-1">
             {subtitle}
           </p>
 
@@ -38,12 +38,12 @@ export default function ComingSoonSection({
               <motion.div
                 key={i}
                 whileHover={{ scale: 1.05 }}
-                className="group relative flex flex-col items-center p-6 bg-gray-50 dark:bg-zinc-900/50 rounded-2xl border border-gray-100 dark:border-zinc-800 transition-all duration-300 hover:border-techstars-green/50 hover:shadow-[0_0_30px_rgba(57,196,99,0.1)]"
+                className="group relative flex flex-col items-center p-6 bg-white brutal-card hover:-translate-y-2 hover:-translate-x-2 transition-transform hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]"
               >
                 <div className="relative w-full aspect-square mb-4 flex items-center justify-center overflow-hidden">
                   {/* Silhouette Icon */}
                   <svg
-                    className="w-3/4 h-3/4 text-gray-200 dark:text-zinc-800 transition-colors duration-300 group-hover:text-techstars-green/20"
+                    className="w-3/4 h-3/4 text-gray-200 transition-colors duration-300 group-hover:text-techstars-green"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -58,7 +58,7 @@ export default function ComingSoonSection({
                   </div>
                 </div>
 
-                <span className="text-xs font-bold text-gray-400 dark:text-zinc-600 uppercase tracking-widest">
+                <span className="text-xs font-black text-black uppercase tracking-widest mt-4">
                   Revelação em breve...
                 </span>
               </motion.div>
@@ -71,11 +71,11 @@ export default function ComingSoonSection({
                 href={eventConfig.registrationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-8 py-4 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-lg rounded-xl shadow-lg shadow-techstars-green/20 transition-all duration-300"
+                className="brutal-btn flex items-center justify-center px-8 py-4 text-lg w-full"
               >
                 Garantir minha vaga
                 <svg
-                  className="w-5 h-5 ml-2"
+                  className="w-6 h-6 ml-2"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -83,7 +83,7 @@ export default function ComingSoonSection({
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
+                    strokeWidth={3}
                     d="M13 7l5 5m0 0l-5 5m5-5H6"
                   />
                 </svg>
@@ -95,7 +95,7 @@ export default function ComingSoonSection({
                 href={eventConfig.vipWhatsAppGroup}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-8 py-4 bg-white/5 backdrop-blur-sm border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 text-black dark:text-white font-bold text-lg rounded-xl transition-all duration-300"
+                className="brutal-btn-white flex items-center justify-center px-8 py-4 text-lg w-full"
               >
                 <svg
                   className="w-6 h-6 mr-2"

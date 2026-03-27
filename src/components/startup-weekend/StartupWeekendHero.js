@@ -4,119 +4,153 @@ import { eventConfig } from "@/data/startup-weekend-event";
 
 export default function StartupWeekendHero() {
   return (
-    <>
-      <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden z-0">
-        {/* Background - Techstars clean dark */}
-        <div className="absolute inset-0 bg-black noise-texture z-0" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-techstars-green/10 via-transparent to-transparent z-0" />
+    <section className="relative min-h-[100vh] flex flex-col bg-[#f4f4f0] overflow-hidden">
+      {/* Top Warning Marquee */}
+      <div className="w-full bg-black border-y-4 border-black py-2 overflow-hidden flex whitespace-nowrap z-20 relative brutal-shadow-sm">
+        <div className="animate-marquee inline-flex items-center font-black text-white uppercase text-sm tracking-widest">
+          {Array(6).fill("⚠️ ATENÇÃO: INGRESSOS DO LOTE 1 SE ESGOTANDO - GARANTA SUA VAGA ANTES DA VIRADA DE PREÇO • ").join("")}
+        </div>
+      </div>
 
-        {/* Content */}
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto flex-1 flex items-center justify-center">
-          <div className="space-y-8">
+      {/* Container - Split Layout */}
+      <div className="flex flex-col lg:flex-row flex-1 relative z-10">
+        
+        {/* Left Panel */}
+        <div className="w-full lg:w-1/2 flex flex-col justify-center px-6 md:px-12 lg:px-16 py-16 lg:py-24 border-b-4 lg:border-b-0 lg:border-r-4 border-black relative">
+          <div className="absolute inset-0 dot-pattern opacity-50 z-0" />
+          
+          <div className="relative z-10 max-w-xl mx-auto lg:mx-0">
             {/* Powered by Techstars badge */}
-            <div className="flex justify-center">
-              <span className="inline-flex items-center px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-white text-xs sm:text-sm font-medium">
-                <span className="w-2 h-2 bg-techstars-green rounded-full mr-2 animate-pulse shadow-[0_0_10px_#39C463]" />
+            <div className="mb-6">
+              <span className="inline-flex items-center px-4 py-2 bg-black text-white text-xs sm:text-sm font-black uppercase brutal-shadow-sm brutal-border hover:shadow-[4px_4px_0px_#39C463] transition-all">
+                <span className="w-3 h-3 bg-techstars-green border-2 border-black rounded-full mr-2" />
                 Powered by Techstars
               </span>
             </div>
 
-            {/* Logo - techstars_ Startup Weekend */}
-            <div className="flex flex-col items-center">
-              <div className="relative h-44 md:h-72 w-full max-w-xl flex items-center justify-center overflow-hidden mx-auto">
-                <Image
-                  src="/images/logo-dark.png"
-                  alt="techstars_ Startup Weekend Anápolis"
-                  width={800}
-                  height={800}
-                  className="w-full h-auto min-w-full"
-                  priority
-                />
-              </div>
-            </div>
+            {/* Logo text - Event Name */}
+            <h1 className="text-6xl md:text-7xl lg:text-[5.5rem] font-black text-black uppercase leading-[0.85] tracking-tighter mb-8 drop-shadow-[4px_4px_0px_#39C463]">
+              Startup <br /> Weekend <br /> <span className="text-techstars-green bg-black px-3 mt-4 inline-block transform -rotate-2">Anápolis</span>
+            </h1>
 
-            {/* Tagline - Energetic, action-oriented (Techstars writing style) */}
-            <p className="text-xl md:text-2xl text-techstars-slate max-w-2xl mx-auto leading-relaxed">
-              {eventConfig.tagline}
-              <br />
-              <br />
-              <span className="text-white font-bold">
-                {eventConfig.dateFull}
-              </span>
-              <br />
-              <span className="text-lg text-techstars-slate opacity-80">
-                {eventConfig.venue.name} — {eventConfig.venue.address}
-              </span>
+            {/* Tagline */}
+            <p className="text-lg lg:text-xl text-black font-bold leading-relaxed mb-8 max-w-md bg-white p-4 brutal-border brutal-shadow-sm rotate-1">
+              Chega de só ter ideias. Entregamos ferramentas, contexto e mentores de peso. Valide seu projeto, nós ajudamos a acelerar. Experiencie a vida de startup em 54h.
             </p>
 
-            {/* CTA - Register now */}
-            <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 items-start">
               <a
                 href={eventConfig.registrationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center px-8 py-4 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-lg rounded-lg shadow-lg shadow-techstars-green/20 transition-all duration-300 transform hover:scale-105"
+                className="brutal-btn flex items-center justify-center px-8 py-4 text-lg w-full sm:w-auto"
               >
-                Fazer minha inscrição
+                Garantir minha vaga
                 <svg
                   className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </a>
-
-              <a
-                href={eventConfig.vipWhatsAppGroup}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white font-semibold text-lg rounded-lg transition-all duration-300"
-              >
-                Acompanhar novidades
-                <svg
-                  className="w-5 h-5 ml-2"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.35-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
-                </svg>
-              </a>
-            </div>
-
-            {/* Transparency link */}
-            <div className="text-sm text-techstars-slate">
-              Saiba para onde vai cada real →{" "}
               <Link
                 href="/transparencia"
-                className="text-techstars-green hover:underline"
+                className="brutal-btn-white flex items-center justify-center px-8 py-4 text-lg w-full sm:w-auto"
               >
-                Portal da Transparência
+                Ler Manifesto →
               </Link>
-            </div>
-
-            {/* Stats preview */}
-            <div className="flex flex-wrap justify-center gap-8 pt-12">
-              {eventConfig.stats.slice(0, 3).map((stat, i) => (
-                <div key={i} className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-white">
-                    {stat.number}
-                  </div>
-                  <div className="text-techstars-slate text-sm md:text-base">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
-      </section>
-    </>
+
+        {/* Right Panel */}
+        <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-12 relative bg-[#f4f4f0]">
+          {/* Subtle noise and dots */}
+          <div className="absolute inset-0 dot-pattern opacity-50 z-0" />
+          
+          <div className="relative z-10 w-full max-w-md">
+            {/* The Image Card Background Decorations */}
+            <div className="absolute inset-0 bg-techstars-green brutal-border rotate-[-6deg] translate-y-4 -translate-x-4 max-w-md" />
+            <div className="absolute inset-0 bg-yellow-400 brutal-border rotate-[3deg] translate-y-2 translate-x-2 max-w-md" />
+            <div className="absolute inset-0 bg-pink-500 brutal-border rotate-[-2deg] translate-y-6 translate-x-3 max-w-md" />
+            
+            {/* Image Card */}
+            <div className="relative bg-white brutal-border brutal-shadow-sm p-4 rotate-0 max-w-md w-full">
+              {/* Fake Window Header */}
+              <div className="flex items-center justify-between border-b-4 border-black pb-3 mb-4">
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 bg-black rounded-full" />
+                  <span className="font-black text-black text-xs uppercase tracking-widest leading-none mt-1">Status de Vagas</span>
+                </div>
+                <div className="bg-black text-techstars-green px-3 py-1 text-[10px] font-black uppercase brutal-shadow-sm">
+                  Lote 1
+                </div>
+              </div>
+
+              {/* Photo placeholder */}
+              <div className="relative aspect-[4/5] w-full brutal-border mb-4 bg-gray-200 overflow-hidden group">
+                {/* Note: In a real scenario you would replace this src with your actual image path */}
+                <Image
+                  src="/images/logo-dark.png" 
+                  alt="Techstars Startup Weekend"
+                  fill
+                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                />
+                
+                {/* Centered logo over image - matching user's reference inside the card */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-80 mix-blend-multiply pointer-events-none">
+                   <div className="bg-yellow-400 font-black text-4xl p-2 brutal-border transform -rotate-6">TSWA</div>
+                </div>
+              </div>
+
+              {/* Title / Description under photo inside card */}
+              <div className="flex items-center justify-between brutal-border p-3 mb-4 bg-white">
+                <span className="font-black text-black uppercase text-sm -mb-1">Techstars SWA</span>
+                <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center brutal-border text-xs font-bold">✓</span>
+              </div>
+
+              {/* Grid with progress bar info -> scarcity */}
+              <div className="flex gap-4">
+                <div className="flex-1 bg-black text-white p-3 brutal-border flex flex-col justify-center items-center">
+                  <span className="text-[10px] uppercase font-bold text-gray-400">Preenchidas</span>
+                  <span className="text-2xl font-black text-yellow-400">40</span>
+                </div>
+                <div className="flex-1 bg-techstars-green text-black p-3 brutal-border flex flex-col justify-center items-center">
+                  <span className="text-[10px] uppercase font-bold">Lotação Máx</span>
+                  <span className="text-2xl font-black">50</span>
+                </div>
+              </div>
+
+              <div className="mt-4">
+                 <div className="w-full bg-white brutal-border h-5 relative overflow-hidden">
+                   <div className="absolute top-0 left-0 h-full bg-yellow-400 border-r-4 border-black" style={{ width: '80%' }} />
+                 </div>
+                 <p className="text-center text-[11px] font-black uppercase mt-3 tracking-wider text-red-600">
+                   Corra, restam apenas 10 vagas!
+                 </p>
+              </div>
+
+            </div>
+
+             {/* Little round badge like 'ZERO OPS' in target */}
+             <div className="absolute top-1/2 -left-6 lg:-left-16 transform -translate-y-1/2 w-28 h-28 bg-blue-600 rounded-full brutal-border brutal-shadow-sm flex items-center justify-center rotate-[-15deg] z-20 shadow-[6px_6px_0px_#000]">
+               <span className="text-white font-black uppercase text-center text-lg leading-tight drop-shadow-[2px_2px_0px_#000]">
+                 80%<br/>Lotado
+               </span>
+             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Marquee Ticker */}
+      <div className="w-full bg-yellow-400 border-t-4 border-black py-3 overflow-hidden flex whitespace-nowrap z-20 relative">
+        <div className="animate-marquee inline-block font-black text-black uppercase text-xl md:text-2xl tracking-widest">
+          {Array(4).fill("STARTUP WEEKEND • 54 HORAS • INOVAÇÃO • NETWORKING • MENTORIAS • PITCH • VALIDAÇÃO • ZERO DESCULPAS • ").join("")}
+        </div>
+      </div>
+    </section>
   );
 }
