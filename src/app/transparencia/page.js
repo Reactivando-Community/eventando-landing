@@ -1,8 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { eventConfig } from "@/data/startup-weekend-event";
 import StartupWeekendFooter from "@/components/startup-weekend/StartupWeekendFooter";
+import StartupWeekendSEO from "@/components/startup-weekend/StartupWeekendSEO";
 import Image from "next/image";
 import Link from "next/link";
 import orcamento from "@/data/orcamento.json";
@@ -50,21 +52,9 @@ const variableGroups = groupVariableItems();
 
 // Icons for fixed costs
 const fixedCostIcons = {
-  Hospedagem: (
-    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-    </svg>
-  ),
-  Backdrop: (
-    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-    </svg>
-  ),
-  Passagens: (
-    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-    </svg>
-  ),
+  Hospedagem: "🏨",
+  Backdrop: "📸",
+  Passagens: "✈️",
 };
 
 const getFixedCostIcon = (name) => {
@@ -82,21 +72,23 @@ const groupIcons = {
   "Materiais": "📦",
 };
 
-// Sponsor tier visual config — ordered by hierarchy (highest first)
+// Sponsor tier visual config
 const tierConfig = {
-  Prata: {
-    gradient: "from-slate-400 to-slate-200",
-    badge: "bg-slate-300/20 text-slate-300",
+  Platina: {
+    bg: "bg-blue-600",
     cols: "grid-cols-1",
   },
-  Bronze: {
-    gradient: "from-amber-700 to-amber-500",
-    badge: "bg-amber-700/20 text-amber-600",
+  Prata: {
+    bg: "bg-gray-300",
     cols: "grid-cols-1 md:grid-cols-2",
+  },
+  Bronze: {
+    bg: "bg-orange-400",
+    cols: "grid-cols-1 md:grid-cols-3",
   },
 };
 
-const tierOrder = ["Prata", "Bronze"];
+const tierOrder = ["Platina", "Prata", "Bronze"];
 const sponsorsByTier = tierOrder
   .map((tier) => ({
     tier,
@@ -106,272 +98,318 @@ const sponsorsByTier = tierOrder
   .filter((g) => g.items.length > 0);
 
 export default function TransparenciaPage() {
+  const [openGroups, setOpenGroups] = useState({
+    "Sexta-feira": true,
+  });
+
+  const toggleGroup = (label) => {
+    setOpenGroups((prev) => ({ ...prev, [label]: !prev[label] }));
+  };
+
   return (
-    <main className="min-h-screen bg-white dark:bg-black font-sans">
+    <main className="min-h-screen bg-[#f4f4f0] font-sans selection:bg-techstars-green selection:text-black relative overflow-x-hidden">
+      <StartupWeekendSEO />
+
       {/* Nav */}
-      <nav className="py-6 px-6 border-b border-gray-100 dark:border-zinc-900 bg-white/80 dark:bg-black/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <Link
-            href="/startup-weekend"
-            className="text-xl font-black text-black dark:text-white"
-          >
-            techstars_ Startup Weekend Anápolis
+      <nav className="py-4 px-4 sm:px-6 border-b-4 border-black bg-white sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto flex flex-wrap justify-center sm:justify-between items-center gap-3">
+          <Link href="/startup-weekend" className="text-lg sm:text-xl md:text-2xl font-black text-black uppercase tracking-tighter hover:text-techstars-green transition-colors text-center">
+            techstars_ Startup Weekend
           </Link>
-          <Link
-            href="/startup-weekend"
-            className="text-techstars-green hover:underline font-bold"
-          >
-            ← Voltar
+          <Link href="/startup-weekend" className="text-black font-black uppercase hover:bg-black hover:text-white px-3 py-1 sm:px-4 sm:py-2 border-4 border-black shadow-[4px_4px_0_#39C463] transition-all text-xs sm:text-sm md:text-base whitespace-nowrap">
+            &larr; VOLTAR
           </Link>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="relative py-24 px-6 overflow-hidden bg-white dark:bg-black">
-        <div className="absolute inset-0 bg-gradient-to-br from-techstars-green/5 to-transparent dark:from-techstars-green/10" />
-        <div className="max-w-6xl mx-auto relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            <h1 className="text-5xl md:text-7xl font-black text-black dark:text-white tracking-tight leading-tight max-w-5xl mx-auto">
-              Portal da{" "}
-              <span className="text-techstars-green">Transparência</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-techstars-slate max-w-3xl mx-auto leading-relaxed">
-              O techstars_ Startup Weekend Anápolis é organizado 100% por voluntários. Não
-              existe margem de lucro — cada real do ingresso é investido
-              diretamente na experiência do evento.
-            </p>
-          </motion.div>
+      <section className="relative py-24 px-6 bg-pink-500 border-b-4 border-black overflow-hidden shadow-[0_12px_0_rgba(0,0,0,1)] z-10">
+        <div className="absolute inset-0 dot-pattern opacity-40 pointer-events-none" />
+        <div className="max-w-6xl mx-auto relative z-10 text-center flex flex-col items-center">
+          <div className="bg-black text-white text-sm font-black uppercase tracking-widest px-4 py-1 border-4 border-white inline-block mb-6 shadow-[4px_4px_0_#000] rotate-[-2deg]">
+             A VERDADE NUA E CRUA
+          </div>
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-black uppercase tracking-tighter leading-[0.85] mb-6 drop-shadow-[4px_4px_0_#fff]">
+            PORTAL DA <br/>
+            <span className="bg-black text-white px-4 inline-block transform rotate-1 mt-2">TRANSPARÊNCIA</span>
+          </h1>
+          <p className="text-xl md:text-2xl font-bold text-black border-4 border-black bg-white px-6 py-4 shadow-[8px_8px_0_#000] max-w-3xl transform -rotate-1 mt-4 hover:-translate-y-1 hover:shadow-[12px_12px_0_#000] transition-all">
+            O evento é 100% organizado por voluntários. NENHUM centavo de lucro.<br/>
+            <span className="text-blue-600 block mt-2">{"//"} Veja exatamente onde seu dinheiro é investido.</span>
+          </p>
         </div>
       </section>
 
       {/* Overview Cards */}
-      <section className="py-24 px-6 bg-zinc-900 border-y border-zinc-800">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <section className="py-24 px-6 bg-black border-b-4 border-black relative z-0">
+        <div className="absolute inset-0 dot-pattern opacity-20 pointer-events-none" />
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {[
               {
                 value: formatCurrency(totalEventCost),
                 label: "Custo Total do Evento",
                 description: "Soma de todos os custos fixos e variáveis para realizar o evento.",
+                color: "bg-yellow-400"
               },
               {
                 value: `~${formatCurrency(costPerParticipant)}`,
                 label: "Custo por Inscrito",
-                description: "Valor necessário por participante para cobrir 100% dos custos.",
+                description: "Valor mínimo necessário por participante para cobrir 100% dos custos.",
+                color: "bg-blue-600"
               },
               {
-                value: `${participants} participantes`,
-                label: `+ ${fixedStaff} organização + ${mentors} mentores`,
-                description: `${totalHeadcount} pessoas no total que precisam ser alimentadas e atendidas durante o evento.`,
+                value: `${participants} Participantes`,
+                label: `+ ${fixedStaff} org + ${mentors} mentores`,
+                description: `${totalHeadcount} pessoas no total que precisam ser alimentadas e atendidas.`,
+                color: "bg-techstars-green"
               },
             ].map((card, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="text-center p-8 bg-zinc-800/50 rounded-3xl border border-zinc-700/50"
-              >
-                <div className="text-4xl md:text-5xl font-black text-techstars-green mb-4">
+              <div key={i} className="bg-white border-4 border-black p-8 shadow-[8px_8px_0_#39C463] relative hover:-translate-y-2 hover:-translate-x-2 transition-transform hover:shadow-[12px_12px_0_#39C463]">
+                <div className={`absolute -top-6 -right-6 w-12 h-12 border-4 border-black ${card.color} rounded-full z-0 flex items-center justify-center font-black text-xl`}>{i+1}</div>
+                <div className="text-4xl md:text-5xl font-black text-black mb-4 relative z-10 drop-shadow-[2px_2px_0_#39C463]">
                   {card.value}
                 </div>
-                <div className="text-xl font-bold text-white mb-4">
+                <h3 className="text-xl font-black text-black uppercase mb-4 tracking-tight border-b-4 border-black pb-2 inline-block">
                   {card.label}
-                </div>
-                <p className="text-zinc-400 leading-relaxed">
+                </h3>
+                <p className="text-black font-bold text-base leading-relaxed break-words">
                   {card.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Fixed Costs */}
-      <section className="py-24 px-6 bg-white dark:bg-black">
+      {/* Ticket Justification / Breakdown */}
+      <section className="py-24 px-6 bg-[#f4f4f0] border-b-4 border-black border-t-8 border-t-yellow-400">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-black dark:text-white mb-6 tracking-tight">
-              Custos Fixos
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-zinc-500 max-w-2xl mx-auto">
-              Despesas que independem do número de participantes
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {fixedItems.map((item, i) => (
-              <motion.div
-                key={item.id}
-                whileHover={{ y: -10 }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-10 bg-gray-50 dark:bg-zinc-900 rounded-3xl border border-gray-100 dark:border-zinc-800 flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all"
-              >
-                <div className="w-16 h-16 bg-techstars-green/10 text-techstars-green rounded-2xl flex items-center justify-center mb-6">
-                  {getFixedCostIcon(item.name)}
-                </div>
-                <h3 className="text-xl font-bold text-black dark:text-white mb-4">
-                  {item.name}
-                </h3>
-                <div className="text-3xl font-black text-techstars-green">
-                  {formatCurrency(item.value)}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          {/* Summary bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-12 p-6 bg-techstars-green/10 border border-techstars-green/20 rounded-2xl flex items-center justify-between"
-          >
-            <span className="text-lg font-bold text-black dark:text-white">
-              Total Custos Fixos
-            </span>
-            <span className="text-2xl font-black text-techstars-green">
-              {formatCurrency(totalFixed)}
-            </span>
-          </motion.div>
-        </div>
-      </section>
+          <div className="bg-white border-4 border-black shadow-[12px_12px_0_#000] overflow-hidden flex flex-col md:flex-row transform rotate-1 hover:rotate-0 transition-transform">
+            {/* Left: Big number */}
+            <div className="w-full md:w-1/2 p-8 md:p-16 border-b-4 md:border-b-0 md:border-r-4 border-black flex flex-col justify-center bg-yellow-400">
+              <div className="text-6xl md:text-7xl lg:text-8xl font-black text-black uppercase tracking-tighter mb-4 drop-shadow-[4px_4px_0_#fff]">
+                ~{formatCurrency(costPerParticipant)}
+              </div>
+              <div className="flex items-start">
+                  <h3 className="text-3xl font-black text-black uppercase tracking-tighter mb-6 bg-white border-4 border-black inline-block px-4 py-2 transform -rotate-1 shadow-[4px_4px_0_#000]">
+                    CUSTO POR INSCRITO
+                  </h3>
+              </div>
+              <p className="text-black font-bold text-lg leading-relaxed">
+                Este é o valor mínimo por participante para cobrir TODOS os custos operacionais (
+                <span className="bg-black text-white px-2 py-0.5 mx-1 inline-block transform rotate-1">{formatCurrency(totalEventCost)}</span>
+                ) dividido pelos <span className="bg-black text-white px-2 py-0.5 mx-1 inline-block transform -rotate-1">{participants}</span> inscritos garantidos.
+              </p>
+            </div>
 
-      {/* Variable Costs */}
-      <section className="py-24 px-6 bg-gray-50 dark:bg-zinc-950">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-black dark:text-white mb-6 tracking-tight">
-              Custos Variáveis
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-zinc-500 max-w-2xl mx-auto">
-              Custo por pessoa × {totalHeadcount} pessoas ({participants}{" "}
-              participantes + {fixedStaff} organização + {mentors} mentores)
-            </p>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white dark:bg-zinc-900 rounded-3xl border border-gray-100 dark:border-zinc-800 overflow-hidden shadow-sm"
-          >
-            {variableGroups.map((group, gi) => (
-              <div key={group.label}>
-                {/* Group header */}
-                <div className="px-8 py-4 bg-gray-50 dark:bg-zinc-800/50 border-b border-gray-100 dark:border-zinc-800">
-                  <span className="text-lg font-bold text-black dark:text-white">
-                    <span className="mr-2">{groupIcons[group.label]}</span>
-                    {group.label}
-                  </span>
-                </div>
-                {/* Items */}
-                {group.items.map((item, ii) => (
-                  <div
-                    key={item.id}
-                    className={`px-8 py-4 flex items-center justify-between ${
-                      ii < group.items.length - 1 || gi < variableGroups.length - 1
-                        ? "border-b border-gray-50 dark:border-zinc-800/50"
-                        : ""
-                    }`}
-                  >
-                    <span className="text-gray-700 dark:text-zinc-300">
-                      {item.name}
-                    </span>
-                    <span className="font-bold text-black dark:text-white">
-                      {formatCurrency(item.value)}
-                    </span>
+            {/* Right: Breakdown bars */}
+            <div className="w-full md:w-1/2 p-8 md:p-16 bg-black flex flex-col justify-center">
+              <h4 className="text-xl md:text-3xl font-black text-techstars-green uppercase tracking-tighter mb-8 drop-shadow-[2px_2px_0_#000]">
+                COMO CADA REAL É ALOCADO
+              </h4>
+              <div className="space-y-8">
+                {[
+                  {
+                    label: "ALIMENTAÇÃO (Refeições Totais)",
+                    value: variableItems
+                      .filter((i) => i.name.includes("Alimentação"))
+                      .reduce((s, i) => s + i.value, 0) * totalHeadcount,
+                    percent: (
+                      (variableItems
+                        .filter((i) => i.name.includes("Alimentação"))
+                        .reduce((s, i) => s + i.value, 0) *
+                        totalHeadcount *
+                        100) /
+                      totalEventCost
+                    ).toFixed(0),
+                    color: "bg-pink-500",
+                  },
+                  {
+                    label: "MATERIAIS (Kits, Crachás)",
+                    value: variableItems
+                      .filter((i) => !i.name.includes("Alimentação"))
+                      .reduce((s, i) => s + i.value, 0) * totalHeadcount,
+                    percent: (
+                      (variableItems
+                        .filter((i) => !i.name.includes("Alimentação"))
+                        .reduce((s, i) => s + i.value, 0) *
+                        totalHeadcount *
+                        100) /
+                      totalEventCost
+                    ).toFixed(0),
+                    color: "bg-blue-500",
+                  },
+                  {
+                    label: "CUSTOS FIXOS (Estrutura)",
+                    value: totalFixed,
+                    percent: ((totalFixed * 100) / totalEventCost).toFixed(0),
+                    color: "bg-yellow-400",
+                  },
+                ].map((item) => (
+                  <div key={item.label} className="relative">
+                    <div className="flex flex-col xl:flex-row xl:justify-between text-sm mb-2 gap-2 items-start xl:items-end">
+                      <span className="text-white font-black uppercase tracking-tight">{item.label}</span>
+                      <span className="text-techstars-green font-black text-lg md:text-xl bg-black border-2 border-techstars-green px-2 py-0.5 shadow-[2px_2px_0_#39C463]">
+                        {formatCurrency(item.value)} <span className="text-white ml-1">({item.percent}%)</span>
+                      </span>
+                    </div>
+                    <div className="w-full bg-zinc-800 border-2 border-black h-6 lg:h-8 shadow-[2px_2px_0_#fff]">
+                      <div
+                        className={`${item.color} h-full border-r-2 border-black transition-all duration-1000`}
+                        style={{ width: `${item.percent}%` }}
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
-            ))}
+            </div>
+          </div>
+          
+          <div className="mt-12 bg-blue-600 border-4 border-black p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 shadow-[8px_8px_0_#000] transform -rotate-1 hover:rotate-0 transition-transform">
+             <div className="bg-white border-4 border-black w-20 h-20 flex items-center justify-center text-4xl shadow-[4px_4px_0_#000] rotate-3 shrink-0">🤝</div>
+             <p className="text-white font-black text-xl md:text-2xl uppercase drop-shadow-[2px_2px_0_#000] text-center md:text-left leading-snug tracking-tighter">
+               A EQUIPE ORGANIZADORA É 100% VOLUNTÁRIA. NÃO HÁ LUCRO. CADA CENTAVO FOCA NA EXPERIÊNCIA DOS PARTICIPANTES.
+             </p>
+          </div>
+        </div>
+      </section>
 
-            {/* Summary */}
-            <div className="px-8 py-6 bg-zinc-900 dark:bg-zinc-800 border-t border-zinc-800 dark:border-zinc-700">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-zinc-300 font-medium">
-                  Total por pessoa
-                </span>
-                <span className="text-xl font-black text-white">
-                  {formatCurrency(variableCostPerPerson)}
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-zinc-300 font-medium">
-                  Total variável ({variableCostPerPerson} × {totalHeadcount}{" "}
-                  pessoas)
-                </span>
-                <span className="text-xl font-black text-techstars-green">
-                  {formatCurrency(totalVariable)}
-                </span>
+      {/* Detailed Costs View */}
+      <section className="py-24 px-6 bg-techstars-green border-b-4 border-black relative overflow-hidden">
+        <div className="absolute inset-0 dot-pattern opacity-40 pointer-events-none" />
+        <div className="max-w-6xl mx-auto relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-16">
+          
+          {/* Fixed Costs */}
+          <div className="w-full lg:w-1/2">
+            <h2 className="text-5xl md:text-6xl font-black text-black uppercase tracking-tighter mb-6 drop-shadow-[4px_4px_0_#fff]">
+              CUSTOS FIXOS
+            </h2>
+            <p className="text-black font-bold text-xl uppercase bg-white border-4 border-black px-4 py-2 inline-block mb-10 shadow-[4px_4px_0_#000] rotate-[-1deg]">
+              Independem do nº de inscrições
+            </p>
+            <div className="flex flex-col gap-6">
+              {fixedItems.map((item, i) => (
+                <div key={item.id} className="bg-white border-4 border-black p-6 shadow-[6px_6px_0_#000] flex items-center gap-6 hover:translate-x-2 transition-transform">
+                   <div className="text-5xl drop-shadow-[2px_2px_0_#39C463]">{getFixedCostIcon(item.name)}</div>
+                   <div className="flex-1">
+                     <h3 className="text-xl md:text-2xl font-black text-black uppercase tracking-tighter">{item.name}</h3>
+                     <div className="text-2xl md:text-3xl font-black text-blue-600 drop-shadow-[1px_1px_0_#000] mt-1">
+                       {formatCurrency(item.value)}
+                     </div>
+                   </div>
+                </div>
+              ))}
+              <div className="bg-black border-4 border-black p-8 shadow-[8px_8px_0_#fff] flex flex-col sm:flex-row items-center sm:items-end justify-between text-white mt-6 rotate-1 hover:rotate-0 transition-transform">
+                <span className="text-2xl font-black uppercase tracking-tighter">Total Fixo</span>
+                <span className="text-4xl md:text-5xl font-black text-techstars-green drop-shadow-[2px_2px_0_#000] mt-2 sm:mt-0">{formatCurrency(totalFixed)}</span>
               </div>
             </div>
-          </motion.div>
+          </div>
+
+          {/* Variable Costs */}
+          <div className="w-full lg:w-1/2">
+             <h2 className="text-5xl md:text-6xl font-black text-black uppercase tracking-tighter mb-6 drop-shadow-[4px_4px_0_#fff]">
+              CUSTOS VARIÁVEIS
+            </h2>
+            <p className="text-black font-bold text-xl uppercase bg-white border-4 border-black px-4 py-2 inline-block mb-10 shadow-[4px_4px_0_#000] rotate-[1deg]">
+              CUSTO BASE X {totalHeadcount} PESSOAS
+            </p>
+
+            <div className="bg-white border-4 border-black shadow-[8px_8px_0_#000] overflow-hidden flex flex-col hover:-translate-y-2 transition-transform hover:shadow-[12px_12px_0_#000]">
+              {variableGroups.map((group, gi) => (
+                <div key={group.label} className="border-b-4 border-black last:border-0">
+                  <button 
+                    onClick={() => toggleGroup(group.label)}
+                    className="w-full bg-yellow-400 hover:bg-yellow-500 transition-colors px-6 py-4 flex items-center justify-between text-left"
+                  >
+                    <div className="flex items-center gap-4">
+                      <span className="text-3xl bg-white border-2 border-black inline-flex justify-center p-1 shadow-[2px_2px_0_#000] shrink-0">{groupIcons[group.label]}</span>
+                      <span className="text-xl md:text-2xl font-black text-black uppercase tracking-tighter shrink-0">{group.label}</span>
+                    </div>
+                    <div className="text-3xl font-black w-8 text-center shrink-0">
+                      {openGroups[group.label] ? "−" : "+"}
+                    </div>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {openGroups[group.label] && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden bg-white"
+                      >
+                        <div className="p-6 flex flex-col gap-4 border-t-4 border-black">
+                          {group.items.map((item, ii) => (
+                            <div key={item.id} className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center bg-gray-50 border-2 border-black px-4 py-3 hover:bg-gray-100">
+                              <span className="text-black font-bold uppercase text-sm w-full sm:w-2/3 break-words mb-1 sm:mb-0">{item.name}</span>
+                              <span className="text-techstars-green bg-black px-2 py-0.5 border-2 border-black font-black text-lg md:text-xl shrink-0 shadow-[2px_2px_0_#39C463]">{formatCurrency(item.value)}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+              <div className="bg-black text-white p-8 border-t-8 border-yellow-400 flex flex-col gap-6">
+                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end border-b-4 border-gray-800 pb-6 gap-2 sm:gap-0">
+                   <span className="text-white font-black uppercase text-xl tracking-tighter">Custo Base Individual</span>
+                   <span className="text-3xl md:text-4xl font-black text-white drop-shadow-[2px_2px_0_#39C463]">{formatCurrency(variableCostPerPerson)}</span>
+                 </div>
+                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2 sm:gap-0">
+                   <span className="text-white font-black uppercase text-xl md:text-2xl leading-snug tracking-tighter w-full sm:w-1/2">
+                     TOTAL VARIÁVEL <br/><span className="bg-techstars-green text-black px-2 inline-block text-sm border-2 border-techstars-green mt-1 transform rotate-[-2deg]">({variableCostPerPerson} × {totalHeadcount} REF)</span>
+                   </span>
+                   <span className="text-4xl md:text-5xl font-black text-techstars-green drop-shadow-[4px_4px_0_#000]">{formatCurrency(totalVariable)}</span>
+                 </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Local Sponsors */}
-      <section className="py-24 px-6 bg-zinc-900">
+      {sponsorsByTier.length > 0 && (
+      <section className="py-24 px-6 bg-black border-b-4 border-black">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
-              Patrocinadores Locais
+          <div className="text-center mb-24 flex flex-col items-center">
+            <h2 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mb-8 drop-shadow-[4px_4px_0_#39C463]">
+              QUEM TORNA POSSÍVEL
             </h2>
-            <p className="text-xl text-zinc-500 max-w-2xl mx-auto">
-              Empresas que investem no ecossistema de inovação de Anápolis
-            </p>
+            <div className="bg-white text-black font-black text-lg md:text-2xl uppercase px-8 py-3 border-4 border-black shadow-[6px_6px_0_#fff] rotate-[-1deg]">
+               Empresas que investem no ecossistema
+            </div>
           </div>
 
-          <div className="space-y-12">
+          <div className="space-y-24">
             {sponsorsByTier.map(({ tier, config, items }) => (
-              <div key={tier}>
-                <div className={`grid ${config.cols} gap-8`}>
+              <div key={tier} className="relative">
+                <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 z-20">
+                  <span className="bg-black text-techstars-green border-4 border-techstars-green px-8 py-3 text-2xl md:text-3xl font-black uppercase tracking-widest shadow-[6px_6px_0_#fff] inline-block rotate-1">
+                    COTA {tier}
+                  </span>
+                </div>
+                <div className={`grid ${config.cols} gap-10 bg-zinc-900 border-4 border-techstars-green p-12 pt-20 shadow-[12px_12px_0_#39C463]`}>
                   {items.map((sponsor, i) => (
-                    <motion.div
+                    <a
                       key={sponsor.name}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
-                      className={`rounded-3xl bg-gradient-to-br ${config.gradient} p-[2px]`}
+                      href={sponsor.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-white border-4 border-black p-8 shadow-[8px_8px_0_#000] hover:shadow-[16px_16px_0_#000] hover:-translate-y-2 hover:-translate-x-2 transition-all flex items-center justify-center h-56 md:h-64 group"
                     >
-                      <div className="bg-zinc-900 rounded-3xl p-10 flex flex-col items-center text-center h-full">
-                        <span
-                          className={`inline-block px-4 py-1 rounded-full text-sm font-bold mb-8 ${config.badge}`}
-                        >
-                          {tier}
-                        </span>
-                        <a
-                          href={sponsor.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`flex items-center justify-center ${
-                            sponsor.name === "SENAI"
-                              ? "bg-white rounded-xl p-4"
-                              : ""
-                          }`}
-                        >
-                          <Image
-                            src={sponsor.logo}
-                            alt={sponsor.name}
-                            width={sponsor.name === "SENAI" ? 200 : 360}
-                            height={sponsor.name === "SENAI" ? 80 : 144}
-                            className={
-                              sponsor.name === "SENAI"
-                                ? "h-16 md:h-20 w-auto object-contain"
-                                : "h-24 md:h-32 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
-                            }
-                          />
-                        </a>
-                      </div>
-                    </motion.div>
+                      <Image
+                        src={sponsor.logo}
+                        alt={sponsor.name}
+                        width={sponsor.name === "SENAI" ? 200 : 360}
+                        height={sponsor.name === "SENAI" ? 80 : 144}
+                        className={`object-contain transition-transform duration-300 group-hover:scale-110 ${
+                          sponsor.name === "SENAI" ? "h-24 md:h-28 w-auto" : "h-32 md:h-40 w-auto invert"
+                        }`}
+                      />
+                    </a>
                   ))}
                 </div>
               </div>
@@ -379,168 +417,35 @@ export default function TransparenciaPage() {
           </div>
         </div>
       </section>
-
-      {/* Ticket Justification */}
-      <section className="py-24 px-6 bg-white dark:bg-black">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gray-50 dark:bg-zinc-900 rounded-3xl border border-gray-100 dark:border-zinc-800 overflow-hidden"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-2">
-              {/* Left: Big number */}
-              <div className="p-10 md:p-16 flex flex-col justify-center">
-                <div className="text-6xl md:text-7xl font-black text-techstars-green mb-4">
-                  ~{formatCurrency(costPerParticipant)}
-                </div>
-                <h3 className="text-2xl font-bold text-black dark:text-white mb-4">
-                  Custo por Inscrito
-                </h3>
-                <p className="text-gray-600 dark:text-zinc-400 leading-relaxed">
-                  Este é o valor mínimo necessário por participante para cobrir
-                  100% dos custos do evento. O cálculo divide o custo total (
-                  {formatCurrency(totalEventCost)}) pelos {participants}{" "}
-                  inscritos, garantindo que todos os custos fixos e variáveis
-                  sejam cobertos.
-                </p>
-              </div>
-
-              {/* Right: Breakdown */}
-              <div className="p-10 md:p-16 bg-zinc-900 dark:bg-zinc-800 flex flex-col justify-center">
-                <h4 className="text-lg font-bold text-zinc-400 uppercase tracking-widest mb-8">
-                  Para onde vai cada real
-                </h4>
-                <div className="space-y-6">
-                  {[
-                    {
-                      label: "Alimentação (7 refeições)",
-                      value: variableItems
-                        .filter((i) => i.name.includes("Alimentação"))
-                        .reduce((s, i) => s + i.value, 0) * totalHeadcount,
-                      percent: (
-                        (variableItems
-                          .filter((i) => i.name.includes("Alimentação"))
-                          .reduce((s, i) => s + i.value, 0) *
-                          totalHeadcount *
-                          100) /
-                        totalEventCost
-                      ).toFixed(0),
-                      color: "bg-techstars-green",
-                    },
-                    {
-                      label: "Materiais (kit + crachás)",
-                      value: variableItems
-                        .filter((i) => !i.name.includes("Alimentação"))
-                        .reduce((s, i) => s + i.value, 0) * totalHeadcount,
-                      percent: (
-                        (variableItems
-                          .filter((i) => !i.name.includes("Alimentação"))
-                          .reduce((s, i) => s + i.value, 0) *
-                          totalHeadcount *
-                          100) /
-                        totalEventCost
-                      ).toFixed(0),
-                      color: "bg-emerald-400",
-                    },
-                    {
-                      label: "Custos fixos (facilitador + backdrop)",
-                      value: totalFixed,
-                      percent: ((totalFixed * 100) / totalEventCost).toFixed(0),
-                      color: "bg-emerald-600",
-                    },
-                  ].map((item) => (
-                    <div key={item.label}>
-                      <div className="flex justify-between text-sm mb-2">
-                        <span className="text-zinc-300">{item.label}</span>
-                        <span className="text-white font-bold">
-                          {formatCurrency(item.value)} ({item.percent}%)
-                        </span>
-                      </div>
-                      <div className="w-full bg-zinc-700 rounded-full h-3">
-                        <div
-                          className={`${item.color} h-3 rounded-full transition-all`}
-                          style={{ width: `${item.percent}%` }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Volunteer statement */}
-            <div className="px-10 md:px-16 py-8 bg-techstars-green/10 border-t border-techstars-green/20 flex items-center gap-4">
-              <svg
-                className="w-8 h-8 text-techstars-green shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2.5}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-              <p className="text-lg font-bold text-black dark:text-white">
-                Toda a equipe organizadora é 100% voluntária. Não há margem de
-                lucro. Cada centavo é investido na experiência dos participantes.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      )}
 
       {/* Registration CTA */}
-      <section className="py-24 px-6 bg-techstars-green">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-black rounded-[2.5rem] p-12 md:p-20 text-center shadow-[0_40px_100px_-20px_rgba(57,196,99,0.3)]">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8"
+      <section className="py-24 px-6 bg-yellow-400 relative overflow-hidden text-center z-10 border-b-4 border-black">
+         <div className="absolute inset-0 dot-pattern opacity-40 pointer-events-none" />
+         <div className="max-w-4xl mx-auto bg-black border-4 border-black p-12 md:p-16 shadow-[16px_16px_0_#fff] relative z-10 transform rotate-1">
+          <h2 className="text-5xl md:text-7xl font-black text-white uppercase mb-8 tracking-tighter drop-shadow-[4px_4px_0_#39C463]">
+            VOCÊ ENTENDEU O RECADO!
+          </h2>
+          <p className="text-xl md:text-2xl font-bold text-black uppercase bg-white border-4 border-black inline-block px-6 py-3 rotate-[-1deg] shadow-[6px_6px_0_#000] mb-12 max-w-2xl leading-relaxed">
+            Agora que sabe como cada real é investido, faça parte dessa experiência transformadora.
+          </p>
+          <br/>
+          <a
+            href={eventConfig.registrationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 px-10 py-6 bg-techstars-green hover:bg-white text-black font-black text-2xl md:text-3xl uppercase border-4 border-black shadow-[12px_12px_0_#000] hover:shadow-[16px_16px_0_#000] transition-all transform hover:-translate-y-1 hover:-translate-x-1"
+          >
+            <span>COMPRAR MEU INGRESSO</span>
+            <svg
+              className="w-8 h-8 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight">
-                Garanta sua vaga
-              </h2>
-              <p className="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-                Agora que você sabe como cada real é investido, faça parte dessa
-                experiência transformadora.
-              </p>
-              <div className="pt-4">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <a
-                    href={eventConfig.registrationUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-10 py-5 bg-techstars-green hover:bg-[#45d171] text-black font-extrabold text-2xl rounded-2xl shadow-2xl transition-all duration-300"
-                  >
-                    Fazer minha inscrição
-                    <svg
-                      className="w-6 h-6 ml-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2.5}
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      />
-                    </svg>
-                  </a>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
         </div>
       </section>
 
