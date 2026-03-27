@@ -108,13 +108,13 @@ function TeamWindowCard({ member, index }) {
                 <span className="text-[10px] font-black uppercase text-black tracking-widest bg-yellow-400 self-start px-2 py-0.5 brutal-border">
                   JÁ ATUOU EM
                 </span>
-                <div className="flex flex-wrap gap-3 items-center mt-1">
+                <div className="flex flex-wrap gap-3 items-center mt-2">
                   {member.companies.map((company, cIndex) => (
-                    <div key={cIndex} className="bg-white p-1.5 brutal-border shadow-[2px_2px_0_#000] rounded-sm group/logo relative hover:-translate-y-1 transition-transform">
+                    <div key={cIndex} className="bg-white p-1 md:p-1.5 brutal-border shadow-[2px_2px_0_#000] rounded-sm group/logo relative hover:-translate-y-1 transition-transform h-10 md:h-14 min-w-[60px] flex items-center justify-center">
                       <img 
                         src={company.logo}
                         alt={company.name}
-                        className="w-6 h-6 object-contain grayscale group-hover/logo:grayscale-0 transition-all"
+                        className="max-h-full max-w-[80px] md:max-w-[100px] object-contain transition-all mix-blend-multiply"
                         onError={(e) => {
                           e.target.onerror = null; 
                           e.target.src = '/images/TS_favcon.png'; // Fallback

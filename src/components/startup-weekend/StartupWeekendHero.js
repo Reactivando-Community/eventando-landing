@@ -78,7 +78,7 @@ export default function StartupWeekendHero() {
             <div className="absolute inset-0 bg-pink-500 brutal-border rotate-[-2deg] translate-y-6 translate-x-3 max-w-md" />
             
             {/* Image Card */}
-            <div className="relative bg-white brutal-border brutal-shadow-sm p-4 rotate-0 max-w-md w-full">
+            <div className="relative bg-white brutal-border brutal-shadow-sm p-4 rotate-0 max-w-xl w-full">
               {/* Fake Window Header */}
               <div className="flex items-center justify-between border-b-4 border-black pb-3 mb-4">
                 <div className="flex items-center space-x-2">
@@ -91,19 +91,13 @@ export default function StartupWeekendHero() {
               </div>
 
               {/* Photo placeholder */}
-              <div className="relative aspect-[4/5] w-full brutal-border mb-4 bg-gray-200 overflow-hidden group">
-                {/* Note: In a real scenario you would replace this src with your actual image path */}
+              <div className="relative aspect-[4/3] md:aspect-[16/10] w-full brutal-border mb-4 bg-gray-200 overflow-hidden group">
                 <Image
-                  src="/images/logo-dark.png" 
-                  alt="Techstars Startup Weekend"
+                  src="/images/imagem-hero.webp" 
+                  alt="Techstars Startup Weekend Anápolis Equipe"
                   fill
-                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                  className="object-cover object-[center_35%] scale-125 grayscale group-hover:grayscale-0 transition-all duration-500"
                 />
-                
-                {/* Centered logo over image - matching user's reference inside the card */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-80 mix-blend-multiply pointer-events-none">
-                   <div className="bg-yellow-400 font-black text-4xl p-2 brutal-border transform -rotate-6">TSWA</div>
-                </div>
               </div>
 
               {/* Title / Description under photo inside card */}
@@ -116,20 +110,20 @@ export default function StartupWeekendHero() {
               <div className="flex gap-4">
                 <div className="flex-1 bg-black text-white p-3 brutal-border flex flex-col justify-center items-center">
                   <span className="text-[10px] uppercase font-bold text-gray-400">Preenchidas</span>
-                  <span className="text-2xl font-black text-yellow-400">40</span>
+                  <span className="text-2xl font-black text-yellow-400">55</span>
                 </div>
                 <div className="flex-1 bg-techstars-green text-black p-3 brutal-border flex flex-col justify-center items-center">
                   <span className="text-[10px] uppercase font-bold">Lotação Máx</span>
-                  <span className="text-2xl font-black">50</span>
+                  <span className="text-2xl font-black">75</span>
                 </div>
               </div>
 
               <div className="mt-4">
                  <div className="w-full bg-white brutal-border h-5 relative overflow-hidden">
-                   <div className="absolute top-0 left-0 h-full bg-yellow-400 border-r-4 border-black" style={{ width: '80%' }} />
+                   <div className="absolute top-0 left-0 h-full bg-yellow-400 border-r-4 border-black" style={{ width: '73%' }} />
                  </div>
                  <p className="text-center text-[11px] font-black uppercase mt-3 tracking-wider text-red-600">
-                   Corra, restam apenas 10 vagas!
+                   Corra, restam apenas 20 vagas!
                  </p>
               </div>
 
@@ -138,7 +132,7 @@ export default function StartupWeekendHero() {
              {/* Little round badge like 'ZERO OPS' in target */}
              <div className="absolute top-1/2 -left-6 lg:-left-16 transform -translate-y-1/2 w-28 h-28 bg-blue-600 rounded-full brutal-border brutal-shadow-sm flex items-center justify-center rotate-[-15deg] z-20 shadow-[6px_6px_0px_#000]">
                <span className="text-white font-black uppercase text-center text-lg leading-tight drop-shadow-[2px_2px_0px_#000]">
-                 80%<br/>Lotado
+                 73%<br/>Lotado
                </span>
              </div>
           </div>

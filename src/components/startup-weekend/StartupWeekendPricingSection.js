@@ -39,7 +39,7 @@ export default function StartupWeekendPricingSection() {
               CAMINHO TRADICIONAL
             </h3>
             <p className="text-gray-500 font-mono text-xs uppercase mb-8 tracking-widest">
-              // Lento. Burocrático. Caro.
+              {"// Lento. Burocrático. Caro."}
             </p>
             <div className="space-y-6 relative">
               {/* Stamp */}
@@ -111,7 +111,7 @@ export default function StartupWeekendPricingSection() {
               STARTUP WEEKEND
               <br />
               <span className="text-xl tracking-normal">
-                // 54H DE IMERSÃO TOTAL
+                {"// 54H DE IMERSÃO TOTAL"}
               </span>
             </h3>
 

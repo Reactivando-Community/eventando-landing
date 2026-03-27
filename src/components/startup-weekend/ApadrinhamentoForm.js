@@ -46,29 +46,29 @@ export default function ApadrinhamentoForm() {
 
   const validate = () => {
     if (!name || name.trim().length < 3) {
-      setError("Informe seu nome completo.");
+      setError("Faltou seu nome completo.");
       return false;
     }
 
     const cpfDigits = cpf.replace(/\D/g, "");
     if (cpfDigits.length !== 11) {
-      setError("Informe um CPF válido.");
+      setError("Poxa, esse CPF não parece válido.");
       return false;
     }
 
     if (!dateOfBirth) {
-      setError("Informe sua data de nascimento.");
+      setError("Faltou sua data de nascimento.");
       return false;
     }
 
     const whatsappDigits = whatsapp.replace(/\D/g, "");
     if (whatsappDigits.length < 10 || whatsappDigits.length > 11) {
-      setError("Informe um número de WhatsApp válido.");
+      setError("Um WhatsApp válido, por favor.");
       return false;
     }
 
     if (!videoFile) {
-      setError("Envie um vídeo de apresentação.");
+      setError("Sem vídeo não dá pra avaliar sua aplicação!");
       return false;
     }
 
@@ -115,9 +115,9 @@ export default function ApadrinhamentoForm() {
         strapiError?.message?.includes("unique") ||
         strapiError?.message?.includes("already")
       ) {
-        setError("Este CPF já possui uma inscrição. Cada pessoa pode se inscrever apenas uma vez.");
+        setError("Calma lá! Esse CPF já possuí uma inscrição.");
       } else {
-        setError("Ocorreu um erro ao enviar sua inscrição. Tente novamente ou entre em contato pelo WhatsApp.");
+        setError("Pane no sistema! Tente de novo ou chame a gente no WhatsApp.");
       }
     } finally {
       setIsLoading(false);
@@ -126,82 +126,76 @@ export default function ApadrinhamentoForm() {
 
   if (submitted) {
     return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12 text-center"
-      >
-        <div className="w-20 h-20 bg-techstars-green/20 rounded-full flex items-center justify-center mx-auto mb-6">
-          <svg className="w-10 h-10 text-techstars-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+      <div className="bg-yellow-400 border-4 border-black shadow-[12px_12px_0_#fff] p-8 md:p-12 text-center transform md:rotate-1">
+        <div className="w-20 h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-[4px_4px_0_#fff] border-4 border-black">
+          <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-          Inscrição enviada!
+        <h3 className="text-4xl md:text-5xl font-black text-black uppercase tracking-tighter mb-4">
+          INSCRIÇÃO ENVIADA!
         </h3>
-        <p className="text-techstars-slate text-lg max-w-md mx-auto">
-          Recebemos sua solicitação de apadrinhamento. Entraremos em contato pelo WhatsApp informado para as próximas etapas.
+        <p className="text-black font-bold text-lg md:text-xl max-w-md mx-auto">
+          Recebemos sua aplicação com sucesso. Nossos recrutadores vão analisar seu pitch e contaremos com você no WhatsApp em breve. Fique colado no seu celular!
         </p>
-      </motion.div>
+      </div>
     );
   }
 
   return (
-    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12">
-      <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 tracking-tight">
-        Formulário de Inscrição
+    <div className="bg-white border-4 border-black p-8 md:p-12 shadow-[12px_12px_0_#9333ea]">
+      <h3 className="text-3xl md:text-4xl font-black text-black uppercase mb-4 tracking-tighter border-b-4 border-black pb-4 inline-block w-full">
+        DADOS DA INSCRIÇÃO
       </h3>
-      <p className="text-techstars-slate mb-8">
-        Preencha seus dados e envie um vídeo curto contando por que você quer participar do Startup Weekend.
+      <p className="text-gray-800 font-bold mb-8 text-sm md:text-base border-l-4 border-black pl-4">
+        Preencha com exatidão. Mostre por que você merece estar no centro da arena de inovação de Anápolis.
       </p>
 
       <div className="space-y-6">
-        {/* Name */}
         <div>
-          <label className="block text-white font-bold text-sm mb-2">
-            Nome completo *
+          <label className="block text-black font-black uppercase text-sm mb-2">
+            NOME COMPLETO *
           </label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Digite seu nome completo"
-            className="w-full bg-zinc-900 border border-zinc-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-techstars-green transition-colors placeholder:text-zinc-500"
+            placeholder="Digite como está na sua identidade"
+            className="w-full bg-[#f4f4f0] border-4 border-black text-black px-4 py-3 font-bold placeholder:text-gray-400 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0_#000] focus:-translate-y-1 transition-all"
           />
         </div>
 
-        {/* CPF */}
-        <div>
-          <label className="block text-white font-bold text-sm mb-2">
-            CPF *
-          </label>
-          <input
-            type="text"
-            value={cpf}
-            onChange={(e) => handleCpfChange(e.target.value)}
-            placeholder="000.000.000-00"
-            maxLength={14}
-            className="w-full bg-zinc-900 border border-zinc-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-techstars-green transition-colors placeholder:text-zinc-500"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-black font-black uppercase text-sm mb-2">
+              CPF *
+            </label>
+            <input
+              type="text"
+              value={cpf}
+              onChange={(e) => handleCpfChange(e.target.value)}
+              placeholder="000.000.000-00"
+              maxLength={14}
+              className="w-full bg-[#f4f4f0] border-4 border-black text-black px-4 py-3 font-bold placeholder:text-gray-400 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0_#000] focus:-translate-y-1 transition-all"
+            />
+          </div>
+
+          <div>
+            <label className="block text-black font-black uppercase text-sm mb-2">
+              DATA DE NASCIMENTO *
+            </label>
+            <input
+              type="date"
+              value={dateOfBirth}
+              onChange={(e) => setDateOfBirth(e.target.value)}
+              className="w-full bg-[#f4f4f0] border-4 border-black text-black px-4 py-3 font-bold focus:outline-none focus:bg-white focus:shadow-[4px_4px_0_#000] focus:-translate-y-1 transition-all uppercase"
+            />
+          </div>
         </div>
 
-        {/* Date of Birth */}
         <div>
-          <label className="block text-white font-bold text-sm mb-2">
-            Data de nascimento *
-          </label>
-          <input
-            type="date"
-            value={dateOfBirth}
-            onChange={(e) => setDateOfBirth(e.target.value)}
-            className="w-full bg-zinc-900 border border-zinc-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-techstars-green transition-colors [color-scheme:dark]"
-          />
-        </div>
-
-        {/* WhatsApp */}
-        <div>
-          <label className="block text-white font-bold text-sm mb-2">
-            WhatsApp *
+          <label className="block text-black font-black uppercase text-sm mb-2">
+            WHATSAPP *
           </label>
           <input
             type="text"
@@ -209,89 +203,87 @@ export default function ApadrinhamentoForm() {
             onChange={(e) => handleWhatsappChange(e.target.value)}
             placeholder="(00) 00000-0000"
             maxLength={15}
-            className="w-full bg-zinc-900 border border-zinc-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-techstars-green transition-colors placeholder:text-zinc-500"
+            className="w-full bg-[#f4f4f0] border-4 border-black text-black px-4 py-3 font-bold placeholder:text-gray-400 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0_#000] focus:-translate-y-1 transition-all"
           />
         </div>
 
-        {/* College */}
-        <div>
-          <label className="block text-white font-bold text-sm mb-2">
-            Instituição de ensino
-          </label>
-          <input
-            type="text"
-            value={college}
-            onChange={(e) => setCollege(e.target.value)}
-            placeholder="Ex: UniEVANGÉLICA, UEG, etc."
-            className="w-full bg-zinc-900 border border-zinc-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-techstars-green transition-colors placeholder:text-zinc-500"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-black font-black uppercase text-sm mb-2">
+              INSTITUIÇÃO DE ENSINO <span className="text-gray-500 font-bold text-xs">(Opcional)</span>
+            </label>
+            <input
+              type="text"
+              value={college}
+              onChange={(e) => setCollege(e.target.value)}
+              placeholder="Aonde você estuda?"
+              className="w-full bg-[#f4f4f0] border-4 border-black text-black px-4 py-3 font-bold placeholder:text-gray-400 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0_#000] focus:-translate-y-1 transition-all"
+            />
+          </div>
+
+          <div>
+            <label className="block text-black font-black uppercase text-sm mb-2">
+              CURSO <span className="text-gray-500 font-bold text-xs">(Opcional)</span>
+            </label>
+            <input
+              type="text"
+              value={collegeCourse}
+              onChange={(e) => setCollegeCourse(e.target.value)}
+              placeholder="O que você estuda?"
+              className="w-full bg-[#f4f4f0] border-4 border-black text-black px-4 py-3 font-bold placeholder:text-gray-400 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0_#000] focus:-translate-y-1 transition-all"
+            />
+          </div>
         </div>
 
-        {/* College Course */}
         <div>
-          <label className="block text-white font-bold text-sm mb-2">
-            Curso
+          <label className="block text-black font-black uppercase text-sm mb-2">
+            VÍDEO PITCH DE APRESENTAÇÃO *
           </label>
-          <input
-            type="text"
-            value={collegeCourse}
-            onChange={(e) => setCollegeCourse(e.target.value)}
-            placeholder="Ex: Engenharia de Software, Administração, etc."
-            className="w-full bg-zinc-900 border border-zinc-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-techstars-green transition-colors placeholder:text-zinc-500"
-          />
-        </div>
-
-        {/* Video Upload */}
-        <div>
-          <label className="block text-white font-bold text-sm mb-2">
-            Vídeo de apresentação *
-          </label>
-          <p className="text-zinc-400 text-sm mb-3">
-            Grave um vídeo curto (até 2 minutos) contando quem você é, por que quer participar e como o evento pode impactar sua vida. Máximo {MAX_VIDEO_SIZE_MB}MB.
+          <p className="text-gray-600 text-xs font-bold mb-3 border-l-2 border-black pl-2">
+            Crie um vídeo rápido (até 2 minutos) se apresentando. Queremos ouvir de você o motivo de merecer essa chance. Capricha. (Máx {MAX_VIDEO_SIZE_MB}MB)
           </p>
           <input
             type="file"
             accept="video/*"
             onChange={handleVideoChange}
-            className="w-full bg-zinc-900 border border-zinc-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-techstars-green transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-bold file:bg-techstars-green file:text-black hover:file:bg-[#45d171] file:cursor-pointer file:transition-colors"
+            className="w-full bg-[#f4f4f0] border-4 border-black text-black p-2 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0_#000] focus:-translate-y-1 transition-all file:mr-4 file:py-2 file:px-4 file:border-4 file:border-black file:text-sm file:font-black file:uppercase file:bg-yellow-400 file:text-black hover:file:bg-black hover:file:text-white file:cursor-pointer file:transition-colors file:shadow-[2px_2px_0_#000]"
           />
           {videoFile && (
-            <p className="text-techstars-green text-sm mt-2">
-              {videoFile.name} ({(videoFile.size / (1024 * 1024)).toFixed(1)}MB)
-            </p>
+             <p className="text-black font-black text-sm mt-3 bg-green-400 border-4 border-black p-2 inline-block shadow-[4px_4px_0_#000]">
+               [OK] {videoFile.name} ({(videoFile.size / (1024 * 1024)).toFixed(1)}MB)
+             </p>
           )}
         </div>
 
-        {/* Error message */}
         {error && (
-          <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4">
-            <p className="text-red-400 text-sm">{error}</p>
+          <div className="bg-red-500 border-4 border-black text-white p-4 shadow-[6px_6px_0_#000] font-black uppercase tracking-widest text-sm text-center">
+            ERRO: {error}
           </div>
         )}
 
-        {/* Upload progress */}
         {isLoading && (
-          <div>
-            <div className="flex justify-between text-sm text-techstars-slate mb-2">
-              <span>Enviando...</span>
-              <span>{uploadProgress}%</span>
+          <div className="border-4 border-black p-4 bg-black text-white">
+            <div className="flex justify-between text-sm font-black uppercase mb-2 tracking-widest">
+              <span>🚀 CARREGANDO APLICAÇÃO...</span>
+              <span className="text-techstars-green">{uploadProgress}%</span>
             </div>
-            <div className="w-full bg-zinc-800 rounded-full h-2">
+            <div className="w-full bg-zinc-800 h-6 border-2 border-zinc-500">
               <div
-                className="bg-techstars-green h-2 rounded-full transition-all duration-300"
+                className="bg-techstars-green h-full transition-all duration-300 relative overflow-hidden"
                 style={{ width: `${uploadProgress}%` }}
-              />
+              >
+                 <div className="absolute inset-0 bg-black opacity-20 transform -skew-x-12 stripe-pattern"></div>
+              </div>
             </div>
           </div>
         )}
 
-        {/* Submit button */}
         <button
           onClick={handleSubmit}
           disabled={isLoading}
-          className="w-full px-8 py-4 bg-techstars-green hover:bg-[#45d171] text-black font-bold text-lg rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-techstars-green/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+          className="w-full px-8 py-5 bg-techstars-green text-black font-black uppercase tracking-widest text-xl border-4 border-black flex justify-center items-center shadow-[6px_6px_0_#000] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[10px_10px_0_#000] hover:bg-yellow-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:translate-x-0 disabled:hover:shadow-[6px_6px_0_#000] mt-6"
         >
-          {isLoading ? "Enviando inscrição..." : "Enviar inscrição"}
+          {isLoading ? "Enviando pro QG..." : "ENVIAR MINHA INSCRIÇÃO ➔"}
         </button>
       </div>
     </div>

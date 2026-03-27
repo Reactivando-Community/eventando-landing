@@ -7,9 +7,9 @@
     "bio": "Desenvolvedor de software há mais de 10 anos, formado em Sistemas de Informação pelo IFG. Atuou em fintechs e hoje é consultor para empresas no Brasil e nos EUA. Fundador da fintech Pix Aí e líder de comunidade na Reactivando.",
     "tags": ["Pix Aí", "Reactivando", "IFG", "Brasil 🇧🇷", "EUA 🇺🇸", "Fintechs"],
     "companies": [
-      { "name": "Nubank", "logo": "https://logo.clearbit.com/nubank.com.br" },
-      { "name": "Itaú", "logo": "https://logo.clearbit.com/itau.com.br" },
-      { "name": "Wellhub", "logo": "https://logo.clearbit.com/wellhub.com" }
+      { "name": "Nubank", "logo": "/images/logos/nubank-95.svg" },
+      { "name": "Itaú", "logo": "/images/logos/2023_Itaú_Unibanco_Logo.png" },
+      { "name": "Wellhub", "logo": "/images/logos/Gympass_is_now_Wellhub_BR_1f692c35d6.png" }
     ]
   },
   {
@@ -20,8 +20,8 @@
     "bio": "Engenheiro de Software com mais de 6 anos de experiência em startups e empresas de tecnologia no Brasil e nos EUA. Especialista em backend e inteligência artificial, atua também no fortalecimento de comunidades de tecnologia em Goiás.",
     "tags": ["Startups SAAS", "Brasil 🇧🇷", "EUA 🇺🇸", "Backend & IA"],
     "companies": [
-      { "name": "Itaú", "logo": "https://logo.clearbit.com/itau.com.br" },
-      { "name": "Serasa", "logo": "https://logo.clearbit.com/serasa.com.br" }
+      { "name": "Itaú", "logo": "/images/logos/2023_Itaú_Unibanco_Logo.png" },
+      { "name": "Serasa", "logo": "/images/logos/serasa_opengraph.png" }
     ]
   },
   {
@@ -40,8 +40,8 @@
     "bio": "Professora da UEG e coordenadora da Agência de Inovação INOVAUEG. Engenheira agrícola, mestre pela UFLA e doutora em Ciência Animal pela UFG. Atua em empreendedorismo, inovação e conexão entre universidade e mercado.",
     "tags": ["UEG", "INOVAUEG", "UFLA", "UFG", "Inovação Acadêmica"],
     "companies": [
-      { "name": "UEG", "logo": "https://logo.clearbit.com/ueg.br" },
-      { "name": "UFG", "logo": "https://logo.clearbit.com/ufg.br" }
+      { "name": "UEG", "logo": "/images/logos/universidade-estadual-de-goias-university-vestibular-exam-master-s-degree-rector-maryland.jpg" },
+      { "name": "UFG", "logo": "/images/logos/Marca_da_UFG.png" }
     ]
   },
   {
@@ -52,8 +52,8 @@
     "bio": "Formada em Química Industrial e pós-graduada em desenvolvimento analítico farmacêutico. Atua na indústria farmacêutica na Vitamedic com análises e P&D. Também é fundadora da Dupla3D.Loja, marca de poppets personalizados de pets em impressão 3D.",
     "tags": ["Vitamedic", "Dupla3D.Loja", "Química Ind.", "Pesquisa & Desenv."],
     "companies": [
-      { "name": "Teuto", "logo": "https://logo.clearbit.com/teuto.com.br" },
-      { "name": "Vitamedic", "logo": "https://logo.clearbit.com/vitamedic.ind.br" }
+      { "name": "Teuto", "logo": "/images/logos/Logotipo_do_Laboratório_Teuto.svg" },
+      { "name": "Vitamedic", "logo": "/images/logos/vitamedic.jpeg" }
     ]
   },
   {
@@ -64,7 +64,7 @@
     "bio": "Engenheiro de software há mais de uma década, founding engineer de duas startups em Goiânia nas áreas de agro e saúde e contribuidor em projetos open source. Atual CEO da F&L Software Solutions e líder de comunidade na Reactivando.",
     "tags": ["F&L Software", "Reactivando", "Agrotech", "Healthtech", "Open Source"],
     "companies": [
-      { "name": "Gymshark", "logo": "https://logo.clearbit.com/gymshark.com" }
+      { "name": "Gymshark", "logo": "/images/logos/82230bdb79c2bdd6ee83590feec51b27.jpg" }
     ]
   },
   {
@@ -75,7 +75,7 @@
     "bio": "Advogado há 11 anos e atua no associativismo empresarial em Joinville/SC. É voluntário em iniciativas de desenvolvimento econômico, comunidades de startups e já participou da organização de Startup Weekends e do primeiro TEDx Joinville.",
     "tags": ["Joinville/SC 🇧🇷", "TEDx Joinville", "Associativismo", "Startup SC"],
     "companies": [
-    	{ "name": "Techstars", "logo": "https://logo.clearbit.com/techstars.com" }
+    	{ "name": "Techstars", "logo": "/images/logos/techstars.png" }
     ]
   }
 ]
