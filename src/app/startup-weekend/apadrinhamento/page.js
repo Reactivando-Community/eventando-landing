@@ -64,7 +64,7 @@ export default function ApadrinhamentoPage() {
           </h1>
           <p className="text-xl md:text-2xl font-bold text-black border-4 border-black bg-white px-6 py-4 shadow-[8px_8px_0_#000] max-w-3xl transform rotate-1 mt-4 hover:-translate-y-1 hover:shadow-[12px_12px_0_#000] transition-all">
             Não importa sua condição financeira agora. Importa o que você está disposto a fazer com a oportunidade.<br/>
-            <span className="text-blue-600 block mt-2">// A bolsa é de 100%, mas a dedicação é toda sua.</span>
+            <span className="text-blue-600 block mt-2">{"//"} A bolsa é de 100%, mas a dedicação é toda sua.</span>
           </p>
         </div>
       </section>

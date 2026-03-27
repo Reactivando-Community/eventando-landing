@@ -111,6 +111,7 @@ function TeamWindowCard({ member, index }) {
                 <div className="flex flex-wrap gap-3 items-center mt-2">
                   {member.companies.map((company, cIndex) => (
                     <div key={cIndex} className="bg-white p-1 md:p-1.5 brutal-border shadow-[2px_2px_0_#000] rounded-sm group/logo relative hover:-translate-y-1 transition-transform h-10 md:h-14 min-w-[60px] flex items-center justify-center">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img 
                         src={company.logo}
                         alt={company.name}
