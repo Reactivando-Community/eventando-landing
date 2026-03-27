@@ -110,12 +110,20 @@ export default function ApadrinhamentoForm() {
 
       setSubmitted(true);
     } catch (err) {
+      const status = err.response?.status;
       const strapiError = err.response?.data?.error;
+
       if (
         strapiError?.message?.includes("unique") ||
         strapiError?.message?.includes("already")
       ) {
         setError("Calma lá! Esse CPF já possuí uma inscrição.");
+      } else if (status === 413) {
+        setError("Esse arquivo é grande demais pro servidor. Tenta comprimir o vídeo e mandar de novo.");
+      } else if (err.code === "ECONNABORTED" || err.message?.includes("timeout")) {
+        setError("A conexão demorou demais. Verifica sua internet e tenta de novo.");
+      } else if (err.message === "Network Error") {
+        setError("Sem conexão com o servidor. Verifica sua internet e tenta de novo.");
       } else {
         setError("Pane no sistema! Tente de novo ou chame a gente no WhatsApp.");
       }
