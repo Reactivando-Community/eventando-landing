@@ -204,6 +204,34 @@ export default function StartupWeekendPage() {
               Veja para onde vai cada real do seu ingresso
             </Link>
           </p>
+          <p className="mt-4 text-xs font-medium text-gray-500 max-w-lg mx-auto leading-relaxed">
+            Ao se inscrever, você concorda com os{" "}
+            <a
+              href="https://www.techstars.com/terms-of-use"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 underline hover:text-black"
+            >
+              Termos de Uso
+            </a>
+            ,{" "}
+            <a
+              href="https://www.techstars.com/privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 underline hover:text-black"
+            >
+              Política de Privacidade
+            </a>{" "}
+            e os{" "}
+            <Link
+              href="/startup-weekend/termos"
+              className="text-blue-600 underline hover:text-black"
+            >
+              Termos de Participação
+            </Link>
+            .
+          </p>
         </div>
       </section>
 
@@ -429,6 +457,64 @@ export default function StartupWeekendPage() {
                   />
                 </svg>
               </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Official Techstars Event Description + Terms Notice */}
+      <section className="py-16 px-6 bg-white brutal-border-y">
+        <div className="max-w-4xl mx-auto">
+          <div className="brutal-card bg-[#f4f4f0] p-8 md:p-12">
+            <div className="bg-black text-white text-[10px] font-black uppercase px-3 py-1 brutal-border inline-block shadow-[2px_2px_0_#fff] mb-6">
+              SOBRE O EVENTO
+            </div>
+            <p className="text-black font-bold text-base md:text-lg leading-relaxed mb-8">
+              Aprenda a pensar, trabalhar e construir como uma startup em 54 horas
+              emocionantes. Um evento Techstars Startup Weekend é uma incursão
+              empolgante e imersiva no mundo das startups. Ao longo de três dias
+              repletos de ação, você conhecerá os melhores mentores, investidores,
+              cofundadores e patrocinadores para mostrar como fazer mais rapidamente
+              — e talvez até iniciar uma startup.
+            </p>
+            <div className="border-t-4 border-black pt-6">
+              <p className="text-sm font-bold text-black mb-3">
+                📋 Ao participar deste evento, você concorda com os{" "}
+                <Link
+                  href="/startup-weekend/termos"
+                  className="text-blue-600 underline hover:text-black font-black"
+                >
+                  Termos de Participação
+                </Link>
+                , incluindo permissão para captura de fotos e vídeos para fins de marketing.
+              </p>
+              <p className="text-xs font-medium text-gray-600">
+                Ao comprar seu ingresso, você concorda com os{" "}
+                <a
+                  href="https://www.techstars.com/terms-of-use"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline hover:text-black"
+                >
+                  Termos de Uso
+                </a>{" "}
+                e a{" "}
+                <a
+                  href="https://www.techstars.com/privacy-policy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline hover:text-black"
+                >
+                  Política de Privacidade
+                </a>{" "}
+                da Techstars. Dúvidas:{" "}
+                <a
+                  href="mailto:privacy@techstars.com"
+                  className="text-blue-600 underline hover:text-black"
+                >
+                  privacy@techstars.com
+                </a>
+              </p>
             </div>
           </div>
         </div>

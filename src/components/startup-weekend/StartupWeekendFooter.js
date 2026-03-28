@@ -8,7 +8,7 @@ export default function StartupWeekendFooter() {
         <p className="text-2xl mb-8 font-black text-black uppercase tracking-tight">
           {eventConfig.fullName}
         </p>
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8 flex-wrap">
           <a
             href={eventConfig.registrationUrl}
             target="_blank"
@@ -77,6 +77,73 @@ export default function StartupWeekendFooter() {
             Transparência
           </Link>
         </div>
+
+        {/* Legal Links - Techstars Compliance */}
+        <div className="border-t-4 border-black pt-8 mt-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6 flex-wrap">
+            <Link
+              href="/startup-weekend/termos"
+              className="text-black hover:text-blue-600 hover:underline decoration-2 font-bold text-xs uppercase tracking-wider"
+            >
+              Termos de Participação
+            </Link>
+            <span className="hidden sm:block text-gray-400">|</span>
+            <a
+              href="https://www.techstars.com/terms-of-use"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-black hover:text-blue-600 hover:underline decoration-2 font-bold text-xs uppercase tracking-wider"
+            >
+              Termos de Uso
+            </a>
+            <span className="hidden sm:block text-gray-400">|</span>
+            <a
+              href="https://www.techstars.com/privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-black hover:text-blue-600 hover:underline decoration-2 font-bold text-xs uppercase tracking-wider"
+            >
+              Política de Privacidade
+            </a>
+            <span className="hidden sm:block text-gray-400">|</span>
+            <a
+              href="mailto:privacy@techstars.com"
+              className="text-black hover:text-blue-600 hover:underline decoration-2 font-bold text-xs uppercase tracking-wider"
+            >
+              privacy@techstars.com
+            </a>
+          </div>
+          <p className="text-xs font-medium text-gray-600 max-w-2xl mx-auto leading-relaxed mb-6">
+            Ao comprar um ingresso para um evento Techstars Startup Weekend, você
+            concorda com nossos{" "}
+            <a
+              href="https://www.techstars.com/terms-of-use"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 underline hover:text-black"
+            >
+              Termos de Uso
+            </a>{" "}
+            e{" "}
+            <a
+              href="https://www.techstars.com/privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 underline hover:text-black"
+            >
+              Política de Privacidade
+            </a>
+            . Se você tiver dúvidas, entre em contato com{" "}
+            <a
+              href="mailto:privacy@techstars.com"
+              className="text-blue-600 underline hover:text-black"
+            >
+              privacy@techstars.com
+            </a>
+            .
+          </p>
+        </div>
+
         <p className="text-sm font-bold text-black mt-8">
           techstars_ Startup Weekend é um programa da{" "}
           <a

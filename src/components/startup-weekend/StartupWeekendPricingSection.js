@@ -193,6 +193,27 @@ export default function StartupWeekendPricingSection() {
             >
               GARANTIR INGRESSO &rarr;
             </a>
+            <p className="mt-3 text-[10px] font-bold text-black text-center leading-relaxed opacity-70">
+              Ao comprar, você concorda com os{" "}
+              <a
+                href="https://www.techstars.com/terms-of-use"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:opacity-100"
+              >
+                Termos de Uso
+              </a>{" "}
+              e{" "}
+              <a
+                href="https://www.techstars.com/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:opacity-100"
+              >
+                Política de Privacidade
+              </a>
+              .
+            </p>
           </motion.div>
         </div>
       </div>
