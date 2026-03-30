@@ -9,83 +9,45 @@ import Image from "next/image";
 import Link from "next/link";
 import orcamento from "@/data/orcamento.json";
 
-// Computed constants from budget data
-const { participants, fixedStaff, mentorsPerTeam, participantsPerTeam, fixedItems, variableItems, sponsors } = orcamento.data;
+// Destructure new schema
+const { participants, totalPeople, despesas, contingencia, sponsors } = orcamento.data;
 
-const teams = Math.ceil(participants / participantsPerTeam);
-const mentors = teams * mentorsPerTeam;
-const totalHeadcount = participants + fixedStaff + mentors;
-const totalFixed = fixedItems.reduce((sum, item) => sum + item.value, 0);
-const variableCostPerPerson = variableItems.reduce((sum, item) => sum + item.value, 0);
-const totalVariable = variableCostPerPerson * totalHeadcount;
-const totalEventCost = totalFixed + totalVariable;
-const costPerParticipant = totalEventCost / participants;
+// Category totals
+const totalGeral = despesas.geral.reduce((sum, item) => sum + item.value, 0);
+const totalSuprimentos = despesas.suprimentos.reduce((sum, item) => sum + item.value, 0);
+
+const alimentacaoDays = [
+  { key: "sexta", label: "Sexta-feira", icon: "🌙", items: despesas.alimentacao.sexta },
+  { key: "sabado", label: "Sábado", icon: "☀️", items: despesas.alimentacao.sabado },
+  { key: "domingo", label: "Domingo", icon: "🌅", items: despesas.alimentacao.domingo },
+];
+const totalAlimentacao = alimentacaoDays.reduce(
+  (sum, day) => sum + day.items.reduce((s, item) => s + item.value, 0),
+  0
+);
+
+const totalDiversos = despesas.diversos.reduce((sum, item) => sum + item.value, 0);
+
+const totalDespesas = totalGeral + totalSuprimentos + totalAlimentacao + totalDiversos + contingencia.value;
+const costPerParticipant = totalDespesas / participants;
 
 const formatCurrency = (value) =>
   value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
-// Group variable items by day
-const groupVariableItems = () => {
-  const groups = [
-    { label: "Sexta-feira", items: [] },
-    { label: "Sábado", items: [] },
-    { label: "Domingo", items: [] },
-    { label: "Materiais", items: [] },
-  ];
-
-  variableItems.forEach((item) => {
-    if (item.name.includes("Sexta")) {
-      groups[0].items.push(item);
-    } else if (item.name.includes("Sábado")) {
-      groups[1].items.push(item);
-    } else if (item.name.includes("Domingo")) {
-      groups[2].items.push(item);
-    } else {
-      groups[3].items.push(item);
-    }
-  });
-
-  return groups;
-};
-
-const variableGroups = groupVariableItems();
-
-// Icons for fixed costs
-const fixedCostIcons = {
-  Hospedagem: "🏨",
-  Backdrop: "📸",
-  Passagens: "✈️",
-};
-
-const getFixedCostIcon = (name) => {
-  if (name.includes("Hospedagem")) return fixedCostIcons.Hospedagem;
-  if (name.includes("Backdrop")) return fixedCostIcons.Backdrop;
-  if (name.includes("Passagens")) return fixedCostIcons.Passagens;
-  return fixedCostIcons.Backdrop;
-};
-
-// Day group icons
-const groupIcons = {
-  "Sexta-feira": "🌙",
-  "Sábado": "☀️",
-  "Domingo": "🌅",
-  "Materiais": "📦",
-};
+// Category config for the detailed view and breakdown bars
+const categories = [
+  { key: "alimentacao", label: "Alimentação", icon: "🍽️", total: totalAlimentacao, color: "bg-pink-500" },
+  { key: "suprimentos", label: "Suprimentos", icon: "📦", total: totalSuprimentos, color: "bg-blue-500" },
+  { key: "diversos", label: "Diversos", icon: "🎁", total: totalDiversos, color: "bg-purple-500" },
+  { key: "geral", label: "Geral", icon: "⚙️", total: totalGeral, color: "bg-yellow-400" },
+  { key: "contingencia", label: "Contingência (10%)", icon: "🛡️", total: contingencia.value, color: "bg-orange-400" },
+];
 
 // Sponsor tier visual config
 const tierConfig = {
-  Platina: {
-    bg: "bg-blue-600",
-    cols: "grid-cols-1",
-  },
-  Prata: {
-    bg: "bg-gray-300",
-    cols: "grid-cols-1 md:grid-cols-2",
-  },
-  Bronze: {
-    bg: "bg-orange-400",
-    cols: "grid-cols-1 md:grid-cols-3",
-  },
+  Platina: { bg: "bg-blue-600", cols: "grid-cols-1" },
+  Prata: { bg: "bg-gray-300", cols: "grid-cols-1 md:grid-cols-2" },
+  Bronze: { bg: "bg-orange-400", cols: "grid-cols-1 md:grid-cols-3" },
 };
 
 const tierOrder = ["Platina", "Prata", "Bronze"];
@@ -98,12 +60,15 @@ const sponsorsByTier = tierOrder
   .filter((g) => g.items.length > 0);
 
 export default function TransparenciaPage() {
-  const [openGroups, setOpenGroups] = useState({
-    "Sexta-feira": true,
-  });
+  const [openCategories, setOpenCategories] = useState({ alimentacao: true });
+  const [openDays, setOpenDays] = useState({ "Sexta-feira": true });
 
-  const toggleGroup = (label) => {
-    setOpenGroups((prev) => ({ ...prev, [label]: !prev[label] }));
+  const toggleCategory = (key) => {
+    setOpenCategories((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const toggleDay = (label) => {
+    setOpenDays((prev) => ({ ...prev, [label]: !prev[label] }));
   };
 
   return (
@@ -147,9 +112,9 @@ export default function TransparenciaPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {[
               {
-                value: formatCurrency(totalEventCost),
+                value: formatCurrency(totalDespesas),
                 label: "Custo Total do Evento",
-                description: "Soma de todos os custos fixos e variáveis para realizar o evento.",
+                description: "Soma de todos os custos operacionais previstos para realizar o evento.",
                 color: "bg-yellow-400"
               },
               {
@@ -160,8 +125,8 @@ export default function TransparenciaPage() {
               },
               {
                 value: `${participants} Participantes`,
-                label: `+ ${fixedStaff} org + ${mentors} mentores`,
-                description: `${totalHeadcount} pessoas no total que precisam ser alimentadas e atendidas.`,
+                label: `+ ${totalPeople - participants} entre org e mentores`,
+                description: `${totalPeople} pessoas no total que precisam ser alimentadas e atendidas.`,
                 color: "bg-techstars-green"
               },
             ].map((card, i) => (
@@ -198,7 +163,7 @@ export default function TransparenciaPage() {
               </div>
               <p className="text-black font-bold text-lg leading-relaxed">
                 Este é o valor mínimo por participante para cobrir TODOS os custos operacionais (
-                <span className="bg-black text-white px-2 py-0.5 mx-1 inline-block transform rotate-1">{formatCurrency(totalEventCost)}</span>
+                <span className="bg-black text-white px-2 py-0.5 mx-1 inline-block transform rotate-1">{formatCurrency(totalDespesas)}</span>
                 ) dividido pelos <span className="bg-black text-white px-2 py-0.5 mx-1 inline-block transform -rotate-1">{participants}</span> inscritos garantidos.
               </p>
             </div>
@@ -209,63 +174,29 @@ export default function TransparenciaPage() {
                 COMO CADA REAL É ALOCADO
               </h4>
               <div className="space-y-8">
-                {[
-                  {
-                    label: "ALIMENTAÇÃO (Refeições Totais)",
-                    value: variableItems
-                      .filter((i) => i.name.includes("Alimentação"))
-                      .reduce((s, i) => s + i.value, 0) * totalHeadcount,
-                    percent: (
-                      (variableItems
-                        .filter((i) => i.name.includes("Alimentação"))
-                        .reduce((s, i) => s + i.value, 0) *
-                        totalHeadcount *
-                        100) /
-                      totalEventCost
-                    ).toFixed(0),
-                    color: "bg-pink-500",
-                  },
-                  {
-                    label: "MATERIAIS (Kits, Crachás)",
-                    value: variableItems
-                      .filter((i) => !i.name.includes("Alimentação"))
-                      .reduce((s, i) => s + i.value, 0) * totalHeadcount,
-                    percent: (
-                      (variableItems
-                        .filter((i) => !i.name.includes("Alimentação"))
-                        .reduce((s, i) => s + i.value, 0) *
-                        totalHeadcount *
-                        100) /
-                      totalEventCost
-                    ).toFixed(0),
-                    color: "bg-blue-500",
-                  },
-                  {
-                    label: "CUSTOS FIXOS (Estrutura)",
-                    value: totalFixed,
-                    percent: ((totalFixed * 100) / totalEventCost).toFixed(0),
-                    color: "bg-yellow-400",
-                  },
-                ].map((item) => (
-                  <div key={item.label} className="relative">
-                    <div className="flex flex-col xl:flex-row xl:justify-between text-sm mb-2 gap-2 items-start xl:items-end">
-                      <span className="text-white font-black uppercase tracking-tight">{item.label}</span>
-                      <span className="text-techstars-green font-black text-lg md:text-xl bg-black border-2 border-techstars-green px-2 py-0.5 shadow-[2px_2px_0_#39C463]">
-                        {formatCurrency(item.value)} <span className="text-white ml-1">({item.percent}%)</span>
-                      </span>
+                {categories.map((cat) => {
+                  const percent = ((cat.total * 100) / totalDespesas).toFixed(0);
+                  return (
+                    <div key={cat.key} className="relative">
+                      <div className="flex flex-col xl:flex-row xl:justify-between text-sm mb-2 gap-2 items-start xl:items-end">
+                        <span className="text-white font-black uppercase tracking-tight">{cat.icon} {cat.label}</span>
+                        <span className="text-techstars-green font-black text-lg md:text-xl bg-black border-2 border-techstars-green px-2 py-0.5 shadow-[2px_2px_0_#39C463]">
+                          {formatCurrency(cat.total)} <span className="text-white ml-1">({percent}%)</span>
+                        </span>
+                      </div>
+                      <div className="w-full bg-zinc-800 border-2 border-black h-6 lg:h-8 shadow-[2px_2px_0_#fff]">
+                        <div
+                          className={`${cat.color} h-full border-r-2 border-black transition-all duration-1000`}
+                          style={{ width: `${percent}%` }}
+                        />
+                      </div>
                     </div>
-                    <div className="w-full bg-zinc-800 border-2 border-black h-6 lg:h-8 shadow-[2px_2px_0_#fff]">
-                      <div
-                        className={`${item.color} h-full border-r-2 border-black transition-all duration-1000`}
-                        style={{ width: `${item.percent}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
-          
+
           <div className="mt-12 bg-blue-600 border-4 border-black p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 shadow-[8px_8px_0_#000] transform -rotate-1 hover:rotate-0 transition-transform">
              <div className="bg-white border-4 border-black w-20 h-20 flex items-center justify-center text-4xl shadow-[4px_4px_0_#000] rotate-3 shrink-0">🤝</div>
              <p className="text-white font-black text-xl md:text-2xl uppercase drop-shadow-[2px_2px_0_#000] text-center md:text-left leading-snug tracking-tighter">
@@ -275,96 +206,142 @@ export default function TransparenciaPage() {
         </div>
       </section>
 
-      {/* Detailed Costs View */}
+      {/* Detailed Costs — Category-based accordion */}
       <section className="py-24 px-6 bg-techstars-green border-b-4 border-black relative overflow-hidden">
         <div className="absolute inset-0 dot-pattern opacity-40 pointer-events-none" />
-        <div className="max-w-6xl mx-auto relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-16">
-          
-          {/* Fixed Costs */}
-          <div className="w-full lg:w-1/2">
-            <h2 className="text-5xl md:text-6xl font-black text-black uppercase tracking-tighter mb-6 drop-shadow-[4px_4px_0_#fff]">
-              CUSTOS FIXOS
-            </h2>
-            <p className="text-black font-bold text-xl uppercase bg-white border-4 border-black px-4 py-2 inline-block mb-10 shadow-[4px_4px_0_#000] rotate-[-1deg]">
-              Independem do nº de inscrições
-            </p>
-            <div className="flex flex-col gap-6">
-              {fixedItems.map((item, i) => (
-                <div key={item.id} className="bg-white border-4 border-black p-6 shadow-[6px_6px_0_#000] flex items-center gap-6 hover:translate-x-2 transition-transform">
-                   <div className="text-5xl drop-shadow-[2px_2px_0_#39C463]">{getFixedCostIcon(item.name)}</div>
-                   <div className="flex-1">
-                     <h3 className="text-xl md:text-2xl font-black text-black uppercase tracking-tighter">{item.name}</h3>
-                     <div className="text-2xl md:text-3xl font-black text-blue-600 drop-shadow-[1px_1px_0_#000] mt-1">
-                       {formatCurrency(item.value)}
-                     </div>
-                   </div>
-                </div>
-              ))}
-              <div className="bg-black border-4 border-black p-8 shadow-[8px_8px_0_#fff] flex flex-col sm:flex-row items-center sm:items-end justify-between text-white mt-6 rotate-1 hover:rotate-0 transition-transform">
-                <span className="text-2xl font-black uppercase tracking-tighter">Total Fixo</span>
-                <span className="text-4xl md:text-5xl font-black text-techstars-green drop-shadow-[2px_2px_0_#000] mt-2 sm:mt-0">{formatCurrency(totalFixed)}</span>
-              </div>
-            </div>
-          </div>
+        <div className="max-w-5xl mx-auto relative z-10">
+          <h2 className="text-5xl md:text-6xl font-black text-black uppercase tracking-tighter mb-4 drop-shadow-[4px_4px_0_#fff] text-center">
+            DETALHAMENTO
+          </h2>
+          <p className="text-black font-bold text-xl uppercase bg-white border-4 border-black px-4 py-2 inline-block mb-12 shadow-[4px_4px_0_#000] rotate-[-1deg] mx-auto block text-center">
+            Todas as despesas previstas, item por item
+          </p>
 
-          {/* Variable Costs */}
-          <div className="w-full lg:w-1/2">
-             <h2 className="text-5xl md:text-6xl font-black text-black uppercase tracking-tighter mb-6 drop-shadow-[4px_4px_0_#fff]">
-              CUSTOS VARIÁVEIS
-            </h2>
-            <p className="text-black font-bold text-xl uppercase bg-white border-4 border-black px-4 py-2 inline-block mb-10 shadow-[4px_4px_0_#000] rotate-[1deg]">
-              CUSTO BASE X {totalHeadcount} PESSOAS
-            </p>
-
-            <div className="bg-white border-4 border-black shadow-[8px_8px_0_#000] overflow-hidden flex flex-col hover:-translate-y-2 transition-transform hover:shadow-[12px_12px_0_#000]">
-              {variableGroups.map((group, gi) => (
-                <div key={group.label} className="border-b-4 border-black last:border-0">
-                  <button 
-                    onClick={() => toggleGroup(group.label)}
-                    className="w-full bg-yellow-400 hover:bg-yellow-500 transition-colors px-6 py-4 flex items-center justify-between text-left"
-                  >
-                    <div className="flex items-center gap-4">
-                      <span className="text-3xl bg-white border-2 border-black inline-flex justify-center p-1 shadow-[2px_2px_0_#000] shrink-0">{groupIcons[group.label]}</span>
-                      <span className="text-xl md:text-2xl font-black text-black uppercase tracking-tighter shrink-0">{group.label}</span>
-                    </div>
-                    <div className="text-3xl font-black w-8 text-center shrink-0">
-                      {openGroups[group.label] ? "−" : "+"}
-                    </div>
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {openGroups[group.label] && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="overflow-hidden bg-white"
-                      >
-                        <div className="p-6 flex flex-col gap-4 border-t-4 border-black">
-                          {group.items.map((item, ii) => (
-                            <div key={item.id} className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center bg-gray-50 border-2 border-black px-4 py-3 hover:bg-gray-100">
-                              <span className="text-black font-bold uppercase text-sm w-full sm:w-2/3 break-words mb-1 sm:mb-0">{item.name}</span>
-                              <span className="text-techstars-green bg-black px-2 py-0.5 border-2 border-black font-black text-lg md:text-xl shrink-0 shadow-[2px_2px_0_#39C463]">{formatCurrency(item.value)}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+          <div className="bg-white border-4 border-black shadow-[8px_8px_0_#000] overflow-hidden">
+            {/* Geral */}
+            <CategoryAccordion
+              label="Geral"
+              icon="⚙️"
+              total={totalGeral}
+              isOpen={openCategories.geral}
+              onToggle={() => toggleCategory("geral")}
+            >
+              {despesas.geral.map((item) => (
+                <ItemRow key={item.id} name={item.name} value={item.value} />
               ))}
-              <div className="bg-black text-white p-8 border-t-8 border-yellow-400 flex flex-col gap-6">
-                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end border-b-4 border-gray-800 pb-6 gap-2 sm:gap-0">
-                   <span className="text-white font-black uppercase text-xl tracking-tighter">Custo Base Individual</span>
-                   <span className="text-3xl md:text-4xl font-black text-white drop-shadow-[2px_2px_0_#39C463]">{formatCurrency(variableCostPerPerson)}</span>
-                 </div>
-                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2 sm:gap-0">
-                   <span className="text-white font-black uppercase text-xl md:text-2xl leading-snug tracking-tighter w-full sm:w-1/2">
-                     TOTAL VARIÁVEL <br/><span className="bg-techstars-green text-black px-2 inline-block text-sm border-2 border-techstars-green mt-1 transform rotate-[-2deg]">({variableCostPerPerson} × {totalHeadcount} REF)</span>
-                   </span>
-                   <span className="text-4xl md:text-5xl font-black text-techstars-green drop-shadow-[4px_4px_0_#000]">{formatCurrency(totalVariable)}</span>
-                 </div>
+            </CategoryAccordion>
+
+            {/* Suprimentos */}
+            <CategoryAccordion
+              label="Suprimentos"
+              icon="📦"
+              total={totalSuprimentos}
+              isOpen={openCategories.suprimentos}
+              onToggle={() => toggleCategory("suprimentos")}
+            >
+              {despesas.suprimentos.map((item) => (
+                <ItemRow
+                  key={item.id}
+                  name={item.name}
+                  value={item.value}
+                  unitCost={item.unitCost}
+                  totalPeople={totalPeople}
+                />
+              ))}
+            </CategoryAccordion>
+
+            {/* Alimentação — nested day accordion */}
+            <CategoryAccordion
+              label="Alimentação"
+              icon="🍽️"
+              total={totalAlimentacao}
+              isOpen={openCategories.alimentacao}
+              onToggle={() => toggleCategory("alimentacao")}
+            >
+              {alimentacaoDays.map((day) => {
+                const dayTotal = day.items.reduce((s, item) => s + item.value, 0);
+                return (
+                  <div key={day.key} className="border-b-2 border-gray-200 last:border-0">
+                    <button
+                      onClick={() => toggleDay(day.label)}
+                      className="w-full bg-gray-50 hover:bg-gray-100 transition-colors px-4 py-3 flex items-center justify-between text-left"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">{day.icon}</span>
+                        <span className="text-lg font-black text-black uppercase tracking-tighter">{day.label}</span>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <span className="text-sm font-bold text-gray-600">{formatCurrency(dayTotal)}</span>
+                        <span className="text-xl font-black w-6 text-center">
+                          {openDays[day.label] ? "−" : "+"}
+                        </span>
+                      </div>
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {openDays[day.label] && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-4 pb-3 flex flex-col gap-2">
+                            {day.items.map((item) => (
+                              <ItemRow
+                                key={item.id}
+                                name={item.name}
+                                value={item.value}
+                                unitCost={item.unitCost}
+                                totalPeople={totalPeople}
+                              />
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </CategoryAccordion>
+
+            {/* Diversos */}
+            <CategoryAccordion
+              label="Diversos"
+              icon="🎁"
+              total={totalDiversos}
+              isOpen={openCategories.diversos}
+              onToggle={() => toggleCategory("diversos")}
+            >
+              {despesas.diversos.map((item) => (
+                <ItemRow
+                  key={item.id}
+                  name={item.name}
+                  value={item.value}
+                  unitCost={item.unitCost}
+                  totalPeople={totalPeople}
+                />
+              ))}
+            </CategoryAccordion>
+
+            {/* Contingência */}
+            <CategoryAccordion
+              label={`Contingência (${contingencia.percent}%)`}
+              icon="🛡️"
+              total={contingencia.value}
+              isOpen={openCategories.contingencia}
+              onToggle={() => toggleCategory("contingencia")}
+              dashed
+            >
+              <div className="px-4 py-3 text-sm font-bold text-gray-600">
+                Reserva de {contingencia.percent}% sobre as despesas para cobrir imprevistos.
               </div>
+            </CategoryAccordion>
+
+            {/* Grand Total */}
+            <div className="bg-black text-white p-8 border-t-8 border-yellow-400 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
+              <span className="text-2xl md:text-3xl font-black uppercase tracking-tighter">Despesa Total</span>
+              <span className="text-4xl md:text-5xl font-black text-techstars-green drop-shadow-[4px_4px_0_#000]">{formatCurrency(totalDespesas)}</span>
             </div>
           </div>
         </div>
@@ -392,7 +369,7 @@ export default function TransparenciaPage() {
                   </span>
                 </div>
                 <div className={`grid ${config.cols} gap-10 bg-zinc-900 border-4 border-techstars-green p-12 pt-20 shadow-[12px_12px_0_#39C463]`}>
-                  {items.map((sponsor, i) => (
+                  {items.map((sponsor) => (
                     <a
                       key={sponsor.name}
                       href={sponsor.url}
@@ -451,5 +428,60 @@ export default function TransparenciaPage() {
 
       <StartupWeekendFooter />
     </main>
+  );
+}
+
+// ── Sub-components ──────────────────────────────────────────
+
+function CategoryAccordion({ label, icon, total, isOpen, onToggle, dashed, children }) {
+  return (
+    <div className={`border-b-4 border-black last:border-0 ${dashed ? "border-dashed" : ""}`}>
+      <button
+        onClick={onToggle}
+        className="w-full bg-yellow-400 hover:bg-yellow-500 transition-colors px-6 py-4 flex items-center justify-between text-left"
+      >
+        <div className="flex items-center gap-4">
+          <span className="text-3xl bg-white border-2 border-black inline-flex justify-center p-1 shadow-[2px_2px_0_#000] shrink-0">{icon}</span>
+          <span className="text-xl md:text-2xl font-black text-black uppercase tracking-tighter">{label}</span>
+        </div>
+        <div className="flex items-center gap-4">
+          <span className="text-lg md:text-xl font-black text-black">{formatCurrency(total)}</span>
+          <span className="text-3xl font-black w-8 text-center">{isOpen ? "−" : "+"}</span>
+        </div>
+      </button>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden bg-white"
+          >
+            <div className="p-6 flex flex-col gap-3 border-t-4 border-black">
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function ItemRow({ name, value, unitCost, totalPeople }) {
+  return (
+    <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center bg-gray-50 border-2 border-black px-4 py-3 hover:bg-gray-100">
+      <div className="flex flex-col w-full sm:w-2/3 mb-1 sm:mb-0">
+        <span className="text-black font-bold uppercase text-sm break-words">{name}</span>
+        {unitCost != null && (
+          <span className="text-xs text-gray-500 font-semibold">
+            {formatCurrency(unitCost)}/pessoa × {totalPeople} = {formatCurrency(value)}
+          </span>
+        )}
+      </div>
+      <span className={`text-black bg-white px-2 py-0.5 border-2 border-black font-black text-lg md:text-xl shrink-0 shadow-[2px_2px_0_#39C463] ${value === 0 ? "opacity-40" : ""}`}>
+        {formatCurrency(value)}
+      </span>
+    </div>
   );
 }

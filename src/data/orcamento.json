@@ -1,75 +1,56 @@
 {
-  "name": "Orçamento Inicial",
-  "date": "18/03/2026",
+  "name": "Orçamento",
+  "date": "30/03/2026",
   "data": {
-    "participants": 65,
-    "fixedStaff": 10,
-    "mentorsPerTeam": 1,
-    "participantsPerTeam": 7.5,
-    "fixedItems": [
-      {
-        "id": "1773850368284",
-        "name": "Hospedagem Facilitador Techstars",
-        "value": 1100
+    "participants": 75,
+    "totalPeople": 98,
+    "averageTicketPrice": 202.50,
+    "despesas": {
+      "geral": [
+        { "id": "g1", "name": "MeeteR (taxas de plataforma)", "value": 469.84 },
+        { "id": "g2", "name": "Material promocional", "value": 0 },
+        { "id": "g3", "name": "Custos com Local", "value": 0 },
+        { "id": "g4", "name": "Taxas (emissão de nota)", "value": 1875.66 }
+      ],
+      "suprimentos": [
+        { "id": "s1", "name": "Crachás", "value": 490, "unitCost": 5 },
+        { "id": "s2", "name": "Backdrop", "value": 3500 },
+        { "id": "s3", "name": "Facilitador - Hospedagem", "value": 1100 },
+        { "id": "s4", "name": "Facilitador - Passagens", "value": 3000 },
+        { "id": "s5", "name": "Facilitador - Translado", "value": 300 }
+      ],
+      "alimentacao": {
+        "sexta": [
+          { "id": "a-sex-1", "name": "Coffee-break", "unitCost": 14, "value": 1372 },
+          { "id": "a-sex-2", "name": "Bebidas", "unitCost": 3, "value": 294 }
+        ],
+        "sabado": [
+          { "id": "a-sab-1", "name": "Café da manhã", "unitCost": 12, "value": 1176 },
+          { "id": "a-sab-2", "name": "Almoço", "unitCost": 25, "value": 2450 },
+          { "id": "a-sab-3", "name": "Coffee-break", "unitCost": 14, "value": 1372 },
+          { "id": "a-sab-4", "name": "Jantar", "unitCost": 25, "value": 2450 },
+          { "id": "a-sab-5", "name": "Bebidas", "unitCost": 6, "value": 588 },
+          { "id": "a-sab-6", "name": "Snacks, frutas, etc.", "unitCost": 6, "value": 588 }
+        ],
+        "domingo": [
+          { "id": "a-dom-1", "name": "Café da manhã", "unitCost": 12, "value": 1176 },
+          { "id": "a-dom-2", "name": "Almoço", "unitCost": 25, "value": 2450 },
+          { "id": "a-dom-3", "name": "Coffee-break", "unitCost": 14, "value": 1372 },
+          { "id": "a-dom-4", "name": "Snacks, frutas, etc.", "unitCost": 6, "value": 588 },
+          { "id": "a-dom-5", "name": "Bebidas", "unitCost": 6, "value": 588 }
+        ]
       },
-      {
-        "id": "1773850526960",
-        "name": "Backdrop",
-        "value": 2500
-      },
-      {
-        "id": "1773850547852",
-        "name": "Passagens Facilitador Techstars",
-        "value": 2500
-      }
-    ],
-    "variableItems": [
-      {
-        "id": "v1",
-        "name": "Alimentação Sexta Feira",
-        "value": 12
-      },
-      {
-        "id": "v2",
-        "name": "Alimentação Sábado - Café da manhã",
-        "value": 9
-      },
-      {
-        "id": "v3",
-        "name": "Alimentação Sábado - Almoço",
-        "value": 12
-      },
-      {
-        "id": "1773850453290",
-        "name": "Alimentação Sábado - Janta",
-        "value": 25
-      },
-      {
-        "id": "1773850460476",
-        "name": "Alimentação Domingo - Café da manhã",
-        "value": 9
-      },
-      {
-        "id": "1773850470990",
-        "name": "Alimentação Domingo - Almoço",
-        "value": 12
-      },
-      {
-        "id": "1773850482573",
-        "name": "Alimentação Domingo - Coffee Break",
-        "value": 15
-      },
-      {
-        "id": "1773850507386",
-        "name": "Kit de Boas Vindas",
-        "value": 35
-      },
-      {
-        "id": "1773850528768",
-        "name": "Crachás",
-        "value": 5
-      }
-    ],
+      "diversos": [
+        { "id": "d1", "name": "Camisetas", "unitCost": 40, "value": 3920 },
+        { "id": "d2", "name": "Copos personalizados", "unitCost": 12, "value": 1176 },
+        { "id": "d3", "name": "Adesivos", "unitCost": 5, "value": 490 },
+        { "id": "d4", "name": "Brindes", "unitCost": 15, "value": 1470 }
+      ]
+    },
+    "contingencia": {
+      "percent": 10,
+      "value": 3425.55
+    },
     "sponsors": [
       { "name": "8020 Digital", "tier": "Bronze", "value": 2500, "logo": "/images/8020digital.png", "url": "https://8020digital.io" },
       { "name": "F&L Solutions", "tier": "Bronze", "value": 2500, "logo": "/images/flsoftwaresolutions.png", "url": "https://flsoftwaresolutions.com" },
