@@ -369,25 +369,29 @@ export default function TransparenciaPage() {
                   </span>
                 </div>
                 <div className={`grid ${config.cols} gap-10 bg-zinc-900 border-4 border-techstars-green p-12 pt-20 shadow-[12px_12px_0_#39C463]`}>
-                  {items.map((sponsor) => (
-                    <a
-                      key={sponsor.name}
-                      href={sponsor.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-white border-4 border-black p-8 shadow-[8px_8px_0_#000] hover:shadow-[16px_16px_0_#000] hover:-translate-y-2 hover:-translate-x-2 transition-all flex items-center justify-center h-56 md:h-64 group"
-                    >
-                      <Image
-                        src={sponsor.logo}
-                        alt={sponsor.name}
-                        width={sponsor.name === "SENAI" ? 200 : 360}
-                        height={sponsor.name === "SENAI" ? 80 : 144}
-                        className={`object-contain transition-transform duration-300 group-hover:scale-110 ${
-                          sponsor.name === "SENAI" ? "h-24 md:h-28 w-auto" : "h-32 md:h-40 w-auto invert"
-                        }`}
-                      />
-                    </a>
-                  ))}
+                  {items.map((sponsor) => {
+                    const Wrapper = sponsor.url ? "a" : "div";
+                    const wrapperProps = sponsor.url
+                      ? { href: sponsor.url, target: "_blank", rel: "noopener noreferrer" }
+                      : {};
+                    return (
+                      <Wrapper
+                        key={sponsor.name}
+                        {...wrapperProps}
+                        className="bg-white border-4 border-black p-8 shadow-[8px_8px_0_#000] hover:shadow-[16px_16px_0_#000] hover:-translate-y-2 hover:-translate-x-2 transition-all flex items-center justify-center h-56 md:h-64 group"
+                      >
+                        <Image
+                          src={sponsor.logo}
+                          alt={sponsor.name}
+                          width={sponsor.name === "SENAI" ? 200 : 360}
+                          height={sponsor.name === "SENAI" ? 80 : 144}
+                          className={`object-contain transition-transform duration-300 group-hover:scale-110 ${
+                            sponsor.name === "SENAI" ? "h-24 md:h-28 w-auto" : "h-32 md:h-40 w-auto invert"
+                          }`}
+                        />
+                      </Wrapper>
+                    );
+                  })}
                 </div>
               </div>
             ))}

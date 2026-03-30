@@ -374,6 +374,17 @@ export default function StartupWeekendPage() {
                     className="h-16 md:h-20 w-auto object-contain"
                   />
                 </a>
+                <div
+                  className="flex items-center justify-center bg-white rounded-xl p-4 brutal-border brutal-shadow-sm hover:-translate-y-1 transition-transform"
+                >
+                  <Image
+                    src="/images/sindifargo.png"
+                    alt="Sindifargo"
+                    width={360}
+                    height={144}
+                    className="h-16 md:h-20 w-auto object-contain brightness-0"
+                  />
+                </div>
               </div>
             </div>
           </div>
