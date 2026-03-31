@@ -346,15 +346,6 @@ export default function StartupWeekendPage() {
                   className="h-24 md:h-28 w-auto object-contain brightness-0"
                 />
               </a>
-            </div>
-          </div>
-
-          {/* Gold Sponsors - between platinum and local */}
-          <div className="mb-16">
-            <h3 className="text-xl md:text-2xl font-black mb-8 text-center tracking-tight uppercase">
-              Patrocinadores Ouro
-            </h3>
-            <div className="flex flex-wrap items-center justify-center gap-8 min-h-[110px]">
               <a
                 href="https://www.fiap.com.br/"
                 target="_blank"
