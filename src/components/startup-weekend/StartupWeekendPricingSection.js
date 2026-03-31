@@ -108,7 +108,7 @@ export default function StartupWeekendPricingSection() {
             </div>
 
             <h3 className="text-3xl md:text-4xl font-black text-black uppercase tracking-tighter mb-8 leading-none">
-              techstars_ STARTUP WEEKEND
+              techstars_ STARTUP WEEKEND ANÁPOLIS
               <br />
               <span className="text-xl tracking-normal">
                 {"// 54H DE IMERSÃO TOTAL"}

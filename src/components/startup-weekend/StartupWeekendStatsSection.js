@@ -90,7 +90,7 @@ export default function StartupWeekendStatsSection() {
                   NEW_ERA_2024
                 </div>
                 <h3 className="text-4xl md:text-5xl font-black text-black uppercase tracking-tighter leading-tight mb-8">
-                  STARTUP<br/>WEEKEND
+                  techstars_<br/>STARTUP<br/>WEEKEND<br/>ANÁPOLIS
                 </h3>
                 <ul className="space-y-5 mb-10">
                   <li className="flex items-center gap-4 text-black font-black uppercase text-base md:text-lg">
