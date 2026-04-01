@@ -1,12 +1,65 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { eventConfig } from "@/data/startup-weekend-event";
+
+// ==========================================
+// CONFIGURAÇÃO DE LOTES — EDITE APENAS AQUI
+// ==========================================
+const LOTES = [
+  {
+    label: "1º LOTE",
+    price: "R$ 270,00",
+    priceNumber: 270,
+    endDate: new Date("2026-04-01T23:59:59-03:00"),
+    soldOut: true, // Override manual: forçar como esgotado
+  },
+  {
+    label: "2º LOTE",
+    price: "R$ 300,00",
+    priceNumber: 300,
+    endDate: new Date("2026-04-15T23:59:59-03:00"),
+    soldOut: false,
+  },
+  {
+    label: "3º LOTE",
+    price: "R$ 330,00",
+    priceNumber: 330,
+    endDate: new Date("2026-04-25T23:59:59-03:00"),
+    soldOut: false,
+  },
+];
+
+function getLotStatus(lote, index, now) {
+  if (lote.soldOut) return "esgotado";
+  if (now > lote.endDate) return "esgotado";
+  const previousActive = LOTES.slice(0, index).some(
+    (prev) => !prev.soldOut && now <= prev.endDate
+  );
+  if (previousActive) return "proximo";
+  return "ativo";
+}
+
+function formatEndDate(date) {
+  return `${String(date.getDate()).padStart(2, "0")}/${String(
+    date.getMonth() + 1
+  ).padStart(2, "0")}`;
+}
 
 export default function StartupWeekendPricingSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const { lotStatuses, activeLot } = useMemo(() => {
+    const now = new Date();
+    const statuses = LOTES.map((lote, i) => getLotStatus(lote, i, now));
+    const activeIdx = statuses.indexOf("ativo");
+    return {
+      lotStatuses: statuses,
+      activeLot: activeIdx >= 0 ? LOTES[activeIdx] : LOTES[LOTES.length - 1],
+    };
+  }, []);
 
   return (
     <section className="py-24 px-6 bg-black brutal-border-y overflow-hidden relative">
@@ -42,7 +95,6 @@ export default function StartupWeekendPricingSection() {
               {"// Lento. Burocrático. Caro."}
             </p>
             <div className="space-y-6 relative">
-              {/* Stamp */}
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-[-15deg] border-4 border-red-500 text-red-500 text-4xl md:text-5xl font-black uppercase px-4 py-2 opacity-50 pointer-events-none whitespace-nowrap z-20 brutal-border">
                 MUITO CARO
               </div>
@@ -116,47 +168,79 @@ export default function StartupWeekendPricingSection() {
             </h3>
 
             <div className="space-y-4 relative z-10">
-              <div className="w-full bg-white p-3 brutal-border shadow-[4px_4px_0_#000] flex justify-between items-center hover:bg-gray-50 transition-colors">
-                <div className="flex flex-col">
-                  <span className="font-black text-black uppercase">
-                    1º LOTE
-                  </span>
-                  <span className="text-xs text-red-600 font-bold uppercase shrink-0">
-                    Encerra 31/03
-                  </span>
-                </div>
-                <span className="font-black text-black text-xl lg:text-2xl">
-                  R$ 270,00
-                </span>
-              </div>
+              {LOTES.map((lote, i) => {
+                const status = lotStatuses[i];
 
-              <div className="w-full bg-white p-3 brutal-border shadow-[4px_4px_0_#000] flex justify-between items-center opacity-70">
-                <div className="flex flex-col">
-                  <span className="font-black text-black uppercase">
-                    2º LOTE
-                  </span>
-                  <span className="text-xs text-gray-500 font-bold uppercase shrink-0">
-                    Encerra 15/04
-                  </span>
-                </div>
-                <span className="font-black text-black text-xl lg:text-2xl">
-                  R$ 300,00
-                </span>
-              </div>
+                if (status === "esgotado") {
+                  return (
+                    <div
+                      key={i}
+                      className="w-full bg-gray-200 p-3 brutal-border shadow-[4px_4px_0_#000] flex justify-between items-center opacity-50 relative overflow-hidden"
+                    >
+                      <div className="flex flex-col">
+                        <span className="font-black text-gray-500 uppercase line-through">
+                          {lote.label}
+                        </span>
+                        <span className="text-xs text-gray-400 font-bold uppercase shrink-0">
+                          Encerrado
+                        </span>
+                      </div>
+                      <span className="font-black text-gray-400 text-xl lg:text-2xl line-through">
+                        {lote.price}
+                      </span>
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[-12deg] border-3 border-red-500 text-red-500 text-sm font-black uppercase px-3 py-0.5">
+                        ESGOTADO
+                      </div>
+                    </div>
+                  );
+                }
 
-              <div className="w-full bg-white p-3 brutal-border shadow-[4px_4px_0_#000] flex justify-between items-center opacity-70">
-                <div className="flex flex-col">
-                  <span className="font-black text-black uppercase">
-                    3º LOTE
-                  </span>
-                  <span className="text-xs text-gray-500 font-bold uppercase shrink-0">
-                    Encerra 25/04
-                  </span>
-                </div>
-                <span className="font-black text-black text-xl lg:text-2xl">
-                  R$ 330,00
-                </span>
-              </div>
+                if (status === "ativo") {
+                  return (
+                    <div
+                      key={i}
+                      className="w-full bg-white p-3 brutal-border shadow-[6px_6px_0_#39C463] flex justify-between items-center ring-2 ring-techstars-green"
+                    >
+                      <div className="flex flex-col">
+                        <div className="flex items-center gap-2">
+                          <span className="font-black text-black uppercase">
+                            {lote.label}
+                          </span>
+                          <span className="bg-techstars-green text-black text-[9px] font-black uppercase px-2 py-0.5 border border-black">
+                            ATIVO
+                          </span>
+                        </div>
+                        <span className="text-xs text-red-600 font-bold uppercase shrink-0">
+                          Encerra {formatEndDate(lote.endDate)}
+                        </span>
+                      </div>
+                      <span className="font-black text-black text-xl lg:text-2xl">
+                        {lote.price}
+                      </span>
+                    </div>
+                  );
+                }
+
+                // proximo
+                return (
+                  <div
+                    key={i}
+                    className="w-full bg-white p-3 brutal-border shadow-[4px_4px_0_#000] flex justify-between items-center opacity-50"
+                  >
+                    <div className="flex flex-col">
+                      <span className="font-black text-black uppercase">
+                        {lote.label}
+                      </span>
+                      <span className="text-xs text-gray-500 font-bold uppercase shrink-0">
+                        Encerra {formatEndDate(lote.endDate)}
+                      </span>
+                    </div>
+                    <span className="font-black text-black text-xl lg:text-2xl">
+                      {lote.price}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
 
             <div className="mt-8 bg-black text-center p-6 brutal-border relative">
@@ -176,11 +260,12 @@ export default function StartupWeekendPricingSection() {
                 </svg>
               </div>
               <p className="text-xs text-techstars-green font-black uppercase mb-1 tracking-widest">
-                OFERTA ATUAL
+                OFERTA ATUAL — {activeLot.label}
               </p>
               <div className="flex justify-center items-end gap-2 text-white">
                 <span className="text-4xl md:text-5xl font-black italic">
-                  R$ 270<span className="text-2xl text-gray-300">,00</span>
+                  R$ {activeLot.priceNumber}
+                  <span className="text-2xl text-gray-300">,00</span>
                 </span>
               </div>
             </div>

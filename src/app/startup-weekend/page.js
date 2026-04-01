@@ -265,210 +265,77 @@ export default function StartupWeekendPage() {
             </p>
           </div>
 
-          {/* Global Partners - bigger section */}
+          {/* Global Partners */}
           <div className="mb-20">
             <h3 className="text-2xl md:text-3xl font-black mb-10 text-center tracking-tight uppercase">
               Patrocinadores Globais
             </h3>
-            <div className="flex flex-wrap items-center justify-center gap-14 min-h-[140px] bg-white brutal-border brutal-shadow-sm p-8 rounded-xl">
-              <a
-                href="https://www.hsbcinnovationbanking.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center hover:-translate-y-1 transition-transform"
-              >
-                <Image
-                  src="/images/HSBC-InnovationBanking-Logo-MONO-REV.png"
-                  alt="HSBC Innovation Banking"
-                  width={180}
-                  height={56}
-                  className="h-14 w-auto object-contain brightness-0"
-                />
+            {/* Row 1: Brex, Google for Startups, Mercury */}
+            <div className="flex flex-wrap items-center justify-center gap-14 md:gap-20 mb-10">
+              <a href="https://brex.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center hover:-translate-y-1 hover:opacity-80 transition-all">
+                <Image src="/images/Brex White Logo.png" alt="Brex" width={250} height={80} className="h-14 w-auto object-contain brightness-0 invert" />
               </a>
-              <a
-                href="https://brex.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center hover:-translate-y-1 transition-transform"
-              >
-                <Image
-                  src="/images/Brex White Logo.png"
-                  alt="Brex"
-                  width={160}
-                  height={56}
-                  className="h-14 w-auto object-contain brightness-0"
-                />
+              <a href="https://startup.google.com/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center hover:-translate-y-1 hover:opacity-80 transition-all">
+                <Image src="/images/GoogleForStartups_Horizontal_W (1).png" alt="Google for Startups" width={300} height={100} className="h-14 w-auto object-contain brightness-0 invert" />
               </a>
-              <a
-                href="https://startup.google.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center hover:-translate-y-1 transition-transform"
-              >
-                <Image
-                  src="/images/GoogleForStartups_Horizontal_W (1).png"
-                  alt="Google for Startups"
-                  width={200}
-                  height={75}
-                  className="h-14 md:h-16 w-auto object-contain brightness-0"
-                />
+              <a href="https://mercury.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center hover:-translate-y-1 hover:opacity-80 transition-all">
+                <Image src="/images/mercury-logo-wordmark-horizontal_mono white.png" alt="Mercury" width={250} height={80} className="h-14 w-auto object-contain brightness-0 invert" />
               </a>
-              <a
-                href="https://mercury.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center hover:-translate-y-1 transition-transform"
-              >
-                <Image
-                  src="/images/mercury-logo-wordmark-horizontal_mono white.png"
-                  alt="Mercury"
-                  width={160}
-                  height={56}
-                  className="h-14 w-auto object-contain brightness-0"
-                />
+            </div>
+            {/* Row 2: HSBC, Deel */}
+            <div className="flex flex-wrap items-center justify-center gap-14 md:gap-20 -mt-4">
+              <a href="https://www.hsbcinnovationbanking.com/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center hover:-translate-y-1 hover:opacity-80 transition-all">
+                <Image src="/images/HSBC-InnovationBanking-Logo-MONO-REV.png" alt="HSBC Innovation Banking" width={500} height={150} className="h-28 w-auto object-contain brightness-0 invert" />
               </a>
-              <a
-                href="https://www.deel.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center hover:-translate-y-1 transition-transform"
-              >
-                <Image
-                  src="/images/perks-deel-450x200-white.png"
-                  alt="Deel"
-                  width={200}
-                  height={88}
-                  className="h-14 md:h-16 w-auto object-contain brightness-0"
-                />
+              <a href="https://www.deel.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center hover:-translate-y-1 hover:opacity-80 transition-all">
+                <Image src="/images/perks-deel-450x200-white.png" alt="Deel" width={300} height={120} className="h-20 w-auto object-contain brightness-0 invert" />
               </a>
             </div>
           </div>
 
-          {/* Platinum Sponsors - between global and gold/local */}
-          <div className="mb-16">
+          {/* Platinum Sponsors - SEBRAE first */}
+          <div className="mb-20">
             <h3 className="text-2xl md:text-3xl font-black mb-8 text-center tracking-tight uppercase">
               Patrocinadores Platina
             </h3>
-            <div className="flex flex-wrap items-center justify-center gap-10 min-h-[130px]">
-              <a
-                href="https://www.sebrae.com.br/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center bg-white rounded-xl p-6 md:p-8 brutal-border brutal-shadow-sm hover:-translate-y-1 transition-transform"
-              >
-                <Image
-                  src="/images/sebrae-logo-1-white.png"
-                  alt="SEBRAE"
-                  width={420}
-                  height={140}
-                  className="h-24 md:h-28 w-auto object-contain brightness-0"
-                />
+            <div className="flex flex-wrap items-center justify-center gap-16 md:gap-20 min-h-[100px]">
+              <a href="https://www.portaldaindustria.com.br/senai/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center hover:-translate-y-1 hover:opacity-80 transition-all">
+                <Image src="/images/SENAI_logo_2024.png" alt="SENAI" width={300} height={120} className="h-16 w-auto object-contain brightness-0 invert" />
               </a>
-              <a
-                href="https://www.fiap.com.br/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center bg-white rounded-xl p-6 md:p-8 brutal-border brutal-shadow-sm hover:-translate-y-1 transition-transform"
-              >
-                <Image
-                  src="/images/FIAP.png"
-                  alt="FIAP"
-                  width={300}
-                  height={96}
-                  className="h-20 md:h-24 w-auto object-contain brightness-0"
-                />
+              <a href="https://www.sebrae.com.br/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center hover:-translate-y-1 hover:opacity-80 transition-all">
+                <Image src="/images/sebrae-logo-1-white.png" alt="SEBRAE" width={420} height={140} className="h-16 w-auto object-contain brightness-0 invert" />
+              </a>
+              <a href="https://www.fiap.com.br/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center hover:-translate-y-1 hover:opacity-80 transition-all">
+                <Image src="/images/FIAP.png" alt="FIAP" width={300} height={96} className="h-16 w-auto object-contain brightness-0 invert" />
               </a>
             </div>
           </div>
 
+          {/* Local Sponsors */}
           <div className="w-full flex flex-col items-center">
-            <h3 className="text-xl md:text-2xl font-black mb-8 text-center tracking-tight uppercase">
+            <h3 className="text-xl md:text-2xl font-black mb-10 text-center tracking-tight uppercase">
               Patrocinadores Locais
             </h3>
-            <div className="flex justify-center w-full">
-              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 min-h-[100px]">
-                <a
-                  href="https://8020digital.io"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center bg-white rounded-xl p-4 brutal-border brutal-shadow-sm hover:-translate-y-1 transition-transform"
-                >
-                  <Image
-                    src="/images/8020digital.png"
-                    alt="8020 digital"
-                    width={360}
-                    height={144}
-                    className="h-16 md:h-20 w-auto object-contain brightness-0"
-                  />
-                </a>
-                <a
-                  href="https://flsoftwaresolutions.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center bg-white rounded-xl p-4 brutal-border brutal-shadow-sm hover:-translate-y-1 transition-transform"
-                >
-                  <Image
-                    src="/images/flsoftwaresolutions.png"
-                    alt="F&L Solutions"
-                    width={360}
-                    height={144}
-                    className="h-16 md:h-20 w-auto object-contain brightness-0"
-                  />
-                </a>
-                <a
-                  href="https://www.portaldaindustria.com.br/senai/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center bg-white rounded-xl p-4 brutal-border brutal-shadow-sm hover:-translate-y-1 transition-transform"
-                >
-                  <Image
-                    src="/images/SENAI_logo_2024.png"
-                    alt="SENAI - Serviço Nacional de Aprendizagem Industrial"
-                    width={200}
-                    height={80}
-                    className="h-16 md:h-20 w-auto object-contain"
-                  />
-                </a>
-                <div
-                  className="flex items-center justify-center bg-white rounded-xl p-4 brutal-border brutal-shadow-sm hover:-translate-y-1 transition-transform"
-                >
-                  <Image
-                    src="/images/sindifargo.png"
-                    alt="Sindifargo"
-                    width={360}
-                    height={144}
-                    className="h-16 md:h-20 w-auto object-contain brightness-0"
-                  />
-                </div>
-                <a
-                  href="https://hubcerrado.com.br/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center bg-white rounded-xl p-4 brutal-border brutal-shadow-sm hover:-translate-y-1 transition-transform"
-                >
-                  <Image
-                    src="/images/Logo Hub Cerrado 4 (mono white).png"
-                    alt="Hub Cerrado"
-                    width={220}
-                    height={220}
-                    className="h-16 md:h-20 w-auto object-contain brightness-0"
-                  />
-                </a>
-                <a
-                  href="https://grupodifference.com.br/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center bg-white rounded-xl p-4 brutal-border brutal-shadow-sm hover:-translate-y-1 transition-transform"
-                >
-                  <Image
-                    src="/images/logo grupo 2 branca.png"
-                    alt="Grupo Difference"
-                    width={260}
-                    height={64}
-                    className="h-14 md:h-16 w-auto object-contain brightness-0"
-                  />
-                </a>
+            {/* Row 1 */}
+            <div className="grid grid-cols-3 gap-8 md:gap-12 w-full max-w-4xl mb-8">
+              <a href="https://8020digital.io" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center hover:-translate-y-1 hover:opacity-80 transition-all">
+                <Image src="/images/8020digital.png" alt="8020 Digital" width={400} height={160} className="h-32 w-auto object-contain brightness-0 invert" />
+              </a>
+              <a href="https://flsoftwaresolutions.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center hover:-translate-y-1 hover:opacity-80 transition-all">
+                <Image src="/images/flsoftwaresolutions.png" alt="F&L Solutions" width={500} height={200} className="h-44 w-auto object-contain brightness-0 invert" />
+              </a>
+              <a href="https://hubcerrado.com.br/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center hover:-translate-y-1 hover:opacity-80 transition-all">
+                <Image src="/images/Logo Hub Cerrado 4 (mono white).png" alt="Hub Cerrado" width={300} height={300} className="h-28 w-auto object-contain brightness-0 invert" />
+              </a>
+            </div>
+            {/* Row 2 */}
+            <div className="flex flex-wrap items-center justify-center gap-14 md:gap-20 w-full max-w-4xl">
+              <div className="flex items-center justify-center hover:-translate-y-1 hover:opacity-80 transition-all">
+                <Image src="/images/sindifargo.png" alt="Sindifargo" width={500} height={200} className="h-32 w-auto object-contain brightness-0 invert" />
               </div>
+              <a href="https://grupodifference.com.br/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center hover:-translate-y-1 hover:opacity-80 transition-all">
+                <Image src="/images/logo grupo 2 branca.png" alt="Grupo Difference" width={300} height={80} className="h-14 w-auto object-contain brightness-0 invert" />
+              </a>
             </div>
           </div>
         </div>
