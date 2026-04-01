@@ -172,7 +172,7 @@ export default function StartupWeekendHero() {
 
       {/* Sponsor Logo Marquee */}
       <div className="w-full bg-yellow-400 border-t-4 border-black py-2 overflow-hidden z-20 relative">
-        <div className="flex animate-marquee whitespace-nowrap items-center gap-14" style={{ animationDuration: "30s" }}>
+        <div className="flex animate-marquee whitespace-nowrap items-center gap-14" style={{ animationDuration: "15s" }}>
           {Array(3).fill(null).map((_, repeat) => (
             <div key={repeat} className="flex items-center gap-14 shrink-0">
               <Image src="/images/HSBC-InnovationBanking-Logo-MONO-BLK.png" alt="HSBC Innovation Banking" width={300} height={100} className="h-10 w-auto object-contain brightness-0" />
