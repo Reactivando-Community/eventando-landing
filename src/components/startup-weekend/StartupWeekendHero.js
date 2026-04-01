@@ -33,7 +33,7 @@ export default function StartupWeekendHero() {
 
             {/* Logo text - Event Name */}
             <h1 className="text-6xl md:text-7xl lg:text-[5.5rem] font-black text-black uppercase leading-[0.85] tracking-tighter mb-8">
-              Startup <br /> Weekend <br /> Anápolis
+              Techstars_ <br /> Startup <br /> Weekend <br /> Anápolis
             </h1>
 
             {/* Tagline */}
@@ -145,7 +145,7 @@ export default function StartupWeekendHero() {
       {/* Marquee Ticker */}
       <div className="w-full bg-yellow-400 border-t-4 border-black py-3 overflow-hidden flex whitespace-nowrap z-20 relative">
         <div className="animate-marquee inline-block font-black text-black uppercase text-xl md:text-2xl tracking-widest">
-          {Array(4).fill("techstars_ STARTUP WEEKEND • 54 HORAS • INOVAÇÃO • NETWORKING • MENTORIAS • PITCH • VALIDAÇÃO • ZERO DESCULPAS • ").join("")}
+          {Array(4).fill("techstars_ STARTUP WEEKEND ANÁPOLIS • 54 HORAS • INOVAÇÃO • NETWORKING • MENTORIAS • PITCH • VALIDAÇÃO • ZERO DESCULPAS • ").join("")}
         </div>
       </div>
     </section>

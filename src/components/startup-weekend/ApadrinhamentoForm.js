@@ -13,6 +13,7 @@ export default function ApadrinhamentoForm() {
   const [cpf, setCpf] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
+  const [email, setEmail] = useState("");
   const [college, setCollege] = useState("");
   const [collegeCourse, setCollegeCourse] = useState("");
   const [videoFile, setVideoFile] = useState(null);
@@ -67,6 +68,12 @@ export default function ApadrinhamentoForm() {
       return false;
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email.trim())) {
+      setError("Precisamos de um e-mail válido.");
+      return false;
+    }
+
     if (!videoFile) {
       setError("Sem vídeo não dá pra avaliar sua aplicação!");
       return false;
@@ -103,6 +110,7 @@ export default function ApadrinhamentoForm() {
         cpf: cpf.replace(/\D/g, ""),
         date_of_birth: dateOfBirth,
         whatsapp: whatsapp.replace(/\D/g, ""),
+        email: email.trim(),
         college: college.trim() || null,
         college_course: collegeCourse.trim() || null,
         video: uploadedFile.id,
@@ -211,6 +219,19 @@ export default function ApadrinhamentoForm() {
             onChange={(e) => handleWhatsappChange(e.target.value)}
             placeholder="(00) 00000-0000"
             maxLength={15}
+            className="w-full bg-[#f4f4f0] border-4 border-black text-black px-4 py-3 font-bold placeholder:text-gray-400 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0_#000] focus:-translate-y-1 transition-all"
+          />
+        </div>
+
+        <div>
+          <label className="block text-black font-black uppercase text-sm mb-2">
+            E-MAIL *
+          </label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="seu@email.com"
             className="w-full bg-[#f4f4f0] border-4 border-black text-black px-4 py-3 font-bold placeholder:text-gray-400 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0_#000] focus:-translate-y-1 transition-all"
           />
         </div>

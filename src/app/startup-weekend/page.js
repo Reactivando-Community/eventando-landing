@@ -326,7 +326,44 @@ export default function StartupWeekendPage() {
             </div>
           </div>
 
-            <div className="w-full flex flex-col items-center">
+          {/* Platinum Sponsors - between global and gold/local */}
+          <div className="mb-16">
+            <h3 className="text-2xl md:text-3xl font-black mb-8 text-center tracking-tight uppercase">
+              Patrocinadores Platina
+            </h3>
+            <div className="flex flex-wrap items-center justify-center gap-10 min-h-[130px]">
+              <a
+                href="https://www.sebrae.com.br/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center bg-white rounded-xl p-6 md:p-8 brutal-border brutal-shadow-sm hover:-translate-y-1 transition-transform"
+              >
+                <Image
+                  src="/images/sebrae-logo-1-white.png"
+                  alt="SEBRAE"
+                  width={420}
+                  height={140}
+                  className="h-24 md:h-28 w-auto object-contain brightness-0"
+                />
+              </a>
+              <a
+                href="https://www.fiap.com.br/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center bg-white rounded-xl p-6 md:p-8 brutal-border brutal-shadow-sm hover:-translate-y-1 transition-transform"
+              >
+                <Image
+                  src="/images/FIAP.png"
+                  alt="FIAP"
+                  width={300}
+                  height={96}
+                  className="h-20 md:h-24 w-auto object-contain brightness-0"
+                />
+              </a>
+            </div>
+          </div>
+
+          <div className="w-full flex flex-col items-center">
             <h3 className="text-xl md:text-2xl font-black mb-8 text-center tracking-tight uppercase">
               Patrocinadores Locais
             </h3>
@@ -372,6 +409,45 @@ export default function StartupWeekendPage() {
                     width={200}
                     height={80}
                     className="h-16 md:h-20 w-auto object-contain"
+                  />
+                </a>
+                <div
+                  className="flex items-center justify-center bg-white rounded-xl p-4 brutal-border brutal-shadow-sm hover:-translate-y-1 transition-transform"
+                >
+                  <Image
+                    src="/images/sindifargo.png"
+                    alt="Sindifargo"
+                    width={360}
+                    height={144}
+                    className="h-16 md:h-20 w-auto object-contain brightness-0"
+                  />
+                </div>
+                <a
+                  href="https://hubcerrado.com.br/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center bg-white rounded-xl p-4 brutal-border brutal-shadow-sm hover:-translate-y-1 transition-transform"
+                >
+                  <Image
+                    src="/images/Logo Hub Cerrado 4 (mono white).png"
+                    alt="Hub Cerrado"
+                    width={220}
+                    height={220}
+                    className="h-16 md:h-20 w-auto object-contain brightness-0"
+                  />
+                </a>
+                <a
+                  href="https://grupodifference.com.br/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center bg-white rounded-xl p-4 brutal-border brutal-shadow-sm hover:-translate-y-1 transition-transform"
+                >
+                  <Image
+                    src="/images/logo grupo 2 branca.png"
+                    alt="Grupo Difference"
+                    width={260}
+                    height={64}
+                    className="h-14 md:h-16 w-auto object-contain brightness-0"
                   />
                 </a>
               </div>
