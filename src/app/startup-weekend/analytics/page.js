@@ -49,6 +49,30 @@ const EVENT_DESCRIPTIONS = {
   entry_gate_view: "Disparado quando o 'Entry Gate' motivacional é exibido ao usuário antes de entrar no site.",
   entry_gate_accepted: "Disparado quando o usuário aceita o Entry Gate e prossegue para o site.",
   entry_gate_declined: "Disparado quando o usuário recusa o Entry Gate.",
+  section_view: "Disparado quando uma seção da página se torna visível (30%+) na viewport do usuário.",
+  scroll_depth_25: "Usuário scrollou pelo menos 25% da página.",
+  scroll_depth_50: "Usuário scrollou pelo menos 50% da página.",
+  scroll_depth_75: "Usuário scrollou pelo menos 75% da página.",
+  scroll_depth_100: "Usuário scrollou até o final da página (100%).",
+};
+
+// Friendly labels for tracked sections (used in the heatmap)
+const SECTION_LABELS = {
+  "01_hero": "🏠 Hero",
+  "02_info": "ℹ️ Info",
+  "03_pricing": "💰 Ingressos",
+  "04_profiles": "👥 Perfis",
+  "05_team": "🎯 Equipe",
+  "06_stats": "📊 Estatísticas",
+  "07_whatsapp": "💬 WhatsApp CTA",
+  "08_agenda_cta": "📅 Agenda CTA",
+  "09_faq": "❓ FAQ",
+  "10_transparency": "🔍 Transparência",
+  "11_registration_cta": "🎟️ Registro CTA",
+  "12_sponsors": "🤝 Patrocinadores",
+  "12b_sponsorship_cta": "📣 Seja Patrocinador",
+  "13_bolsa_cta": "🔥 Bolsa 100%",
+  "14_about_terms": "📋 Sobre / Termos",
 };
 
 function EventLabel({ name }) {
@@ -394,6 +418,21 @@ export default function AnalyticsPage() {
   const citiesData = parseRows(data?.cities, ["city"], ["users", "sessions"]);
   const abTestData = parseRows(data?.abTest, ["eventName"], ["count", "users"]);
   const hourlyData = parseRows(data?.hourly, ["hour"], ["users", "events"]);
+
+  // Scroll heatmap data
+  const scrollRaw = parseRows(data?.scrollHeatmap, ["eventName"], ["count", "users"]);
+  const sectionOrder = Object.keys(SECTION_LABELS);
+  const sectionViewData = sectionOrder
+    .map((key) => {
+      const row = scrollRaw.find((r) => r.eventName === `sv_${key}`);
+      return row ? { section: key, label: SECTION_LABELS[key], users: row.users, count: row.count } : null;
+    })
+    .filter(Boolean);
+  const scrollDepthData = [25, 50, 75, 100]
+    .map((pct) => {
+      const row = scrollRaw.find((r) => r.eventName === `scroll_depth_${pct}`);
+      return { depth: `${pct}%`, users: row?.users || 0, count: row?.count || 0 };
+    });
 
   // Custom events only (filter out GA4 auto-events)
   const customEvents = eventsData.filter(
@@ -835,6 +874,88 @@ export default function AnalyticsPage() {
                 </div>
               </div>
               <HeatmapRow data={hourlyData} valueKey="users" labelKey="hour" />
+            </div>
+          </div>
+        </section>
+      )}
+      {/* Scroll Depth Heatmap */}
+      {(sectionViewData.length > 0 || scrollDepthData.some(d => d.users > 0)) && (
+        <section className="py-6 px-6 bg-[#f4f4f0]">
+          <div className="max-w-6xl mx-auto">
+            <div className="brutal-card bg-white p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-red-400 border-3 border-black flex items-center justify-center shadow-[3px_3px_0_#000]">
+                  <span className="text-lg">🔥</span>
+                </div>
+                <div>
+                  <h2 className="text-lg md:text-xl font-black text-black uppercase tracking-tight">
+                    Mapa de Scroll
+                  </h2>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase">
+                    Até onde os usuários navegam na página
+                  </p>
+                </div>
+              </div>
+
+              {/* Scroll Depth Summary */}
+              <div className="grid grid-cols-4 gap-3 mb-8">
+                {scrollDepthData.map((d, i) => {
+                  const maxUsers = scrollDepthData[0]?.users || 1;
+                  const pct = maxUsers > 0 ? Math.round((d.users / maxUsers) * 100) : 0;
+                  const colors = ["bg-green-400", "bg-yellow-400", "bg-orange-400", "bg-red-400"];
+                  return (
+                    <div key={i} className="brutal-card p-4 bg-gray-50 flex flex-col items-center gap-1">
+                      <span className="text-[10px] font-black text-gray-400 uppercase">Scroll {d.depth}</span>
+                      <span className="text-2xl font-black text-black">{formatNum(d.users)}</span>
+                      <div className="w-full h-2 bg-gray-200 border border-black mt-1">
+                        <div
+                          className={`h-full ${colors[i]} transition-all duration-700`}
+                          style={{ width: `${pct}%` }}
+                        />
+                      </div>
+                      <span className="text-[9px] font-bold text-gray-400">{pct}% retenção</span>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Section View Bars */}
+              {sectionViewData.length > 0 && (
+                <div className="space-y-2">
+                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">
+                    Usuários por seção (ordem da página ↓)
+                  </p>
+                  {sectionViewData.map((row, i) => {
+                    const maxUsers = sectionViewData[0]?.users || 1;
+                    const pct = (row.users / maxUsers) * 100;
+                    // Color gradient from green (top) to red (bottom)
+                    const hue = Math.round(120 - (i / (sectionViewData.length - 1 || 1)) * 120);
+                    const barColor = `hsl(${hue}, 70%, 50%)`;
+                    return (
+                      <div key={row.section} className="flex items-center gap-3">
+                        <span className="text-xs font-bold text-black w-40 truncate shrink-0 text-right">
+                          {row.label}
+                        </span>
+                        <div className="flex-1 h-7 bg-gray-100 border-2 border-black relative overflow-hidden">
+                          <div
+                            className="absolute inset-y-0 left-0 transition-all duration-700"
+                            style={{ width: `${pct}%`, backgroundColor: barColor }}
+                          />
+                          <span className="absolute inset-0 flex items-center justify-end pr-2 text-[11px] font-black text-black">
+                            {formatNum(row.users)} usuários
+                          </span>
+                        </div>
+                        <span className="text-[10px] font-black text-gray-400 w-10 text-right">
+                          {Math.round(pct)}%
+                        </span>
+                      </div>
+                    );
+                  })}
+                  <p className="text-[9px] font-bold text-gray-400 mt-3 italic">
+                    ⚠️ Dados de scroll tracking disponíveis a partir do deploy desta versão.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </section>

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { eventConfig } from "@/data/startup-weekend-event";
 import { pickVariant } from "@/data/bolsa-variants";
 import { logEvent } from "@/lib/firebase";
+import { useScrollTracking } from "@/lib/scroll-tracking";
 import StartupWeekendHero from "@/components/startup-weekend/StartupWeekendHero";
 import StartupWeekendInfoSection from "@/components/startup-weekend/StartupWeekendInfoSection";
 import StartupWeekendProfilesSection from "@/components/startup-weekend/StartupWeekendProfilesSection";
@@ -54,32 +55,47 @@ export default function StartupWeekendPage() {
     }
     setIsModalOpen(true);
   };
+  const { sectionRef } = useScrollTracking();
 
   return (
     <main className="min-h-screen bg-[#f4f4f0] overflow-x-hidden">
       <StartupWeekendSEO />
-      <StartupWeekendHero />
+      <div ref={sectionRef("01_hero")}>
+        <StartupWeekendHero />
+      </div>
 
 
-      <StartupWeekendInfoSection />
+      <div ref={sectionRef("02_info")}>
+        <StartupWeekendInfoSection />
+      </div>
 
-      <StartupWeekendPricingSection />
+      <div ref={sectionRef("03_pricing")}>
+        <StartupWeekendPricingSection />
+      </div>
 
       <MarqueeDivider text="ESCOLHA SEU PAPEL • HACKEIE SEU LIMITE" bgColor="bg-blue-600" textColor="text-white" speed="25s" />
-      <StartupWeekendProfilesSection />
+      <div ref={sectionRef("04_profiles")}>
+        <StartupWeekendProfilesSection />
+      </div>
 
       <MarqueeDivider text="QUEM FAZ ACONTECER • DIRETO DA TRINCHEIRA" bgColor="bg-pink-500" textColor="text-white" speed="30s" />
       {/* <StartupWeekendTeasers /> */}
-      <StartupWeekendTeamSection />
+      <div ref={sectionRef("05_team")}>
+        <StartupWeekendTeamSection />
+      </div>
 
       <MarqueeDivider text="O MODELO FALIU • HORA DE AGIR" bgColor="bg-techstars-green" textColor="text-black" speed="22s" />
-      <StartupWeekendStatsSection />
+      <div ref={sectionRef("06_stats")}>
+        <StartupWeekendStatsSection />
+      </div>
 
       <MarqueeDivider text="ÚLTIMAS VAGAS • NÃO FIQUE DE FORA" bgColor="bg-yellow-400" textColor="text-black" speed="18s" />
-      <WhatsAppCTA />
+      <div ref={sectionRef("07_whatsapp")}>
+        <WhatsAppCTA />
+      </div>
 
       {/* Agenda CTA */}
-      <section className="py-12 px-6 bg-[#f4f4f0]">
+      <section ref={sectionRef("08_agenda_cta")} className="py-12 px-6 bg-[#f4f4f0]">
         <div className="max-w-5xl mx-auto">
           <div className="brutal-card p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex-1 text-center md:text-left space-y-4">
@@ -121,10 +137,12 @@ export default function StartupWeekendPage() {
       </section>
 
       {/* Brutalist Hard Questions FAQ */}
-      <BrutalistFaq />
+      <div ref={sectionRef("09_faq")}>
+        <BrutalistFaq />
+      </div>
 
       {/* Transparency CTA */}
-      <section className="py-12 px-6 bg-techstars-green brutal-border-y">
+      <section ref={sectionRef("10_transparency")} className="py-12 px-6 bg-techstars-green brutal-border-y">
         <div className="max-w-5xl mx-auto">
           <div className="brutal-card bg-yellow-400 p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex-1 text-center md:text-left space-y-4">
@@ -166,7 +184,7 @@ export default function StartupWeekendPage() {
       </section>
 
       {/* Registration CTA Section */}
-      <section className="py-24 px-6 bg-[#f4f4f0]">
+      <section ref={sectionRef("11_registration_cta")} className="py-24 px-6 bg-[#f4f4f0]">
         <div className="max-w-4xl mx-auto text-center brutal-card p-12 bg-white">
           <h2 className="text-4xl md:text-5xl font-black text-black uppercase mb-6 tracking-tight">
             Garanta sua vaga
@@ -236,7 +254,7 @@ export default function StartupWeekendPage() {
       </section>
 
       {/* Sponsors / Support - white logos on dark background */}
-      <section className="py-24 px-6 bg-black text-white brutal-border-y">
+      <section ref={sectionRef("12_sponsors")} className="py-24 px-6 bg-black text-white brutal-border-y">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black uppercase mb-6 tracking-tight">
@@ -457,7 +475,7 @@ export default function StartupWeekendPage() {
       </section>
 
       {/* Sponsorship Invitation CTA */}
-      <section className="py-12 px-6 bg-[#f4f4f0]">
+      <section ref={sectionRef("12b_sponsorship_cta")} className="py-12 px-6 bg-[#f4f4f0]">
         <div className="max-w-5xl mx-auto">
           <div className="brutal-card p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex-1 text-center md:text-left space-y-4">
@@ -499,7 +517,7 @@ export default function StartupWeekendPage() {
       </section>
 
       {/* Bolsa 100% CTA – A/B Test */}
-      <section ref={bolsaSectionRef} id="bolsa" className="py-12 px-6 bg-[#f4f4f0]">
+      <section ref={(el) => { bolsaSectionRef.current = el; sectionRef("13_bolsa_cta")(el); }} id="bolsa" className="py-12 px-6 bg-[#f4f4f0]">
         <div className="max-w-5xl mx-auto">
           <div className="brutal-card bg-techstars-green p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
             <div className="flex-1 text-center md:text-left space-y-4">
@@ -539,7 +557,7 @@ export default function StartupWeekendPage() {
       </section>
 
       {/* Official Techstars Event Description + Terms Notice */}
-      <section className="py-16 px-6 bg-white brutal-border-y">
+      <section ref={sectionRef("14_about_terms")} className="py-16 px-6 bg-white brutal-border-y">
         <div className="max-w-4xl mx-auto">
           <div className="brutal-card bg-[#f4f4f0] p-8 md:p-12">
             <div className="bg-black text-white text-[10px] font-black uppercase px-3 py-1 brutal-border inline-block shadow-[2px_2px_0_#fff] mb-6">

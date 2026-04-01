@@ -282,6 +282,48 @@ export async function POST(request) {
       orderBys: [{ dimension: { dimensionName: "hour" } }],
     });
 
+    // ─── 10. Scroll heatmap (section views + scroll depth) ───
+    const scrollReport = await runReport(accessToken, propertyId, {
+      dateRanges: [range],
+      dimensions: [{ name: "eventName" }],
+      metrics: [
+        { name: "eventCount" },
+        { name: "totalUsers" },
+      ],
+      dimensionFilter: {
+        filter: {
+          fieldName: "eventName",
+          inListFilter: {
+            values: [
+              "sv_01_hero",
+              "sv_02_info",
+              "sv_03_pricing",
+              "sv_04_profiles",
+              "sv_05_team",
+              "sv_06_stats",
+              "sv_07_whatsapp",
+              "sv_08_agenda_cta",
+              "sv_09_faq",
+              "sv_10_transparency",
+              "sv_11_registration_cta",
+              "sv_12_sponsors",
+              "sv_12b_sponsorship_cta",
+              "sv_13_bolsa_cta",
+              "sv_14_about_terms",
+              "scroll_depth_25",
+              "scroll_depth_50",
+              "scroll_depth_75",
+              "scroll_depth_100",
+            ],
+          },
+        },
+      },
+      orderBys: [
+        { metric: { metricName: "eventCount" }, desc: true },
+      ],
+      limit: 50,
+    });
+
     return NextResponse.json({
       summary: summaryReport,
       daily: dailyReport,
@@ -292,6 +334,7 @@ export async function POST(request) {
       cities: citiesReport,
       abTest: abTestReport,
       hourly: hourlyReport,
+      scrollHeatmap: scrollReport,
     });
   } catch (err) {
     console.error("[Analytics API]", err);
