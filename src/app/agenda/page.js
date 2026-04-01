@@ -95,7 +95,7 @@ export default function AgendaPage() {
             </span>
           </h1>
           <p className="text-xl text-center text-gray-300 max-w-3xl mx-auto">
-            Confira a programação completa do techstars_ Startup Weekend Anápolis com todas as palestras, 
+            Confira a programação completa do techstars_ Startup Weekend <span className="text-[#0EA5E9]">Anápolis</span> com todas as palestras, 
             workshops e atividades dos dois dias de evento.
           </p>
         </div>

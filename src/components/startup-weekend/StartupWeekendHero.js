@@ -50,22 +50,20 @@ export default function StartupWeekendHero() {
           <div className="relative z-10 max-w-xl mx-auto lg:mx-0">
             {/* Badges */}
             <div className="mb-6 flex flex-wrap gap-3">
-              <span className="inline-flex items-center px-4 py-2 bg-black text-white text-xs sm:text-sm font-black uppercase brutal-shadow-sm brutal-border hover:shadow-[4px_4px_0px_#39C463] transition-all">
-                <span className="w-3 h-3 bg-techstars-green border-2 border-black rounded-full mr-2" />
-                Powered by Techstars
-              </span>
               <span className="inline-flex items-center px-6 py-3 bg-yellow-400 text-black text-base sm:text-lg md:text-xl font-black uppercase brutal-shadow-md brutal-border hover:shadow-[6px_6px_0px_#000] transition-all transform rotate-1">
                 🗓  {eventConfig.dateFull}
               </span>
             </div>
 
             {/* Logo text - Event Name */}
-            <h1 className="text-6xl md:text-7xl lg:text-[5.5rem] font-black text-black uppercase leading-[0.85] tracking-tighter mb-8">
-              Techstars_ <br /> Startup <br /> Weekend <br /> Anápolis
+            <h1 className="text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[5.5rem] font-bold text-black leading-[1.05] tracking-[-0.04em] mb-8 font-sans text-left">
+              <span className="lowercase">techstars_</span><br />
+              <span className="whitespace-nowrap">Startup Weekend</span><br />
+              <span className="text-[#0EA5E9]">Anápolis</span>
             </h1>
 
             {/* Tagline */}
-            <p className="text-lg lg:text-xl text-black font-bold leading-relaxed mb-8 max-w-md bg-white p-4 brutal-border brutal-shadow-sm rotate-1">
+            <p className="text-[15px] lg:text-[20px] text-black font-normal leading-[1.25] tracking-[-0.02em] mb-8 max-w-md bg-white p-4 brutal-border brutal-shadow-sm rotate-1 font-sans">
               Chega de só ter ideias. Entregamos ferramentas, contexto e mentores de peso. Valide seu projeto, nós ajudamos a acelerar. Experiencie a vida de startup em 54h.
             </p>
 
@@ -133,7 +131,9 @@ export default function StartupWeekendHero() {
 
               {/* Title / Description under photo inside card */}
               <div className="flex items-center justify-between brutal-border p-3 mb-4 bg-white">
-                <span className="font-black text-black uppercase text-sm -mb-1">Techstars_ startup weekend anápolis</span>
+                <span className="font-normal text-black text-sm tracking-[-0.02em] leading-[1.25] font-sans -mb-1">
+                  techstars_ Startup Weekend <span className="text-[#0EA5E9]">Anápolis</span>
+                </span>
                 <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center brutal-border text-xs font-bold">✓</span>
               </div>
 
@@ -170,31 +170,51 @@ export default function StartupWeekendHero() {
         </div>
       </div>
 
-      {/* Sponsor Logo Marquee */}
-      <div className="w-full bg-yellow-400 border-t-4 border-black py-3 overflow-hidden z-20 relative">
-        <div className="animate-loop-scroll flex w-max items-center">
+      {/* Global Sponsors Marquee */}
+      <div className="w-full bg-yellow-400 border-t-4 border-black py-2 overflow-hidden z-20 relative flex flex-col items-center">
+        <span className="font-black text-[10px] sm:text-xs uppercase tracking-widest text-black/60 pt-1 -mb-1 z-30">GLOBAL SUPPORTERS</span>
+        <div className="animate-loop-scroll flex w-max items-center py-2">
           {[...Array(2)].map((_, setIndex) => (
-            <div key={setIndex} className="flex items-center">
-              <div className="flex flex-shrink-0 items-center justify-center px-6 -my-5"><Image src="/images/HSBC-InnovationBanking-Logo-MONO-BLK.png" alt="HSBC Innovation Banking" width={300} height={100} className="h-20 w-auto object-contain brightness-0" /></div>
-              <span className="text-black font-black text-xl px-2">•</span>
-              <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/Brex Black _ White Logo.png" alt="Brex" width={300} height={100} className="h-10 w-auto object-contain brightness-0" /></div>
-              <span className="text-black font-black text-xl px-2">•</span>
-              <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/GoogleForStartups_Horizontal (1) (1).png" alt="Google for Startups" width={300} height={100} className="h-10 w-auto object-contain brightness-0" /></div>
-              <span className="text-black font-black text-xl px-2">•</span>
-              <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/mercury-logo-wordmark-horizontal_mono black.png" alt="Mercury" width={300} height={100} className="h-10 w-auto object-contain brightness-0" /></div>
-              <span className="text-black font-black text-xl px-2">•</span>
-              <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/perks-deel-450x200-black (1).png" alt="Deel" width={300} height={120} className="h-10 w-auto object-contain brightness-0" /></div>
-              <span className="text-black font-black text-xl px-2">•</span>
-              <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/sebrae-logo-1-white.png" alt="SEBRAE" width={300} height={100} className="h-10 w-auto object-contain brightness-0" /></div>
-              <span className="text-black font-black text-xl px-2">•</span>
-              <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/FIAP.png" alt="FIAP" width={200} height={70} className="h-10 w-auto object-contain brightness-0" /></div>
-              <span className="text-black font-black text-xl px-2">•</span>
-              <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/8020digital.png" alt="8020 Digital" width={400} height={160} className="h-20 w-auto object-contain brightness-0" /></div>
-              <span className="text-black font-black text-xl px-2">•</span>
-              <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/SENAI_logo_2024.png" alt="SENAI" width={200} height={70} className="h-10 w-auto object-contain brightness-0" /></div>
-              <span className="text-black font-black text-xl px-2">•</span>
-              <div className="flex flex-shrink-0 items-center justify-center px-6 -my-8"><Image src="/images/flsoftwaresolutions.png" alt="F&L Solutions" width={400} height={160} className="h-28 w-auto object-contain brightness-0" /></div>
-              <span className="text-black font-black text-xl px-2">•</span>
+            <div key={`global-${setIndex}`} className="flex items-center">
+              {[...Array(2)].map((_, innerIndex) => (
+                <div key={`global-inner-${innerIndex}`} className="flex items-center">
+                  <div className="flex flex-shrink-0 items-center justify-center px-6 -my-5"><Image src="/images/HSBC-InnovationBanking-Logo-MONO-BLK.png" alt="HSBC Innovation Banking" width={300} height={100} className="h-20 w-auto object-contain brightness-0" /></div>
+                  <span className="text-black/30 font-black text-xl px-2">•</span>
+                  <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/Brex Black _ White Logo.png" alt="Brex" width={300} height={100} className="h-10 w-auto object-contain brightness-0" /></div>
+                  <span className="text-black/30 font-black text-xl px-2">•</span>
+                  <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/GoogleForStartups_Horizontal (1) (1).png" alt="Google for Startups" width={300} height={100} className="h-10 w-auto object-contain brightness-0" /></div>
+                  <span className="text-black/30 font-black text-xl px-2">•</span>
+                  <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/mercury-logo-wordmark-horizontal_mono black.png" alt="Mercury" width={300} height={100} className="h-10 w-auto object-contain brightness-0" /></div>
+                  <span className="text-black/30 font-black text-xl px-2">•</span>
+                  <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/perks-deel-450x200-black (1).png" alt="Deel" width={300} height={120} className="h-10 w-auto object-contain brightness-0" /></div>
+                  <span className="text-black/30 font-black text-xl px-2">•</span>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Local Sponsors Marquee */}
+      <div className="w-full bg-white border-t-4 border-black py-2 overflow-hidden z-20 relative flex flex-col items-center">
+        <span className="font-black text-[10px] sm:text-xs uppercase tracking-widest text-black/60 pt-1 -mb-1 z-30">LOCAL PARTNERS</span>
+        <div className="animate-loop-scroll flex w-max items-center py-2" style={{ animationDirection: 'reverse' }}>
+          {[...Array(2)].map((_, setIndex) => (
+            <div key={`local-${setIndex}`} className="flex items-center">
+              {[...Array(2)].map((_, innerIndex) => (
+                <div key={`local-inner-${innerIndex}`} className="flex items-center">
+                  <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/sebrae-logo-1-white.png" alt="SEBRAE" width={300} height={100} className="h-10 w-auto object-contain brightness-0" /></div>
+                  <span className="text-black/30 font-black text-xl px-2">•</span>
+                  <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/FIAP.png" alt="FIAP" width={200} height={70} className="h-10 w-auto object-contain brightness-0" /></div>
+                  <span className="text-black/30 font-black text-xl px-2">•</span>
+                  <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/8020digital.png" alt="8020 Digital" width={400} height={160} className="h-20 w-auto object-contain brightness-0" /></div>
+                  <span className="text-black/30 font-black text-xl px-2">•</span>
+                  <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/SENAI_logo_2024.png" alt="SENAI" width={200} height={70} className="h-10 w-auto object-contain brightness-0" /></div>
+                  <span className="text-black/30 font-black text-xl px-2">•</span>
+                  <div className="flex flex-shrink-0 items-center justify-center px-6 -my-8"><Image src="/images/flsoftwaresolutions.png" alt="F&L Solutions" width={400} height={160} className="h-28 w-auto object-contain brightness-0" /></div>
+                  <span className="text-black/30 font-black text-xl px-2">•</span>
+                </div>
+              ))}
             </div>
           ))}
         </div>

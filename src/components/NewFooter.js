@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="py-12 px-6 bg-dark-900 text-gray-400">
       <div className="max-w-6xl mx-auto text-center">
-        <p className="text-lg mb-4">techstars_ Startup Weekend Anápolis</p>
+        <p className="text-lg mb-4">techstars_ Startup Weekend <span className="text-[#0EA5E9]">Anápolis</span></p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4">
           <Link
             href="/communities"

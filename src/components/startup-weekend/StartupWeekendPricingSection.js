@@ -159,10 +159,12 @@ export default function StartupWeekendPricingSection() {
               <div className="text-3xl">⚡</div>
             </div>
 
-            <h3 className="text-3xl md:text-4xl font-black text-black uppercase tracking-tighter mb-8 leading-none">
-              techstars_ STARTUP WEEKEND ANÁPOLIS
+            <h3 className="text-3xl md:text-4xl font-bold text-black tracking-[-0.04em] mb-8 leading-[1.05] font-sans text-left">
+              <span className="lowercase">techstars_</span><br />
+              <span className="whitespace-nowrap">Startup Weekend</span><br />
+              <span className="text-[#0EA5E9]">Anápolis</span>
               <br />
-              <span className="text-xl tracking-normal">
+              <span className="text-xl tracking-normal uppercase text-black">
                 {"// 54H DE IMERSÃO TOTAL"}
               </span>
             </h3>

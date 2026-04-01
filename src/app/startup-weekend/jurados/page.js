@@ -15,7 +15,7 @@ export default function JuradosPage() {
             href="/startup-weekend"
             className="text-xl font-black text-black dark:text-white"
           >
-            techstars_ Startup Weekend Anápolis
+            techstars_ Startup Weekend <span className="text-[#0EA5E9]">Anápolis</span>
           </Link>
           <Link
             href="/startup-weekend"

@@ -43,8 +43,8 @@ export default function ApadrinhamentoPage() {
       {/* Nav */}
       <nav className="py-4 px-6 border-b-4 border-black bg-white sticky top-0 z-50">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <Link href="/startup-weekend" className="text-xl md:text-2xl font-black text-black uppercase tracking-tighter">
-            techstars_ Startup Weekend
+          <Link href="/startup-weekend" className="text-xl md:text-2xl font-black text-black tracking-tighter">
+            techstars_ Startup Weekend <span className="text-[#0EA5E9]">Anápolis</span>
           </Link>
           <Link href="/startup-weekend" className="text-black font-black uppercase hover:bg-black hover:text-white px-4 py-2 border-4 border-black shadow-[4px_4px_0_#9333ea] transition-all">
             &larr; VOLTAR

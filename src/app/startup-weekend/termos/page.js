@@ -25,9 +25,9 @@ export default function TermosPage() {
             <br />
             Participação.
           </h1>
-          <div className="bg-techstars-green text-black text-xs font-black uppercase tracking-widest px-4 py-2 brutal-border inline-block shadow-[4px_4px_0_#fff]">
+          {/* <div className="bg-techstars-green text-black text-xs font-black uppercase tracking-widest px-4 py-2 brutal-border inline-block shadow-[4px_4px_0_#fff]">
             {eventConfig.fullName}
-          </div>
+          </div> */}
         </div>
       </section>
 

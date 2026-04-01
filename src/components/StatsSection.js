@@ -29,8 +29,11 @@ const stats = [
 
 const testimonials = [
   {
-    quote:
-      "O techstars_ Startup Weekend Anápolis mudou minha perspectiva sobre networking e aprendizado.",
+    quote: (
+      <>
+        O techstars_ Startup Weekend <span className="text-[#0EA5E9]">Anápolis</span> mudou minha perspectiva sobre networking e aprendizado.
+      </>
+    ),
     author: "Ana Silva",
     role: "Desenvolvedora Frontend",
   },

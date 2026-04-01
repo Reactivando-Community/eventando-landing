@@ -335,8 +335,8 @@ export default function AuditoriaPage() {
             da Techstars para eventos Startup Weekend.
           </p>
           <div className="flex flex-wrap gap-4 items-center">
-            <div className="bg-techstars-green text-black text-xs font-black uppercase tracking-widest px-4 py-2 brutal-border shadow-[4px_4px_0_#fff]">
-              TECHSTARS STARTUP WEEKEND ANÁPOLIS
+            <div className="bg-black text-white text-xs font-black uppercase tracking-widest px-4 py-2 brutal-border shadow-[4px_4px_0_#39C463]">
+              <span className="lowercase">techstars_</span> Startup Weekend <span className="text-[#0EA5E9]">Anápolis</span>
             </div>
             <div className="bg-white text-black text-xs font-black uppercase tracking-widest px-4 py-2 brutal-border shadow-[4px_4px_0_#39C463]">
               AUDITORIA REALIZADA EM 28/03/2026

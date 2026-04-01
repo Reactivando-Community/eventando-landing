@@ -78,8 +78,8 @@ export default function TransparenciaPage() {
       {/* Nav */}
       <nav className="py-4 px-4 sm:px-6 border-b-4 border-black bg-white sticky top-0 z-50">
         <div className="max-w-6xl mx-auto flex flex-wrap justify-center sm:justify-between items-center gap-3">
-          <Link href="/startup-weekend" className="text-lg sm:text-xl md:text-2xl font-black text-black uppercase tracking-tighter hover:text-techstars-green transition-colors text-center">
-            techstars_ Startup Weekend
+          <Link href="/startup-weekend" className="text-lg sm:text-xl md:text-2xl font-black text-black tracking-tighter hover:text-techstars-green transition-colors text-center">
+            techstars_ Startup Weekend <span className="text-[#0EA5E9]">Anápolis</span>
           </Link>
           <Link href="/startup-weekend" className="text-black font-black uppercase hover:bg-black hover:text-white px-3 py-1 sm:px-4 sm:py-2 border-4 border-black shadow-[4px_4px_0_#39C463] transition-all text-xs sm:text-sm md:text-base whitespace-nowrap">
             &larr; VOLTAR

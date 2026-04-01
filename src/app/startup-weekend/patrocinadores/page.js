@@ -112,8 +112,8 @@ export default function SponsorsPage() {
       {/* Nav */}
       <nav className="py-4 px-6 border-b-4 border-black bg-white sticky top-0 z-50">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <Link href="/startup-weekend" className="text-xl md:text-2xl font-black text-black uppercase tracking-tighter hover:text-techstars-green transition-colors">
-            techstars_ Startup Weekend
+          <Link href="/startup-weekend" className="text-xl md:text-2xl font-black text-black tracking-tighter hover:text-techstars-green transition-colors">
+            techstars_ Startup Weekend <span className="text-[#0EA5E9]">Anápolis</span>
           </Link>
           <Link href="/startup-weekend" className="text-black font-black uppercase hover:bg-black hover:text-white px-4 py-2 border-4 border-black shadow-[4px_4px_0_#39C463] transition-all text-sm md:text-base">
             &larr; VOLTAR
@@ -133,7 +133,7 @@ export default function SponsorsPage() {
             <span className="bg-black text-techstars-green px-4 inline-block transform rotate-1 mt-2">FUTURO</span>
           </h1>
           <p className="text-xl md:text-2xl font-bold text-black border-4 border-black bg-white px-6 py-4 shadow-[8px_8px_0_#000] max-w-3xl transform -rotate-1 mt-4 hover:-translate-y-1 hover:shadow-[12px_12px_0_#000] transition-all">
-            O techstars_ Startup Weekend Anápolis é um sprint de 54 horas onde talentos constroem o futuro das startups locais.<br/>
+            O techstars_ Startup Weekend <span className="text-[#0EA5E9]">Anápolis</span> é um sprint de 54 horas onde talentos constroem o futuro das startups locais.<br/>
             <span className="text-blue-600 block mt-2">{"//"} Associe sua marca à inovação extrema.</span>
           </p>
           <button
@@ -267,7 +267,7 @@ export default function SponsorsPage() {
                 VAMOS FECHAR NEGÓCIO?
               </h2>
               <p className="text-xl font-bold text-gray-300 max-w-2xl mx-auto leading-relaxed border-b-4 border-zinc-800 pb-8">
-                Defina a cota que melhor atende seus objetivos. Fale diretamente com o Pedro, responsável pelas parcerias e ativações do techstars_ Startup Weekend Anápolis.
+                Defina a cota que melhor atende seus objetivos. Fale diretamente com o Pedro, responsável pelas parcerias e ativações do techstars_ Startup Weekend <span className="text-[#0EA5E9]">Anápolis</span>.
               </p>
 
               <div className="flex flex-col md:flex-row gap-8 text-left max-w-4xl mx-auto pb-8">
