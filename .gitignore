@@ -54,3 +54,5 @@ amplify-gradle-config.json
 amplifytools.xcconfig
 .secret-*
 **.sample
+swanapolis-firebase-adminsdk-fbsvc-d59bebad30.json
+swanapolis-86934aab6025.json
