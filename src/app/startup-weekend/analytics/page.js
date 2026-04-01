@@ -360,6 +360,22 @@ function HeatmapRow({ data, valueKey, labelKey, color = "#39C463" }) {
   );
 }
 
+function EmptyState({ title, icon = "📊" }) {
+  return (
+    <div className="flex flex-col items-center justify-center py-12 px-6">
+      <div className="w-16 h-16 bg-gray-100 border-3 border-dashed border-gray-300 flex items-center justify-center mb-4 opacity-50">
+        <span className="text-2xl grayscale">{icon}</span>
+      </div>
+      <p className="text-sm font-black text-gray-300 uppercase tracking-wider text-center">
+        Não temos informações suficientes
+      </p>
+      <p className="text-[10px] font-bold text-gray-300 mt-1 text-center">
+        Os dados aparecerão aqui quando disponíveis
+      </p>
+    </div>
+  );
+}
+
 /* ────────────── Main Page ────────────── */
 
 export default function AnalyticsPage() {
@@ -632,91 +648,101 @@ export default function AnalyticsPage() {
       )}
 
       {/* Daily Trend */}
-      {dailyData.length > 0 && (
-        <section className="py-6 px-6 bg-[#f4f4f0]">
-          <div className="max-w-6xl mx-auto">
-            <div className="brutal-card bg-white p-6 md:p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-blue-500 border-3 border-black flex items-center justify-center shadow-[3px_3px_0_#000]">
-                  <span className="text-lg">📈</span>
-                </div>
-                <div>
-                  <h2 className="text-lg md:text-xl font-black text-black uppercase tracking-tight">
-                    Usuários Diários
-                  </h2>
+      <section className="py-6 px-6 bg-[#f4f4f0]">
+        <div className="max-w-6xl mx-auto">
+          <div className="brutal-card bg-white p-6 md:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-blue-500 border-3 border-black flex items-center justify-center shadow-[3px_3px_0_#000]">
+                <span className="text-lg">📈</span>
+              </div>
+              <div>
+                <h2 className="text-lg md:text-xl font-black text-black uppercase tracking-tight">
+                  Usuários Diários
+                </h2>
+                {dailyData.length > 0 && (
                   <p className="text-[10px] font-bold text-gray-400 uppercase">
                     {formatDate(dailyData[0]?.date)} — {formatDate(dailyData[dailyData.length - 1]?.date)} • {dailyData.length} dias
                   </p>
-                </div>
-              </div>
-              <SparkLine
-                data={dailyData}
-                valueKey="users"
-                labelKey="date"
-                color="#39C463"
-                formatLabel={formatDate}
-              />
-              <div className="flex justify-between mt-2 text-[10px] font-bold text-gray-400">
-                <span>{formatDate(dailyData[0]?.date)}</span>
-                <span>{formatDate(dailyData[dailyData.length - 1]?.date)}</span>
+                )}
               </div>
             </div>
+            {dailyData.length > 0 ? (
+              <>
+                <SparkLine
+                  data={dailyData}
+                  valueKey="users"
+                  labelKey="date"
+                  color="#39C463"
+                  formatLabel={formatDate}
+                />
+                <div className="flex justify-between mt-2 text-[10px] font-bold text-gray-400">
+                  <span>{formatDate(dailyData[0]?.date)}</span>
+                  <span>{formatDate(dailyData[dailyData.length - 1]?.date)}</span>
+                </div>
+              </>
+            ) : (
+              <EmptyState title="Usuários Diários" icon="📈" />
+            )}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* Two-column: Events + Pages */}
       <section className="py-6 px-6 bg-[#f4f4f0]">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Custom Events */}
-          {customEvents.length > 0 && (
-            <div className="brutal-card bg-white p-6 md:p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-yellow-400 border-3 border-black flex items-center justify-center shadow-[3px_3px_0_#000]">
-                  <span className="text-lg">⚡</span>
-                </div>
-                <div>
-                  <h2 className="text-lg font-black text-black uppercase tracking-tight">
-                    Eventos Custom
-                  </h2>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase">
-                    {customEvents.length} eventos rastreados
-                  </p>
-                </div>
+          <div className="brutal-card bg-white p-6 md:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-yellow-400 border-3 border-black flex items-center justify-center shadow-[3px_3px_0_#000]">
+                <span className="text-lg">⚡</span>
               </div>
+              <div>
+                <h2 className="text-lg font-black text-black uppercase tracking-tight">
+                  Eventos Custom
+                </h2>
+                <p className="text-[10px] font-bold text-gray-400 uppercase">
+                  {customEvents.length > 0 ? `${customEvents.length} eventos rastreados` : "Aguardando dados"}
+                </p>
+              </div>
+            </div>
+            {customEvents.length > 0 ? (
               <BarChart
                 data={customEvents}
                 valueKey="count"
                 labelKey="eventName"
                 color="#FACC15"
               />
-            </div>
-          )}
+            ) : (
+              <EmptyState icon="⚡" />
+            )}
+          </div>
 
           {/* Top Pages */}
-          {pagesData.length > 0 && (
-            <div className="brutal-card bg-white p-6 md:p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-pink-500 border-3 border-black flex items-center justify-center shadow-[3px_3px_0_#000]">
-                  <span className="text-lg">📄</span>
-                </div>
-                <div>
-                  <h2 className="text-lg font-black text-black uppercase tracking-tight">
-                    Páginas Mais Visitadas
-                  </h2>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase">
-                    Por visualizações
-                  </p>
-                </div>
+          <div className="brutal-card bg-white p-6 md:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-pink-500 border-3 border-black flex items-center justify-center shadow-[3px_3px_0_#000]">
+                <span className="text-lg">📄</span>
               </div>
+              <div>
+                <h2 className="text-lg font-black text-black uppercase tracking-tight">
+                  Páginas Mais Visitadas
+                </h2>
+                <p className="text-[10px] font-bold text-gray-400 uppercase">
+                  Por visualizações
+                </p>
+              </div>
+            </div>
+            {pagesData.length > 0 ? (
               <BarChart
                 data={pagesData}
                 valueKey="views"
                 labelKey="pagePath"
                 color="#EC4899"
               />
-            </div>
-          )}
+            ) : (
+              <EmptyState icon="📄" />
+            )}
+          </div>
         </div>
       </section>
 
@@ -724,16 +750,16 @@ export default function AnalyticsPage() {
       <section className="py-6 px-6 bg-[#f4f4f0]">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Traffic Sources */}
-          {sourcesWithLabel.length > 0 && (
-            <div className="brutal-card bg-white p-6">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-9 h-9 bg-purple-500 border-2 border-black flex items-center justify-center shadow-[2px_2px_0_#000]">
-                  <span className="text-sm">🌐</span>
-                </div>
-                <h2 className="text-base font-black text-black uppercase tracking-tight">
-                  Fontes de Tráfego
-                </h2>
+          <div className="brutal-card bg-white p-6">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-9 h-9 bg-purple-500 border-2 border-black flex items-center justify-center shadow-[2px_2px_0_#000]">
+                <span className="text-sm">🌐</span>
               </div>
+              <h2 className="text-base font-black text-black uppercase tracking-tight">
+                Fontes de Tráfego
+              </h2>
+            </div>
+            {sourcesWithLabel.length > 0 ? (
               <div className="space-y-2">
                 {sourcesWithLabel.slice(0, 8).map((s, i) => (
                   <div key={i} className="flex items-center justify-between gap-2 py-1.5 border-b border-gray-100 last:border-0">
@@ -744,40 +770,44 @@ export default function AnalyticsPage() {
                   </div>
                 ))}
               </div>
-            </div>
-          )}
+            ) : (
+              <EmptyState icon="🌐" />
+            )}
+          </div>
 
           {/* Devices */}
-          {devicesData.length > 0 && (
-            <div className="brutal-card bg-white p-6">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-9 h-9 bg-techstars-green border-2 border-black flex items-center justify-center shadow-[2px_2px_0_#000]">
-                  <span className="text-sm">📱</span>
-                </div>
-                <h2 className="text-base font-black text-black uppercase tracking-tight">
-                  Dispositivos
-                </h2>
+          <div className="brutal-card bg-white p-6">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-9 h-9 bg-techstars-green border-2 border-black flex items-center justify-center shadow-[2px_2px_0_#000]">
+                <span className="text-sm">📱</span>
               </div>
+              <h2 className="text-base font-black text-black uppercase tracking-tight">
+                Dispositivos
+              </h2>
+            </div>
+            {devicesData.length > 0 ? (
               <DonutChart
                 data={devicesData}
                 nameKey="device"
                 valueKey="users"
                 colors={["#39C463", "#3B82F6", "#F59E0B", "#EC4899"]}
               />
-            </div>
-          )}
+            ) : (
+              <EmptyState icon="📱" />
+            )}
+          </div>
 
           {/* Cities */}
-          {citiesData.length > 0 && (
-            <div className="brutal-card bg-white p-6">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-9 h-9 bg-orange-500 border-2 border-black flex items-center justify-center shadow-[2px_2px_0_#000]">
-                  <span className="text-sm">📍</span>
-                </div>
-                <h2 className="text-base font-black text-black uppercase tracking-tight">
-                  Top Cidades
-                </h2>
+          <div className="brutal-card bg-white p-6">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-9 h-9 bg-orange-500 border-2 border-black flex items-center justify-center shadow-[2px_2px_0_#000]">
+                <span className="text-sm">📍</span>
               </div>
+              <h2 className="text-base font-black text-black uppercase tracking-tight">
+                Top Cidades
+              </h2>
+            </div>
+            {citiesData.length > 0 ? (
               <div className="space-y-2">
                 {citiesData.map((c, i) => (
                   <div key={i} className="flex items-center justify-between gap-2 py-1.5 border-b border-gray-100 last:border-0">
@@ -791,29 +821,31 @@ export default function AnalyticsPage() {
                   </div>
                 ))}
               </div>
-            </div>
-          )}
+            ) : (
+              <EmptyState icon="📍" />
+            )}
+          </div>
         </div>
       </section>
 
       {/* A/B Test Results */}
-      {abTestData.length > 0 && (
-        <section className="py-6 px-6 bg-[#f4f4f0]">
-          <div className="max-w-6xl mx-auto">
-            <div className="brutal-card bg-white p-6 md:p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-techstars-green border-3 border-black flex items-center justify-center shadow-[3px_3px_0_#000]">
-                  <span className="text-lg">🧪</span>
-                </div>
-                <div>
-                  <h2 className="text-lg md:text-xl font-black text-black uppercase tracking-tight">
-                    Funil de Conversão — Bolsa 100%
-                  </h2>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase">
-                    Eventos do fluxo de bolsa e entry gate
-                  </p>
-                </div>
+      <section className="py-6 px-6 bg-[#f4f4f0]">
+        <div className="max-w-6xl mx-auto">
+          <div className="brutal-card bg-white p-6 md:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-techstars-green border-3 border-black flex items-center justify-center shadow-[3px_3px_0_#000]">
+                <span className="text-lg">🧪</span>
               </div>
+              <div>
+                <h2 className="text-lg md:text-xl font-black text-black uppercase tracking-tight">
+                  Funil de Conversão — Bolsa 100%
+                </h2>
+                <p className="text-[10px] font-bold text-gray-400 uppercase">
+                  Eventos do fluxo de bolsa e entry gate
+                </p>
+              </div>
+            </div>
+            {abTestData.length > 0 ? (
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse">
                   <thead>
@@ -850,34 +882,38 @@ export default function AnalyticsPage() {
                   </tbody>
                 </table>
               </div>
-            </div>
+            ) : (
+              <EmptyState icon="🧪" />
+            )}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* Hourly Heatmap */}
-      {hourlyData.length > 0 && (
-        <section className="py-6 px-6 bg-[#f4f4f0]">
-          <div className="max-w-6xl mx-auto">
-            <div className="brutal-card bg-white p-6 md:p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-blue-500 border-3 border-black flex items-center justify-center shadow-[3px_3px_0_#000]">
-                  <span className="text-lg">🕐</span>
-                </div>
-                <div>
-                  <h2 className="text-lg font-black text-black uppercase tracking-tight">
-                    Padrão de Horários
-                  </h2>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase">
-                    Usuários por hora (últimos 7 dias)
-                  </p>
-                </div>
+      <section className="py-6 px-6 bg-[#f4f4f0]">
+        <div className="max-w-6xl mx-auto">
+          <div className="brutal-card bg-white p-6 md:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-blue-500 border-3 border-black flex items-center justify-center shadow-[3px_3px_0_#000]">
+                <span className="text-lg">🕐</span>
               </div>
-              <HeatmapRow data={hourlyData} valueKey="users" labelKey="hour" />
+              <div>
+                <h2 className="text-lg font-black text-black uppercase tracking-tight">
+                  Padrão de Horários
+                </h2>
+                <p className="text-[10px] font-bold text-gray-400 uppercase">
+                  Usuários por hora (últimos 7 dias)
+                </p>
+              </div>
             </div>
+            {hourlyData.length > 0 ? (
+              <HeatmapRow data={hourlyData} valueKey="users" labelKey="hour" />
+            ) : (
+              <EmptyState icon="🕐" />
+            )}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
       {/* Scroll Depth Heatmap */}
       {(sectionViewData.length > 0 || scrollDepthData.some(d => d.users > 0)) && (
         <section className="py-6 px-6 bg-[#f4f4f0]">
