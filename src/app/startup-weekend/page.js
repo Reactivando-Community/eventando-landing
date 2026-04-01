@@ -40,8 +40,8 @@ export default function StartupWeekendPage() {
         bolsaSectionRef.current?.scrollIntoView({ behavior: "smooth" });
         setTimeout(() => {
           setIsModalOpen(true);
-          logEvent("bolsa_cta_click", { variant_id: v.id, source: "url_param" });
-          logEvent("challenge_modal_view", { variant_id: v.id, source: "url_param" });
+          logEvent("bolsa_cta_click_url", { variant_id: v.id });
+          logEvent("challenge_modal_view_url", { variant_id: v.id });
         }, 800);
       }, 300);
     }

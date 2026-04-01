@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import StartupWeekendFooter from "@/components/startup-weekend/StartupWeekendFooter";
 
@@ -37,6 +37,48 @@ function formatDate(dateStr) {
   return `${dateStr.slice(6, 8)}/${dateStr.slice(4, 6)}`;
 }
 
+/* ────────────── event descriptions ────────────── */
+const EVENT_DESCRIPTIONS = {
+  bolsa_cta_view: "Disparado quando o CTA 'Bolsa 100%' é exibido na tela — cada usuário vê uma variante A/B diferente.",
+  bolsa_cta_click: "Clique orgânico no botão 'Eu tenho coragem' — o usuário navegou até a seção e clicou.",
+  bolsa_cta_click_url: "Clique automático via link direto (?bolsa=true) — o modal abriu automaticamente ao entrar no site.",
+  challenge_modal_view: "Modal de desafio aberto por clique orgânico no CTA da Bolsa 100%.",
+  challenge_modal_view_url: "Modal de desafio aberto automaticamente via link direto (?bolsa=true).",
+  challenge_accepted: "Disparado quando o usuário aceita o desafio no modal — clica em 'Aceitar'.",
+  challenge_declined: "Disparado quando o usuário recusa o desafio no modal — clica em 'Não tenho coragem'.",
+  entry_gate_view: "Disparado quando o 'Entry Gate' motivacional é exibido ao usuário antes de entrar no site.",
+  entry_gate_accepted: "Disparado quando o usuário aceita o Entry Gate e prossegue para o site.",
+  entry_gate_declined: "Disparado quando o usuário recusa o Entry Gate.",
+};
+
+function EventLabel({ name }) {
+  const [showTooltip, setShowTooltip] = useState(false);
+  const desc = EVENT_DESCRIPTIONS[name];
+
+  return (
+    <span className="inline-flex items-center gap-1.5">
+      {name}
+      {desc && (
+        <span
+          className="relative"
+          onMouseEnter={() => setShowTooltip(true)}
+          onMouseLeave={() => setShowTooltip(false)}
+        >
+          <span className="inline-flex items-center justify-center w-4 h-4 bg-gray-200 border border-black text-[9px] font-black cursor-help hover:bg-techstars-green transition-colors">
+            i
+          </span>
+          {showTooltip && (
+            <span className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 bg-black text-white text-[10px] font-bold px-3 py-2 border-2 border-black shadow-[4px_4px_0_#39C463] leading-relaxed pointer-events-none">
+              {desc}
+              <span className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-black" />
+            </span>
+          )}
+        </span>
+      )}
+    </span>
+  );
+}
+
 /* ────────────── mini chart components ────────────── */
 
 function BarChart({ data, valueKey, labelKey, color = "#39C463", maxBars = 15 }) {
@@ -68,42 +110,133 @@ function BarChart({ data, valueKey, labelKey, color = "#39C463", maxBars = 15 })
   );
 }
 
-function SparkLine({ data, valueKey, color = "#39C463" }) {
+function SparkLine({ data, valueKey, labelKey = "date", color = "#39C463", formatLabel }) {
+  const [hoverIdx, setHoverIdx] = useState(null);
+  const containerRef = useRef(null);
+
   if (!data.length) return null;
   const values = data.map((d) => d[valueKey]);
   const minVal = Math.min(...values);
   const maxVal = Math.max(...values);
+  const avgVal = Math.round(values.reduce((a, b) => a + b, 0) / values.length);
   const range = maxVal - minVal || 1;
   const W = 400;
-  const H = 80;
-  const pad = 4;
+  const H = 100;
+  const padX = 4;
+  const padTop = 8;
+  const padBottom = 4;
 
-  const points = values.map((v, i) => {
-    const x = pad + (i / (values.length - 1 || 1)) * (W - 2 * pad);
-    const y = H - pad - ((v - minVal) / range) * (H - 2 * pad);
-    return `${x},${y}`;
+  const pointCoords = values.map((v, i) => {
+    const x = padX + (i / (values.length - 1 || 1)) * (W - 2 * padX);
+    const y = padTop + (1 - (v - minVal) / range) * (H - padTop - padBottom);
+    return { x, y };
   });
 
-  const areaPath = `M${points[0]} ${points.join(" L")} L${W - pad},${H - pad} L${pad},${H - pad} Z`;
+  const polylinePoints = pointCoords.map((p) => `${p.x},${p.y}`).join(" ");
+  const areaPath = `M${pointCoords[0].x},${pointCoords[0].y} ${pointCoords.map((p) => `L${p.x},${p.y}`).join(" ")} L${pointCoords[pointCoords.length - 1].x},${H - padBottom} L${pointCoords[0].x},${H - padBottom} Z`;
+
+  const avgY = padTop + (1 - (avgVal - minVal) / range) * (H - padTop - padBottom);
+
+  const handleMouseMove = (e) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const relX = e.clientX - rect.left;
+    const pct = relX / rect.width;
+    const idx = Math.round(pct * (data.length - 1));
+    setHoverIdx(Math.max(0, Math.min(data.length - 1, idx)));
+  };
+
+  const activeData = hoverIdx !== null ? data[hoverIdx] : null;
+  const activeValue = hoverIdx !== null ? values[hoverIdx] : null;
+  // Percentage positions for HTML overlay (0-100%)
+  const activePctX = hoverIdx !== null ? (hoverIdx / (data.length - 1 || 1)) * 100 : 0;
+  const activePctY = hoverIdx !== null ? ((pointCoords[hoverIdx].y / H) * 100) : 0;
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-20" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id={`grad-${color.replace("#", "")}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={color} stopOpacity="0.3" />
-          <stop offset="100%" stopColor={color} stopOpacity="0.02" />
-        </linearGradient>
-      </defs>
-      <path d={areaPath} fill={`url(#grad-${color.replace("#", "")})`} />
-      <polyline
-        points={points.join(" ")}
-        fill="none"
-        stroke={color}
-        strokeWidth="3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <div className="relative">
+      {/* Numeric indicators - fixed height to prevent layout shift */}
+      <div className="flex items-center gap-4 mb-2 h-5">
+        <span className="text-[10px] font-black text-gray-300 uppercase">
+          Max: <span className="text-black">{formatNum(maxVal)}</span>
+        </span>
+        <span className="text-[10px] font-black text-gray-300 uppercase">
+          Méd: <span className="text-gray-500">{formatNum(avgVal)}</span>
+        </span>
+        <span className="text-[10px] font-black text-gray-300 uppercase">
+          Min: <span className="text-gray-400">{formatNum(minVal)}</span>
+        </span>
+      </div>
+
+      {/* Chart container */}
+      <div
+        ref={containerRef}
+        className="relative cursor-crosshair"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={() => setHoverIdx(null)}
+      >
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-28" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id={`grad-${color.replace("#", "")}`} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={color} stopOpacity="0.3" />
+              <stop offset="100%" stopColor={color} stopOpacity="0.02" />
+            </linearGradient>
+          </defs>
+
+          {/* Avg dashed line */}
+          <line
+            x1={padX} y1={avgY} x2={W - padX} y2={avgY}
+            stroke="#ddd" strokeWidth="1" strokeDasharray="6,4"
+          />
+
+          {/* Area fill */}
+          <path d={areaPath} fill={`url(#grad-${color.replace("#", "")})`} />
+
+          {/* Line */}
+          <polyline
+            points={polylinePoints}
+            fill="none" stroke={color} strokeWidth="3"
+            strokeLinecap="round" strokeLinejoin="round"
+          />
+        </svg>
+
+        {/* HTML overlay for hover elements (avoids SVG distortion) */}
+        {hoverIdx !== null && (
+          <>
+            {/* Vertical guide line */}
+            <div
+              className="absolute top-0 bottom-0 w-px bg-black/20 pointer-events-none"
+              style={{ left: `${activePctX}%` }}
+            />
+            {/* Dot - rendered as HTML to avoid SVG aspect ratio distortion */}
+            <div
+              className="absolute w-3 h-3 rounded-full border-2 border-black pointer-events-none"
+              style={{
+                left: `${activePctX}%`,
+                top: `${activePctY}%`,
+                transform: "translate(-50%, -50%)",
+                backgroundColor: color,
+              }}
+            />
+            {/* Tooltip */}
+            <div
+              className="absolute pointer-events-none z-10"
+              style={{
+                left: `${activePctX}%`,
+                top: `${activePctY}%`,
+                transform: `translate(${activePctX > 80 ? "-100%" : activePctX < 20 ? "0%" : "-50%"}, -140%)`,
+              }}
+            >
+              <div className="bg-black text-white px-2.5 py-1 border-2 border-black shadow-[3px_3px_0_#39C463] whitespace-nowrap">
+                <span className="text-[10px] font-bold mr-1.5">
+                  {formatLabel ? formatLabel(activeData[labelKey]) : activeData[labelKey]}
+                </span>
+                <span className="text-xs font-black">{formatNum(activeValue)}</span>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -211,15 +344,24 @@ export default function AnalyticsPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
+  const [dateRange, setDateRange] = useState("30days");
 
-  const fetchAnalytics = useCallback(async (pwd) => {
+  const DATE_RANGE_OPTIONS = [
+    { key: "today", label: "Hoje" },
+    { key: "yesterday", label: "Ontem" },
+    { key: "7days", label: "7 dias" },
+    { key: "30days", label: "30 dias" },
+    { key: "60days", label: "60 dias" },
+  ];
+
+  const fetchAnalytics = useCallback(async (pwd, range = "30days") => {
     setLoading(true);
     setError(null);
     try {
       const res = await fetch("/api/analytics", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password: pwd }),
+        body: JSON.stringify({ password: pwd, dateRange: range }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Erro ao buscar dados");
@@ -293,7 +435,7 @@ export default function AnalyticsPage() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              fetchAnalytics(password);
+              fetchAnalytics(password, dateRange);
             }}
           >
             <input
@@ -364,17 +506,46 @@ export default function AnalyticsPage() {
                 Dashboard.
               </h1>
               <p className="text-base md:text-lg font-bold text-gray-400 max-w-xl leading-relaxed">
-                Dados consolidados do Firebase Analytics — últimos 30 dias.
+                Dados consolidados do Firebase Analytics.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
               <div className="bg-techstars-green text-black text-[10px] font-black uppercase tracking-widest px-3 py-1.5 border-2 border-black shadow-[3px_3px_0_#fff]">
                 FIREBASE ANALYTICS
               </div>
-              <div className="bg-white text-black text-[10px] font-black uppercase tracking-widest px-3 py-1.5 border-2 border-black shadow-[3px_3px_0_#39C463]">
-                ÚLTIMOS 30 DIAS
-              </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Date Range Filters */}
+      <section className="py-4 px-6 bg-[#f4f4f0]">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest mr-2">Período:</span>
+            {DATE_RANGE_OPTIONS.map((opt) => (
+              <button
+                key={opt.key}
+                onClick={() => {
+                  setDateRange(opt.key);
+                  fetchAnalytics(password, opt.key);
+                }}
+                disabled={loading}
+                className={`px-4 py-2 text-xs font-black uppercase tracking-wider border-3 border-black transition-all disabled:opacity-50 ${
+                  dateRange === opt.key
+                    ? "bg-black text-white shadow-[3px_3px_0_#39C463]"
+                    : "bg-white text-black hover:bg-gray-100 shadow-[3px_3px_0_#000] hover:shadow-[1px_1px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px]"
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+            {loading && (
+              <svg className="w-4 h-4 animate-spin ml-2 text-black" viewBox="0 0 24 24" fill="none">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+            )}
           </div>
         </div>
       </section>
@@ -434,10 +605,18 @@ export default function AnalyticsPage() {
                   <h2 className="text-lg md:text-xl font-black text-black uppercase tracking-tight">
                     Usuários Diários
                   </h2>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase">Últimos 30 dias</p>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase">
+                    {formatDate(dailyData[0]?.date)} — {formatDate(dailyData[dailyData.length - 1]?.date)} • {dailyData.length} dias
+                  </p>
                 </div>
               </div>
-              <SparkLine data={dailyData} valueKey="users" color="#39C463" />
+              <SparkLine
+                data={dailyData}
+                valueKey="users"
+                labelKey="date"
+                color="#39C463"
+                formatLabel={formatDate}
+              />
               <div className="flex justify-between mt-2 text-[10px] font-bold text-gray-400">
                 <span>{formatDate(dailyData[0]?.date)}</span>
                 <span>{formatDate(dailyData[dailyData.length - 1]?.date)}</span>
@@ -619,7 +798,7 @@ export default function AnalyticsPage() {
                       >
                         <td className="py-2.5 px-3 text-xs font-bold text-black flex items-center gap-2">
                           <span className="w-2 h-2 bg-techstars-green border border-black shrink-0" />
-                          {row.eventName}
+                          <EventLabel name={row.eventName} />
                         </td>
                         <td className="py-2.5 px-3 text-xs font-black text-black text-right">
                           {formatNum(row.count)}
@@ -702,11 +881,11 @@ export default function AnalyticsPage() {
                           key={i}
                           className={`border-b-2 border-gray-100 hover:bg-techstars-green/10 transition-colors ${isCustom ? "" : "opacity-50"}`}
                         >
-                          <td className="py-2.5 px-3 text-xs font-bold text-black flex items-center gap-2">
+                            <td className="py-2.5 px-3 text-xs font-bold text-black flex items-center gap-2">
                             {isCustom && (
                               <span className="w-2 h-2 bg-techstars-green border border-black shrink-0" />
                             )}
-                            {row.eventName}
+                            <EventLabel name={row.eventName} />
                           </td>
                           <td className="py-2.5 px-3 text-xs font-black text-black text-right">
                             {formatNum(row.count)}
@@ -729,7 +908,7 @@ export default function AnalyticsPage() {
       <section className="py-8 px-6 bg-[#f4f4f0]">
         <div className="max-w-6xl mx-auto flex justify-center">
           <button
-            onClick={() => fetchAnalytics(password)}
+            onClick={() => fetchAnalytics(password, dateRange)}
             disabled={loading}
             className="brutal-btn px-8 py-3 text-sm disabled:opacity-50"
           >

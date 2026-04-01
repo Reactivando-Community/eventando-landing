@@ -112,7 +112,7 @@ async function runReport(accessToken, propertyId, body) {
 
 export async function POST(request) {
   try {
-    const { password } = await request.json();
+    const { password, dateRange = "30days" } = await request.json();
 
     // Simple password gate
     if (password !== process.env.ANALYTICS_PASSWORD) {
@@ -127,11 +127,21 @@ export async function POST(request) {
       );
     }
 
+    // Map date range presets to GA4 date range
+    const dateRangeMap = {
+      today: { startDate: "today", endDate: "today" },
+      yesterday: { startDate: "yesterday", endDate: "yesterday" },
+      "7days": { startDate: "7daysAgo", endDate: "today" },
+      "30days": { startDate: "30daysAgo", endDate: "today" },
+      "60days": { startDate: "60daysAgo", endDate: "today" },
+    };
+    const range = dateRangeMap[dateRange] || dateRangeMap["30days"];
+
     const accessToken = await getAccessToken();
 
-    // ─── 1. Summary totals (last 30 days) ───
+    // ─── 1. Summary totals ───
     const summaryReport = await runReport(accessToken, propertyId, {
-      dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
+      dateRanges: [range],
       metrics: [
         { name: "activeUsers" },
         { name: "sessions" },
@@ -143,7 +153,7 @@ export async function POST(request) {
 
     // ─── 2. Daily active users (last 30 days) ───
     const dailyReport = await runReport(accessToken, propertyId, {
-      dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
+      dateRanges: [range],
       dimensions: [{ name: "date" }],
       metrics: [
         { name: "activeUsers" },
@@ -155,7 +165,7 @@ export async function POST(request) {
 
     // ─── 3. Top events (custom) ───
     const eventsReport = await runReport(accessToken, propertyId, {
-      dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
+      dateRanges: [range],
       dimensions: [{ name: "eventName" }],
       metrics: [
         { name: "eventCount" },
@@ -169,7 +179,7 @@ export async function POST(request) {
 
     // ─── 4. Top pages ───
     const pagesReport = await runReport(accessToken, propertyId, {
-      dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
+      dateRanges: [range],
       dimensions: [{ name: "pagePath" }],
       metrics: [
         { name: "screenPageViews" },
@@ -184,7 +194,7 @@ export async function POST(request) {
 
     // ─── 5. Traffic sources ───
     const sourcesReport = await runReport(accessToken, propertyId, {
-      dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
+      dateRanges: [range],
       dimensions: [
         { name: "sessionSource" },
         { name: "sessionMedium" },
@@ -201,7 +211,7 @@ export async function POST(request) {
 
     // ─── 6. Devices ───
     const devicesReport = await runReport(accessToken, propertyId, {
-      dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
+      dateRanges: [range],
       dimensions: [{ name: "deviceCategory" }],
       metrics: [
         { name: "activeUsers" },
@@ -214,7 +224,7 @@ export async function POST(request) {
 
     // ─── 7. Cities (top 10) ───
     const citiesReport = await runReport(accessToken, propertyId, {
-      dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
+      dateRanges: [range],
       dimensions: [{ name: "city" }],
       metrics: [
         { name: "activeUsers" },
@@ -228,7 +238,7 @@ export async function POST(request) {
 
     // ─── 8. Custom funnel events (A/B test related) ───
     const abTestReport = await runReport(accessToken, propertyId, {
-      dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
+      dateRanges: [range],
       dimensions: [
         { name: "eventName" },
       ],
@@ -243,7 +253,9 @@ export async function POST(request) {
             values: [
               "bolsa_cta_view",
               "bolsa_cta_click",
+              "bolsa_cta_click_url",
               "challenge_modal_view",
+              "challenge_modal_view_url",
               "challenge_accepted",
               "challenge_declined",
               "entry_gate_view",
@@ -259,9 +271,9 @@ export async function POST(request) {
       limit: 50,
     });
 
-    // ─── 9. Hourly pattern (last 7 days) ───
+    // ─── 9. Hourly pattern ───
     const hourlyReport = await runReport(accessToken, propertyId, {
-      dateRanges: [{ startDate: "7daysAgo", endDate: "today" }],
+      dateRanges: [range],
       dimensions: [{ name: "hour" }],
       metrics: [
         { name: "activeUsers" },
