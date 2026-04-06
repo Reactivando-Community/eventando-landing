@@ -36,7 +36,11 @@ export default function StartupWeekendHero() {
       {/* Top Warning Marquee */}
       <div className="w-full bg-black border-y-4 border-black py-2 overflow-hidden flex whitespace-nowrap z-20 relative brutal-shadow-sm">
         <div className="animate-marquee inline-flex items-center font-black text-white uppercase text-sm tracking-widest">
-          {Array(6).fill(getEsgotadosText()).join("")}
+          {[0, 1].map((i) => (
+            <span key={i} className="flex-shrink-0">
+              {Array(6).fill(getEsgotadosText()).join("")}
+            </span>
+          ))}
         </div>
       </div>
 
@@ -173,20 +177,20 @@ export default function StartupWeekendHero() {
       {/* Global Sponsors Marquee */}
       <div className="w-full bg-yellow-400 border-t-4 border-black py-2 overflow-hidden z-20 relative flex flex-col items-center">
         <span className="font-black text-[10px] sm:text-xs uppercase tracking-widest text-black/60 pt-1 -mb-1 z-30">GLOBAL SUPPORTERS</span>
-        <div className="animate-loop-scroll flex w-max items-center py-2">
-          {[...Array(2)].map((_, setIndex) => (
-            <div key={`global-${setIndex}`} className="flex items-center">
-              {[...Array(2)].map((_, innerIndex) => (
-                <div key={`global-inner-${innerIndex}`} className="flex items-center">
-                  <div className="flex flex-shrink-0 items-center justify-center px-6 -my-5"><Image src="/images/HSBC-InnovationBanking-Logo-MONO-BLK.png" alt="HSBC Innovation Banking" width={300} height={100} className="h-20 w-auto object-contain brightness-0" /></div>
+        <div className="animate-loop-scroll flex items-center py-2 self-start">
+          {[0, 1].map((setIndex) => (
+            <div key={`global-${setIndex}`} className="flex flex-shrink-0 items-center">
+              {[0, 1].map((rep) => (
+                <div key={`global-rep-${rep}`} className="flex items-center">
+                  <div className="flex flex-shrink-0 items-center justify-center px-6 -my-5"><img src="/images/HSBC-InnovationBanking-Logo-MONO-BLK.png" alt="HSBC Innovation Banking" className="h-20 w-auto object-contain brightness-0" /></div>
                   <span className="text-black/30 font-black text-xl px-2">•</span>
-                  <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/Brex Black _ White Logo.png" alt="Brex" width={300} height={100} className="h-10 w-auto object-contain brightness-0" /></div>
+                  <div className="flex flex-shrink-0 items-center justify-center px-6"><img src="/images/Brex Black _ White Logo.png" alt="Brex" className="h-10 w-auto object-contain brightness-0" /></div>
                   <span className="text-black/30 font-black text-xl px-2">•</span>
-                  <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/GoogleForStartups_Horizontal (1) (1).png" alt="Google for Startups" width={300} height={100} className="h-10 w-auto object-contain brightness-0" /></div>
+                  <div className="flex flex-shrink-0 items-center justify-center px-6"><img src="/images/GoogleForStartups_Horizontal (1) (1).png" alt="Google for Startups" className="h-10 w-auto object-contain brightness-0" /></div>
                   <span className="text-black/30 font-black text-xl px-2">•</span>
-                  <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/mercury-logo-wordmark-horizontal_mono black.png" alt="Mercury" width={300} height={100} className="h-10 w-auto object-contain brightness-0" /></div>
+                  <div className="flex flex-shrink-0 items-center justify-center px-6"><img src="/images/mercury-logo-wordmark-horizontal_mono black.png" alt="Mercury" className="h-10 w-auto object-contain brightness-0" /></div>
                   <span className="text-black/30 font-black text-xl px-2">•</span>
-                  <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/perks-deel-450x200-black (1).png" alt="Deel" width={300} height={120} className="h-10 w-auto object-contain brightness-0" /></div>
+                  <div className="flex flex-shrink-0 items-center justify-center px-6"><img src="/images/perks-deel-450x200-black (1).png" alt="Deel" className="h-10 w-auto object-contain brightness-0" /></div>
                   <span className="text-black/30 font-black text-xl px-2">•</span>
                 </div>
               ))}
@@ -198,20 +202,20 @@ export default function StartupWeekendHero() {
       {/* Local Sponsors Marquee */}
       <div className="w-full bg-white border-t-4 border-black py-2 overflow-hidden z-20 relative flex flex-col items-center">
         <span className="font-black text-[10px] sm:text-xs uppercase tracking-widest text-black/60 pt-1 -mb-1 z-30">LOCAL PARTNERS</span>
-        <div className="animate-loop-scroll flex w-max items-center py-2" style={{ animationDirection: 'reverse' }}>
-          {[...Array(2)].map((_, setIndex) => (
-            <div key={`local-${setIndex}`} className="flex items-center">
-              {[...Array(2)].map((_, innerIndex) => (
-                <div key={`local-inner-${innerIndex}`} className="flex items-center">
-                  <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/sebrae-logo-1-white.png" alt="SEBRAE" width={300} height={100} className="h-10 w-auto object-contain brightness-0" /></div>
+        <div className="animate-loop-scroll flex items-center py-2 self-start" style={{ animationDirection: 'reverse' }}>
+          {[0, 1].map((setIndex) => (
+            <div key={`local-${setIndex}`} className="flex flex-shrink-0 items-center">
+              {[0, 1].map((rep) => (
+                <div key={`local-rep-${rep}`} className="flex items-center">
+                  <div className="flex flex-shrink-0 items-center justify-center px-6"><img src="/images/sebrae-logo-1-white.png" alt="SEBRAE" className="h-10 w-auto object-contain brightness-0" /></div>
                   <span className="text-black/30 font-black text-xl px-2">•</span>
-                  <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/FIAP.png" alt="FIAP" width={200} height={70} className="h-10 w-auto object-contain brightness-0" /></div>
+                  <div className="flex flex-shrink-0 items-center justify-center px-6"><img src="/images/FIAP.png" alt="FIAP" className="h-10 w-auto object-contain brightness-0" /></div>
                   <span className="text-black/30 font-black text-xl px-2">•</span>
-                  <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/8020digital.png" alt="8020 Digital" width={400} height={160} className="h-20 w-auto object-contain brightness-0" /></div>
+                  <div className="flex flex-shrink-0 items-center justify-center px-6"><img src="/images/8020digital.png" alt="8020 Digital" className="h-20 w-auto object-contain brightness-0" /></div>
                   <span className="text-black/30 font-black text-xl px-2">•</span>
-                  <div className="flex flex-shrink-0 items-center justify-center px-6"><Image src="/images/SENAI_logo_2024.png" alt="SENAI" width={200} height={70} className="h-10 w-auto object-contain brightness-0" /></div>
+                  <div className="flex flex-shrink-0 items-center justify-center px-6"><img src="/images/SENAI_logo_2024.png" alt="SENAI" className="h-10 w-auto object-contain brightness-0" /></div>
                   <span className="text-black/30 font-black text-xl px-2">•</span>
-                  <div className="flex flex-shrink-0 items-center justify-center px-6 -my-8"><Image src="/images/flsoftwaresolutions.png" alt="F&L Solutions" width={400} height={160} className="h-28 w-auto object-contain brightness-0" /></div>
+                  <div className="flex flex-shrink-0 items-center justify-center px-6 -my-8"><img src="/images/flsoftwaresolutions.png" alt="F&L Solutions" className="h-28 w-auto object-contain brightness-0" /></div>
                   <span className="text-black/30 font-black text-xl px-2">•</span>
                 </div>
               ))}

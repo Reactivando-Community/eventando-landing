@@ -11,7 +11,11 @@ export default function MarqueeDivider({
         className={`animate-marquee inline-flex flex-nowrap items-center font-black ${textColor} uppercase text-xl md:text-2xl tracking-widest`}
         style={{ animationDuration: speed }}
       >
-        {Array(15).fill(text).join(" • ") + " • "}
+        {[0, 1].map((i) => (
+          <span key={i} className="flex-shrink-0">
+            {Array(8).fill(text).join(" • ") + " • "}
+          </span>
+        ))}
       </div>
     </div>
   );

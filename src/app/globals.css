@@ -52,12 +52,24 @@
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 .animate-marquee {
   animation: marquee 20s linear infinite;
   display: inline-flex;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+@keyframes loop-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+.animate-loop-scroll {
+  animation: loop-scroll 20s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 }
 
@@ -65,12 +77,4 @@
   .text-balance {
     text-wrap: balance;
   }
-}
-
-@keyframes loop-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.animate-loop-scroll {
-  animation: loop-scroll 20s linear infinite;
 }
