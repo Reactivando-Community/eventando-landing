@@ -5,6 +5,8 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { PopupWidget } from "@/components/PopupWidget";
+import { AuthProvider } from "@/contexts/AuthContext";
+import AuthModals from "@/components/auth/AuthModals";
 
 export const metadata = {
   metadataBase: new URL("https://startupweekendanapolis.com.br"), 
@@ -104,10 +106,13 @@ fbq('track', 'PageView');`}
           forcedTheme="dark"
           attribute="class"
         >
-          {/* <Navbar /> */}
-          <div className="antialiased font-sans">{children}</div>
-          {/* <Footer /> */}
-          {/* <PopupWidget /> */}
+          <AuthProvider>
+            {/* <Navbar /> */}
+            <AuthModals />
+            <div className="antialiased font-sans">{children}</div>
+            {/* <Footer /> */}
+            {/* <PopupWidget /> */}
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
