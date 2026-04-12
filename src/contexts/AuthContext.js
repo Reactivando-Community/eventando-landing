@@ -78,7 +78,15 @@ export function AuthProvider({ children }) {
     dispatch({ type: "AUTH_START" });
     try {
       const res = await hubCommunity.auth.signIn(identifier, password);
-      const { jwt } = res.data;
+      const { jwt, user: authUser } = res.data;
+
+      // Check if user is a participant of the configured event
+      const hasAccess = await hubCommunity.auth.checkEventAccess(jwt, authUser.email);
+      if (!hasAccess) {
+        dispatch({ type: "AUTH_ERROR" });
+        return { success: false, error: "Você não está inscrito neste evento." };
+      }
+
       localStorage.setItem("auth_token", jwt);
 
       const meRes = await hubCommunity.auth.getMe(jwt);
@@ -106,6 +114,14 @@ export function AuthProvider({ children }) {
         phone,
       });
       const { jwt } = res.data;
+
+      // Check if user is a participant of the configured event
+      const hasAccess = await hubCommunity.auth.checkEventAccess(jwt, email);
+      if (!hasAccess) {
+        dispatch({ type: "AUTH_ERROR" });
+        return { success: false, error: "Você não está inscrito neste evento." };
+      }
+
       localStorage.setItem("auth_token", jwt);
 
       const meRes = await hubCommunity.auth.getMe(jwt);

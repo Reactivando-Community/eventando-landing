@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import VMasker from "vanilla-masker";
 import { useAuth } from "@/contexts/AuthContext";
 
 export default function SignUpModal({ isOpen, onClose, onSwitchToLogin }) {
+  const router = useRouter();
   const { signUp } = useAuth();
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -50,6 +52,7 @@ export default function SignUpModal({ isOpen, onClose, onSwitchToLogin }) {
       setPassword("");
       setPhone("");
       onClose();
+      router.push("/dashboard");
     } else {
       setError(result.error);
     }
@@ -78,9 +81,12 @@ export default function SignUpModal({ isOpen, onClose, onSwitchToLogin }) {
           >
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-2 bg-techstars-green rounded-b-xl border-b-4 border-x-4 border-black" />
 
-            <h2 className="text-3xl font-black text-black uppercase tracking-tighter text-center mb-8 mt-2">
+            <h2 className="text-3xl font-black text-black uppercase tracking-tighter text-center mb-2 mt-2">
               CRIAR CONTA
             </h2>
+            <p className="text-center text-gray-600 font-bold text-sm mb-8">
+              Área exclusiva para inscritos no evento
+            </p>
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>

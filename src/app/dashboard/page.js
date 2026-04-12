@@ -40,7 +40,7 @@ export default function DashboardPage() {
             href="/startup-weekend"
             className="text-white font-black uppercase text-sm hover:text-techstars-green transition-colors"
           >
-            ← VOLTAR
+            techstars_ SW
           </a>
           <div className="flex items-center gap-4">
             <span className="text-white font-bold text-sm hidden sm:block">

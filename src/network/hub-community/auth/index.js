@@ -26,5 +26,27 @@ const getMe = (token) => {
   });
 };
 
-const auth = { signIn, signUp, getMe };
+const checkEventAccess = async (token, email) => {
+  const eventDocId = process.env.NEXT_PUBLIC_EVENT_DOCUMENT_ID;
+  if (!eventDocId) return true;
+
+  try {
+    const res = await hubCommunityApi.get("/participants", {
+      params: {
+        "filters[email][$eq]": email,
+        "populate": "event",
+        "pagination[pageSize]": 100,
+      },
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const participants = res.data?.data || [];
+    return participants.some(
+      (p) => p.event?.documentId === eventDocId || String(p.event?.id) === eventDocId
+    );
+  } catch {
+    return false;
+  }
+};
+
+const auth = { signIn, signUp, getMe, checkEventAccess };
 export default auth;

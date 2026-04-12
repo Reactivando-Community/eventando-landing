@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { eventConfig } from "@/data/startup-weekend-event";
+import LoginButton from "@/components/auth/LoginButton";
 
 // ==========================================
 // LOTES — mesma config do PricingSection
@@ -53,10 +54,11 @@ export default function StartupWeekendHero() {
 
           <div className="relative z-10 max-w-xl mx-auto lg:mx-0">
             {/* Badges */}
-            <div className="mb-6 flex flex-wrap gap-3">
+            <div className="mb-6 flex flex-wrap gap-3 items-center">
               <span className="inline-flex items-center px-6 py-3 bg-yellow-400 text-black text-base sm:text-lg md:text-xl font-black uppercase brutal-shadow-md brutal-border hover:shadow-[6px_6px_0px_#000] transition-all transform rotate-1">
                 🗓  {eventConfig.dateFull}
               </span>
+              <LoginButton />
             </div>
 
             {/* Logo text - Event Name */}

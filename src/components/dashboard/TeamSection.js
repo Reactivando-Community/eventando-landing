@@ -74,6 +74,7 @@ export default function TeamSection() {
       // Create team (backend auto-sets logged user as lead)
       const res = await hubCommunity.team.create(token, {
         name: teamName.trim(),
+        eventId: process.env.NEXT_PUBLIC_EVENT_DOCUMENT_ID || undefined,
       });
       const newTeam = res.data?.data;
 
@@ -118,12 +119,9 @@ export default function TeamSection() {
     setError("");
     setIsLoading(true);
     try {
-      await hubCommunityApi.put(
-        `/users/${user.id}`,
-        { team: null },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      await hubCommunity.team.leave(token, userTeam?.documentId);
       await refreshUser();
+      setFullTeam(null);
       setView("options");
     } catch (err) {
       const message =
@@ -238,7 +236,7 @@ export default function TeamSection() {
       <div className="space-y-6">
         <button
           onClick={() => setView("options")}
-          className="text-black font-black uppercase text-sm underline underline-offset-4 decoration-techstars-green decoration-4 hover:text-techstars-green transition-colors"
+          className="text-white font-black uppercase text-sm underline underline-offset-4 decoration-techstars-green decoration-4 hover:text-techstars-green transition-colors"
         >
           ← VOLTAR
         </button>
@@ -293,7 +291,7 @@ export default function TeamSection() {
       <div className="space-y-6">
         <button
           onClick={() => setView("options")}
-          className="text-black font-black uppercase text-sm underline underline-offset-4 decoration-techstars-green decoration-4 hover:text-techstars-green transition-colors"
+          className="text-white font-black uppercase text-sm underline underline-offset-4 decoration-techstars-green decoration-4 hover:text-techstars-green transition-colors"
         >
           ← VOLTAR
         </button>

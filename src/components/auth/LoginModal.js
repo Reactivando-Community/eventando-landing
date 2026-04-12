@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/contexts/AuthContext";
 
 export default function LoginModal({ isOpen, onClose, onSwitchToSignUp }) {
   const { signIn } = useAuth();
+  const router = useRouter();
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -28,6 +30,7 @@ export default function LoginModal({ isOpen, onClose, onSwitchToSignUp }) {
       setIdentifier("");
       setPassword("");
       onClose();
+      router.push("/dashboard");
     } else {
       setError(result.error);
     }
@@ -56,9 +59,12 @@ export default function LoginModal({ isOpen, onClose, onSwitchToSignUp }) {
           >
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-2 bg-techstars-green rounded-b-xl border-b-4 border-x-4 border-black" />
 
-            <h2 className="text-3xl font-black text-black uppercase tracking-tighter text-center mb-8 mt-2">
+            <h2 className="text-3xl font-black text-black uppercase tracking-tighter text-center mb-2 mt-2">
               ENTRAR
             </h2>
+            <p className="text-center text-gray-600 font-bold text-sm mb-8">
+              Área exclusiva para inscritos no evento
+            </p>
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
