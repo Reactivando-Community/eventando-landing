@@ -15,5 +15,13 @@ const create = (data) => {
   return hubCommunityApi.post("/sw-forms", { data });
 };
 
-const swForm = { upload, create };
+const getAll = (params) => {
+  return hubCommunityApi.get("/sw-forms", { params });
+};
+
+const getById = (id, params) => {
+  return hubCommunityApi.get(`/sw-forms/${id}`, { params });
+};
+
+const swForm = { upload, create, getAll, getById };
 export default swForm;
