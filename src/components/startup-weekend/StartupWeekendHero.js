@@ -92,10 +92,12 @@ export default function StartupWeekendHero() {
                 </svg>
               </a>
               <a
-                href="#bolsa"
-                className="brutal-btn-white flex items-center justify-center px-8 py-4 text-lg w-full sm:w-auto"
+                href="https://hubcommunity.io/events/startup-weekend-anapolis-kickoff-series-3"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="brutal-btn-white flex items-center justify-center px-8 py-4 text-lg w-full sm:w-auto text-center"
               >
-                🔥 Quero a Bolsa 100%
+                Participe do nosso kick off
               </a>
             </div>
           </div>

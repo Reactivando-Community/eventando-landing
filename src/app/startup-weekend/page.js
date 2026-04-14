@@ -383,45 +383,7 @@ export default function StartupWeekendPage() {
         </div>
       </section>
 
-      {/* Bolsa 100% CTA – A/B Test */}
-      <section ref={(el) => { bolsaSectionRef.current = el; sectionRef("13_bolsa_cta")(el); }} id="bolsa" className="py-12 px-6 bg-[#f4f4f0]">
-        <div className="max-w-5xl mx-auto">
-          <div className="brutal-card bg-techstars-green p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
-            <div className="flex-1 text-center md:text-left space-y-4">
-              <div className="flex items-start justify-center md:justify-start gap-3">
-                <span className="text-4xl mt-1 drop-shadow-[2px_2px_0px_#000]">🔥</span>
-                <h2 className="text-3xl md:text-4xl font-black text-black uppercase tracking-tight leading-snug">
-                  {variant?.ctaTitle || "Bolsa 100% para quem tem coragem."}
-                </h2>
-              </div>
-              <p className="text-black font-bold text-xl max-w-2xl leading-relaxed">
-                {variant?.ctaSubtitle || "Bolsa 100%. Sem custo. Sem desculpa."}
-              </p>
-            </div>
-            <div className="shrink-0">
-              <button
-                onClick={handleCtaClick}
-                className="brutal-btn-white inline-flex items-center px-8 py-4 text-lg"
-              >
-                Eu tenho coragem
-                <svg
-                  className="w-5 h-5 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={3}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Bolsa 100% CTA – A/B Test (Removido) */}
 
       {/* Official Techstars Event Description + Terms Notice */}
       <section ref={sectionRef("14_about_terms")} className="py-16 px-6 bg-white brutal-border-y">
