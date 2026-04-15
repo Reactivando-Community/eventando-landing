@@ -72,6 +72,13 @@ const ArtTemplate = forwardRef(({ photoUrl, role, format, name = "" }, ref) => {
       {/* Fechamento do Container Principal Interno */}
       </div>
 
+      {/* Footer do Quadro Externa */}
+      <div className="pt-2 md:pt-3 flex justify-center items-center w-full">
+         <span className="font-black text-black uppercase tracking-wider text-[10px] md:text-sm">
+            @startupweekendanapolis
+         </span>
+      </div>
+
     </div>
   );
 });
