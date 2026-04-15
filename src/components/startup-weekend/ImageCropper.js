@@ -7,7 +7,7 @@ export default function ImageCropper({ imageSrc, onCropDone, onCancel, format })
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
-  const aspect = format === '9:16' ? 9 / 16 : 4 / 3;
+  const aspect = format === '9:16' ? 9 / 16 : 1 / 1;
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);

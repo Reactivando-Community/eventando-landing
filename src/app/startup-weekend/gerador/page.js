@@ -8,8 +8,9 @@ import StartupWeekendFooter from "@/components/startup-weekend/StartupWeekendFoo
 import ImageCropper from "@/components/startup-weekend/ImageCropper";
 
 export default function GeradorArtesPage() {
-  const [format, setFormat] = useState("9:16"); // '4:3' ou '9:16'
+  const [format, setFormat] = useState("9:16"); // '1:1' ou '9:16'
   const [role, setRole] = useState("Participante"); // Participante, Líder, Mentor, Voluntário
+  const [name, setName] = useState("");
   const [photoUrl, setPhotoUrl] = useState(null);
   const [originalPhotoUrl, setOriginalPhotoUrl] = useState(null);
   const [isCropping, setIsCropping] = useState(false);
@@ -43,10 +44,16 @@ export default function GeradorArtesPage() {
       const htmlToImageMod = await import('html-to-image');
       
       const element = templateRef.current;
-      // We force scale up the resolution for a better output quality
+      
+      // O cliente quer resolução 1080x1080 ou 1080x1920.
+      // Calculamos o multiplicador escalar pegando o tamanho target (1080) e dividindo pela largura virtual exibida.
+      const targetWidth = 1080;
+      const renderedWidth = element.offsetWidth;
+      const scalar = targetWidth / renderedWidth;
+
       const scaleOptions = {
         quality: 1,
-        pixelRatio: 2, 
+        pixelRatio: scalar, 
         skipFonts: false,
       };
 
@@ -151,12 +158,12 @@ export default function GeradorArtesPage() {
                   Stories (9:16)
                 </button>
                 <button 
-                  onClick={() => setFormat('4:3')}
+                  onClick={() => setFormat('1:1')}
                   className={`py-3 px-4 brutal-border text-lg font-black uppercase transition-all shadow-[4px_4px_0px_0px_#000] active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-0.5 hover:-translate-x-0.5
-                    ${format === '4:3' ? 'bg-yellow-400 text-black' : 'bg-white text-black'}
+                    ${format === '1:1' ? 'bg-yellow-400 text-black' : 'bg-white text-black'}
                   `}
                 >
-                  Feed (4:3)
+                  Feed (1:1)
                 </button>
               </div>
             </div>
@@ -179,6 +186,18 @@ export default function GeradorArtesPage() {
               </div>
             </div>
 
+            {/* Bloco 4: Nome */}
+            <div className="brutal-card p-6 md:p-8 space-y-4">
+              <h3 className="text-2xl font-black uppercase">4. Seu Nome</h3>
+              <input 
+                type="text" 
+                placeholder="Ex: Pedro Goiania" 
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full brutal-border p-4 text-lg font-black uppercase placeholder:text-gray-400 focus:outline-none focus:ring-4 focus:ring-techstars-green bg-white"
+                maxLength={25}
+              />
+            </div>
           </div>
 
           {/* Coluna 2: Preview e Download */}
@@ -203,6 +222,7 @@ export default function GeradorArtesPage() {
                     photoUrl={photoUrl} 
                     role={role} 
                     format={format} 
+                    name={name}
                  />
                </div>
             </div>
