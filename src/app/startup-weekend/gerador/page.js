@@ -17,6 +17,7 @@ export default function GeradorArtesPage() {
   const [isCropping, setIsCropping] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
   const [exportProgress, setExportProgress] = useState(0);
+  const [uploadedUrl, setUploadedUrl] = useState("");
 
   // Use a stable reference to avoid re-renders issues with html-to-image
   const templateRef = useRef(null);
@@ -43,6 +44,7 @@ export default function GeradorArtesPage() {
     
     setIsExporting(true);
     setExportProgress(0);
+    setUploadedUrl("");
 
     // Simulador de progresso fluido para aplacar o atraso de 8s+ gerado por fotos pesadas da galeria no html-to-image
     const progressInterval = setInterval(() => {
@@ -95,11 +97,14 @@ export default function GeradorArtesPage() {
               fileUrl = "https://manager.hubcommunity.io" + fileUrl;
            }
 
-           // Usa anchor para abrir a url do upload e desviar de bloqueadores estritos de popup
-           const linkTab = document.createElement("a");
-           linkTab.href = fileUrl;
-           linkTab.target = "_blank";
-           linkTab.click();
+           setUploadedUrl(fileUrl);
+
+           // Tenta forçar a janela
+           const newWindow = window.open(fileUrl, '_blank');
+           
+           if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+               console.warn("O Popup Blocker impediu a abertura automática da nova aba no celular.");
+           }
         }
       } catch (uploadFail) {
          console.warn("Upload de backup no Strapi falhou ou foi bloqueado pelo mobile:", uploadFail);
@@ -269,6 +274,15 @@ export default function GeradorArtesPage() {
                  </span>
               </button>
             </div>
+
+            {uploadedUrl && (
+              <div className="w-full bg-techstars-green text-black border-4 border-black p-4 brutal-shadow-sm font-bold text-sm md:text-base text-center mt-2 flex flex-col gap-2">
+                ✅ Upload concluído na nuvem!
+                <a href={uploadedUrl} target="_blank" rel="noopener noreferrer" className="brutal-btn-white py-2 px-4 shadow-[4px_4px_0_#000] inline-block uppercase text-xs">
+                  ABRIR LINK PÚBLICO
+                </a>
+              </div>
+            )}
 
             {/* Preview Area container to keep it constrained but centered */}
             <div className="w-full h-auto flex justify-center bg-gray-200 border-2 border-dashed border-gray-400 p-4 md:p-8 rounded-lg overflow-hidden relative">
