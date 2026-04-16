@@ -6,6 +6,7 @@ import StartupWeekendSEO from "@/components/startup-weekend/StartupWeekendSEO";
 import ArtTemplate from "@/components/startup-weekend/ArtTemplate";
 import StartupWeekendFooter from "@/components/startup-weekend/StartupWeekendFooter";
 import ImageCropper from "@/components/startup-weekend/ImageCropper";
+import swForm from "@/network/hub-community/sw-form";
 
 export default function GeradorArtesPage() {
   const [format, setFormat] = useState("9:16"); // '1:1' ou '9:16'
@@ -15,7 +16,7 @@ export default function GeradorArtesPage() {
   const [originalPhotoUrl, setOriginalPhotoUrl] = useState(null);
   const [isCropping, setIsCropping] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
-  const [finalImage, setFinalImage] = useState(null);
+  const [exportProgress, setExportProgress] = useState(0);
 
   // Use a stable reference to avoid re-renders issues with html-to-image
   const templateRef = useRef(null);
@@ -41,6 +42,16 @@ export default function GeradorArtesPage() {
     if (!templateRef.current) return;
     
     setIsExporting(true);
+    setExportProgress(0);
+
+    // Simulador de progresso fluido para aplacar o atraso de 8s+ gerado por fotos pesadas da galeria no html-to-image
+    const progressInterval = setInterval(() => {
+       setExportProgress(prev => {
+          if (prev >= 92) return 92; // Segura em 92% enquanto processa o final
+          return prev + Math.floor(Math.random() * 8) + 2; 
+       });
+    }, 500);
+
     try {
       const htmlToImageMod = await import('html-to-image');
       
@@ -60,41 +71,53 @@ export default function GeradorArtesPage() {
 
       const dataUrl = await htmlToImageMod.toPng(element, scaleOptions);
       
-      // Attempt Web Share API for native mobile sharing (iOS Safari, Android Chrome)
-      let shared = false;
-      if (navigator.share && navigator.canShare) {
-        try {
-          const res = await fetch(dataUrl);
-          const blob = await res.blob();
-          const file = new File([blob], `SW-Anapolis-${role}-${format.replace(':', 'x')}.png`, { type: 'image/png' });
-          if (navigator.canShare({ files: [file] })) {
-             await navigator.share({
-               files: [file],
-               title: 'Minha Arte - Startup Weekend',
-               text: 'Estou participando do Startup Weekend Anápolis!'
-             });
-             shared = true;
-          }
-        } catch (e) {
-          console.log("Web Share cancelado ou não suportado para este arquivo", e);
+      // 1. Aciona o DOWNLOAD NATIVO IMEDIATAMENTE (o que o usuário realmente clicou para fazer)
+      const link = document.createElement("a");
+      link.download = `SW-Anapolis-${role}-${format.replace(':','x')}.png`;
+      link.href = dataUrl;
+      link.click();
+      
+      clearInterval(progressInterval);
+      setExportProgress(100);
+
+      // 2. APÓS O DOWNLOAD NATIVO INICIAR: Envia para a Nuvem
+      // Envolvemos esse passo em um try/catch isolado. Se o Strapi bloquear (por CORS do IP da rede local ou permissão non-auth), ele falha silenciosamente e não estraga a UX, já que o download nativo acima já funcionou!
+      try {
+        const resData = await fetch(dataUrl);
+        const blob = await resData.blob();
+        const file = new File([blob], `SW-Anapolis-${role}-${format.replace(':', 'x')}.png`, { type: 'image/png' });
+
+        const uploadRes = await swForm.upload(file);
+
+        if (uploadRes && uploadRes.data && uploadRes.data[0]) {
+           let fileUrl = uploadRes.data[0].url;
+           if (fileUrl.startsWith('/')) {
+              fileUrl = "https://manager.hubcommunity.io" + fileUrl;
+           }
+
+           // Usa anchor para abrir a url do upload e desviar de bloqueadores estritos de popup
+           const linkTab = document.createElement("a");
+           linkTab.href = fileUrl;
+           linkTab.target = "_blank";
+           linkTab.click();
         }
+      } catch (uploadFail) {
+         console.warn("Upload de backup no Strapi falhou ou foi bloqueado pelo mobile:", uploadFail);
+         // Nenhuma ação invasiva pois o download nativo já completou
       }
 
-      if (!shared) {
-        // Tenta o download nativo primário
-        const link = document.createElement("a");
-        link.download = `SW-Anapolis-${role}-${format.replace(':','x')}.png`;
-        link.href = dataUrl;
-        link.click();
-        
-        // Exibe o Modal de Fallback para usuários mobile onde o .click() não cai na galeria (Ex: Safari/Instagram WebView)
-        setFinalImage(dataUrl);
-      }
+      // Reseta a UI de download após mostrar 100% rapidamente
+      setTimeout(() => {
+        setIsExporting(false);
+        setExportProgress(0);
+      }, 600);
+
     } catch (err) {
-      console.error("Erro ao gerar a imagem:", err);
+      clearInterval(progressInterval);
+      console.error("Erro geral na geração da imagem:", err);
       alert("Ocorreu um erro ao exportar. Tente novamente.");
-    } finally {
       setIsExporting(false);
+      setExportProgress(0);
     }
   }, [role, format]);
 
@@ -233,9 +256,17 @@ export default function GeradorArtesPage() {
               <button 
                 onClick={exportImage}
                 disabled={isExporting}
-                className="brutal-btn py-3 px-8 text-black opacity-100 disabled:opacity-50"
+                className={`brutal-btn relative overflow-hidden py-3 px-8 text-black opacity-100 transition-colors ${isExporting ? 'bg-white disabled:opacity-100' : ''}`}
               >
-                {isExporting ? 'GERANDO...' : 'BAIXAR ARTE'}
+                 {isExporting && (
+                   <div 
+                     className="absolute top-0 left-0 h-full bg-yellow-400 transition-all ease-out duration-300 pointer-events-none"
+                     style={{ width: `${exportProgress}%` }}
+                   />
+                 )}
+                 <span className="relative z-10 font-black">
+                    {isExporting ? `PROCESSANDO (${exportProgress}%)` : 'BAIXAR ARTE'}
+                 </span>
               </button>
             </div>
 
@@ -262,42 +293,6 @@ export default function GeradorArtesPage() {
       </section>
       
       <StartupWeekendFooter />
-
-      {/* Modal de Finalização (Fallback Mobile) */}
-      {finalImage && (
-        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 bg-black/90 backdrop-blur-sm pointer-events-auto">
-           <div className="bg-[#f4f4f0] brutal-border brutal-shadow-md w-full max-w-sm p-6 flex flex-col items-center max-h-[90vh] overflow-y-auto">
-              <h3 className="font-black text-2xl uppercase mb-2 text-center text-black tracking-tight">Sua Arte Está Pronta!</h3>
-              <p className="text-xs md:text-sm font-bold text-gray-800 bg-yellow-400 px-3 py-2 text-center border-2 border-black mb-4 brutal-shadow-sm w-full">
-                📲 <strong>NO CELULAR:</strong> Toque e segure na imagem abaixo para <strong>Salvar na Galeria</strong>.
-              </p>
-
-              <div className="brutal-border w-full max-h-[45vh] overflow-hidden mb-6 flex justify-center bg-black">
-                 <img src={finalImage} alt="Arte Final" className="h-full w-auto object-contain" />
-              </div>
-
-              <div className="flex flex-col gap-3 w-full">
-                <button 
-                  className="brutal-btn py-3 w-full text-sm"
-                  onClick={() => {
-                     const link = document.createElement("a");
-                     link.download = `SW-Anapolis-${role}-${format.replace(':','x')}.png`;
-                     link.href = finalImage;
-                     link.click();
-                  }}
-                >
-                  Tentar Baixar Novamente
-                </button>
-                <button 
-                  className="brutal-btn-white py-3 w-full text-red-600 text-sm"
-                  onClick={() => setFinalImage(null)}
-                >
-                  Fechar
-                </button>
-              </div>
-           </div>
-        </div>
-      )}
     </main>
   );
 }
