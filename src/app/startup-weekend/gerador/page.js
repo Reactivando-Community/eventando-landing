@@ -16,7 +16,8 @@ export default function GeradorArtesPage() {
   const [originalPhotoUrl, setOriginalPhotoUrl] = useState(null);
   const [isCropping, setIsCropping] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
-  const [exportProgress, setExportProgress] = useState(0);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [uploadError, setUploadError] = useState("");
   const [uploadedUrl, setUploadedUrl] = useState("");
 
   // Use a stable reference to avoid re-renders issues with html-to-image
@@ -76,7 +77,8 @@ export default function GeradorArtesPage() {
     if (!templateRef.current) return;
     
     setIsExporting(true);
-    setExportProgress(0);
+    setUploadProgress(0);
+    setUploadError("");
     setUploadedUrl("");
 
     try {
@@ -95,7 +97,12 @@ export default function GeradorArtesPage() {
         skipFonts: false,
       };
 
-      // Esta etapa bloqueia a Thread Principal do Javascript para rasterizar o canvas
+      // Safari/iOS Offscreen Render Bug Wipeout: 
+      // O motor ForeignObject do Webkit muitas vezes não decodifica imagens a tempo de pintar no Canvas virtual clónado na 1ª tentativa, deixando elas pretas.
+      // O pulo do gato é rodar um "Warm Up" (esquenta) instantâneo renderizando uma versão de 0.1 ratio puramente pra bater a tela em cache, jogando fora o resultado.
+      await htmlToImageMod.toPng(element, { pixelRatio: 0.1, skipFonts: true });
+
+      // Esta etapa agora pega a imagem já destrancada na memória de vídeo do Safari nativo.
       const dataUrl = await htmlToImageMod.toPng(element, scaleOptions);
       
       // Conversão binária robusta para não sobrecarregar o limite de URL do motor Safari iOS
@@ -112,12 +119,13 @@ export default function GeradorArtesPage() {
       // Proteção de compatibilidade File vs Blob pra formdata
       const fileObj = new File([blob], `SW-Anapolis-${role}-${format.replace(':', 'x')}.png`, { type: mimeString });
 
-      setExportProgress(100);
-
-      // Enviamos pro Strapi AGORA. Fazemos isso antes do link.click() pois o iOS Safari/Chrome suspende e congela a Thread Javascript inteira
-      // quando aquele pop-up cinza escuro nativo de "Download... / Salvar..." do sistema operacional sobe pra tela do usuário!
+      // Enviamos pro Strapi AGORA e observamos a banda via Axios Event
       try {
-         const uploadRes = await swForm.upload(fileObj);
+         const uploadRes = await swForm.upload(fileObj, (progressEvent) => {
+            const percent = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
+            setUploadProgress(percent);
+         });
+         
          if (uploadRes && uploadRes.data && uploadRes.data[0]) {
             let fileUrl = uploadRes.data[0].url;
             if (fileUrl.startsWith('/')) {
@@ -125,12 +133,11 @@ export default function GeradorArtesPage() {
             }
 
             setUploadedUrl(fileUrl);
-            
-            // Dispara janela de forma síncrona com permissão
-            window.open(fileUrl, '_blank');
          }
       } catch (uploadFail) {
          console.warn("Upload falhou ou foi bloqueado pelo CORS mobile:", uploadFail);
+         setUploadError(uploadFail.message || "Erro desconhecido ao fazer upload.");
+         setUploadProgress(100);
       }
 
       // 4. Agora que a Nuvem foi garantida e a rede finalizou, resetamos a tela e abrimos a porta pro iOS estourar o Download Local dele sem medo de suspender nada!
@@ -147,7 +154,7 @@ export default function GeradorArtesPage() {
       console.error("Erro geral na geração da imagem:", err);
       alert("Ocorreu um erro ao exportar. Tente novamente.");
       setIsExporting(false);
-      setExportProgress(0);
+      setUploadProgress(0);
     }
   }, [role, format]);
 
@@ -290,19 +297,27 @@ export default function GeradorArtesPage() {
               >
                  {isExporting && (
                    <div 
-                     className="absolute inset-0 bg-yellow-400 opacity-50 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(0,0,0,0.1)_10px,rgba(0,0,0,0.1)_20px)] transition-all ease-out duration-300 pointer-events-none"
+                     className="absolute top-0 left-0 h-full bg-yellow-400 border-r-4 border-black transition-all ease-out duration-300 pointer-events-none"
+                     style={{ width: `${uploadProgress}%` }}
                    />
                  )}
                  <span className="relative z-10 font-black">
-                    {isExporting ? `PROCESSANDO...` : 'BAIXAR ARTE'}
+                    {isExporting ? `SALVANDO NA NUVEM ${uploadProgress}%` : 'BAIXAR ARTE'}
                  </span>
               </button>
             </div>
 
+            {/* Error Message for Debugging Upload Fails */}
+            {uploadError && (
+               <div className="w-full bg-red-500 text-white border-4 border-black p-4 brutal-shadow-sm font-bold text-sm md:text-base text-center mt-2 flex flex-col gap-2 uppercase tracking-tight">
+                 🚫 Erro ao subir pra nuvem: {uploadError}
+               </div>
+            )}
+
             {uploadedUrl && (
               <div className="w-full bg-techstars-green text-black border-4 border-black p-4 brutal-shadow-sm font-bold text-sm md:text-base text-center mt-2 flex flex-col gap-2">
                 ✅ Upload concluído na nuvem!
-                <a href={uploadedUrl} target="_blank" rel="noopener noreferrer" className="brutal-btn-white py-2 px-4 shadow-[4px_4px_0_#000] inline-block uppercase text-xs">
+                <a href={uploadedUrl} className="brutal-btn-white py-2 px-4 shadow-[4px_4px_0_#000] inline-block uppercase text-xs">
                   ABRIR LINK PÚBLICO
                 </a>
               </div>

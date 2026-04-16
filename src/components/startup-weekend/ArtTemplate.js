@@ -40,7 +40,6 @@ const ArtTemplate = forwardRef(({ photoUrl, role, format, name = "" }, ref) => {
               src={photoUrl}
               alt="Sua foto"
               className="absolute inset-0 w-full h-full object-cover z-10 grayscale-[0.2] contrast-125"
-              crossOrigin="anonymous" 
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center bg-[#f4f4f0] z-10">
