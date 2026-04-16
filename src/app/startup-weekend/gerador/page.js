@@ -51,6 +51,12 @@ export default function GeradorArtesPage() {
           canvas.width = width;
           canvas.height = height;
           const ctx = canvas.getContext("2d");
+          
+          // Tratamento brutalista queimado permanentemente nos pixels do Canvas!
+          // Safari não conseguia aplicar esses filtros dinâmicamente via CSS em tempo de cópia, 
+          // então queimamos o grayscale(20%) e o contrast direto no binário base64 do usuário pra imagem ficar burra e à prova de balas
+          ctx.filter = 'grayscale(20%) contrast(125%)';
+          
           ctx.drawImage(img, 0, 0, width, height);
 
           // Respeita fundo transparente se for PNG
@@ -97,19 +103,10 @@ export default function GeradorArtesPage() {
         skipFonts: false,
       };
 
-      // Safari/iOS Offscreen Render Bug Wipeout: 
-      // O motor ForeignObject do Webkit muitas vezes não decodifica imagens a tempo de pintar no Canvas virtual clonado na 1ª tentativa, deixando a foto preta.
-      // Esmagando com a sugestão de 2 segundos: Vamos espaçar os Warmups agressivamente para deixar a Thread de Eventos do iOS respirar e focar na textura!
-      for (let i = 0; i < 3; i++) {
-        await htmlToImageMod.toPng(element, { pixelRatio: 0.1, skipFonts: true });
-        // Pausa entre cada "foto falsa" pra placa de vídeo puxar a real
-        await new Promise(r => setTimeout(r, 650));
-      }
-      
-      // Suspiro final
-      await new Promise(r => setTimeout(r, 500)); 
+      // Para garantir contra flutuações curtas, o leve pre-render inicial é mantido
+      await htmlToImageMod.toPng(element, { pixelRatio: 0.1, skipFonts: true });
 
-      // Esta etapa agora pega a imagem definitiva, 100% destrancada na memória de vídeo do Safari nativo.
+      // Esta etapa agora pega a imagem definitiva, leve e imune à quebra de shaders do CSS.
       const dataUrl = await htmlToImageMod.toPng(element, scaleOptions);
       
       // Conversão binária robusta para não sobrecarregar o limite de URL do motor Safari iOS
