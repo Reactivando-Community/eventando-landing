@@ -72,8 +72,6 @@ export default function GeradorArtesPage() {
   };
 
   const removePhoto = () => {
-    if (photoUrl) URL.revokeObjectURL(photoUrl);
-    if (originalPhotoUrl) URL.revokeObjectURL(originalPhotoUrl);
     setPhotoUrl(null);
     setOriginalPhotoUrl(null);
     setIsCropping(false);
@@ -103,6 +101,13 @@ export default function GeradorArtesPage() {
         skipFonts: false,
       };
 
+      // Bug documentado do Safari/iOS: html-to-image produz imagem preta na 1ª chamada
+      // porque o Safari não decodifica os assets embutidos no SVG foreignObject a tempo.
+      // A solução da comunidade é chamar toPng 2x com as MESMAS opções.
+      // A 1ª chamada age como "isca" forçando o decode no cache do Safari.
+      // A 2ª chamada captura a imagem corretamente renderizada.
+      // Ref: https://github.com/bubkoo/html-to-image/issues/361
+      await htmlToImageMod.toPng(element, scaleOptions);
       const dataUrl = await htmlToImageMod.toPng(element, scaleOptions);
       
       // Conversão binária robusta para não sobrecarregar o limite de URL do motor Safari iOS

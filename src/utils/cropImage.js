@@ -3,7 +3,6 @@ export const createImage = (url) =>
     const image = new Image();
     image.addEventListener("load", () => resolve(image));
     image.addEventListener("error", (error) => reject(error));
-    image.setAttribute("crossOrigin", "anonymous");
     image.src = url;
   });
 
@@ -31,13 +30,9 @@ export async function getCroppedImg(imageSrc, pixelCrop) {
     pixelCrop.height
   );
 
-  return new Promise((resolve) => {
-    canvas.toBlob(
-      (blob) => {
-        resolve(URL.createObjectURL(blob));
-      },
-      "image/jpeg",
-      1 // Alta qualidade
-    );
-  });
+  // Retorna data URL em vez de Blob URL.
+  // html-to-image clona o DOM e embute os recursos no SVG. Blob URLs (blob:https://...)
+  // são referências efêmeras que não sobrevivem à clonagem, causando foto preta no Safari.
+  // Data URLs são strings autocontidas que o clone consegue embutir diretamente.
+  return canvas.toDataURL("image/jpeg", 0.92);
 }
