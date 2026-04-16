@@ -145,12 +145,34 @@ export default function GeradorArtesPage() {
          setUploadProgress(100);
       }
 
-      // 4. Agora que a Nuvem foi garantida e a rede finalizou, resetamos a tela e abrimos a porta pro iOS estourar o Download Local dele sem medo de suspender nada!
+      // 4. Agora que a Nuvem foi garantida e a rede finalizou, resetamos a tela e abrimos a porta pro download!
       setIsExporting(false);
       
+      const fileName = `SW-Anapolis-${role}-${format.replace(':','x')}.png`;
+
+      // No mobile, usamos a Web Share API que abre o menu nativo do iOS/Android
+      // com opção de "Salvar Imagem" direto na galeria, além de compartilhar no WhatsApp, Instagram etc.
+      if (navigator.share && navigator.canShare) {
+        try {
+          const shareFile = new File([blob], fileName, { type: 'image/png' });
+          const shareData = { files: [shareFile] };
+          
+          if (navigator.canShare(shareData)) {
+            await navigator.share(shareData);
+            return; // Usuário usou o share sheet, não precisa do fallback
+          }
+        } catch (shareErr) {
+          // Se o usuário cancelou o share sheet ou não suporta files, cai no fallback abaixo
+          if (shareErr.name !== 'AbortError') {
+            console.warn("Share API falhou, usando fallback de download:", shareErr);
+          }
+        }
+      }
+
+      // Fallback: download clássico via link (funciona em desktop e navegadores sem Share API)
       setTimeout(() => {
          const link = document.createElement("a");
-         link.download = `SW-Anapolis-${role}-${format.replace(':','x')}.png`;
+         link.download = fileName;
          link.href = dataUrl;
          link.click();
       }, 50);
