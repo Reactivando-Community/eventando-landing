@@ -99,12 +99,15 @@ export default function GeradorArtesPage() {
 
       // Safari/iOS Offscreen Render Bug Wipeout: 
       // O motor ForeignObject do Webkit muitas vezes não decodifica imagens a tempo de pintar no Canvas virtual clonado na 1ª tentativa, deixando a foto preta.
-      // O warmup triplo + delay de respiração matemática resolvem isso porque garantem que o Webkit finalize de carregar as texturas da foto via GPU.
+      // Esmagando com a sugestão de 2 segundos: Vamos espaçar os Warmups agressivamente para deixar a Thread de Eventos do iOS respirar e focar na textura!
       for (let i = 0; i < 3; i++) {
         await htmlToImageMod.toPng(element, { pixelRatio: 0.1, skipFonts: true });
+        // Pausa entre cada "foto falsa" pra placa de vídeo puxar a real
+        await new Promise(r => setTimeout(r, 650));
       }
-      // Damos 350 milissegundos pro iOS puxar a foto hidratada na RAM antes do clique valendo
-      await new Promise(r => setTimeout(r, 350));
+      
+      // Suspiro final
+      await new Promise(r => setTimeout(r, 500)); 
 
       // Esta etapa agora pega a imagem definitiva, 100% destrancada na memória de vídeo do Safari nativo.
       const dataUrl = await htmlToImageMod.toPng(element, scaleOptions);
