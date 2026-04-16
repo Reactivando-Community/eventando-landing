@@ -15,6 +15,7 @@ export default function GeradorArtesPage() {
   const [originalPhotoUrl, setOriginalPhotoUrl] = useState(null);
   const [isCropping, setIsCropping] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
+  const [finalImage, setFinalImage] = useState(null);
 
   // Use a stable reference to avoid re-renders issues with html-to-image
   const templateRef = useRef(null);
@@ -59,11 +60,36 @@ export default function GeradorArtesPage() {
 
       const dataUrl = await htmlToImageMod.toPng(element, scaleOptions);
       
-      // Native download
-      const link = document.createElement("a");
-      link.download = `SW-Anapolis-${role}-${format.replace(':','x')}.png`;
-      link.href = dataUrl;
-      link.click();
+      // Attempt Web Share API for native mobile sharing (iOS Safari, Android Chrome)
+      let shared = false;
+      if (navigator.share && navigator.canShare) {
+        try {
+          const res = await fetch(dataUrl);
+          const blob = await res.blob();
+          const file = new File([blob], `SW-Anapolis-${role}-${format.replace(':', 'x')}.png`, { type: 'image/png' });
+          if (navigator.canShare({ files: [file] })) {
+             await navigator.share({
+               files: [file],
+               title: 'Minha Arte - Startup Weekend',
+               text: 'Estou participando do Startup Weekend Anápolis!'
+             });
+             shared = true;
+          }
+        } catch (e) {
+          console.log("Web Share cancelado ou não suportado para este arquivo", e);
+        }
+      }
+
+      if (!shared) {
+        // Tenta o download nativo primário
+        const link = document.createElement("a");
+        link.download = `SW-Anapolis-${role}-${format.replace(':','x')}.png`;
+        link.href = dataUrl;
+        link.click();
+        
+        // Exibe o Modal de Fallback para usuários mobile onde o .click() não cai na galeria (Ex: Safari/Instagram WebView)
+        setFinalImage(dataUrl);
+      }
     } catch (err) {
       console.error("Erro ao gerar a imagem:", err);
       alert("Ocorreu um erro ao exportar. Tente novamente.");
@@ -236,6 +262,42 @@ export default function GeradorArtesPage() {
       </section>
       
       <StartupWeekendFooter />
+
+      {/* Modal de Finalização (Fallback Mobile) */}
+      {finalImage && (
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 bg-black/90 backdrop-blur-sm pointer-events-auto">
+           <div className="bg-[#f4f4f0] brutal-border brutal-shadow-md w-full max-w-sm p-6 flex flex-col items-center max-h-[90vh] overflow-y-auto">
+              <h3 className="font-black text-2xl uppercase mb-2 text-center text-black tracking-tight">Sua Arte Está Pronta!</h3>
+              <p className="text-xs md:text-sm font-bold text-gray-800 bg-yellow-400 px-3 py-2 text-center border-2 border-black mb-4 brutal-shadow-sm w-full">
+                📲 <strong>NO CELULAR:</strong> Toque e segure na imagem abaixo para <strong>Salvar na Galeria</strong>.
+              </p>
+
+              <div className="brutal-border w-full max-h-[45vh] overflow-hidden mb-6 flex justify-center bg-black">
+                 <img src={finalImage} alt="Arte Final" className="h-full w-auto object-contain" />
+              </div>
+
+              <div className="flex flex-col gap-3 w-full">
+                <button 
+                  className="brutal-btn py-3 w-full text-sm"
+                  onClick={() => {
+                     const link = document.createElement("a");
+                     link.download = `SW-Anapolis-${role}-${format.replace(':','x')}.png`;
+                     link.href = finalImage;
+                     link.click();
+                  }}
+                >
+                  Tentar Baixar Novamente
+                </button>
+                <button 
+                  className="brutal-btn-white py-3 w-full text-red-600 text-sm"
+                  onClick={() => setFinalImage(null)}
+                >
+                  Fechar
+                </button>
+              </div>
+           </div>
+        </div>
+      )}
     </main>
   );
 }
