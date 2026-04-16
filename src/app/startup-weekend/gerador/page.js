@@ -24,11 +24,44 @@ export default function GeradorArtesPage() {
 
   const handlePhotoUpload = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      setOriginalPhotoUrl(url);
-      setIsCropping(true);
-    }
+    if (!file) return;
+
+    // Se a foto for gigantesca (comum em câmeras de celular, 8MB+), o html-to-image engasga e demora 10s+, podendo retornar retângulos pretos por timeout de GPU.
+    // Vamos comprimi-la e padronizá-la internamente em memória (downscale) antes de injetar na UI.
+    const reader = new FileReader();
+    reader.onload = (event) => {
+       const img = new Image();
+       img.onload = () => {
+          const maxDim = 1500; // Resolução segura e nítida o suficiente para nossos alvos de 1080p
+          let width = img.width;
+          let height = img.height;
+          
+          if (width > maxDim || height > maxDim) {
+             if (width > height) {
+                 height = Math.round((height * maxDim) / width);
+                 width = maxDim;
+             } else {
+                 width = Math.round((width * maxDim) / height);
+                 height = maxDim;
+             }
+          }
+
+          const canvas = document.createElement("canvas");
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // Respeita fundo transparente se for PNG
+          const mimeType = file.type === "image/png" ? "image/png" : "image/jpeg";
+          const optimizedDataUrl = canvas.toDataURL(mimeType, 0.85); // Compressão leve na variação de JPG
+          
+          setOriginalPhotoUrl(optimizedDataUrl);
+          setIsCropping(true);
+       };
+       img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
   };
 
   const removePhoto = () => {
@@ -62,61 +95,53 @@ export default function GeradorArtesPage() {
         skipFonts: false,
       };
 
-      // Esta etapa bloqueia a Thread Principal do Javascript
+      // Esta etapa bloqueia a Thread Principal do Javascript para rasterizar o canvas
       const dataUrl = await htmlToImageMod.toPng(element, scaleOptions);
       
-      setExportProgress(100);
+      // Conversão binária robusta para não sobrecarregar o limite de URL do motor Safari iOS
+      const splitDataURI = dataUrl.split(',');
+      const byteString = atob(splitDataURI[1]);
+      const mimeString = splitDataURI[0].split(':')[1].split(';')[0];
+      const ab = new ArrayBuffer(byteString.length);
+      const ia = new Uint8Array(ab);
+      for (let i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i);
+      }
       
-      // Reseta a UI antecipadamente para que o Prompt de Download nativo do iPhone não congele a tela no estado 'PROCESSANDO'
+      const blob = new Blob([ab], { type: mimeString });
+      // Proteção de compatibilidade File vs Blob pra formdata
+      const fileObj = new File([blob], `SW-Anapolis-${role}-${format.replace(':', 'x')}.png`, { type: mimeString });
+
+      setExportProgress(100);
+
+      // Enviamos pro Strapi AGORA. Fazemos isso antes do link.click() pois o iOS Safari/Chrome suspende e congela a Thread Javascript inteira
+      // quando aquele pop-up cinza escuro nativo de "Download... / Salvar..." do sistema operacional sobe pra tela do usuário!
+      try {
+         const uploadRes = await swForm.upload(fileObj);
+         if (uploadRes && uploadRes.data && uploadRes.data[0]) {
+            let fileUrl = uploadRes.data[0].url;
+            if (fileUrl.startsWith('/')) {
+               fileUrl = "https://manager.hubcommunity.io" + fileUrl;
+            }
+
+            setUploadedUrl(fileUrl);
+            
+            // Dispara janela de forma síncrona com permissão
+            window.open(fileUrl, '_blank');
+         }
+      } catch (uploadFail) {
+         console.warn("Upload falhou ou foi bloqueado pelo CORS mobile:", uploadFail);
+      }
+
+      // 4. Agora que a Nuvem foi garantida e a rede finalizou, resetamos a tela e abrimos a porta pro iOS estourar o Download Local dele sem medo de suspender nada!
+      setIsExporting(false);
+      
       setTimeout(() => {
-         setIsExporting(false);
-         setExportProgress(0);
-         
-         // 1. Dispara o NATIVO de forma isolada via Timeout pós-render
          const link = document.createElement("a");
          link.download = `SW-Anapolis-${role}-${format.replace(':','x')}.png`;
          link.href = dataUrl;
          link.click();
-
-         // 2. Continua pro Strapi em background solto
-         (async () => {
-             try {
-                // iPhone/WebKit falha silenciosamente se dermos fetch() num DataUrl gigante (Url length limit).
-                // Portanto decodificamos o base64 para Blob bit a bit na memória.
-                const splitDataURI = dataUrl.split(',');
-                const byteString = atob(splitDataURI[1]);
-                const mimeString = splitDataURI[0].split(':')[1].split(';')[0];
-                const ab = new ArrayBuffer(byteString.length);
-                const ia = new Uint8Array(ab);
-                for (let i = 0; i < byteString.length; i++) {
-                    ia[i] = byteString.charCodeAt(i);
-                }
-                const blob = new Blob([ab], { type: mimeString });
-                
-                // Muitos navegadores Mobile antigos quebram com new File(), enviamos o Blob direto pois o formData já cuida do name file fallback.
-                blob.name = `SW-Anapolis-${role}-${format.replace(':', 'x')}.png`;
-
-                const uploadRes = await swForm.upload(blob);
-
-                if (uploadRes && uploadRes.data && uploadRes.data[0]) {
-                   let fileUrl = uploadRes.data[0].url;
-                   if (fileUrl.startsWith('/')) {
-                      fileUrl = "https://manager.hubcommunity.io" + fileUrl;
-                   }
-
-                   setUploadedUrl(fileUrl);
-                   const newWindow = window.open(fileUrl, '_blank');
-                   
-                   if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-                       console.warn("O Popup Blocker impediu a abertura automática.");
-                   }
-                }
-             } catch (uploadFail) {
-                 console.warn("Upload falhou ou bloqueou:", uploadFail);
-             }
-         })();
-
-      }, 100);
+      }, 50);
 
     } catch (err) {
       console.error("Erro geral na geração da imagem:", err);
