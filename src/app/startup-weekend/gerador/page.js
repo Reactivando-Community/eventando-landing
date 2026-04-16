@@ -19,6 +19,7 @@ export default function GeradorArtesPage() {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploadError, setUploadError] = useState("");
   const [uploadedUrl, setUploadedUrl] = useState("");
+  const [shareBlob, setShareBlob] = useState(null);
 
   // Use a stable reference to avoid re-renders issues with html-to-image
   const templateRef = useRef(null);
@@ -145,34 +146,14 @@ export default function GeradorArtesPage() {
          setUploadProgress(100);
       }
 
-      // 4. Agora que a Nuvem foi garantida e a rede finalizou, resetamos a tela e abrimos a porta pro download!
+      // 4. Guarda o blob no state para o botão Compartilhar usar depois
+      setShareBlob(blob);
       setIsExporting(false);
       
-      const fileName = `SW-Anapolis-${role}-${format.replace(':','x')}.png`;
-
-      // No mobile, usamos a Web Share API que abre o menu nativo do iOS/Android
-      // com opção de "Salvar Imagem" direto na galeria, além de compartilhar no WhatsApp, Instagram etc.
-      if (navigator.share && navigator.canShare) {
-        try {
-          const shareFile = new File([blob], fileName, { type: 'image/png' });
-          const shareData = { files: [shareFile] };
-          
-          if (navigator.canShare(shareData)) {
-            await navigator.share(shareData);
-            return; // Usuário usou o share sheet, não precisa do fallback
-          }
-        } catch (shareErr) {
-          // Se o usuário cancelou o share sheet ou não suporta files, cai no fallback abaixo
-          if (shareErr.name !== 'AbortError') {
-            console.warn("Share API falhou, usando fallback de download:", shareErr);
-          }
-        }
-      }
-
-      // Fallback: download clássico via link (funciona em desktop e navegadores sem Share API)
+      // Dispara download clássico
       setTimeout(() => {
          const link = document.createElement("a");
-         link.download = fileName;
+         link.download = `SW-Anapolis-${role}-${format.replace(':','x')}.png`;
          link.href = dataUrl;
          link.click();
       }, 50);
@@ -348,6 +329,26 @@ export default function GeradorArtesPage() {
                   ABRIR LINK PÚBLICO
                 </a>
               </div>
+            )}
+
+            {shareBlob && (
+              <button
+                onClick={async () => {
+                  try {
+                    const shareFile = new File([shareBlob], `SW-Anapolis-${role}-${format.replace(':','x')}.png`, { type: 'image/png' });
+                    if (navigator.share && navigator.canShare && navigator.canShare({ files: [shareFile] })) {
+                      await navigator.share({ files: [shareFile] });
+                    } else {
+                      alert('Seu navegador não suporta compartilhamento direto. Use o botão de download acima.');
+                    }
+                  } catch (e) {
+                    if (e.name !== 'AbortError') console.warn('Erro ao compartilhar:', e);
+                  }
+                }}
+                className="w-full brutal-btn py-3 px-4 shadow-[4px_4px_0_#000] uppercase text-sm font-black mt-2 flex items-center justify-center gap-2"
+              >
+                📲 COMPARTILHAR / SALVAR NA GALERIA
+              </button>
             )}
 
             {/* Preview Area container to keep it constrained but centered */}
