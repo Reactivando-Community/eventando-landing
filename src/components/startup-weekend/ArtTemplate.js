@@ -36,10 +36,15 @@ const ArtTemplate = forwardRef(({ photoUrl, role, format, name = "" }, ref) => {
       <div className="relative flex-1 w-full overflow-hidden brutal-border bg-black bg-noise flex flex-col">
           {/* Imagem do Usuário */}
           {photoUrl ? (
-            <img
-              src={photoUrl}
-              alt="Sua foto"
-              className="absolute inset-0 w-full h-full object-cover z-10"
+            <div
+              className="absolute inset-0 w-full h-full z-10"
+              style={{
+                backgroundImage: `url(${photoUrl})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+              role="img"
+              aria-label="Sua foto"
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center bg-[#f4f4f0] z-10">

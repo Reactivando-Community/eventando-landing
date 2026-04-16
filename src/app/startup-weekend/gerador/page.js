@@ -103,10 +103,6 @@ export default function GeradorArtesPage() {
         skipFonts: false,
       };
 
-      // Para garantir contra flutuações curtas, o leve pre-render inicial é mantido
-      await htmlToImageMod.toPng(element, { pixelRatio: 0.1, skipFonts: true });
-
-      // Esta etapa agora pega a imagem definitiva, leve e imune à quebra de shaders do CSS.
       const dataUrl = await htmlToImageMod.toPng(element, scaleOptions);
       
       // Conversão binária robusta para não sobrecarregar o limite de URL do motor Safari iOS
