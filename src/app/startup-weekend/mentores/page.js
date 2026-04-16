@@ -1,6 +1,6 @@
 "use client";
 
-import ComingSoonSection from "@/components/startup-weekend/ComingSoonSection";
+import StartupWeekendMentorsSection from "@/components/startup-weekend/StartupWeekendMentorsSection";
 import WhatsAppCTA from "@/components/startup-weekend/WhatsAppCTA";
 import StartupWeekendFooter from "@/components/startup-weekend/StartupWeekendFooter";
 import Link from "next/link";
@@ -26,11 +26,7 @@ export default function MentorsPage() {
         </div>
       </nav>
 
-      <ComingSoonSection
-        pageTitle="Conheça Nossos Mentores"
-        title="Grandes nomes do mercado estão chegando!"
-        subtitle="Estamos selecionando a dedo os melhores profissionais e especialistas para guiar a sua equipe durante as 54 horas. Fique ligado para descobrir quem serão os seus mentores."
-      />
+      <StartupWeekendMentorsSection />
 
       <WhatsAppCTA />
 

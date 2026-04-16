@@ -84,6 +84,46 @@ export default function StartupWeekendPage() {
         <StartupWeekendTeamSection />
       </div>
 
+      {/* Mentores CTA */}
+      <section ref={sectionRef("05b_mentores_cta")} className="py-12 px-6 bg-[#f4f4f0]">
+        <div className="max-w-5xl mx-auto">
+          <div className="brutal-card p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex-1 text-center md:text-left space-y-4">
+              <div className="flex items-center justify-center md:justify-start gap-3">
+                <span className="text-3xl">🧭</span>
+                <h2 className="text-2xl md:text-3xl font-black text-black uppercase tracking-tight">
+                  Conheça quem vai guiar sua equipe
+                </h2>
+              </div>
+              <p className="text-black font-medium text-lg max-w-2xl leading-relaxed">
+                Profissionais e especialistas prontos para mentorear sua equipe durante as 54 horas de imersão.
+              </p>
+            </div>
+            <div className="shrink-0">
+              <Link
+                href="/startup-weekend/mentores"
+                className="brutal-btn-white inline-flex items-center px-8 py-4 text-lg"
+              >
+                Ver Mentores
+                <svg
+                  className="w-5 h-5 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={3}
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <MarqueeDivider text="O MODELO FALIU • HORA DE AGIR" bgColor="bg-techstars-green" textColor="text-black" speed="22s" />
       <div ref={sectionRef("06_stats")}>
         <StartupWeekendStatsSection />
