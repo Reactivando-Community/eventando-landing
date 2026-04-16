@@ -46,21 +46,12 @@ export default function GeradorArtesPage() {
     setExportProgress(0);
     setUploadedUrl("");
 
-    // Simulador de progresso fluido para aplacar o atraso de 8s+ gerado por fotos pesadas da galeria no html-to-image
-    const progressInterval = setInterval(() => {
-       setExportProgress(prev => {
-          if (prev >= 92) return 92; // Segura em 92% enquanto processa o final
-          return prev + Math.floor(Math.random() * 8) + 2; 
-       });
-    }, 500);
-
     try {
       const htmlToImageMod = await import('html-to-image');
       
       const element = templateRef.current;
       
       // O cliente quer resolução 1080x1080 ou 1080x1920.
-      // Calculamos o multiplicador escalar pegando o tamanho target (1080) e dividindo pela largura virtual exibida.
       const targetWidth = 1080;
       const renderedWidth = element.offsetWidth;
       const scalar = targetWidth / renderedWidth;
@@ -71,54 +62,63 @@ export default function GeradorArtesPage() {
         skipFonts: false,
       };
 
+      // Esta etapa bloqueia a Thread Principal do Javascript
       const dataUrl = await htmlToImageMod.toPng(element, scaleOptions);
       
-      // 1. Aciona o DOWNLOAD NATIVO IMEDIATAMENTE (o que o usuário realmente clicou para fazer)
-      const link = document.createElement("a");
-      link.download = `SW-Anapolis-${role}-${format.replace(':','x')}.png`;
-      link.href = dataUrl;
-      link.click();
-      
-      clearInterval(progressInterval);
       setExportProgress(100);
-
-      // 2. APÓS O DOWNLOAD NATIVO INICIAR: Envia para a Nuvem
-      // Envolvemos esse passo em um try/catch isolado. Se o Strapi bloquear (por CORS do IP da rede local ou permissão non-auth), ele falha silenciosamente e não estraga a UX, já que o download nativo acima já funcionou!
-      try {
-        const resData = await fetch(dataUrl);
-        const blob = await resData.blob();
-        const file = new File([blob], `SW-Anapolis-${role}-${format.replace(':', 'x')}.png`, { type: 'image/png' });
-
-        const uploadRes = await swForm.upload(file);
-
-        if (uploadRes && uploadRes.data && uploadRes.data[0]) {
-           let fileUrl = uploadRes.data[0].url;
-           if (fileUrl.startsWith('/')) {
-              fileUrl = "https://manager.hubcommunity.io" + fileUrl;
-           }
-
-           setUploadedUrl(fileUrl);
-
-           // Tenta forçar a janela
-           const newWindow = window.open(fileUrl, '_blank');
-           
-           if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-               console.warn("O Popup Blocker impediu a abertura automática da nova aba no celular.");
-           }
-        }
-      } catch (uploadFail) {
-         console.warn("Upload de backup no Strapi falhou ou foi bloqueado pelo mobile:", uploadFail);
-         // Nenhuma ação invasiva pois o download nativo já completou
-      }
-
-      // Reseta a UI de download após mostrar 100% rapidamente
+      
+      // Reseta a UI antecipadamente para que o Prompt de Download nativo do iPhone não congele a tela no estado 'PROCESSANDO'
       setTimeout(() => {
-        setIsExporting(false);
-        setExportProgress(0);
-      }, 600);
+         setIsExporting(false);
+         setExportProgress(0);
+         
+         // 1. Dispara o NATIVO de forma isolada via Timeout pós-render
+         const link = document.createElement("a");
+         link.download = `SW-Anapolis-${role}-${format.replace(':','x')}.png`;
+         link.href = dataUrl;
+         link.click();
+
+         // 2. Continua pro Strapi em background solto
+         (async () => {
+             try {
+                // iPhone/WebKit falha silenciosamente se dermos fetch() num DataUrl gigante (Url length limit).
+                // Portanto decodificamos o base64 para Blob bit a bit na memória.
+                const splitDataURI = dataUrl.split(',');
+                const byteString = atob(splitDataURI[1]);
+                const mimeString = splitDataURI[0].split(':')[1].split(';')[0];
+                const ab = new ArrayBuffer(byteString.length);
+                const ia = new Uint8Array(ab);
+                for (let i = 0; i < byteString.length; i++) {
+                    ia[i] = byteString.charCodeAt(i);
+                }
+                const blob = new Blob([ab], { type: mimeString });
+                
+                // Muitos navegadores Mobile antigos quebram com new File(), enviamos o Blob direto pois o formData já cuida do name file fallback.
+                blob.name = `SW-Anapolis-${role}-${format.replace(':', 'x')}.png`;
+
+                const uploadRes = await swForm.upload(blob);
+
+                if (uploadRes && uploadRes.data && uploadRes.data[0]) {
+                   let fileUrl = uploadRes.data[0].url;
+                   if (fileUrl.startsWith('/')) {
+                      fileUrl = "https://manager.hubcommunity.io" + fileUrl;
+                   }
+
+                   setUploadedUrl(fileUrl);
+                   const newWindow = window.open(fileUrl, '_blank');
+                   
+                   if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                       console.warn("O Popup Blocker impediu a abertura automática.");
+                   }
+                }
+             } catch (uploadFail) {
+                 console.warn("Upload falhou ou bloqueou:", uploadFail);
+             }
+         })();
+
+      }, 100);
 
     } catch (err) {
-      clearInterval(progressInterval);
       console.error("Erro geral na geração da imagem:", err);
       alert("Ocorreu um erro ao exportar. Tente novamente.");
       setIsExporting(false);
@@ -265,12 +265,11 @@ export default function GeradorArtesPage() {
               >
                  {isExporting && (
                    <div 
-                     className="absolute top-0 left-0 h-full bg-yellow-400 transition-all ease-out duration-300 pointer-events-none"
-                     style={{ width: `${exportProgress}%` }}
+                     className="absolute inset-0 bg-yellow-400 opacity-50 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(0,0,0,0.1)_10px,rgba(0,0,0,0.1)_20px)] transition-all ease-out duration-300 pointer-events-none"
                    />
                  )}
                  <span className="relative z-10 font-black">
-                    {isExporting ? `PROCESSANDO (${exportProgress}%)` : 'BAIXAR ARTE'}
+                    {isExporting ? `PROCESSANDO...` : 'BAIXAR ARTE'}
                  </span>
               </button>
             </div>
