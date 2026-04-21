@@ -53,9 +53,8 @@ export default function VoluntarioForm() {
       return false;
     }
 
-    const linkedinRegex = /^https?:\/\/(www\.)?linkedin\.com\/in\/[\w\-%.]+\/?$/i;
-    if (!linkedin || !linkedinRegex.test(linkedin.trim())) {
-      setError("Precisamos do link do seu LinkedIn (ex.: https://linkedin.com/in/seu-perfil).");
+    if (!linkedin || !linkedin.trim()) {
+      setError("Precisamos do seu LinkedIn.");
       return false;
     }
 
@@ -203,10 +202,10 @@ export default function VoluntarioForm() {
             LINKEDIN *
           </label>
           <input
-            type="url"
+            type="text"
             value={linkedin}
             onChange={(e) => setLinkedin(e.target.value)}
-            placeholder="https://linkedin.com/in/seu-perfil"
+            placeholder="linkedin.com/in/seu-perfil ou seu @"
             className="w-full bg-[#f4f4f0] border-4 border-black text-black px-4 py-3 font-bold placeholder:text-gray-400 focus:outline-none focus:bg-white focus:shadow-[4px_4px_0_#000] focus:-translate-y-1 transition-all"
           />
         </div>
