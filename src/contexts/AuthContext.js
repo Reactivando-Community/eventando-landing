@@ -113,9 +113,17 @@ export function AuthProvider({ children }) {
         name,
         phone,
       });
-      const { jwt } = res.data;
+      const { jwt, user: authUser } = res.data;
 
-      // Check if user is a participant of the configured event
+      if (!jwt) {
+        dispatch({ type: "AUTH_ERROR" });
+        return {
+          success: true,
+          requiresConfirmation: true,
+          message: "Verifique seu email para confirmar a conta.",
+        };
+      }
+
       const hasAccess = await hubCommunity.auth.checkEventAccess(jwt, email);
       if (!hasAccess) {
         dispatch({ type: "AUTH_ERROR" });
@@ -123,11 +131,9 @@ export function AuthProvider({ children }) {
       }
 
       localStorage.setItem("auth_token", jwt);
-
-      const meRes = await hubCommunity.auth.getMe(jwt);
       dispatch({
         type: "AUTH_SUCCESS",
-        payload: { user: meRes.data, token: jwt },
+        payload: { user: authUser, token: jwt },
       });
       return { success: true };
     } catch (err) {
