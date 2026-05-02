@@ -78,7 +78,7 @@
 }
 
 .stage-zone__indicator {
-  background: rgba(15, 15, 15, 0.75);
+  background: rgba(15, 15, 15, 0.2);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1.5px solid rgba(255, 255, 255, 0.12);
@@ -90,7 +90,7 @@
 
 .stage-zone__indicator--active {
   border-color: rgba(255, 255, 255, 0.4);
-  background: rgba(15, 15, 15, 0.88);
+  background: rgba(15, 15, 15, 0.4);
 }
 
 /* ─── Stage Header ────────────────────────────────────────── */
@@ -105,18 +105,18 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  font-size: 0.65rem;
+  font-size: 0.8rem;
   font-weight: 800;
   flex-shrink: 0;
   line-height: 1;
 }
 
 .stage-zone__label {
-  font-size: 0.65rem;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.85);
@@ -155,8 +155,8 @@
 .team-chip {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 4px 10px 4px 6px;
+  gap: 8px;
+  padding: 6px 14px 6px 10px;
   border-radius: 20px;
   background: linear-gradient(
     135deg,
@@ -179,13 +179,13 @@
 }
 
 .team-chip__emoji {
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   line-height: 1;
 }
 
 .team-chip__name {
-  font-size: 0.6rem;
-  font-weight: 700;
+  font-size: 0.95rem;
+  font-weight: 800;
   color: #fff;
   letter-spacing: 0.03em;
 }

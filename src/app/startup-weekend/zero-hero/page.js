@@ -183,19 +183,6 @@ function StageDropZone({ stage, teams, draggingId, onDragStart, onDrop }) {
         }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
       >
-        {/* Stage label */}
-        <div className="stage-zone__header">
-          <span
-            className="stage-zone__number"
-            style={{
-              background: stage.color,
-              color: stage.textColor || "#000",
-            }}
-          >
-            {stage.number}
-          </span>
-          <span className="stage-zone__label">{stage.label}</span>
-        </div>
 
         {/* Team chips container */}
         <div className="stage-zone__teams">
