@@ -16,6 +16,8 @@ export default function SignUpModal({ isOpen, onClose, onSwitchToLogin }) {
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [confirmationSent, setConfirmationSent] = useState(false);
+  const [sentToEmail, setSentToEmail] = useState("");
 
   const handlePhoneChange = (value) => {
     setPhone(VMasker.toPattern(value, "(99) 99999-9999"));
@@ -46,6 +48,16 @@ export default function SignUpModal({ isOpen, onClose, onSwitchToLogin }) {
     setIsLoading(false);
 
     if (result.success) {
+      if (result.requiresConfirmation) {
+        setSentToEmail(email.trim());
+        setName("");
+        setUsername("");
+        setEmail("");
+        setPassword("");
+        setPhone("");
+        setConfirmationSent(true);
+        return;
+      }
       setName("");
       setUsername("");
       setEmail("");
@@ -58,6 +70,13 @@ export default function SignUpModal({ isOpen, onClose, onSwitchToLogin }) {
     }
   };
 
+  const handleClose = () => {
+    setConfirmationSent(false);
+    setSentToEmail("");
+    setError("");
+    onClose();
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -67,7 +86,7 @@ export default function SignUpModal({ isOpen, onClose, onSwitchToLogin }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
           className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-          onClick={onClose}
+          onClick={handleClose}
         >
           <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
 
@@ -81,6 +100,37 @@ export default function SignUpModal({ isOpen, onClose, onSwitchToLogin }) {
           >
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-2 bg-techstars-green rounded-b-xl border-b-4 border-x-4 border-black" />
 
+            {confirmationSent ? (
+              <div className="text-center">
+                <div className="mb-6 mx-auto w-20 h-20 bg-techstars-green border-4 border-black shadow-[4px_4px_0_#000] flex items-center justify-center">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="3" className="w-10 h-10">
+                    <path d="M4 6l8 7 8-7M4 6v12h16V6" strokeLinecap="square" />
+                  </svg>
+                </div>
+
+                <h2 className="text-3xl font-black text-black uppercase tracking-tighter mb-3">
+                  EMAIL ENVIADO!
+                </h2>
+
+                <p className="text-gray-700 font-bold mb-2">
+                  Enviamos um link de confirmação para:
+                </p>
+                <p className="text-black font-black text-lg mb-6 break-all">
+                  {sentToEmail}
+                </p>
+                <p className="text-gray-600 font-bold text-sm mb-8">
+                  Verifique sua caixa de entrada (e a pasta de spam) e clique no link para ativar sua conta.
+                </p>
+
+                <button
+                  onClick={handleClose}
+                  className="brutal-btn w-full px-8 py-4 text-lg"
+                >
+                  ENTENDI →
+                </button>
+              </div>
+            ) : (
+              <>
             <h2 className="text-3xl font-black text-black uppercase tracking-tighter text-center mb-2 mt-2">
               CRIAR CONTA
             </h2>
@@ -183,6 +233,8 @@ export default function SignUpModal({ isOpen, onClose, onSwitchToLogin }) {
                 Entre
               </button>
             </p>
+              </>
+            )}
           </motion.div>
         </motion.div>
       )}
