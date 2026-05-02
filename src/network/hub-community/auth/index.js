@@ -46,5 +46,9 @@ const checkEventAccess = async (token, email) => {
   }
 };
 
-const auth = { signIn, signUp, getMe, checkEventAccess };
+const forwardPassword = (email) => {
+  return hubCommunityApi.post("/auth/forgot-password", { email });
+};
+
+const auth = { signIn, signUp, getMe, checkEventAccess, forwardPassword };
 export default auth;

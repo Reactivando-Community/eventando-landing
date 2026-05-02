@@ -149,6 +149,17 @@ export function AuthProvider({ children }) {
     dispatch({ type: "SIGN_OUT" });
   };
 
+  const forwardPassword = async (email) => {
+    try {
+      await hubCommunity.auth.forwardPassword(email);
+      return { success: true };
+    } catch (err) {
+      const message =
+        err.response?.data?.error?.message || "Erro ao solicitar recuperação de senha.";
+      return { success: false, error: message };
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -156,6 +167,7 @@ export function AuthProvider({ children }) {
         signIn,
         signUp,
         signOut,
+        forwardPassword,
         refreshUser,
       }}
     >
