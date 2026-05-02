@@ -4,103 +4,21 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./zero-hero.css";
 
-// ─── Mock Teams ────────────────────────────────────────────
-const INITIAL_TEAMS = [
-  { id: "team-1", name: "AgroTech", emoji: "🌱", color: "#22c55e" },
-  { id: "team-2", name: "EduFlow", emoji: "📚", color: "#3b82f6" },
-  { id: "team-3", name: "SafeCity", emoji: "🏙️", color: "#a855f7" },
-  { id: "team-4", name: "HealthPulse", emoji: "💊", color: "#ef4444" },
-  { id: "team-5", name: "FinWise", emoji: "💰", color: "#eab308" },
-  { id: "team-6", name: "PetCare+", emoji: "🐾", color: "#f97316" },
-  { id: "team-7", name: "DeliverGo", emoji: "🚀", color: "#06b6d4" },
-  { id: "team-8", name: "GreenMob", emoji: "♻️", color: "#10b981" },
-];
+// ─── Emojis and Colors mapped by team id ───────────────────
+const EMOJIS = ["🌱", "📚", "🏙️", "💊", "💰", "🐾", "🚀", "♻️", "⚡", "💡", "🎯", "🔧", "🔥", "🌍", "⭐", "🏆"];
+const COLORS = ["#22c55e", "#3b82f6", "#a855f7", "#ef4444", "#eab308", "#f97316", "#06b6d4", "#10b981", "#6366f1", "#d946ef", "#ec4899", "#8b5cf6", "#f43f5e", "#14b8a6", "#84cc16", "#f59e0b"];
 
 // ─── Stage Definitions (positions are % of viewport) ──────
 const STAGES = [
-  {
-    id: "zero",
-    label: "ZERO",
-    number: "...",
-    x: 19.5,
-    y: 13,
-    color: "#ffffff",
-    borderColor: "#000000",
-  },
-  {
-    id: "ideia",
-    label: "IDÉIA",
-    number: "1",
-    x: 17,
-    y: 33,
-    color: "#facc15",
-    borderColor: "#facc15",
-  },
-  {
-    id: "problema",
-    label: "PROBLEMA",
-    number: "2",
-    x: 13,
-    y: 50,
-    color: "#1a1a1a",
-    borderColor: "#000000",
-    textColor: "#ffffff",
-  },
-  {
-    id: "validacao",
-    label: "VALIDAÇÃO DO PROBLEMA",
-    number: "3",
-    x: 26,
-    y: 70,
-    color: "#1a1a1a",
-    borderColor: "#000000",
-    textColor: "#ffffff",
-  },
-  {
-    id: "solucao",
-    label: "SOLUÇÃO",
-    number: "4",
-    x: 54,
-    y: 68,
-    color: "#22c55e",
-    borderColor: "#22c55e",
-  },
-  {
-    id: "solucao-validada",
-    label: "SOLUÇÃO VALIDADA",
-    number: "5",
-    x: 70,
-    y: 72,
-    color: "#facc15",
-    borderColor: "#facc15",
-  },
-  {
-    id: "mvp",
-    label: "MVP",
-    number: "6",
-    x: 86,
-    y: 52,
-    color: "#ec4899",
-    borderColor: "#ec4899",
-  },
-  {
-    id: "pitch",
-    label: "PITCH",
-    number: "7",
-    x: 86,
-    y: 34,
-    color: "#22c55e",
-    borderColor: "#22c55e",
-  },
-  {
-    id: "hero",
-    label: "HERO",
-    number: "!",
-    x: 86,
-    y: 16,
-    color: "#ffffff",
-    borderColor: "#000000",
-  },
+  { id: "ZERO", label: "ZERO", number: "...", x: 19.5, y: 13, color: "#ffffff", borderColor: "#000000" },
+  { id: "IDEIA", label: "IDÉIA", number: "1", x: 17, y: 33, color: "#facc15", borderColor: "#facc15" },
+  { id: "PROBLEMA", label: "PROBLEMA", number: "2", x: 13, y: 50, color: "#1a1a1a", borderColor: "#000000", textColor: "#ffffff" },
+  { id: "VALIDACAO_DO_PROBLEMA", label: "VALIDAÇÃO DO PROBLEMA", number: "3", x: 26, y: 70, color: "#1a1a1a", borderColor: "#000000", textColor: "#ffffff" },
+  { id: "SOLUCAO", label: "SOLUÇÃO", number: "4", x: 54, y: 68, color: "#22c55e", borderColor: "#22c55e" },
+  { id: "SOLUCAO_VALIDADA", label: "SOLUÇÃO VALIDADA", number: "5", x: 70, y: 72, color: "#facc15", borderColor: "#facc15" },
+  { id: "MVP", label: "MVP", number: "6", x: 86, y: 52, color: "#ec4899", borderColor: "#ec4899" },
+  { id: "PITCH", label: "PITCH", number: "7", x: 86, y: 34, color: "#22c55e", borderColor: "#22c55e" },
+  { id: "HERO", label: "HERO", number: "!", x: 86, y: 16, color: "#ffffff", borderColor: "#000000" },
 ];
 
 // ─── Team Card Component ──────────────────────────────────
@@ -243,12 +161,42 @@ export default function ZeroHeroPage() {
     STAGES.forEach((stage) => {
       initial[stage.id] = [];
     });
-    // Place all teams at "zero" initially
-    initial["zero"] = [...INITIAL_TEAMS];
     return initial;
   });
 
   const [draggingId, setDraggingId] = useState(null);
+
+  useEffect(() => {
+    fetch("https://manager.hubcommunity.io/api/teams?populate=*")
+      .then((res) => res.json())
+      .then((json) => {
+        if (!json.data) return;
+        
+        const initial = {};
+        STAGES.forEach((stage) => {
+          initial[stage.id] = [];
+        });
+
+        json.data.forEach((t) => {
+          const teamId = t.documentId;
+          const stageId = t.stage || "ZERO";
+          const team = {
+            id: teamId,
+            name: t.name || "Time",
+            emoji: EMOJIS[(t.id || 0) % EMOJIS.length],
+            color: COLORS[(t.id || 0) % COLORS.length]
+          };
+          if (initial[stageId]) {
+            initial[stageId].push(team);
+          } else {
+            initial["ZERO"].push(team);
+          }
+        });
+        
+        setStageTeams(initial);
+      })
+      .catch((err) => console.error("Error fetching teams:", err));
+  }, []);
 
   const handleDragStart = useCallback((teamId) => {
     setDraggingId(teamId);
@@ -258,7 +206,6 @@ export default function ZeroHeroPage() {
     setDraggingId(null);
     setStageTeams((prev) => {
       const next = {};
-      // Remove team from all stages, add to target
       let movedTeam = null;
       for (const stageId of Object.keys(prev)) {
         const filtered = prev[stageId].filter((t) => {
@@ -275,6 +222,15 @@ export default function ZeroHeroPage() {
       }
       return next;
     });
+
+    // Make PUT request to backend to update the stage
+    fetch(`https://manager.hubcommunity.io/api/teams/${teamId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        data: { stage: targetStageId }
+      })
+    }).catch(err => console.error("Error updating team stage:", err));
   }, []);
 
   // Handle drag end (reset dragging state)
