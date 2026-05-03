@@ -17,10 +17,10 @@ export const ROLES = [
 // ─── Scales ──────────────────────────────────────────────────────────────
 
 export const RATING_4 = [
-  { value: "excelente", label: "Excelente" },
-  { value: "boa", label: "Boa" },
-  { value: "regular", label: "Regular" },
   { value: "ruim", label: "Ruim" },
+  { value: "regular", label: "Regular" },
+  { value: "boa", label: "Boa" },
+  { value: "excelente", label: "Excelente" },
 ];
 
 export const QUANTITY_3 = [
