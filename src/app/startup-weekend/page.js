@@ -483,6 +483,30 @@ export default function StartupWeekendPage() {
         </div>
       </section>
 
+      {/* Pesquisa CTA */}
+      <section className="py-12 px-6 bg-[#f4f4f0]">
+        <div className="max-w-4xl mx-auto">
+          <div className="brutal-card bg-yellow-300 p-8 md:p-10 text-center">
+            <p className="text-xs font-black uppercase tracking-widest text-black/70 mb-2">
+              Já participou? Sua opinião importa
+            </p>
+            <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-black mb-4">
+              Avalie o evento
+            </h3>
+            <p className="font-bold text-black/80 mb-6 max-w-xl mx-auto">
+              Compartilhe seu feedback sobre as refeições, mentores, facilitador e estrutura.
+              Sua pesquisa molda a próxima edição.
+            </p>
+            <Link
+              href="/startup-weekend/pesquisa"
+              className="brutal-btn-white inline-block px-8 py-4 text-sm md:text-base"
+            >
+              Responder pesquisa →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Challenge Modal */}
       <ChallengeModal
         isOpen={isModalOpen}

@@ -73,6 +73,13 @@ export default function StartupWeekendFooter() {
           </Link>
           <span className="hidden sm:block text-black font-black">•</span>
           <Link
+            href="/startup-weekend/pesquisa"
+            className="text-black hover:text-techstars-green hover:underline decoration-4 font-black uppercase text-sm"
+          >
+            Pesquisa de Feedback
+          </Link>
+          <span className="hidden sm:block text-black font-black">•</span>
+          <Link
             href="/transparencia"
             className="text-black hover:text-techstars-green hover:underline decoration-4 font-black uppercase text-sm"
           >
