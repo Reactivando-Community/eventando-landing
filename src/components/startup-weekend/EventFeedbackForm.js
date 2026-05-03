@@ -6,7 +6,6 @@ import hubCommunity from "@/network/hub-community";
 import { useAuth } from "@/contexts/AuthContext";
 
 import {
-  ROLES,
   RATING_4,
   QUANTITY_3,
   EVENT_FOCUS,
@@ -52,7 +51,7 @@ export default function EventFeedbackForm() {
   const { user, isAuthenticated } = useAuth();
 
   // ─── State ─────────────────────────────────────────────────────────────
-  const [role, setRole] = useState("");
+  const role = "participante";
   const [respondentName, setRespondentName] = useState(user?.name || "");
   const [respondentEmail, setRespondentEmail] = useState(user?.email || "");
   const [allowEditIdentity, setAllowEditIdentity] = useState(!isAuthenticated);
@@ -112,7 +111,6 @@ export default function EventFeedbackForm() {
 
   // ─── Validation ────────────────────────────────────────────────────────
   const validate = () => {
-    if (!role) return "Selecione seu papel no evento.";
     if (npsScore === null || npsScore === undefined)
       return "Responda a pergunta NPS (0 a 10).";
 
@@ -264,86 +262,55 @@ export default function EventFeedbackForm() {
   // ─── Form ──────────────────────────────────────────────────────────────
   return (
     <div className="space-y-8">
-      {/* Section 0: Role */}
+      {/* Section 1: Identificação */}
       <div className="bg-white border-4 border-black p-6 md:p-10 shadow-[12px_12px_0_#9333ea]">
         <SectionHeader
           number={1}
-          title="Quem está respondendo?"
-          subtitle="Selecione seu papel no Startup Weekend."
+          title="Identificação"
+          subtitle="Seu nome e e-mail são opcionais — pode preencher anonimamente se preferir."
         />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {ROLES.map((r) => {
-            const selected = role === r.value;
-            return (
-              <button
-                key={r.value}
-                type="button"
-                onClick={() => setRole(r.value)}
-                className={`border-4 border-black p-6 text-center transition-all ${
-                  selected
-                    ? "bg-techstars-green text-black shadow-[8px_8px_0_#000] -translate-y-1 -translate-x-1"
-                    : "bg-white hover:bg-gray-100 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[8px_8px_0_#000]"
-                }`}
-              >
-                <div className="text-4xl mb-2">{r.emoji}</div>
-                <div className="font-black uppercase text-lg tracking-tight">{r.label}</div>
-              </button>
-            );
-          })}
-        </div>
-
-        {role && (
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-black font-black uppercase text-sm mb-2">
-                Nome
-              </label>
-              <input
-                type="text"
-                value={respondentName}
-                onChange={(e) => setRespondentName(e.target.value)}
-                disabled={isAuthenticated && !allowEditIdentity}
-                placeholder="Seu nome (opcional)"
-                className={FIELD_INPUT_CLASS + " disabled:opacity-60"}
-              />
-            </div>
-            <div>
-              <label className="block text-black font-black uppercase text-sm mb-2">
-                E-mail
-              </label>
-              <input
-                type="email"
-                value={respondentEmail}
-                onChange={(e) => setRespondentEmail(e.target.value)}
-                disabled={isAuthenticated && !allowEditIdentity}
-                placeholder="seu@email.com (opcional)"
-                className={FIELD_INPUT_CLASS + " disabled:opacity-60"}
-              />
-            </div>
-            {isAuthenticated && (
-              <div className="md:col-span-2">
-                <button
-                  type="button"
-                  onClick={() => setAllowEditIdentity((v) => !v)}
-                  className="text-xs font-black uppercase underline tracking-wider text-gray-700 hover:text-black"
-                >
-                  {allowEditIdentity ? "← Voltar a usar dados da conta" : "Alterar dados →"}
-                </button>
-              </div>
-            )}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-black font-black uppercase text-sm mb-2">
+              Nome
+            </label>
+            <input
+              type="text"
+              value={respondentName}
+              onChange={(e) => setRespondentName(e.target.value)}
+              disabled={isAuthenticated && !allowEditIdentity}
+              placeholder="Seu nome (opcional)"
+              className={FIELD_INPUT_CLASS + " disabled:opacity-60"}
+            />
           </div>
-        )}
+          <div>
+            <label className="block text-black font-black uppercase text-sm mb-2">
+              E-mail
+            </label>
+            <input
+              type="email"
+              value={respondentEmail}
+              onChange={(e) => setRespondentEmail(e.target.value)}
+              disabled={isAuthenticated && !allowEditIdentity}
+              placeholder="seu@email.com (opcional)"
+              className={FIELD_INPUT_CLASS + " disabled:opacity-60"}
+            />
+          </div>
+          {isAuthenticated && (
+            <div className="md:col-span-2">
+              <button
+                type="button"
+                onClick={() => setAllowEditIdentity((v) => !v)}
+                className="text-xs font-black uppercase underline tracking-wider text-gray-700 hover:text-black"
+              >
+                {allowEditIdentity ? "← Voltar a usar dados da conta" : "Alterar dados →"}
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
-      {!role && (
-        <div className="text-center text-gray-600 font-bold text-sm uppercase tracking-wider py-8">
-          ↑ Selecione seu papel para continuar a pesquisa.
-        </div>
-      )}
-
-      {role && (
-        <>
-          {/* Section: NPS */}
+      {/* Section: NPS */}
           <div className="bg-white border-4 border-black p-6 md:p-10 shadow-[12px_12px_0_#0EA5E9]">
             <SectionHeader number={2} title="Recomendação (NPS)" />
             <NpsScale
@@ -715,8 +682,6 @@ export default function EventFeedbackForm() {
           >
             {isLoading ? "ENVIANDO..." : "ENVIAR PESQUISA"}
           </button>
-        </>
-      )}
     </div>
   );
 }
