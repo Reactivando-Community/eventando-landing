@@ -255,37 +255,11 @@ export default function TeamSection() {
               <div className="bg-[#f4f4f0] border-2 border-black p-4 mb-3 flex items-center justify-between">
                 <div>
                   <span className="font-bold text-black block mb-1">
-                    Arquivo enviado:
+                    Arquivo enviado com sucesso! 🎉
                   </span>
-                  <a
-                    href={
-                      userTeam.presentation.url.startsWith("http")
-                        ? userTeam.presentation.url
-                        : `${
-                            process.env.NEXT_PUBLIC_HUB_COMMUNITY_API_URL?.replace(
-                              "/api",
-                              ""
-                            ) || "https://manager.hubcommunity.io"
-                          }${userTeam.presentation.url}`
-                    }
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-techstars-green underline font-bold text-sm"
-                  >
-                    Ver Apresentação
-                  </a>
-                </div>
-                <div className="text-right">
-                  <label className="cursor-pointer brutal-btn-white px-4 py-2 text-xs border-2 border-black bg-white hover:bg-yellow-400 font-black uppercase inline-block">
-                    {isUploading ? "ENVIANDO..." : "SUBSTITUIR"}
-                    <input
-                      type="file"
-                      accept=".pdf"
-                      onChange={handleUploadPresentation}
-                      disabled={isUploading}
-                      className="hidden"
-                    />
-                  </label>
+                  <span className="text-gray-600 text-sm font-bold">
+                    Se precisar reenviar, fale com a organização para liberar o envio novamente.
+                  </span>
                 </div>
               </div>
             ) : (
