@@ -14,6 +14,8 @@ export default function TeamSection() {
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
 
   const [fullTeam, setFullTeam] = useState(null);
   const userTeamRef = user?.team;
@@ -148,6 +150,43 @@ export default function TeamSection() {
     }
   };
 
+  const handleUploadPresentation = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (file.type !== "application/pdf") {
+      setError("A apresentação deve ser um arquivo PDF.");
+      return;
+    }
+
+    setError("");
+    setIsUploading(true);
+    setUploadProgress(0);
+
+    try {
+      await hubCommunity.team.uploadPresentation(
+        token,
+        userTeam.documentId,
+        file,
+        (progressEvent) => {
+          const percentCompleted = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+          );
+          setUploadProgress(percentCompleted);
+        }
+      );
+      await fetchFullTeam();
+    } catch (err) {
+      const message =
+        err.response?.data?.error?.message || "Erro ao enviar a apresentação.";
+      setError(message);
+    } finally {
+      setIsUploading(false);
+      setUploadProgress(0);
+      e.target.value = ""; // Reset input
+    }
+  };
+
   // ── User already has a team ──
   if (userTeam) {
     const members = userTeam.members || [];
@@ -205,6 +244,78 @@ export default function TeamSection() {
               <p className="text-gray-500 font-bold text-sm">
                 Nenhum membro ainda.
               </p>
+            )}
+          </div>
+
+          <div className="mb-6">
+            <h3 className="text-black font-black uppercase text-sm mb-3">
+              APRESENTAÇÃO (PDF)
+            </h3>
+            {userTeam.presentation ? (
+              <div className="bg-[#f4f4f0] border-2 border-black p-4 mb-3 flex items-center justify-between">
+                <div>
+                  <span className="font-bold text-black block mb-1">
+                    Arquivo enviado:
+                  </span>
+                  <a
+                    href={
+                      userTeam.presentation.url.startsWith("http")
+                        ? userTeam.presentation.url
+                        : `${
+                            process.env.NEXT_PUBLIC_HUB_COMMUNITY_API_URL?.replace(
+                              "/api",
+                              ""
+                            ) || "https://manager.hubcommunity.io"
+                          }${userTeam.presentation.url}`
+                    }
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-techstars-green underline font-bold text-sm"
+                  >
+                    Ver Apresentação
+                  </a>
+                </div>
+                <div className="text-right">
+                  <label className="cursor-pointer brutal-btn-white px-4 py-2 text-xs border-2 border-black bg-white hover:bg-yellow-400 font-black uppercase inline-block">
+                    {isUploading ? "ENVIANDO..." : "SUBSTITUIR"}
+                    <input
+                      type="file"
+                      accept=".pdf"
+                      onChange={handleUploadPresentation}
+                      disabled={isUploading}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
+              </div>
+            ) : (
+              <div className="bg-[#f4f4f0] border-2 border-black p-4 mb-3 border-dashed">
+                <label className="cursor-pointer flex flex-col items-center justify-center p-4">
+                  <span className="text-3xl mb-2">📄</span>
+                  <span className="font-bold text-black uppercase text-sm mb-2 text-center">
+                    Nenhuma apresentação enviada
+                  </span>
+                  <span className="brutal-btn-white px-4 py-2 text-xs border-2 border-black bg-white hover:bg-yellow-400 font-black uppercase">
+                    {isUploading ? "ENVIANDO..." : "ENVIAR PDF"}
+                  </span>
+                  <input
+                    type="file"
+                    accept=".pdf"
+                    onChange={handleUploadPresentation}
+                    disabled={isUploading}
+                    className="hidden"
+                  />
+                </label>
+              </div>
+            )}
+            
+            {isUploading && (
+              <div className="w-full bg-gray-200 border-2 border-black h-4 mt-2">
+                <div
+                  className="bg-techstars-green h-full"
+                  style={{ width: `${uploadProgress}%` }}
+                ></div>
+              </div>
             )}
           </div>
 

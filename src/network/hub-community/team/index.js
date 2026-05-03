@@ -23,6 +23,9 @@ const list = (token) => {
 
 const get = (token, teamDocumentId) => {
   return hubCommunityApi.get(`/teams/${teamDocumentId}`, {
+    params: {
+      "populate": "presentation"
+    },
     headers: { Authorization: `Bearer ${token}` },
   });
 };
@@ -55,5 +58,25 @@ const leave = (token, teamDocumentId) => {
   );
 };
 
-const team = { list, get, create, changeLead, leave };
+const uploadPresentation = (token, teamDocumentId, file, onUploadProgress) => {
+  const formData = new FormData();
+  formData.append("file", file, file.name);
+
+  return hubCommunityApi.post(
+    `/teams/${teamDocumentId}/presentation`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+      onUploadProgress,
+      maxBodyLength: 150 * 1024 * 1024,
+      maxContentLength: 150 * 1024 * 1024,
+      timeout: 5 * 60 * 1000,
+    }
+  );
+};
+
+const team = { list, get, create, changeLead, leave, uploadPresentation };
 export default team;
