@@ -1,0 +1,75 @@
+{
+  "name": "Relatório Final",
+  "date": "Maio/2026",
+  "data": {
+    "receitas": {
+      "ingressos": [
+        { "id": "r-ing-1", "name": "Ingressos vendidos", "value": 3964.50 },
+        { "id": "r-ing-2", "name": "Doação Bolsas", "value": 1110.00 },
+        { "id": "r-ing-3", "name": "Reembolso (-)", "value": 0.00 }
+      ],
+      "patrocinadores": [
+        { "id": "r-pat-1", "name": "F&L", "value": 2500.00 },
+        { "id": "r-pat-2", "name": "8020 digital", "value": 2500.00 },
+        { "id": "r-pat-3", "name": "Grupo Difference", "value": 2500.00 },
+        { "id": "r-pat-4", "name": "Sindifargo", "value": 5000.00 },
+        { "id": "r-pat-5", "name": "SEBRAE", "value": 9161.03 },
+        { "id": "r-pat-6", "name": "SENAI", "value": 33645.40 }
+      ]
+    },
+    "despesas": {
+      "geral": [
+        { "id": "d-ger-1", "name": "Material promocional", "value": 0.00, "payer": "" },
+        { "id": "d-ger-2", "name": "Custos com Local", "value": 30000.00, "payer": "SENAI" },
+        { "id": "d-ger-3", "name": "Taxas (se aplicável)", "value": 650.00, "payer": "8020 digital" }
+      ],
+      "suprimentos": [
+        { "id": "d-sup-1", "name": "Crachás", "value": 662.16, "payer": "8020 digital" },
+        { "id": "d-sup-2", "name": "Backdrop", "value": 1590.00, "payer": "SEBRAE" }
+      ],
+      "facilitador": [
+        { "id": "d-fac-1", "name": "Hospedagem", "value": 2696.44, "payer": "F&L" },
+        { "id": "d-fac-2", "name": "Passagens", "value": 3287.03, "payer": "SEBRAE" },
+        { "id": "d-fac-3", "name": "Translado", "value": 150.00, "payer": "8020 digital" }
+      ],
+      "alimentacao": {
+        "sexta": [
+          { "id": "d-ali-sex-1", "name": "Coffee-break", "value": 625.00, "payer": "grupo difference" },
+          { "id": "d-ali-sex-2", "name": "Bebidas", "value": 187.00, "payer": "8020 digital" }
+        ],
+        "sabado": [
+          { "id": "d-ali-sab-1", "name": "Café da manhã", "value": 625.00, "payer": "grupo difference" },
+          { "id": "d-ali-sab-2", "name": "Almoço", "value": 949.00, "payer": "sindfargo" },
+          { "id": "d-ali-sab-3", "name": "Coffee-break", "value": 352.31, "payer": "8020 digital" },
+          { "id": "d-ali-sab-4", "name": "Jantar", "value": 2450.00, "payer": "sindfargo" },
+          { "id": "d-ali-sab-5", "name": "Bebidas", "value": 128.39, "payer": "8020 digital" },
+          { "id": "d-ali-sab-6", "name": "Snacks, frutas, etc.", "value": 588.00, "payer": "8020 digital" }
+        ],
+        "domingo": [
+          { "id": "d-ali-dom-1", "name": "Café da manhã", "value": 625.00, "payer": "grupo difference" },
+          { "id": "d-ali-dom-2", "name": "Almoço", "value": 1118.00, "payer": "sindfargo" },
+          { "id": "d-ali-dom-3", "name": "Coffee-break", "value": 625.00, "payer": "grupo difference" },
+          { "id": "d-ali-dom-4", "name": "Snacks, frutas, etc.", "value": 155.45, "payer": "8020 digital" },
+          { "id": "d-ali-dom-5", "name": "Bebidas", "value": 192.45, "payer": "8020 digital" }
+        ]
+      },
+      "diversos": [
+        { "id": "d-div-1", "name": "Trofeus", "value": 4284.00, "payer": "SEBRAE" },
+        { "id": "d-div-2", "name": "Camisetas", "value": 1774.50, "payer": "SENAI" },
+        { "id": "d-div-3", "name": "Copos personalizados", "value": 363.00, "payer": "SENAI" },
+        { "id": "d-div-4", "name": "bloco de notas", "value": 682.00, "payer": "SENAI" },
+        { "id": "d-div-5", "name": "Bottom", "value": 152.90, "payer": "SENAI" },
+        { "id": "d-div-6", "name": "mochila", "value": 693.00, "payer": "SENAI" }
+      ],
+      "imprevista": {
+        "value": 300.00,
+        "payer": "8020 digital"
+      }
+    },
+    "totais": {
+      "receitaTotal": 60380.93,
+      "despesaTotal": 55905.63,
+      "resultadoLiquido": 4475.30
+    }
+  }
+}
