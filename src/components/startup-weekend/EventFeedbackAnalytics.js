@@ -174,7 +174,7 @@ const MealHeatmap = ({ responses }) => {
   };
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto print:overflow-visible">
       <table className="w-full border-collapse min-w-[600px]">
         <thead>
           <tr>
@@ -288,12 +288,12 @@ const VolunteerLeadsTable = ({ responses }) => {
         <button
           type="button"
           onClick={handleExport}
-          className="brutal-btn-yellow px-4 py-2 text-xs"
+          className="brutal-btn-yellow px-4 py-2 text-xs print:hidden"
         >
           Exportar CSV
         </button>
       </div>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto print:overflow-visible">
         <table className="w-full border-collapse min-w-[900px] text-xs">
           <thead>
             <tr>

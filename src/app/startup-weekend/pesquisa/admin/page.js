@@ -104,7 +104,7 @@ export default function PesquisaAdminPage() {
         <div className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12">
           <Link
             href="/startup-weekend"
-            className="inline-block text-techstars-green font-black uppercase text-xs tracking-widest mb-4 hover:underline"
+            className="inline-block text-techstars-green font-black uppercase text-xs tracking-widest mb-4 hover:underline print:hidden"
           >
             ← VOLTAR
           </Link>
@@ -117,12 +117,20 @@ export default function PesquisaAdminPage() {
                 Respostas agregadas do feedback pós-evento.
               </p>
             </div>
-            <Link
-              href="/startup-weekend/pesquisa"
-              className="brutal-btn-yellow inline-block px-5 py-3 text-xs self-start"
-            >
-              Ver formulário
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3 self-start md:self-end print:hidden">
+              <button
+                onClick={() => window.print()}
+                className="bg-white text-black font-black uppercase tracking-widest border-2 border-transparent hover:border-white hover:bg-black hover:text-white transition-all px-5 py-3 text-xs shadow-[4px_4px_0_#39C463]"
+              >
+                Baixar PDF
+              </button>
+              <Link
+                href="/startup-weekend/pesquisa"
+                className="brutal-btn-yellow inline-block px-5 py-3 text-xs"
+              >
+                Ver formulário
+              </Link>
+            </div>
           </div>
         </div>
       </header>
