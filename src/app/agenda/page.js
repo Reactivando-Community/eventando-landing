@@ -72,7 +72,7 @@ export default function AgendaPage() {
             <Link href="/" className="flex items-center space-x-2">
               <Image
                 src="/images/logo-join-white.png"
-                alt="Join Community"
+                alt="techstars_ Startup Weekend Anápolis"
                 width={150}
                 height={40}
                 className="h-10 w-auto"
@@ -95,7 +95,7 @@ export default function AgendaPage() {
             </span>
           </h1>
           <p className="text-xl text-center text-gray-300 max-w-3xl mx-auto">
-            Confira a programação completa do Join Community 2025 com todas as palestras, 
+            Confira a programação completa do techstars_ Startup Weekend <span className="text-[#0EA5E9]">Anápolis</span> com todas as palestras, 
             workshops e atividades dos dois dias de evento.
           </p>
         </div>

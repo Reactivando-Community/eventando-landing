@@ -1,0 +1,264 @@
+/* ═══════════════════════════════════════════════════════════
+   Zero ao Hero – Full-screen drag & drop board
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Page Container ──────────────────────────────────────── */
+.zero-hero-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* ─── Background Image ────────────────────────────────────── */
+.zero-hero-page__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("/images/zero-hero.png");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+/* ─── Subtle overlay for contrast ─────────────────────────── */
+.zero-hero-page__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(0.5px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ─── Stage Layer ─────────────────────────────────────────── */
+.zero-hero-page__stages {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+/* ─── Title Overlay ───────────────────────────────────────── */
+.zero-hero-page__title {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  text-align: center;
+  pointer-events: none;
+}
+
+.zero-hero-page__title h1 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  margin: 0;
+}
+
+.zero-hero-page__title p {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 4px 0 0 0;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Stage Drop Zone
+   ═══════════════════════════════════════════════════════════ */
+.stage-zone {
+  position: absolute;
+  transform: translate(-50%, 0);
+  z-index: 10;
+  min-width: 140px;
+}
+
+.stage-zone__indicator {
+  background: rgba(15, 15, 15, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 10px 12px;
+  transition: border-color 0.2s ease;
+  min-height: 60px;
+}
+
+.stage-zone__indicator--active {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(15, 15, 15, 0.4);
+}
+
+/* ─── Stage Header ────────────────────────────────────────── */
+.stage-zone__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.stage-zone__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.stage-zone__label {
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+}
+
+/* ─── Teams Container ─────────────────────────────────────── */
+.stage-zone__teams {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  justify-content: start;
+  gap: 6px;
+  min-height: 28px;
+}
+
+.stage-zone__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 28px;
+  border: 1.5px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+.stage-zone__empty span {
+  font-size: 0.55rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.03em;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Team Chip
+   ═══════════════════════════════════════════════════════════ */
+.team-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 10px;
+  border-radius: 20px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--chip-color) 25%, #1a1a1a),
+    color-mix(in srgb, var(--chip-color) 10%, #111)
+  );
+  border: 1.5px solid color-mix(in srgb, var(--chip-color) 50%, transparent);
+  cursor: grab;
+  transition: box-shadow 0.15s ease;
+  white-space: nowrap;
+}
+
+.team-chip:hover {
+  box-shadow: 0 0 14px color-mix(in srgb, var(--chip-color) 40%, transparent),
+    0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.team-chip:active {
+  cursor: grabbing;
+}
+
+.team-chip__emoji {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.team-chip__name {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.03em;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Responsive – Scale down on smaller viewports
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .stage-zone {
+    min-width: 110px;
+  }
+
+  .stage-zone__indicator {
+    padding: 8px 10px;
+  }
+
+  .stage-zone__number {
+    width: 18px;
+    height: 18px;
+    font-size: 0.55rem;
+  }
+
+  .stage-zone__label {
+    font-size: 0.55rem;
+  }
+
+  .team-chip {
+    padding: 3px 8px 3px 5px;
+  }
+
+  .team-chip__emoji {
+    font-size: 0.7rem;
+  }
+
+  .team-chip__name {
+    font-size: 0.5rem;
+  }
+}
+
+/* ─── Layout override: remove parent padding ──────────────── */
+.zero-hero-layout {
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden;
+}
+
+/* ─── Fullscreen Button ───────────────────────────────────── */
+.zero-hero-page__fullscreen-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 30;
+  background: rgba(15, 15, 15, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.zero-hero-page__fullscreen-btn:hover {
+  background: rgba(15, 15, 15, 0.9);
+  transform: scale(1.05);
+}
+
+.zero-hero-page__fullscreen-btn svg {
+  width: 20px;
+  height: 20px;
+}

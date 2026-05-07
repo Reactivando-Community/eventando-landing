@@ -218,7 +218,7 @@ export const communities = [
   {
     name: "StartupGO",
     description:
-      "A comunidade StartupGO tem como objetivo tornar Goiás um estado mais inovador, promovendo a cultura empreendedora e apoiando fundadores de startups. Atua em todo o estado, com base principal em Goiânia e região metropolitana, e no apoio a outras regiões como Rio Verde, Jataí, Catalão e Caldas Novas. Suas principais atividades envolvem a organização e apoio à eventos presenciais e online como hackathons, meetups e o Techstars Startup Weekend.",
+      "A comunidade StartupGO tem como objetivo tornar Goiás um estado mais inovador, promovendo a cultura empreendedora e apoiando fundadores de startups. Atua em todo o estado, com base principal em Goiânia e região metropolitana, e no apoio a outras regiões como Rio Verde, Jataí, Catalão e Caldas Novas. Suas principais atividades envolvem a organização e apoio à eventos presenciais e online como hackathons, meetups e o techstars_ Startup Weekend.",
     logo: "/images/communities/2.png",
     category: "Empreendedorismo",
     socialLinks: [

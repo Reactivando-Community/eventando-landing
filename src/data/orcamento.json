@@ -1,0 +1,61 @@
+{
+  "name": "Orçamento",
+  "date": "30/03/2026",
+  "data": {
+    "participants": 75,
+    "totalPeople": 98,
+    "averageTicketPrice": 202.50,
+    "despesas": {
+      "geral": [
+        { "id": "g1", "name": "MeeteR (taxas de plataforma)", "value": 469.84 },
+        { "id": "g2", "name": "Material promocional", "value": 0 },
+        { "id": "g3", "name": "Custos com Local", "value": 0 },
+        { "id": "g4", "name": "Taxas (emissão de nota)", "value": 1875.66 }
+      ],
+      "suprimentos": [
+        { "id": "s1", "name": "Crachás", "value": 490, "unitCost": 5 },
+        { "id": "s2", "name": "Backdrop", "value": 3500 },
+        { "id": "s3", "name": "Facilitador - Hospedagem", "value": 1100 },
+        { "id": "s4", "name": "Facilitador - Passagens", "value": 3000 },
+        { "id": "s5", "name": "Facilitador - Translado", "value": 300 }
+      ],
+      "alimentacao": {
+        "sexta": [
+          { "id": "a-sex-1", "name": "Coffee-break", "unitCost": 14, "value": 1372 },
+          { "id": "a-sex-2", "name": "Bebidas", "unitCost": 3, "value": 294 }
+        ],
+        "sabado": [
+          { "id": "a-sab-1", "name": "Café da manhã", "unitCost": 12, "value": 1176 },
+          { "id": "a-sab-2", "name": "Almoço", "unitCost": 25, "value": 2450 },
+          { "id": "a-sab-3", "name": "Coffee-break", "unitCost": 14, "value": 1372 },
+          { "id": "a-sab-4", "name": "Jantar", "unitCost": 25, "value": 2450 },
+          { "id": "a-sab-5", "name": "Bebidas", "unitCost": 6, "value": 588 },
+          { "id": "a-sab-6", "name": "Snacks, frutas, etc.", "unitCost": 6, "value": 588 }
+        ],
+        "domingo": [
+          { "id": "a-dom-1", "name": "Café da manhã", "unitCost": 12, "value": 1176 },
+          { "id": "a-dom-2", "name": "Almoço", "unitCost": 25, "value": 2450 },
+          { "id": "a-dom-3", "name": "Coffee-break", "unitCost": 14, "value": 1372 },
+          { "id": "a-dom-4", "name": "Snacks, frutas, etc.", "unitCost": 6, "value": 588 },
+          { "id": "a-dom-5", "name": "Bebidas", "unitCost": 6, "value": 588 }
+        ]
+      },
+      "diversos": [
+        { "id": "d1", "name": "Camisetas", "unitCost": 40, "value": 3920 },
+        { "id": "d2", "name": "Copos personalizados", "unitCost": 12, "value": 1176 },
+        { "id": "d3", "name": "Adesivos", "unitCost": 5, "value": 490 },
+        { "id": "d4", "name": "Brindes", "unitCost": 15, "value": 1470 }
+      ]
+    },
+    "contingencia": {
+      "percent": 10,
+      "value": 3425.55
+    },
+    "sponsors": [
+      { "name": "8020 Digital", "tier": "Bronze", "value": 2500, "logo": "/images/8020digital.png", "url": "https://8020digital.io" },
+      { "name": "F&L Solutions", "tier": "Bronze", "value": 2500, "logo": "/images/flsoftwaresolutions.png", "url": "https://flsoftwaresolutions.com" },
+      { "name": "SENAI", "tier": "Platina", "value": 10000, "logo": "/images/SENAI_logo_2024.png", "url": "https://www.portaldaindustria.com.br/senai/" },
+      { "name": "Sindifargo", "tier": "Prata", "value": 0, "logo": "/images/sindifargo.png", "url": null }
+    ]
+  }
+}

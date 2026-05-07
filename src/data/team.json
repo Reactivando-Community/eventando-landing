@@ -1,0 +1,85 @@
+[
+  {
+    "id": 1,
+    "name": "Pedro Goiânia",
+    "role": "Líder da Organização",
+    "photo": "/images/team/pedro.jpeg",
+    "bio": "Desenvolvedor de software há mais de 10 anos, formado em Sistemas de Informação pelo IFG. Atuou em fintechs e hoje é consultor para empresas no Brasil e nos EUA. Fundador da fintech Pix Aí e líder de comunidade na Reactivando.",
+    "tags": ["Pix Aí", "Reactivando", "IFG", "Brasil 🇧🇷", "EUA 🇺🇸", "Fintechs"],
+    "companies": [
+      { "name": "Nubank", "logo": "/images/logos/nubank-95.svg" },
+      { "name": "Itaú", "logo": "/images/logos/itau_logo.png" },
+      { "name": "Wellhub", "logo": "/images/logos/wellhub_logo.png" }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Fábio Leão Júnior",
+    "role": "Líder Técnico",
+    "photo": "/images/team/fabio.jpg",
+    "bio": "Engenheiro de Software com mais de 6 anos de experiência em startups e empresas de tecnologia no Brasil e nos EUA. Especialista em backend e inteligência artificial, atua também no fortalecimento de comunidades de tecnologia em Goiás.",
+    "tags": ["Startups SAAS", "Brasil 🇧🇷", "EUA 🇺🇸", "Backend & IA"],
+    "companies": [
+      { "name": "Itaú", "logo": "/images/logos/itau_logo.png" },
+      { "name": "Serasa", "logo": "/images/logos/serasa_opengraph.png" }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Roberto Tsukino",
+    "role": "Líder de Patrocínios",
+    "photo": "/images/team/roberto.jpeg",
+    "bio": "Vice-Presidente da Bluefields e sócio na Vallier Cap e no Hub G62. Atua no desenvolvimento de novos negócios e inovação, aplicando Growth Hacking e consultoria de riscos para escalar startups. Mestre em Física pela UFABC com foco em inovações quânticas.",
+    "tags": ["Bluefields", "Vallier Cap", "Hub G62", "UFABC"],
+    "companies": [
+      { "name": "Vallier Cap", "logo": "/img/brands/valler.jpeg" },
+      { "name": "Bluefields", "logo": "/img/brands/bluefields.PNG" }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Raphaela Gomes",
+    "role": "Líder de Mentores e Jurados",
+    "photo": "/images/team/raphaela.jpeg",
+    "bio": "Professora da UEG e coordenadora da Agência de Inovação INOVAUEG. Engenheira agrícola, mestre pela UFLA e doutora em Ciência Animal pela UFG. Atua em empreendedorismo, inovação e conexão entre universidade e mercado.",
+    "tags": ["UEG", "INOVAUEG", "UFLA", "UFG", "Inovação Acadêmica"],
+    "companies": [
+      { "name": "UEG", "logo": "/images/logos/ueg_logo.jpg" },
+      { "name": "UFG", "logo": "/images/logos/Marca_da_UFG.png" }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Alexandra Siqueira",
+    "role": "Líder de Logística",
+    "photo": "/images/team/alexandra.jpeg",
+    "bio": "Formada em Química Industrial e pós-graduada em desenvolvimento analítico farmacêutico. Atua na indústria farmacêutica na Vitamedic com análises e P&D. Também é fundadora da Dupla3D.Loja, marca de poppets personalizados de pets em impressão 3D.",
+    "tags": ["Vitamedic", "Dupla3D.Loja", "Química Ind.", "Pesquisa & Desenv."],
+    "companies": [
+      { "name": "Teuto", "logo": "/images/logos/teuto_logo.svg" },
+      { "name": "Vitamedic", "logo": "/images/logos/vitamedic.jpeg" }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Lucas Lemos",
+    "role": "Líder de Marketing",
+    "photo": "/images/team/lucas.jpeg",
+    "bio": "Engenheiro de software há mais de uma década, founding engineer de duas startups em Goiânia nas áreas de agro e saúde e contribuidor em projetos open source. Atual CEO da F&L Software Solutions e líder de comunidade na Reactivando.",
+    "tags": ["F&L Software", "Reactivando", "Agrotech", "Healthtech", "Open Source"],
+    "companies": [
+      { "name": "Gymshark", "logo": "/images/logos/82230bdb79c2bdd6ee83590feec51b27.jpg" }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Vinícius Maia",
+    "role": "Facilitador",
+    "photo": "/images/team/vinicius.jpeg",
+    "bio": "Advogado há 11 anos e atua no associativismo empresarial em Joinville/SC. É voluntário em iniciativas de desenvolvimento econômico, comunidades de startups e já participou da organização de techstars_ Startup Weekends e do primeiro TEDx Joinville.",
+    "tags": ["Joinville/SC 🇧🇷", "TEDx Joinville", "Associativismo", "Startup SC"],
+    "companies": [
+    	{ "name": "Techstars", "logo": "/images/logos/techstars.png" }
+    ]
+  }
+]

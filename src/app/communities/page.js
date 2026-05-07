@@ -96,7 +96,7 @@ export default function CommunitiesPage() {
             <Link href="/" className="flex items-center space-x-2">
               <Image
                 src="/images/logo-join-white.png"
-                alt="Join Community"
+                alt="techstars_ Startup Weekend Anápolis"
                 width={150}
                 height={40}
                 className="h-10 w-auto"

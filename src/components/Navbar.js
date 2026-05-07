@@ -25,19 +25,14 @@ export const Navbar = () => {
           {({ open }) => (
             <>
               <div className="flex flex-wrap items-center justify-between w-full lg:w-auto p-8">
-                <Link href="https://joincommunity.com.br" target="_blank">
-                  <span className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
-                    <span>
-                      <Image
-                        src={"/images/logo-join-white.png"}
-                        alt="Logo Join"
-                        width="150"
-                        height="80"
-                        className="w-30"
-                      />
-                    </span>
-                    {/* <span>Nextly</span> */}
-                  </span>
+                <Link href="/" className="flex items-center space-x-2">
+                  <Image
+                    src="/images/logo-dark.png"
+                    alt="techstars_ Startup Weekend Anápolis"
+                    width="150"
+                    height="150"
+                    className="h-12 w-auto object-contain"
+                  />
                 </Link>
               </div>
             </>

@@ -56,7 +56,7 @@ export default function SideForm({
       if (slug && productsToList.length > 0) {
         // Procura por um produto que contenha o valor do event na label
         const eventProduct = productsToList.find(
-          (p) => p.value === productSelectedId
+          (p) => p.value === productSelectedId,
         );
         if (eventProduct) {
           setProduct(eventProduct.value);
@@ -65,12 +65,12 @@ export default function SideForm({
         }
       } else {
         const canBeListedProducts = productsToList.filter(
-          (p) => p.can_be_listed
+          (p) => p.can_be_listed,
         );
         setProduct(canBeListedProducts[0]?.value);
       }
     }
-  }, [productsToList.length]);
+  }, [params, productSelected, productSelectedId, productsToList]);
 
   const handleSubmit = async () => {
     if (!name || !phone || !email) {
@@ -229,7 +229,7 @@ export default function SideForm({
 
                   {(() => {
                     const selectedProduct = productsToList.find(
-                      (p) => p.value == productSelected
+                      (p) => p.value == productSelected,
                     );
                     const hasShirt =
                       selectedProduct &&
@@ -258,7 +258,7 @@ export default function SideForm({
                     />
 
                     <a
-                      href="https://doity.com.br/join-community--12-edicao"
+                      href="https://doity.com.br/startup-weekend-anapolis"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"

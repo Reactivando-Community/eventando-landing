@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1,
+    "name": "Gisely Oliveira",
+    "role": "Analista de Requisitos",
+    "photo": "/images/leaders/Gisely Oliveira.jpeg",
+    "bio": "Analista de Requisitos com experiência em projetos governamentais e privados, certificada internacionalmente na área. Mestranda em Engenharia de Software, atua na transformação de necessidades complexas em soluções estruturadas, com foco em documentação técnica, prototipação e alinhamento entre áreas."
+  },
+  {
+    "id": 2,
+    "name": "Cassiano Marques Coelho",
+    "role": "Coordenador de Marketing",
+    "photo": "/images/leaders/Cassiano Marques Coelho.jpeg",
+    "bio": "Coordenador de Marketing e Arquiteto de Agentes de IA, com 8 anos de experiência em Marketing de Performance. Atua em consultoria de IA para negócios, conectando estratégias digitais e automação inteligente para acelerar resultados."
+  },
+  {
+    "id": 3,
+    "name": "Bill Wallace Andrade",
+    "role": "Sócio Fundador",
+    "photo": "/images/leaders/Bill Wallace.jpeg",
+    "bio": "Especialista em inovação e transformação digital, com formação em Sistemas da Informação e pós-graduação em inovação e IA. Atua como consultor do Sebrae e Consultor Sênior no Programa Brasil Mais Produtivo, e é sócio fundador da Difference, onde lidera projetos que conectam estratégia, dados e inovação para gerar crescimento sustentável."
+  },
+  {
+    "id": 4,
+    "name": "Hugo Seabra",
+    "role": "Senior Lead Engineer",
+    "photo": "/images/leaders/Hugo Seabra.jpeg",
+    "bio": "Hugo Seabra é Engineering Leader e Arquiteto de Software orientado a produto, com experiência internacional em 8 países e atuação em sistemas de alto impacto em fintech, IA, blockchain e sistemas distribuídos de alta escala. É mestrando e pesquisador na Universidade Federal de Goiás, combinando expertise em arquiteturas distribuídas e ambientes regulados (SPI/PIX/RSFN) com uma forte visão de produto para entregar soluções escaláveis e de alto valor."
+  },
+  {
+    "id": 5,
+    "name": "Matheus Massa",
+    "role": "Senior Analytics Engineer / Nubank",
+    "photo": "/images/leaders/Matheus Massa.jpeg",
+    "bio": "Senior Analytics Engineer no Nubank, focado na criação de plataformas de decisão que escalam operações de alta complexidade para milhões de usuários. Com experiência em operacionalizar inteligência artificial e otimizar processos de dados, constrói sistemas de alta disponibilidade que unem eficiência operacional e visão de produto em organizações globais."
+  },
+  {
+    "id": 6,
+    "name": "Adriana de Deus Alves",
+    "role": "Empreendedora",
+    "photo": "/images/leaders/Adriana de Deus.jpeg",
+    "bio": "Empreendedora e líder de negócios com formação em Administração pela ULBRA e especializações em inovação por Harvard Business Impact Education, ESPM e StartSe University. Com trajetória na construção e expansão de negócios nos setores de beleza, varejo e alimentação, combina visão estratégica e excelência operacional com foco em desenvolvimento de pessoas e culturas organizacionais."
+  },
+  {
+    "id": 7,
+    "name": "Douglas Vieira",
+    "role": "Fundador e Estrategista de Marketing da Invento Marketing Digital",
+    "photo": "/images/leaders/Douglas.png",
+    "bio": "Estrategista de marketing e fundador da Invento Marketing Digital, com mais de 12 anos de experiência em estratégias digitais focadas em geração de leads e vendas. Graduado e pós-graduado em Marketing pela PUC, também atua como professor e palestrante sobre posicionamento, tráfego pago e crescimento de negócios no digital."
+  },
+  {
+    "id": 8,
+    "name": "Fabricio Silva de Jesus",
+    "role": "Fundador e CEO - Predict AI",
+    "photo": "/images/leaders/fabricio.jpg",
+    "bio": "Fundador e CEO da Predict AI For Health, que utiliza inteligência artificial para prever surtos de doenças como a dengue, e da Predict AI For Industry, focada em acelerar a pesquisa e o desenvolvimento de novos fármacos na indústria farmacêutica."
+  },
+  {
+    "id": 9,
+    "name": "Weiky Ferreira",
+    "role": "CEO - Creio Lab",
+    "photo": "/images/leaders/Weiky.jpeg",
+    "bio": "Fundadora da Creio Lab, startup brasileira de biocosméticos que une ciência, biodiversidade do Cerrado e nanotecnologia verde. Mestre em Ciências Farmacêuticas e especialista em formulações clean beauty, lidera projetos de P&D com apoio de Finep e FAPEG, sendo reconhecida como uma das empreendedoras emergentes na bioeconomia brasileira."
+  },
+  {
+    "id": 10,
+    "name": "Pedro Braz",
+    "role": "Fundador - Credituz",
+    "photo": "/images/leaders/pedro.jpeg",
+    "bio": "Pedro Braz é fundador da Credituz, fintech que utiliza inteligência artificial para democratizar o acesso ao crédito, conectando o mercado de capitais a pequenas e médias empresas. Reconhecido como MIT Innovators Under 35 em IA, possui formação em Private Equity & Venture Capital pela Harvard Business School e atua na interseção entre tecnologia, finanças e impacto social."
+  },
+  {
+    "id": 11,
+    "name": "Samuel Santanna",
+    "role": "Analista de Mídia Paga",
+    "photo": "/images/leaders/samuel.JPG",
+    "bio": "Analista de mídia paga com 4 anos de experiência em marketing de performance, especialista em estratégias focadas em ROI, funis e crescimento de negócios."
+  }
+]
