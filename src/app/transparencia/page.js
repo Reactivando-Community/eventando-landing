@@ -8,13 +8,18 @@ import StartupWeekendSEO from "@/components/startup-weekend/StartupWeekendSEO";
 import Image from "next/image";
 import Link from "next/link";
 import orcamento from "@/data/orcamento.json";
+import relatorio from "@/data/relatorio_final.json";
 
-// Destructure new schema
-const { participants, totalPeople, despesas, contingencia, sponsors } = orcamento.data;
+// Destructure old schema for unchanged info
+const { participants, totalPeople, sponsors } = orcamento.data;
+
+// Destructure new schema for actual expenses
+const { despesas, totais } = relatorio.data;
 
 // Category totals
 const totalGeral = despesas.geral.reduce((sum, item) => sum + item.value, 0);
 const totalSuprimentos = despesas.suprimentos.reduce((sum, item) => sum + item.value, 0);
+const totalFacilitador = despesas.facilitador.reduce((sum, item) => sum + item.value, 0);
 
 const alimentacaoDays = [
   { key: "sexta", label: "Sexta-feira", icon: "🌙", items: despesas.alimentacao.sexta },
@@ -28,7 +33,7 @@ const totalAlimentacao = alimentacaoDays.reduce(
 
 const totalDiversos = despesas.diversos.reduce((sum, item) => sum + item.value, 0);
 
-const totalDespesas = totalGeral + totalSuprimentos + totalAlimentacao + totalDiversos + contingencia.value;
+const totalDespesas = totais.despesaTotal;
 const costPerParticipant = totalDespesas / participants;
 
 const formatCurrency = (value) =>
@@ -40,7 +45,8 @@ const categories = [
   { key: "suprimentos", label: "Suprimentos", icon: "📦", total: totalSuprimentos, color: "bg-blue-500" },
   { key: "diversos", label: "Diversos", icon: "🎁", total: totalDiversos, color: "bg-purple-500" },
   { key: "geral", label: "Geral", icon: "⚙️", total: totalGeral, color: "bg-yellow-400" },
-  { key: "contingencia", label: "Contingência (10%)", icon: "🛡️", total: contingencia.value, color: "bg-orange-400" },
+  { key: "facilitador", label: "Facilitador", icon: "✈️", total: totalFacilitador, color: "bg-teal-400" },
+  { key: "imprevista", label: "Imprevistos", icon: "🛡️", total: despesas.imprevista.value, color: "bg-orange-400" },
 ];
 
 // Sponsor tier visual config
@@ -227,7 +233,7 @@ export default function TransparenciaPage() {
               onToggle={() => toggleCategory("geral")}
             >
               {despesas.geral.map((item) => (
-                <ItemRow key={item.id} name={item.name} value={item.value} />
+                <ItemRow key={item.id} name={item.name} value={item.value} payer={item.payer} />
               ))}
             </CategoryAccordion>
 
@@ -244,8 +250,25 @@ export default function TransparenciaPage() {
                   key={item.id}
                   name={item.name}
                   value={item.value}
-                  unitCost={item.unitCost}
-                  totalPeople={totalPeople}
+                  payer={item.payer}
+                />
+              ))}
+            </CategoryAccordion>
+
+            {/* Facilitador */}
+            <CategoryAccordion
+              label="Facilitador"
+              icon="✈️"
+              total={totalFacilitador}
+              isOpen={openCategories.facilitador}
+              onToggle={() => toggleCategory("facilitador")}
+            >
+              {despesas.facilitador.map((item) => (
+                <ItemRow
+                  key={item.id}
+                  name={item.name}
+                  value={item.value}
+                  payer={item.payer}
                 />
               ))}
             </CategoryAccordion>
@@ -292,8 +315,7 @@ export default function TransparenciaPage() {
                                 key={item.id}
                                 name={item.name}
                                 value={item.value}
-                                unitCost={item.unitCost}
-                                totalPeople={totalPeople}
+                                payer={item.payer}
                               />
                             ))}
                           </div>
@@ -318,24 +340,24 @@ export default function TransparenciaPage() {
                   key={item.id}
                   name={item.name}
                   value={item.value}
-                  unitCost={item.unitCost}
-                  totalPeople={totalPeople}
+                  payer={item.payer}
                 />
               ))}
             </CategoryAccordion>
 
-            {/* Contingência */}
+            {/* Imprevistos */}
             <CategoryAccordion
-              label={`Contingência (${contingencia.percent}%)`}
+              label="Imprevistos"
               icon="🛡️"
-              total={contingencia.value}
-              isOpen={openCategories.contingencia}
-              onToggle={() => toggleCategory("contingencia")}
-              dashed
+              total={despesas.imprevista.value}
+              isOpen={openCategories.imprevista}
+              onToggle={() => toggleCategory("imprevista")}
             >
-              <div className="px-4 py-3 text-sm font-bold text-gray-600">
-                Reserva de {contingencia.percent}% sobre as despesas para cobrir imprevistos.
-              </div>
+              <ItemRow
+                  name="Despesa Extra"
+                  value={despesas.imprevista.value}
+                  payer={despesas.imprevista.payer}
+                />
             </CategoryAccordion>
 
             {/* Grand Total */}
@@ -472,14 +494,14 @@ function CategoryAccordion({ label, icon, total, isOpen, onToggle, dashed, child
   );
 }
 
-function ItemRow({ name, value, unitCost, totalPeople }) {
+function ItemRow({ name, value, payer }) {
   return (
     <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center bg-gray-50 border-2 border-black px-4 py-3 hover:bg-gray-100">
       <div className="flex flex-col w-full sm:w-2/3 mb-1 sm:mb-0">
         <span className="text-black font-bold uppercase text-sm break-words">{name}</span>
-        {unitCost != null && (
-          <span className="text-xs text-gray-500 font-semibold">
-            {formatCurrency(unitCost)}/pessoa × {totalPeople} = {formatCurrency(value)}
+        {payer && (
+          <span className="text-xs text-blue-600 font-bold uppercase mt-1">
+            Pago por: {payer}
           </span>
         )}
       </div>
